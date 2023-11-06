@@ -1,6 +1,6 @@
 const prod = {
 	url: {
-		API_URL: ""
+		API_URL: "https://fair-red-sea-urchin-tam.cyclic.app"
 	}
 }
 
