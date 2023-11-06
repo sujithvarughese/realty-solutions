@@ -1,0 +1,12 @@
+.modal {
+
+    background: var(--COLOR-DARK);
+    border-radius: 15px;
+    text-align: center;
+    place-items: center;
+    z-index: 0;
+}
+
+@media (min-width: 450px) {
+
+}

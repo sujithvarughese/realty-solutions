@@ -1,0 +1,26 @@
+.about {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+}
+.card {
+    display: flex;
+}
+
+.text {
+    color: var(--COLOR-LIGHT);
+    font-family: "pastiche-brush", sans-serif;
+    margin: auto;
+    text-align: center;
+    font-size: 16px;
+}
+
+.image {
+
+}
+
+@media (min-width: 450px) {
+    .text {
+        font-size: 24px;
+    }
+}

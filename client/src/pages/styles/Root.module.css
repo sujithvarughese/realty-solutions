@@ -1,0 +1,31 @@
+.root {
+
+}
+.infobar {
+    display: block;
+}
+.main {
+
+}
+
+.desktop {
+    display: none;
+}
+.mobile {
+    display: block;
+}
+
+@media (min-width: 450px){
+    .main {
+
+    }
+    .infobar {
+        display: none;
+    }
+    .desktop {
+        display: block;
+    }
+    .mobile {
+        display: none;
+    }
+}

@@ -1,0 +1,63 @@
+.message {
+    position: relative;
+    display: flex;
+    gap: 3rem;
+    border-top: var(--COLOR-DARK) solid 2px;
+    padding: 1.4rem .3rem;
+}
+
+.flagRead {
+
+}
+.senderDate {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.prevMessage {
+
+}
+
+.date {
+    font-weight: lighter;
+    position: absolute;
+    right: 0;
+}
+.flag {
+
+}
+.messageData {
+
+}
+.sender {
+    font-weight: bold;
+}
+
+.recipient {
+
+}
+
+.subject {
+
+}
+
+.body {
+    font-weight: lighter;
+}
+
+@media (min-width: 450px) {
+    .message {
+        display: flex;
+        gap: 1rem;
+        border-top: var(--COLOR-DARK) solid 2px;
+        padding: 1.4rem .03rem;
+    }
+    .message:hover {
+        background-color: var(--COLOR-DARK);
+    }
+    .senderDate {
+        display: flex;
+        gap: 3rem;
+    }
+}

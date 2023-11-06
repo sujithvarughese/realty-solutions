@@ -1,0 +1,54 @@
+.message {
+    border-top: var(--COLOR-DARK) solid 2px;
+    height: 100%;
+    padding: .8rem .3rem;
+}
+.mobileCloseMessage {
+
+}
+.prevMessage {
+
+}
+
+.senderDate {
+    display: flex;
+    justify-content: space-between;
+}
+
+.subjectFlag {
+    display: flex;
+}
+.date {
+
+}
+.flag {
+
+}
+.messageData {
+
+}
+.sender {
+
+}
+
+.recipient {
+
+}
+
+.subject {
+    font-weight: bold;
+}
+
+.body {
+
+}
+
+@media (min-width: 450px) {
+    .message {
+        border-top: var(--COLOR-DARK) solid 2px;
+        height: 100vh;
+        position: sticky;
+        top: 70px;
+        padding: 1.4rem 2rem;
+    }
+}

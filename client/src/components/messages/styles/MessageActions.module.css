@@ -1,0 +1,21 @@
+.actions {
+    display: flex;
+    gap: 2rem;
+}
+
+.reply {
+
+}
+
+.delete {
+
+}
+
+.flag {
+
+}
+.reply,
+.flag,
+.delete:hover {
+    cursor: pointer;
+}

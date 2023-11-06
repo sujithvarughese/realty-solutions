@@ -1,0 +1,28 @@
+.unit {
+    margin: 1rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+}
+.image {
+    width: 25%;
+}
+.address {
+    
+}
+.addressLine1 {
+    
+}
+.addressLine2 {
+    
+}
+.actions {
+    display: flex;
+    width: 25%;
+    gap: 1rem;
+}
+
+@media (min-width: 450px) {
+    
+}

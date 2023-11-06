@@ -1,0 +1,22 @@
+.bookDetailsCard {
+    background: var(--COLOR-DARK);
+    filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+    border-radius: 12px;
+    padding: 2rem 3rem;
+    align-self: center;
+    width: 90%;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+
+@media (min-width: 450px){
+    .bookDetailsCard {
+        padding: 1rem;
+        width: 50%;
+    }
+
+}
