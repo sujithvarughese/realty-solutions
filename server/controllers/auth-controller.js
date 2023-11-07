@@ -63,7 +63,9 @@ const register = async (req, res) => {
 		// send response JSON
 		res.status(StatusCodes.CREATED).json({
 			message: "admin registered",
-			user: admin
+			user: admin,
+			lastName: user.lastName,
+			firstName: user.firstName
 		});
 	}
 
@@ -137,7 +139,9 @@ const login = async (req, res) => {
 	attachCookies({ res, token });
 	res.status(StatusCodes.OK).json({
 		message: "user logged in success",
-		user: userInfo
+		user: userInfo,
+		lastName: user.lastName,
+		firstName: user.firstName
 	});
 }
 

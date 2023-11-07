@@ -1,17 +1,32 @@
 import classes from "./styles/MyUnit.module.css";
 import { axiosDB } from "../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
+import { useGlobalContext } from "../../context/GlobalContext.jsx";
+import { useEffect } from "react";
+import { Button } from "../../UI/index.js";
 
 // homepage for tenant(user)
 const MyUnit = () => {
 	const myUnit = useLoaderData()
+	const { date, setDate, setUser } = useGlobalContext()
 
 	const { unitID, street, city, state, zip, image, user } = myUnit
+
 	const { lastName, firstName, rent, balance } = user
-	console.log(myUnit)
+
+	useEffect(() => {
+		setDate()
+		setUser({ lastName, firstName, unitID, street, city, state, zip})
+	}, [])
+
 	return (
 		<div className={classes.unit}>
-
+			{
+				date.date >= 5 &&
+				<div>
+					Reminder: Rent is due on the 1st!
+				</div>
+			}
 			<img src={image} alt="img" className={classes.image}/>
 
 

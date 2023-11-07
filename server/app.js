@@ -10,6 +10,8 @@ import cors from "cors";
 import authRouter from "./routes/auth-router.js"
 import unitRouter from "./routes/unit-router.js";
 import messagesRouter from "./routes/messages-router.js";
+import financeRouter from "./routes/finance-router.js";
+
 // remaining middleware imports
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
@@ -52,6 +54,7 @@ app.use("/api/v1/auth", authRouter);  // login, logout, register
 
 app.use("/api/v1/units", authenticateUser, unitRouter)
 app.use("/api/v1/messages", authenticateUser, messagesRouter)
+app.use("/api/v1/finance", authenticateUser, financeRouter)
 app.use(notFound);
 app.use(errorHandler);
 

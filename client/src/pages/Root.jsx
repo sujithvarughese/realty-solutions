@@ -7,17 +7,17 @@ import { RiHome6Fill, RiMailFill, RiMoneyDollarCircleFill } from "react-icons/ri
 import { FaGlobe } from "react-icons/fa"
 
 const Root = () => {
-
 	const navigation = useNavigation()
 	// user={ userID, isAdmin }
 	// logout function removes user info and sets to null
 	const { user, logout } = useGlobalContext()
-
 	const navigate = useNavigate();
-
 	// links render dynamically based on role; admin, user, and public all have different navigation links
 	const [links, setLinks] = useState(publicLinks)
-
+	const logoutAndNavigateHome = () => {
+		navigate("/")
+		logout()
+	}
 	// if user changes, check if admin or user and set links for navigation and navigate accordingly
 	useEffect(() => {
 		if (user && Object.keys(user).length > 0) {
@@ -38,12 +38,12 @@ const Root = () => {
 		<div className={classes.root}>
 			{/* main navbar for desktop/larger than mobile screens */}
 			<div className={classes.desktop}>
-				<DesktopNavbar user={user} links={links} logout={logout}/>
+				<DesktopNavbar user={user} links={links} logout={logoutAndNavigateHome}/>
 			</div>
 
 			{/* top bar on mobile devices - should not include much functionality as this area differs on different devices */}
 			<div className={classes.infobar}>
-				<InfoBar user={user} logout={logout}/>
+				<InfoBar user={user} logout={logoutAndNavigateHome}/>
 			</div>
 
 			<div className={classes.main}>
@@ -68,6 +68,11 @@ const adminLinks = [
 		url: "units"
 	},
 	{
+		name: "Finance",
+		icon: <FaGlobe />,
+		url: "finance"
+	},
+	{
 		name: "Messages",
 		icon: <RiMailFill />,
 		url: "messages"
@@ -81,7 +86,7 @@ const adminLinks = [
 
 const userLinks = [
 	{
-		name: "My Unit",
+		name: "Home",
 		icon: <RiHome6Fill />,
 		url: "home"
 	},
@@ -91,9 +96,9 @@ const userLinks = [
 		url: "messages"
 	},
 	{
-		name: "Finance",
+		name: "Payments",
 		icon: <RiMoneyDollarCircleFill />,
-		url: "finance"
+		url: "payments"
 	},
 ]
 

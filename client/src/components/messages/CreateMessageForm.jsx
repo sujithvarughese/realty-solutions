@@ -23,6 +23,7 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 	}
 
 	const navigate = useNavigate()
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		// add sender info before passing to server

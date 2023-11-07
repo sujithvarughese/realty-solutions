@@ -1,17 +1,18 @@
 import { createContext, useContext, useReducer } from "react";
 import reducer from "./reducer.js";
-
 import { axiosDB } from "../utils/axios.js";
 import {
 	REGISTER_USER,
 	LOGIN_USER,
 	LOGOUT_USER,
-	SET_IS_LOADING
+	SET_IS_LOADING,
+	SET_USER,
+	SET_DATE
 } from "./actions.js";
 
 
 const initialState = {
-	units: [],
+	date: Date.now(),
 	user: null
 }
 
@@ -26,10 +27,10 @@ const GlobalProvider = ({ children }) => {
 		try {
 			const response = await axiosDB.post("/auth/register", credentials)
 			// user = { userID: _id, isAdmin: isAdmin }
-			const { user } = response.data
+			const { user, lastName, firstName } = response.data
 			dispatch({
 				type: REGISTER_USER,
-				payload: { user }
+				payload: { user, lastName, firstName }
 			})
 
 		} catch (error) {
@@ -40,15 +41,16 @@ const GlobalProvider = ({ children }) => {
 	const login = async (credentials) => {
 		try {
 			const response = await axiosDB.post("/auth/login", credentials)
-			const { user } = response.data
+			const { user, lastName, firstName } = response.data
 			dispatch({
 				type: LOGIN_USER,
-				payload: { user }
+				payload: { user, lastName, firstName }
 			})
 		} catch (error) {
 			console.log(error);
 		}
 	}
+
 	const logout = async () => {
 		await axiosDB("/auth/logout");
 		dispatch({ type: LOGOUT_USER });
@@ -60,10 +62,24 @@ const GlobalProvider = ({ children }) => {
 			payload: { isLoading: bool }
 		})
 	}
-
-	const getUnits = (units) => {
+	const setUser = (user) => {
+		const { lastName, firstName, unitID, street, city, state, zip } = user
 		dispatch({
+			type: SET_USER,
+			payload: { lastName, firstName, unitID, street, city, state, zip }
+		})
+	}
 
+	const setDate = () => {
+		const dateInstance = new Date()
+		const year = dateInstance.getFullYear()
+		const month = dateInstance.getMonth()
+		const date = dateInstance.getDate()
+		const day = dateInstance.getDay()
+		const today = { year, month, date, day }
+		dispatch({
+			type: SET_DATE,
+			payload: { date: today }
 		})
 	}
 
@@ -74,7 +90,9 @@ const GlobalProvider = ({ children }) => {
 				register,
 				login,
 				logout,
-				setIsLoading
+				setIsLoading,
+				setDate,
+				setUser
 			}
 		}>
 

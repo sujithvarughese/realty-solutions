@@ -33,6 +33,11 @@ const MessageSchema = new mongoose.Schema({
 		default: () => Date.now(),
 		immutable: true
 	},
+	createdAt: {
+		type: Date,
+		default: () => Date.now(),
+		immutable: true
+	},
 	updatedAt: {
 		type: Date,
 		default: () => Date.now()

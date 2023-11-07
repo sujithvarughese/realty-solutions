@@ -16,6 +16,8 @@ import MessageActions from "./messages/MessageActions.jsx";
 import CreateUserForm from "./users/CreateUserForm.jsx";
 import EditUserForm from "./users/EditUserForm.jsx";
 
+import CreateRentReceiptForm from "./finance/CreateRentReceiptForm.jsx";
+import RentReceipt from "./finance/RentReceipt.jsx"
 export {
 	InfoBar,
 	MobileNavbar,
@@ -33,4 +35,7 @@ export {
 
 	CreateUserForm,
 	EditUserForm,
+
+	CreateRentReceiptForm,
+	RentReceipt,
 }

@@ -18,7 +18,7 @@ const InputSelect = (props) => {
 						return (
 							<option
 								key={index}
-								value={item.value}
+								value={item.value || item}
 							>
 								{item.text || item}
 							</option>

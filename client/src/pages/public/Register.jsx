@@ -21,7 +21,7 @@ const Register = () => {
 		setValues({ ...values, [e.target.name]: e.target.value });
 	}
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault()
 		// verify passwords are same before sending to server
 		if (values.newPassword !== values.newPasswordVerify) {

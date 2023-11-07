@@ -17,7 +17,7 @@ const Login = () => {
 		setValues({ ...values, [e.target.name]: e.target.value });
 	}
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault()
 		login(values)
 	}
