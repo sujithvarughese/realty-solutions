@@ -25,7 +25,7 @@ const Payments = () => {
 
 	return (
 		<div>
-			<Form onSubmit={handleSubmit}>
+			<Form onSubmit={handleSubmit} title="Payments">
 				<div className={classes.receiptForm}>
 					<InputSelect
 						htmlFor="year"

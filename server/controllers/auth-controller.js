@@ -140,8 +140,6 @@ const login = async (req, res) => {
 	res.status(StatusCodes.OK).json({
 		message: "user logged in success",
 		user: userInfo,
-		lastName: user.lastName,
-		firstName: user.firstName
 	});
 }
 

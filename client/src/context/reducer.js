@@ -21,8 +21,6 @@ const reducer = (state, action) => {
 		return {
 			...state,
 			user: action.payload.user,
-			lastName: action.payload.lastName,
-			firstName: action.payload.firstName
 		};
 	}
 	if (action.type === LOGOUT_USER) {

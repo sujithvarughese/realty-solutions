@@ -5,7 +5,8 @@ import { CreateMessageForm, MessageExpanded, MessageCollapsed } from "../compone
 import { Button } from "../UI/index.js";
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
-
+import { BiSolidMessageAltEdit, BiMessageSquareEdit } from "react-icons/bi"
+import { TfiControlBackward } from "react-icons/tfi"
 const Messages = () => {
 	// messages = { inbox, outbox }
 	const messages = useLoaderData()
@@ -108,15 +109,11 @@ const Messages = () => {
 		<div className={classes.messages}>
 
 			<div className={classes.buttons}>
-				<div className={classes.button}>
-					<Button onClick={()=>setShowCreateMessageForm(true)}>Create Message</Button>
+				<div className={classes.title}>
+					Mailbox
 				</div>
-				{
-					mobileExpanded &&
-					<div className={classes.mobileCloseMessage}>
-						<Button onClick={()=>setMobileExpanded(false)}>Back</Button>
-					</div>
-				}
+
+
 			</div>
 
 
@@ -128,12 +125,35 @@ const Messages = () => {
 			}
 
 			<div className={classes.links}>
-				<div
-					className={currentLink === "inbox" ? classes.active : classes.link}
-					onClick={clickInbox}>Inbox</div>
-				<div
-					className={currentLink === "outbox" ? classes.active : classes.link}
-					onClick={clickOutbox}>Outbox</div>
+				<div className={classes.create} onClick={()=>setShowCreateMessageForm(true)}>
+					<BiMessageSquareEdit />
+				</div>
+
+
+				{
+					mobileExpanded ?
+
+						<div className={classes.back} onClick={()=>setMobileExpanded(false)}>
+							<TfiControlBackward />
+						</div>
+						:
+						<div className={classes.links}>
+							<div
+								className={currentLink === "inbox" ? classes.active : classes.link}
+								onClick={clickInbox}>
+								Inbox
+							</div>
+							<div
+								className={currentLink === "outbox" ? classes.active : classes.link}
+								onClick={clickOutbox}>
+								Outbox
+							</div>
+						</div>
+				}
+
+
+
+
 			</div>
 
 			<div className={classes.mailbox}>

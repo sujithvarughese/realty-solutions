@@ -41,10 +41,10 @@ const GlobalProvider = ({ children }) => {
 	const login = async (credentials) => {
 		try {
 			const response = await axiosDB.post("/auth/login", credentials)
-			const { user, lastName, firstName } = response.data
+			const { user } = response.data
 			dispatch({
 				type: LOGIN_USER,
-				payload: { user, lastName, firstName }
+				payload: { user }
 			})
 		} catch (error) {
 			console.log(error);
