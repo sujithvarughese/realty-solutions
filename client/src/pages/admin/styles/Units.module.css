@@ -1,16 +1,15 @@
 .unitsPage {
     display: flex;
     flex-direction: column;
+    padding: 1rem;
 }
 .unitContainer {
-    width: 100vw;
+
 }
 .unit:nth-child(odd) {
     background-color: #213547;
 }
 .button {
-    width: 100px;
-    justify-content: flex-end;
-    align-self: flex-end;
-    margin-right: 1rem;
+    width: 150px;
+
 }

@@ -1,13 +1,15 @@
 import classes from "./styles/DesktopNavbar.module.css"
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const DesktopNavbar = ({ user, links, logout }) => {
 
+	const navigate = useNavigate()
 	return (
 		<div className={classes.navbar}>
 
 			<div className={classes.logo}>
-				<div className={classes.title}>
+				<div className={classes.title} onClick={()=>navigate("/")}>
 					<h1>Realty Solutions</h1>
 				</div>
 			</div>

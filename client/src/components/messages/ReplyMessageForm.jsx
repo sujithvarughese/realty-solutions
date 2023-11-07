@@ -34,14 +34,13 @@ const ReplyMessageForm = ({ message, closeReply }) => {
 	return (
 		<Modal>
 			<Form onSubmit={handleSubmit} title="create message">
-				<Input
-					htmlFor="body"
-					label="message: "
-					type="text"
+				Message:
+				<textarea
 					name="body"
 					value={body}
+					rows="20"
 					onChange={handleChange}
-				></Input>
+				></textarea>
 				<div>
 					<Button type="submit">Send</Button>
 					<Button type="button" onClick={closeReply}>Cancel</Button>

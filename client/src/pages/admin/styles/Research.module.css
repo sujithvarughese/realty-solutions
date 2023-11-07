@@ -1,7 +1,64 @@
+.title {
+    margin: 0 auto;
+    text-align: center;
+    font-family: "pastiche-brush", sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 1;
+    padding-top: 2rem;
+    text-transform: capitalize;
+}
+
 .search {
+
+
+}
+.countyResult {
+
+}
+.zipResult {
 
 }
 
 .results {
+    padding-bottom: 6rem;
 
+}
+
+table {
+    margin: 0 auto;
+}
+
+th {
+    display: none;
+}
+
+td {
+    font-family: "pastiche-brush", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.4rem; /* 48px */
+    text-transform: capitalize;
+    padding: 0.5rem 0;
+}
+tr {
+    display: flex;
+    gap: 4rem;
+    justify-content: space-between;
+    border-bottom: var(--COLOR-LIGHT) 2px solid;
+}
+
+@media (min-width: 450px) {
+    th {
+        display: block;
+        font-family: "pastiche-brush", sans-serif;
+        font-weight: 800;
+        font-size: 20px; /* 48px */
+        line-height: 1;
+        padding-bottom: 2rem;
+        text-align: center;
+    }
+    td {
+
+    }
 }

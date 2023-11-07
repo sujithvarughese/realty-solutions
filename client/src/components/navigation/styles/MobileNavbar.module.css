@@ -5,13 +5,14 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 11vh;
+    height: 6rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
     font-family: "pastiche-brush", sans-serif;
     font-size: 36px;
     background-color: var(--COLOR-DARK);
+    z-index: 20;
 }
 
 .link {

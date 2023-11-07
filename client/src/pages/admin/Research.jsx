@@ -8,6 +8,9 @@ const Research = () => {
 	const [counties, setCounties] = useState([])
 	const [fmrByZip, setFmrByZip] = useState([])
 	const [fmrData, setFmrData] = useState(null)
+
+	const [county, setCounty] = useState("")
+	const [zip, setZip] = useState("")
 	const year = 2023
 	// after user selects a state, fetch a list of counties and the county code, then prompt user for county
 	const getCountyList = (stateCode) => {
@@ -32,11 +35,13 @@ const Research = () => {
 	}
 
 	// after user selects county, fetch a list of zip codes(if metro county) with FMR list
-	const getZipCodeList = (countyCode) => {
+	const getZipCodeList = (county) => {
+		setCounty(county.text)
+		setZip("")
 		const fetchData = async () => {
 			try {
 				// retrieve list { zip_code, Efficiency, One-Bedroom, Two-Bedroom, Three-Bedroom, Four-Bedroom }
-				const response = await axiosHUD(`/data/${countyCode}?year=${year}`)
+				const response = await axiosHUD(`/data/${county.value}?year=${year}`)
 				// if classified as small area, data is not seperated by zipcodes
 				if (response.data.data.smallarea_status === "0") {
 					setFmrData(response.data.data.basicdata)
@@ -63,19 +68,24 @@ const Research = () => {
 		setFmrByZip([])
 		setFmrData(null)
 		const county = counties.find(county => county.value === e.target.value)
-		getZipCodeList(county.value);
+		getZipCodeList(county);
 	}
 
 	// set our final data to display
 	const handleSelectZipCode = (e) => {
 		const data = fmrByZip.find(zip => zip.zip_code === e.target.value)
+		setZip(e.target.value)
 		setFmrData(data)
 	}
 
 	return (
 		<div>
-			<div className={classes.search}>
-				<Form title="Research">
+			<div className={classes.title}>
+				Search for Fair Market Rent Values:
+			</div>
+
+				<Form>
+					<div className={classes.search}>
 					<InputSelect
 						htmlFor="state"
 						label="state: "
@@ -106,11 +116,12 @@ const Research = () => {
 							onChange={handleSelectZipCode}
 						></InputSelect>
 					}
+					</div>
 				</Form>
-			</div>
 
 
-			<div>
+
+			<div className={classes.results}>
 				{
 					fmrData &&
 					<table>
@@ -118,11 +129,17 @@ const Research = () => {
 							<tr>
 								<th>
 									Fair Market Rent Values
+									<span className={classes.countyResult}>{` for ${county}`}</span>
+									{
+										zip &&
+										<span className={classes.zipResult}>{`: ${zip}`}</span>
+									}
+
 								</th>
 							</tr>
 						</thead>
 
-						<tbody className={classes.results}>
+						<tbody>
 							<tr>
 								<td>Efficiency</td>
 								<td>${fmrData["Efficiency"]}</td>

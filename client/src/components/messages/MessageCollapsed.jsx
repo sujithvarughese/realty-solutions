@@ -30,7 +30,7 @@ const MessageCollapsed = ({ message, setExpandedMessage, markMessageRead, showEx
 
 				<div className={classes.senderDate}>
 					<div className={classes.sender}>
-						{sender.lastName} {sender.firstName}
+						{sender.lastName}, {sender.firstName}
 					</div>
 
 					<div className={classes.date}>

@@ -1,12 +1,14 @@
 .unit {
     margin: 1rem auto;
+    padding: 1rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    height: 10vh;
+    height: 125px;
+    gap: 2rem;
 }
 .image {
-    width: 25%;
+    width: 20%;
+    height: 100%;
 }
 .address {
     
@@ -15,14 +17,28 @@
     
 }
 .addressLine2 {
-    
+    display: none;
 }
 .actions {
     display: flex;
-    width: 25%;
     gap: 1rem;
 }
+.addressActions {
 
+}
 @media (min-width: 450px) {
-    
+    .unit {
+        margin: 1rem auto;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        height: 200px;
+    }
+    .addressLine2 {
+        display: block;
+    }
+    .addressActions {
+        display: flex;
+        gap: 1rem;
+    }
 }

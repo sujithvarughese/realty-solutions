@@ -1,7 +1,6 @@
 .landing {
     height: 100vh;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+
     -webkit-background-size: calc(100vw) calc(100vh);
     -moz-background-size: calc(100vw) calc(100vh);
     -o-background-size: calc(100vw) calc(100vh);
@@ -9,18 +8,20 @@
 
 }
 
+.element {
+    display: flex;
+
+}
 .text {
     width: 100%;
     font-family: "pastiche-brush", sans-serif;
     font-weight: bolder;
     text-align: center;
     color: var(--COLOR-ALT);
-    font-size: 42px;
     border: transparent;
     border-radius: 8px;
     padding: 8px;
     margin: auto;
-    box-shadow: 0 4px 6px -1px;
     text-shadow: 4px 8px 5px var(--COLOR);
     transition: 0.3s ease-in-out all;
     z-index: 10;
@@ -32,7 +33,7 @@
 }
 
 .image {
-    height: 100vh;
+    height: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-color: #fff;
@@ -50,10 +51,14 @@
         -o-background-size: calc(100vw) calc(100vh);
         background-size: calc(100vw) calc(100vh);
     }
+    .element {
+        height: 50vh;
+    }
     .about {
         height: auto
+
     }
     .text {
-        font-size: 64px;
+
     }
 }

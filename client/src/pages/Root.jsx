@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { DesktopNavbar, InfoBar, MobileNavbar } from "../components";
 import { RiHome6Fill, RiMailFill } from "react-icons/ri"
 import { FaGlobe } from "react-icons/fa"
+
 const Root = () => {
 
 	const navigation = useNavigation()

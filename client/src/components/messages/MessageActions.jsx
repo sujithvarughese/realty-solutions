@@ -5,17 +5,23 @@ import { IoTrashOutline } from "react-icons/io5"
 import { axiosDB } from "../../utils/axios.js";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../../context/GlobalContext.jsx";
 
 const MessageActions = ({ message, reply, toggleFlag }) => {
 
-	const { date, sender, subject, body, read, flag } = message
+	const { user } = useGlobalContext()
+	const { date, sender, recipient, subject, body, read, flag } = message
 
 	return (
 		<div className={classes.actions}>
 
-			<div className={classes.reply} onClick={reply}>
-				<RiReplyFill />
-			</div>
+			{
+				user?.userID === recipient._id &&
+				<div className={classes.reply} onClick={reply}>
+					<RiReplyFill />
+				</div>
+			}
+
 
 			<div className={classes.flag} onClick={()=>toggleFlag(message)}>
 				{ flag ? <TbFlagFilled /> : <TbFlag />}

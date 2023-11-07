@@ -4,7 +4,9 @@
     position: fixed;
     top: 0;
     width: 100vw;
-    height: 70px;
+    max-width: 1120px;
+    margin: 0 auto;
+    height: 5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -12,10 +14,12 @@
     padding: 0 2rem;
     background: linear-gradient(to right, #434343 0%, black 100%);
     z-index: 20;
+
 }
 .logo {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 .title {
     color: var(--COLOR-ALT);
