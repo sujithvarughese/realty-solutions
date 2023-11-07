@@ -16,34 +16,34 @@ const Unit = ({ unit }) => {
 
 			<img src={image} alt="img" className={classes.image}/>
 
-			<div className={classes.addressActions}>
-				<div className={classes.address}>
-					<div className={classes.addressLine1}>
-						<span>{unitID} </span>
-						<span>{street}</span>
-					</div>
-					<div className={classes.addressLine2}>
-						<span>{city}, </span>
-						<span>{state} </span>
-						<span>{zip}</span>
-					</div>
-				</div>
 
-				{
-					// if occupied show edit user button, else show create user button
-					occupied ?
-					<div className={classes.actions}>
-						<Button onClick={() => setShowEditUnitForm(true)}>Edit Unit</Button>
-						<Button onClick={() => setShowEditUserForm(true)}>Edit User</Button>
-						<Button onClick={() => setShowMessageForm(true)}>Message Tenant</Button>
-					</div>
-						:
-					<div className={classes.actions}>
-						<Button onClick={() => setShowEditUnitForm(true)}>Edit Unit</Button>
-						<Button onClick={() => setShowCreateUserForm(true)}>Create User</Button>
-					</div>
-				}
+			<div className={classes.address}>
+				<div className={classes.addressLine1}>
+					<span>{unitID} </span>
+					<span>{street}</span>
+				</div>
+				<div className={classes.addressLine2}>
+					<span>{city}, </span>
+					<span>{state} </span>
+					<span>{zip}</span>
+				</div>
 			</div>
+
+			{
+				// if occupied show edit user button, else show create user button
+				occupied ?
+				<div className={classes.actions}>
+					<Button onClick={() => setShowEditUnitForm(true)}>Edit Unit</Button>
+					<Button onClick={() => setShowEditUserForm(true)}>Edit User</Button>
+					<Button onClick={() => setShowMessageForm(true)}>Message Tenant</Button>
+				</div>
+					:
+				<div className={classes.actions}>
+					<Button onClick={() => setShowEditUnitForm(true)}>Edit Unit</Button>
+					<Button onClick={() => setShowCreateUserForm(true)}>Create User</Button>
+				</div>
+			}
+
 			{/* forms open when state toggled */}
 			{ showEditUnitForm && <EditUnitForm cancel={()=>setShowEditUnitForm(false)} unit={unit}/>}
 			{ showCreateUserForm && <CreateUserForm cancel={()=>setShowCreateUserForm(false)} unit={unit}/> }

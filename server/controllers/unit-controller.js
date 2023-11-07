@@ -3,7 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError } from "../errors/index.js";
 
 const getMyUnit = async (req, res) => {
-	const myUnit = await Unit.findOne({ user: req.user.userID })
+	const myUnit = await Unit.findOne({ user: req.user.userID }).populate("user")
 	res.status(StatusCodes.OK).json({ myUnit })
 }
 // get all units, and populate each with tenant information

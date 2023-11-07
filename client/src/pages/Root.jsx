@@ -3,7 +3,7 @@ import { Outlet, useNavigation, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { useEffect, useState } from "react";
 import { DesktopNavbar, InfoBar, MobileNavbar } from "../components";
-import { RiHome6Fill, RiMailFill } from "react-icons/ri"
+import { RiHome6Fill, RiMailFill, RiMoneyDollarCircleFill } from "react-icons/ri"
 import { FaGlobe } from "react-icons/fa"
 
 const Root = () => {
@@ -91,9 +91,9 @@ const userLinks = [
 		url: "messages"
 	},
 	{
-		name: "Rent",
-		icon: <RiHome6Fill />,
-		url: "rent"
+		name: "Finance",
+		icon: <RiMoneyDollarCircleFill />,
+		url: "finance"
 	},
 ]
 

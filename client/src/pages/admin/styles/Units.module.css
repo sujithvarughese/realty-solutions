@@ -1,7 +1,7 @@
 .unitsPage {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+
 }
 .unitContainer {
 
@@ -11,5 +11,12 @@
 }
 .button {
     width: 150px;
+}
+
+@media (min-width: 450px) {
+    .unitsPage {
+        padding: 1rem;
+    }
+
 }
 
