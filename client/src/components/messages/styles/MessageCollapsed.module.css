@@ -10,8 +10,8 @@
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    width: 15%;
-    font-size: 24px;
+    width: 12%;
+    font-size: 20px;
 }
 .senderDate {
     display: flex;
@@ -25,6 +25,11 @@
 .body {
     font-weight: lighter;
     font-size: 14px;
+    white-space: nowrap;
+    overflow: clip;
+    text-overflow: ellipsis;
+    width: 99%;
+
 }
 .date {
     display: block;
