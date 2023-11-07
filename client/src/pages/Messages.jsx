@@ -21,6 +21,7 @@ const Messages = () => {
 	const [mobileExpanded, setMobileExpanded] = useState(false)
 	// default to show inbox
 	const [currentMailbox, setCurrentMailbox] = useState(myInbox)
+	const [currentLink, setCurrentLink] = useState("inbox")
 
 	// fetch address book for admin
 	const getUserList = async () => {
@@ -71,12 +72,14 @@ const Messages = () => {
 		}
 	}
 	const clickInbox = async () => {
+		setCurrentLink("inbox")
 		const response = await axiosDB("/messages/inbox")
 		const { inbox } = response.data
 		setMyInbox(inbox)
 	}
 
 	const clickOutbox = async () => {
+		setCurrentLink("outbox")
 		const response = await axiosDB("/messages/outbox")
 		const { outbox } = response.data
 		setMyOutbox(outbox)
@@ -89,18 +92,17 @@ const Messages = () => {
 		} else {
 			getAdminInfo()
 		}
-		console.log(messages);
 	}, [])
-
-	useEffect(() => {
-		setExpandedMessage(myInbox[0] || null)
-		setCurrentMailbox(myInbox)
-	}, [myInbox])
 
 	useEffect(() => {
 		setExpandedMessage(myOutbox[0] || null)
 		setCurrentMailbox(myOutbox)
 	}, [myOutbox])
+
+	useEffect(() => {
+		setExpandedMessage(myInbox[0] || null)
+		setCurrentMailbox(myInbox)
+	}, [myInbox])
 
 	return (
 		<div className={classes.messages}>
@@ -127,10 +129,10 @@ const Messages = () => {
 
 			<div className={classes.links}>
 				<div
-					className={currentMailbox === myInbox ? classes.active : classes.link}
+					className={currentLink === "inbox" ? classes.active : classes.link}
 					onClick={clickInbox}>Inbox</div>
 				<div
-					className={currentMailbox === myOutbox ? classes.active : classes.link}
+					className={currentLink === "outbox" ? classes.active : classes.link}
 					onClick={clickOutbox}>Outbox</div>
 			</div>
 
@@ -211,13 +213,4 @@ export const myMessagesLoader = async () => {
 	}
 }
 
-const markMessageRead = async (message) => {
-	try {
-		const response = await axiosDB.post("/messages/read", message)
-		const { messages } = response.data
-		// messages = { inbox, outbox }
-	} catch (error) {
-		throw new Error(error)
-	}
-}
 export default Messages;

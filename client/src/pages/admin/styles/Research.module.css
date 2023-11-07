@@ -10,18 +10,14 @@
 }
 
 .search {
-
-
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
 }
 .countyResult {
 
 }
 .zipResult {
-
-}
-
-.results {
-    padding-bottom: 6rem;
 
 }
 

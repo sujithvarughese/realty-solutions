@@ -1,4 +1,3 @@
-import About from "./public/About.jsx";
 import Error from "./public/Error.jsx";
 import Landing from "./public/Landing.jsx";
 import Login from "./public/Login.jsx";
@@ -10,4 +9,4 @@ import MyUnit, { myUnitLoader } from "./user/MyUnit.jsx"
 import Units, { unitsLoader } from "./admin/Units.jsx";
 
 
-export { About, Error, Landing, Login, Messages, myMessagesLoader, Register, Research, Root, MyUnit, myUnitLoader, Units, unitsLoader }
+export { Error, Landing, Login, Messages, myMessagesLoader, Register, Research, Root, MyUnit, myUnitLoader, Units, unitsLoader }

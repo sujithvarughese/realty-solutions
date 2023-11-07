@@ -1,5 +1,4 @@
 import classes from "./styles/Landing.module.css"
-import { About } from "../";
 import img1 from '../../assets/images/landing/landing-key.png'
 import img2 from '../../assets/images/landing/magnifying.png'
 import img3 from '../../assets/images/landing/laptop.png'
@@ -56,9 +55,6 @@ const Landing = () => {
 					<img src={img5} alt="img5"/>
 				</div>
 			</div>
-
-			<About />
-
 		</div>
 	);
 };

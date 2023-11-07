@@ -38,9 +38,10 @@ a:hover {
 body {
   padding: 4rem 0;
   display: flex;
-  background: linear-gradient(to right, #434343 0%, black 100%);
   max-width: 1120px;
-  height: 100vh;
+  background: linear-gradient(to right, #434343 0%, black 100%) repeat-x;
+  min-height: 100vh;
+
 }
 
 h1 {
@@ -65,10 +66,9 @@ h1 {
   body {
     margin: 0 auto;
     display: flex;
-    background: linear-gradient(to right, #434343 0%, black 100%);
     padding: 6rem 0 5rem 0;
+    background-repeat: inherit;
     width: 100%;
     height: auto;
-
   }
 }

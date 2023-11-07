@@ -2,7 +2,7 @@
     display: flex;
     position: fixed;
     top: 0;
-    background: white;
+    background: linear-gradient(to right, #434343 0%, black 100%);
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -11,12 +11,19 @@
     z-index: 20;
     text-align: center;
     font-family: "pastiche-brush", sans-serif;
+    border-bottom: var(--COLOR-LIGHT) 2px solid;
 }
 
 
 .title {
     color: var(--COLOR-ALT);
     font-weight: bold;
+}
+
+.titleRedirect {
+    color: var(--COLOR-ALT);
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .logout {

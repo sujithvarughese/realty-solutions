@@ -1,6 +1,4 @@
 .landing {
-    height: 100vh;
-
     -webkit-background-size: calc(100vw) calc(100vh);
     -moz-background-size: calc(100vw) calc(100vh);
     -o-background-size: calc(100vw) calc(100vh);
@@ -9,34 +7,30 @@
 }
 
 .element {
-    display: flex;
-
+    height: 83vh;
+    position: relative;
 }
 .text {
-    width: 100%;
+    position: absolute;
+    bottom: 15%;
     font-family: "pastiche-brush", sans-serif;
     font-weight: bolder;
     text-align: center;
     color: var(--COLOR-ALT);
     border: transparent;
     border-radius: 8px;
-    padding: 8px;
+    padding: 0 8px;
     margin: auto;
-    text-shadow: 4px 8px 5px var(--COLOR);
+    text-shadow: 0 0 24px var(--COLOR-LIGHT);
     transition: 0.3s ease-in-out all;
     z-index: 10;
 
 }
 
-.about {
-    z-index: 40;
-}
 
 .image {
-    height: 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-color: #fff;
     -webkit-background-size: calc(100vw) calc(100vh);
     -moz-background-size: calc(100vw) calc(100vh);
     -o-background-size: calc(100vw) calc(100vh);
@@ -52,13 +46,14 @@
         background-size: calc(100vw) calc(100vh);
     }
     .element {
+        display: flex;
         height: 50vh;
     }
-    .about {
-        height: auto
-
-    }
     .text {
-
+        width: 100%;
+        position: relative;
+    }
+    .image {
+        height: 100%;
     }
 }

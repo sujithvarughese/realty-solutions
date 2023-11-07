@@ -1,50 +1,36 @@
 .message {
     position: relative;
     display: flex;
-    gap: 3rem;
+    justify-content: flex-start;
+    gap: 1.5rem;
     border-top: var(--COLOR-DARK) solid 2px;
-    padding: 1.4rem .3rem;
+    padding: 1.4rem 0;
 }
-
 .flagRead {
-
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    width: 15%;
+    font-size: 24px;
 }
 .senderDate {
     display: flex;
     justify-content: space-between;
 }
 
-
-.prevMessage {
-
-}
-
-.flag {
-
-}
-.messageData {
-
-}
 .sender {
-    font-weight: bold;
-}
-
-.recipient {
-
-}
-
-.subject {
-
+    font-weight: bolder;
 }
 
 .body {
     font-weight: lighter;
+    font-size: 14px;
 }
 .date {
     display: block;
     font-weight: lighter;
     position: absolute;
-    right: 0;
+    right: 0.3rem;
 }
 
 @media (min-width: 450px) {
@@ -65,10 +51,14 @@
     .sender {
         font-size: 14px;
     }
-    .flagRead {
-        width: 15%;
-    }
+
     .date {
         font-size: 12px;
+    }
+    .flagRead {
+        padding-left: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
     }
 }

@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { GlobalProvider } from "./context/GlobalContext.jsx";
 import {
-  About,
   Error,
   Landing,
   Login,
@@ -29,7 +28,6 @@ const App = () => {
       errorElement: <Error />,
       children: [
         { index: true, element: <Landing /> },
-        { path: "about", element: <About /> },
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
         { path: "research", element: <Research /> },

@@ -18,11 +18,11 @@ const MessageCollapsed = ({ message, setExpandedMessage, markMessageRead, showEx
 			}}
 		>
 			<div className={classes.flagRead}>
+				<div className={classes.read}>
+					{ read && <FcInfo />}
+				</div>
 				<div className={classes.flag}>
 					{ flag && <TbFlagFilled /> }
-				</div>
-				<div className={classes.read}>
-					{!read && <FcInfo />}
 				</div>
 			</div>
 
