@@ -41,7 +41,6 @@ const createUser = async (req, res) => {
 }
 
 const register = async (req, res) => {
-	console.log(req.body);
 	// first registered user must be set to admin
 	const isFirstUser = (await User.countDocuments({})) === 0
 	if (isFirstUser) {
@@ -87,11 +86,6 @@ const register = async (req, res) => {
 	}
 
 	const updatedUser = await User.findOneAndUpdate({ _id: user.id }, { password: req.body.newPassword }).select("+password");
-	console.log("user");
-	console.log(user);
-	console.log("updated user");
-	console.log(updatedUser);
-
 
 	// userInfo variable with just the fields we want to send for token
 	const userInfo = { userID: user._id, isAdmin: false };
@@ -163,7 +157,6 @@ const getUserList = async (req, res) => {
 		}
 
 	})
-	console.log(userList);
 	res.status(StatusCodes.OK).json({ userList })
 }
 
@@ -176,13 +169,19 @@ const getAdminInfo = async (req, res) => {
 	res.status(StatusCodes.OK).json({ adminInfo })
 }
 
+const getUserInfo = async (req, res) => {
+	const address = await Unit.findOne({ user: req.params.id}).select("unitID street city state zip")
+	const name = await User.findById(req.params.id).select("lastName, firstName")
+	console.log(address);
+	res.status(StatusCodes.OK).json({ name, address })
+}
+
 const updateUser = async (req, res) => {
 	const user = await User.findByIdAndUpdate(req.body._id, req.body)
 	if (!user) {
 		throw new NotFoundError(`No user with id :${req.body._id}`);
 	}
-	console.log(user);
 	res.status(StatusCodes.OK).json({ msg: 'Update success' })
 }
 
-export { register, login, logout, createUser, getUserList, getAdminInfo, updateUser }
+export { register, login, logout, createUser, getUserList, getAdminInfo, updateUser, getUserInfo }

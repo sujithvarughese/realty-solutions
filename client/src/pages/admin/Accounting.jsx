@@ -1,0 +1,51 @@
+import classes from "./styles/Accounting.module.css";
+
+import { useState } from "react";
+import { Button } from "../../UI"
+import { NavLink, Outlet } from "react-router-dom";
+
+
+const Accounting = () => {
+
+
+	return (
+		<div>
+
+			{
+				links.map((link, index) => {
+					return (
+						<NavLink
+							key={index}
+							to={link.url}
+							className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
+							end
+						>
+							{link.name}
+						</NavLink>
+					)
+				})
+			}
+
+			<Outlet />
+
+
+		</div>
+	);
+};
+
+const links = [
+	{
+		name: "Finances",
+		icon: "finances",
+		url: "finances"
+
+	},
+	{
+		name: "Rents",
+		icon: "rents",
+		url: "rents"
+	},
+
+]
+
+export default Accounting;

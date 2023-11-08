@@ -1,14 +1,3 @@
-.root {
-
-}
-
-.infobar {
-    display: block;
-}
-.main {
-    width: 100vw;
-}
-
 .desktop {
     display: none;
 }
@@ -25,10 +14,5 @@
     }
     .mobile {
         display: none;
-    }
-    .main {
-        width: 100vw;
-        max-width: 1120px;
-        margin: 0 auto;
     }
 }

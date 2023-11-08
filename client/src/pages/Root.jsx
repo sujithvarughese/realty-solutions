@@ -35,7 +35,7 @@ const Root = () => {
 	}, [user]);
 
 	return (
-		<div className={classes.root}>
+		<div>
 			{/* main navbar for desktop/larger than mobile screens */}
 			<div className={classes.desktop}>
 				<DesktopNavbar user={user} links={links} logout={logoutAndNavigateHome}/>
@@ -46,7 +46,7 @@ const Root = () => {
 				<InfoBar user={user} logout={logoutAndNavigateHome}/>
 			</div>
 
-			<div className={classes.main}>
+			<div>
 				{ navigation.state === 'loading' && <h3>Loading...</h3> }
 				{/* main content will be rendered here */}
 				<Outlet />
@@ -68,9 +68,9 @@ const adminLinks = [
 		url: "units"
 	},
 	{
-		name: "Finance",
+		name: "Accounting",
 		icon: <FaGlobe />,
-		url: "finance"
+		url: "accounting"
 	},
 	{
 		name: "Messages",
