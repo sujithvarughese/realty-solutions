@@ -103,15 +103,6 @@ const userLinks = [
 ]
 
 const publicLinks = [
-	{
-		name: "Login",
-		icon: "Login",
-		url: "/login"
-	},
-	{
-		name: "Register",
-		icon: "Register",
-		url: "/register"
-	},
+
 ]
 export default Root;

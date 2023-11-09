@@ -2,7 +2,7 @@ import classes from "./styles/Input.module.css";
 
 const Input = (props) => {
 	return (
-		<div className={classes.input}>
+		<div className={classes.container}>
 			<label
 				className={classes.label}
 				{ ...props }
@@ -10,7 +10,7 @@ const Input = (props) => {
 				{ props.label }
 			</label>
 			<input
-				className={classes.inputArea}
+				className={classes.input}
 				{ ...props }
 			/>
 		</div>

@@ -6,8 +6,6 @@ import {
   Finances,
   Payments,
   Landing,
-  Login,
-  Register,
   Rents,
   rentsLoader,
   Research,
@@ -31,8 +29,6 @@ const App = () => {
       errorElement: <Error />,
       children: [
         { index: true, element: <Landing /> },
-        { path: "login", element: <Login /> },
-        { path: "register", element: <Register /> },
         { path: "research", element: <Research /> },
         { path: "units", element: <Units />, loader: unitsLoader },
         { path: "home", element: <MyUnit />, loader: myUnitLoader},

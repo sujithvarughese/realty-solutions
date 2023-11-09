@@ -4,11 +4,28 @@ import img2 from '../../assets/images/landing/magnifying.png'
 import img3 from '../../assets/images/landing/laptop.png'
 import img4 from '../../assets/images/landing/condos.png'
 import img5 from '../../assets/images/landing/construction.png'
-
+import { Auth } from "../../components"
 // home page for public (no user logged in)
+
 const Landing = () => {
 	return (
-		<div className={classes.landing}>
+		<div className={classes.container}>
+
+			<div className={classes.content}>
+				<div>
+					<div className={classes.title}>
+						E Realty Solutions
+					</div>
+					<div className={classes.description}>
+						Real solutions for all your management needs.
+					</div>
+				</div>
+
+				<div className={classes.auth}>
+					<Auth />
+				</div>
+
+			</div>
 
 			<div className={classes.element}>
 				<div className={classes.text}>
@@ -35,7 +52,6 @@ const Landing = () => {
 				<div className={classes.image}>
 					<img src={img3} alt="img3"/>
 				</div>
-
 			</div>
 
 			<div className={classes.element}>

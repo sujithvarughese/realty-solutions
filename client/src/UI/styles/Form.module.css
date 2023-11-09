@@ -1,38 +1,19 @@
-.form {
-    color: var(--COLOR-LIGHT);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    padding: 1.5rem;
-    transition: 0.3s ease-in-out all;
-    border-radius: 0.25rem;
-    z-index: 20;
+.container {
+
 }
-.form:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
+
 .title {
     font-family: "pastiche-brush", sans-serif;
     font-weight: 400;
-    font-style: normal;
-    font-size: 4rem; /* 48px */
+    font-size: 42px;
     line-height: 1;
     text-align: center;
     text-transform: capitalize;
-
 }
-
 .content {
-    display: grid;
-    gap: 1rem; /* 32px */
+
+
 }
 
 @media (min-width: 450px) {
-    .form {
-        width: 90vw;
-        max-width: 500px;
-        padding: 0 2.5rem;
-        margin: 3rem auto;
-
-    }
 }

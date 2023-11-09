@@ -3,15 +3,13 @@
 }
 
 .label {
-    display: block;
-    font-size: 0.875rem;
     margin-bottom: 0.5rem;
     text-transform: capitalize;
     letter-spacing: 1px;
 }
 
-.inputArea {
-    font-size: 24px;
+.input {
+    text-transform: uppercase;
     width: 100%;
     height: 4rem;
     padding: 0.5rem;
@@ -22,8 +20,7 @@
 }
 
 @media (min-width: 450px) {
-    .inputArea {
+    .input {
         height: 3rem;
-        font-size: 20px;
     }
 }
