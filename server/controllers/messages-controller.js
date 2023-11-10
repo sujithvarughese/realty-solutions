@@ -58,37 +58,6 @@ const getAllMessages = async (req, res) => {
 	res.status(StatusCodes.OK).json({ messages })
 }
 
-// inactive - can incorporate later using inbox and outbox arrays within User model
-const getAllMessages_ = async (req, res) => {
-	const userInbox = await User.findById(req.user.userID).populate("inbox")
-	                            .populate({path: "sender recipient", select: "lastName firstName _id"})
-	                            .sort({ date: -1 })
-	const userOutbox = await User.findById(req.user.userID).populate("outbox")
-	                             .populate({path: "sender recipient", select: "lastName firstName _id"})
-	                             .sort({ date: -1 })
-	const inbox = userInbox.inbox
-	const outbox = userOutbox.outbox
-	const messages = { inbox, outbox }
-	res.status(StatusCodes.OK).json({ messages })
-}
-
-// can combine functionality to createMessage() to clean up
-const replyMessage = async (req, res) => {
-	// req.body = { sender, recipient, subject, body, prevMessage }
-	// validate just in case (schema already validates)
-	if (!req.body.recipient) {
-		throw new BadRequestError('please provide recipient')
-	}
-	if (!req.body.body) {
-		throw new BadRequestError('please provide body')
-	}
-	// create new request using Request model method
-	const newMessage = await Message.create(req.body)
-
-	// send response JSON to include appliance
-	res.status(StatusCodes.CREATED).json({ newMessage })
-}
-
 const markMessageRead = async (req, res) => {
 	await Message.findByIdAndUpdate(req.body, { read: true })
 	res.status(StatusCodes.OK).json({ msg: 'message read status update success'})
@@ -110,7 +79,6 @@ const deleteMessage = async (req, res) => {
 export {
 	createMessage,
 	getAllMessages,
-	replyMessage,
 	markMessageRead,
 	toggleFlag,
 	deleteMessage,

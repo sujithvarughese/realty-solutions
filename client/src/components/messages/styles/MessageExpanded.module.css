@@ -1,5 +1,5 @@
 .message {
-    border-top: var(--COLOR-DARK) solid 2px;
+
     height: 100%;
     padding: .8rem .3rem;
 }
@@ -45,7 +45,7 @@
 
 @media (min-width: 450px) {
     .message {
-        border-top: var(--COLOR-DARK) solid 2px;
+
         height: 100vh;
         position: sticky;
         top: 70px;

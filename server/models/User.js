@@ -81,10 +81,8 @@ UserSchema.pre("save", async function () {
 	// ...inadvertently hashing password again
 	if (!this.isModified("password")) return;
 	try {
-		console.log(this.password);
 		const salt = await bcrypt.genSalt(10);
 		this.password = await bcrypt.hash(this.password, salt);
-		console.log(this.password);
 	} catch (error) {
 		throw new InternalServerError("password hash failed");
 	}
@@ -103,6 +101,8 @@ UserSchema.pre("findOneAndUpdate", { document: true, query: false }, async funct
 
 // function on user to compare entered password to user.password
 UserSchema.methods.comparePassword = async function (candidatePassword) {
+	console.log(this.password);
+	console.log(candidatePassword);
 	try {
 		if (await bcrypt.compare(candidatePassword, this.password)) {
 			return true;

@@ -29,13 +29,9 @@ const Rents = () => {
 
 	const selectTenant = async (tenant) => {
 		try {
-			console.log(tenant);
 			const response = await axiosDB(`/auth/getUserInfo/${tenant}`)
-			console.log(response);
 			const { name, address } = response.data
 			setUserInfo({ name, address })
-			console.log(name);
-			console.log(address);
 		} catch (error) {
 			console.log(error);
 		}

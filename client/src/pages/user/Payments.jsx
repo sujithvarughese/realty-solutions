@@ -24,9 +24,13 @@ const Payments = () => {
 	}
 
 	return (
-		<div>
-			<Form onSubmit={handleSubmit} title="Payments">
-				<div className={classes.receiptForm}>
+		<div className={classes.container}>
+			<div className={classes.formContainer}></div>
+			<div className={classes.title}>
+				Payment History
+			</div>
+			<Form onSubmit={handleSubmit}>
+				<div className={classes.form}>
 					<InputSelect
 						htmlFor="year"
 						label="year: "
@@ -43,31 +47,24 @@ const Payments = () => {
 						list={months}
 						onChange={(e)=>setMonth(e.target.value)}
 					></InputSelect>
+				</div>
 					<div className={classes.button}>
 						<Button type="submit">Submit</Button>
 					</div>
-
-				</div>
 			</Form>
+
 			<div className={classes.results}>
 				{
-					rentReceipts?.map(receipt => <RentReceipt key={receipt._id} {...receipt}/>)
+					rentReceipts?.map(receipt =>
+						<RentReceipt
+							key={receipt._id}
+							{...receipt}
+						/>)
 				}
-
 			</div>
 		</div>
 	);
 };
-
-export const myFinanceLoader = async () => {
-	try {
-		const response = await axiosDB("/finances")
-		const { finances } = response.data
-		return finances
-	} catch (error) {
-		throw new Error(error)
-	}
-}
 
 const years = ["2023", "2022", "2021", "2020"]
 

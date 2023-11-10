@@ -25,7 +25,7 @@ const MessageExpanded = ({ message, toggleFlag }) => {
 			{
 				prevMessage &&
 				<div className={classes.prevMessage}>
-					{prevMessage}
+					{prevMessage.body}
 				</div>
 			}
 

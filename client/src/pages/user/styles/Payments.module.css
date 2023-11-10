@@ -1,12 +1,27 @@
-.receiptForm {
+.formContainer {
+    margin: 1rem auto;
     display: flex;
+    align-items: center;
     flex-direction: column;
-    gap: 2rem;
-    padding-top: 2rem;
+    justify-content: center;
 }
-
-.button {
+.form {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    align-items: center;
     margin: auto;
-    width: 100px;
 }
-
+.title {
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 1;
+    text-transform: capitalize;
+}
+.button {
+    width: 150px;
+    margin: auto;
+}

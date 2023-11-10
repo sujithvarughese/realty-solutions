@@ -4,9 +4,7 @@ import { FcInfo } from "react-icons/fc"
 import { useEffect, useState } from "react";
 const MessageCollapsed = ({ message, setExpandedMessage, markMessageRead, showExpanded }) => {
 
-
 	const { date, sender, subject, body, read, flag } = message
-
 
 	return (
 		<div
@@ -19,7 +17,7 @@ const MessageCollapsed = ({ message, setExpandedMessage, markMessageRead, showEx
 		>
 			<div className={classes.flagRead}>
 				<div className={classes.read}>
-					{ read && <FcInfo />}
+					{ !read && <FcInfo />}
 				</div>
 				<div className={classes.flag}>
 					{ flag && <TbFlagFilled /> }

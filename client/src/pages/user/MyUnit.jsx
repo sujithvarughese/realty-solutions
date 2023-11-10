@@ -8,27 +8,27 @@ import { Button } from "../../UI/index.js";
 // homepage for tenant(user)
 const MyUnit = () => {
 	const myUnit = useLoaderData()
-	const { date, setDate, setUser } = useGlobalContext()
+	const { date, setDate, user } = useGlobalContext()
 
-	const { unitID, street, city, state, zip, image, user } = myUnit
+	const { unitID, street, city, state, zip, image } = myUnit
 
 	const { lastName, firstName, rent, balance } = user
 
 	useEffect(() => {
 		setDate()
-		setUser({ lastName, firstName, unitID, street, city, state, zip})
 	}, [])
 
 	return (
-		<div className={classes.unit}>
+		<div className={classes.container}>
 			{
 				date.date >= 5 &&
-				<div>
+				<div className={classes.reminder}>
 					Reminder: Rent is due on the 1st!
 				</div>
 			}
-			<img src={image} alt="img" className={classes.image}/>
-
+			<div className={classes.imageContainer}>
+				<img src={image} alt="img" className={classes.image}/>
+			</div>
 
 			<div className={classes.address}>
 				<div className={classes.addressLine1}>
@@ -66,6 +66,7 @@ export const myUnitLoader = async () => {
 	try {
 		const response = await axiosDB("/units/myUnit")
 		const { myUnit } = response.data
+		console.log(myUnit);
 		return myUnit
 	} catch (error) {
 		throw new Error(error)

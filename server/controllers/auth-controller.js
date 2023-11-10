@@ -155,7 +155,15 @@ const login = async (req, res) => {
 	}
 
 	// user variable with just the fields we want to send
-	const userInfo = { userID: user._id, isAdmin: user.isAdmin };
+	const userInfo =
+		{
+			userID: user._id,
+			isAdmin: user.isAdmin,
+			lastName: user.lastName,
+			firstName: user.firstName,
+			rent: user.rent,
+			balance: user.balance
+		};
 
 	// create jwt with jwt.sign
 	const token = createJWT({ payload: userInfo });

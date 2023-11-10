@@ -109,7 +109,6 @@ const Messages = () => {
 	return (
 		<div className={classes.container}>
 
-
 			{ showCreateMessageForm &&
 				<CreateMessageForm
 					cancel={()=>setShowCreateMessageForm(false)}
@@ -118,9 +117,13 @@ const Messages = () => {
 			}
 
 			<div className={classes.links}>
+				{/* New message icon */}
 				<div className={classes.create} onClick={()=>setShowCreateMessageForm(true)}>
 					<BiMessageSquareEdit />
 				</div>
+
+				{/* for small screens, render back button since expanded messages will be rendered full screen */}
+				{/* for large screen, tabs for inbox and outbox; no back button */}
 				{
 					mobileExpanded ?
 
@@ -144,6 +147,7 @@ const Messages = () => {
 			</div>
 
 			<div className={classes.mailbox}>
+				{/* collapsed and expanded classes hidden on small screens */}
 				<div className={classes.collapsed}>
 					{
 						currentMailbox.length > 0 ?
@@ -188,6 +192,7 @@ const Messages = () => {
 					</div>
 				}
 
+				{/* when message is expanded in mobile, component will be rendered full screen */}
 				{
 					mobileExpanded &&
 					<div className={classes.mobileExpanded}>

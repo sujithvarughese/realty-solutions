@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
-import { flushSync } from "react-dom";
 
 const initialState = {
 	sender: "",
@@ -35,14 +34,13 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 	}
 
 	return (
-		<div>
 		<Modal>
 		<Form onSubmit={handleSubmit} title="create message">
 			<div className={classes.form}>
-				<div className={classes.field}>
+				<div>
 					<InputSelect
 						htmlFor="recipient"
-						label="recipient: "
+						label="to: "
 						type="text"
 						name="recipient"
 						list={addressBook}
@@ -50,7 +48,7 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 						onChange={handleChange}
 					></InputSelect>
 				</div>
-				<div className={classes.field}>
+				<div>
 					<Input
 						htmlFor="subject"
 						placeholder="Subject"
@@ -60,12 +58,12 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 						onChange={handleChange}
 					></Input>
 				</div>
-				<div className={classes.field}>
+				<div>
 					<textarea
-						placeholder="Type message here..."
+						placeholder="Type new message here..."
 						name="body"
 						value={values.body}
-						rows="20"
+						rows="15"
 						onChange={handleChange}
 					></textarea>
 				</div>
@@ -77,7 +75,6 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 			</div>
 		</Form>
 		</Modal>
-		</div>
 	);
 };
 

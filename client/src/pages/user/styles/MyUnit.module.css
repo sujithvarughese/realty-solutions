@@ -1,32 +1,44 @@
-.unit {
+.container {
+    padding: 2rem;
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
     flex-direction: column;
     align-items: center;
-
+}
+.reminder {
+    font-size: 20px;
+}
+.imageContainer {
+    background-color: var(--COLOR-LIGHTER);
+    padding: 2rem;
+    border-radius: 10px;
 }
 .image {
-    width: 75%;
+    width: 420px;
     border-radius: 10px;
     margin: 1rem;
 }
 .address {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     text-align: center;
 }
 .addressLine1 {
-    font-weight: bold;
-    font-size: 24px;
+    font-weight: bolder;
+    font-size: 32px;
 }
 .addressLine2 {
     font-size: 20px;
 }
 .name {
+    text-align: center;
     font-weight: bold;
 }
 .finance {
     display: flex;
-    width: 70%;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 4rem;
 }
 .actions {
     display: flex;

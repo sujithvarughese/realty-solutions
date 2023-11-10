@@ -3,7 +3,7 @@
     display: flex;
     justify-content: flex-start;
     gap: 1.5rem;
-    border-top: var(--COLOR-DARK) solid 2px;
+
     padding: 1.4rem 0;
 }
 .flagRead {
@@ -17,11 +17,9 @@
     display: flex;
     justify-content: space-between;
 }
-
 .sender {
     font-weight: bolder;
 }
-
 .body {
     font-weight: lighter;
     font-size: 14px;
@@ -29,7 +27,6 @@
     overflow: clip;
     text-overflow: ellipsis;
     width: 99%;
-
 }
 .date {
     display: block;
@@ -42,11 +39,11 @@
     .message {
         display: flex;
         gap: 1rem;
-        border-top: var(--COLOR-DARK) solid 2px;
+
         padding: 1.4rem .03rem;
     }
     .message:hover {
-        background-color: var(--COLOR-DARK);
+        background-color: var(--COLOR-LIGHTER);
     }
     .senderDate {
         display: flex;
@@ -56,7 +53,6 @@
     .sender {
         font-size: 14px;
     }
-
     .date {
         font-size: 12px;
     }
