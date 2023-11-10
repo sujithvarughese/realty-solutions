@@ -46,10 +46,12 @@ const Root = () => {
 				<InfoBar user={user} logout={logoutAndNavigateHome}/>
 			</div>
 
-			<div>
-				{ navigation.state === 'loading' && <h3>Loading...</h3> }
-				{/* main content will be rendered here */}
-				<Outlet />
+			<div className={classes.main}>
+				{navigation.state === 'loading' ?
+					<h3>Loading...</h3>
+					:
+					<Outlet />
+				}
 			</div>
 
 			{/* main navbar for mobile */}
@@ -69,7 +71,7 @@ const adminLinks = [
 	},
 	{
 		name: "Accounting",
-		icon: <FaGlobe />,
+		icon: <RiMoneyDollarCircleFill />,
 		url: "accounting"
 	},
 	{

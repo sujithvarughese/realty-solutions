@@ -1,50 +1,71 @@
 import classes from "./styles/AuthForm.module.css";
-import { Form, Input, Button } from "../../UI/index.js";
+import { Form, Input, Button } from "../../UI";
+import { useState } from "react";
+import { useGlobalContext } from "../../context/GlobalContext.jsx";
 
-const AuthForm = ({ authState, values, setValues }) => {
 
-	const handleChange = (e) => {
-		setValues({ ...values, [e.target.name]: e.target.value });
+const AuthForm = ({ authState }) => {
+
+	const { login, register } = useGlobalContext()
+
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+	const [passwordRetype, setPasswordRetype] = useState("")
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+		if (authState === "login") {
+			login({ email, password })
+		} else {
+			if (password !== passwordRetype) {
+				return console.log("passwords dont match");
+			}
+			register({ email, password })
+		}
 	}
 
 	return (
-		<Form>
+		<Form onSubmit={handleSubmit}>
 			<div className={classes.form}>
 				<Input
 					htmlFor="email"
 					type="email"
 					name="email"
 					placeholder="EMAIL"
-					value={values.email}
-					onChange={handleChange}
+					value={email}
+					onChange={(e)=>setEmail(e.target.value)}
 				></Input>
 				<Input
 					htmlFor="password"
 					placeholder="PASSWORD"
 					type="password"
 					name="password"
-					value={values.password}
-					onChange={handleChange}
+					value={password}
+					onChange={(e)=>setPassword(e.target.value)}
 				></Input>
 				{
 					authState === "register" &&
 					<Input
-						htmlFor="newPasswordVerify"
+						htmlFor="passwordRetype"
 						placeholder="CONFIRM PASSWORD"
 						type="password"
-						name="newPasswordVerify"
-						value={values.newPasswordVerify}
-						onChange={handleChange}
+						name="passwordRetype"
+						value={passwordRetype}
+						onChange={(e)=>setPasswordRetype(e.target.value)}
 					></Input>
 				}
-			</div>
-			<div className={classes.options}>
-				<div className={classes.reset}>
-					Reset Password
+
+			{
+				authState !== "register" &&
+				<div className={classes.options}>
+					<div>
+						Reset Password
+					</div>
+					<div>
+						Login as Guest
+					</div>
 				</div>
-				<div className={classes.guest}>
-					Login as Guest
-				</div>
+			}
 			</div>
 			<Button type="submit">
 				{

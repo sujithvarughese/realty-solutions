@@ -12,14 +12,16 @@ const Landing = () => {
 		<div className={classes.container}>
 
 			<div className={classes.content}>
-				<div>
+
+				<div className={classes.text}>
 					<div className={classes.title}>
-						E Realty Solutions
+						Realty Solutions
 					</div>
 					<div className={classes.description}>
-						Real solutions for all your management needs.
+						Real solutions for all your property needs.
 					</div>
 				</div>
+
 
 				<div className={classes.auth}>
 					<Auth />

@@ -10,6 +10,7 @@ import Register from "./auth/Register.jsx"
 import Unit from "./units/Unit.jsx";
 import CreateUnitForm from "./units/CreateUnitForm.jsx";
 import EditUnitForm from "./units/EditUnitForm.jsx";
+import SearchUnits from "./units/SearchUnits.jsx";
 
 import CreateMessageForm from "./messages/CreateMessageForm.jsx";
 import ReplyMessageForm from "./messages/ReplyMessageForm.jsx";
@@ -34,6 +35,8 @@ export {
 	Unit,
 	CreateUnitForm,
 	EditUnitForm,
+	SearchUnits,
+
 
 	CreateMessageForm,
 	ReplyMessageForm,

@@ -40,8 +40,6 @@ const Auth = () => {
 					values={values}
 					setValues={setValues}
 				/>
-
-
 			</div>
 		</Card>
 	);

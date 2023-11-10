@@ -1,7 +1,6 @@
 .title {
     margin: 0 auto;
     text-align: center;
-    font-family: "pastiche-brush", sans-serif;
     font-weight: 800;
     font-size: 20px;
     line-height: 1;
@@ -10,16 +9,11 @@
 }
 
 .search {
-    display: flex;
-    flex-direction: column;
+    padding: 1rem 2em;
     gap: 0.3rem;
+    align-items: center;
 }
-.countyResult {
 
-}
-.zipResult {
-
-}
 
 table {
     margin: 0 auto;
@@ -30,11 +24,8 @@ th {
 }
 
 td {
-    font-family: "pastiche-brush", sans-serif;
-    font-weight: 400;
     font-style: normal;
-    font-size: 1.4rem; /* 48px */
-    text-transform: capitalize;
+    font-size: 16px;
     padding: 0.5rem 0;
 }
 tr {
@@ -45,16 +36,21 @@ tr {
 }
 
 @media (min-width: 450px) {
+    .search {
+        padding: 4rem 12rem;
+    }
     th {
         display: block;
-        font-family: "pastiche-brush", sans-serif;
         font-weight: 800;
-        font-size: 20px; /* 48px */
+        font-size: 20px;
         line-height: 1;
         padding-bottom: 2rem;
         text-align: center;
     }
     td {
-
+        font-style: normal;
+        font-size: 28px;
+        padding: 2rem 0;
     }
+
 }

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { BiSolidMessageAltEdit, BiMessageSquareEdit } from "react-icons/bi"
 import { TfiControlBackward } from "react-icons/tfi"
+
 const Messages = () => {
 	// messages = { inbox, outbox }
 	const messages = useLoaderData()

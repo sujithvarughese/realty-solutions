@@ -86,36 +86,39 @@ const Research = () => {
 
 				<Form>
 					<div className={classes.search}>
-					<InputSelect
-						htmlFor="state"
-						label="state: "
-						type="text"
-						name="state"
-						list={states}
-						onChange={handleChangeStateCode}
-					></InputSelect>
-					{
-						counties.length > 0 &&
-						<InputSelect
-							htmlFor="county"
-							label="county: "
-							type="text"
-							name="county"
-							list={counties}
-							onChange={handleChangeCounty}
-						></InputSelect>
-					}
-					{
-						fmrByZip?.length > 0 &&
-						<InputSelect
-							htmlFor="zip"
-							label="zip code: "
-							type="text"
-							name="zip"
-							list={fmrByZip.map(zip => zip.zip_code)}
-							onChange={handleSelectZipCode}
-						></InputSelect>
-					}
+						<div className={classes.state}>
+							<InputSelect
+								htmlFor="state"
+								type="text"
+								name="state"
+								list={states}
+								onChange={handleChangeStateCode}
+							></InputSelect>
+						</div>
+						<div className={classes.county}>
+							{
+								counties.length > 0 &&
+								<InputSelect
+									htmlFor="county"
+									type="text"
+									name="county"
+									list={counties}
+									onChange={handleChangeCounty}
+								></InputSelect>
+							}
+						</div>
+						<div className={classes.zip}>
+							{
+								fmrByZip?.length > 0 &&
+								<InputSelect
+									htmlFor="zip"
+									type="text"
+									name="zip"
+									list={fmrByZip.map(zip => zip.zip_code)}
+									onChange={handleSelectZipCode}
+								></InputSelect>
+							}
+						</div>
 					</div>
 				</Form>
 

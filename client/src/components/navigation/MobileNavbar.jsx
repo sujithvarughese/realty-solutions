@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const MobileNavbar = ({ user, links }) => {
 
 	return (
-		<div className={classes.navbar}>
+		<div className={classes.container}>
 			{
 				links.map((link, index) => {
 					return (

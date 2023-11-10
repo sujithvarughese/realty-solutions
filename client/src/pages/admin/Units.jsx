@@ -4,22 +4,42 @@ import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Button } from "../../UI/index.js";
 import { axiosDB } from "../../utils/axios.js";
-import { Unit } from "../../components";
+import { Unit, SearchUnits } from "../../components";
 
 const Units = () => {
 	// units = [{ unit }, {},...]
 	const units = useLoaderData()
-
 	// will open up form
 	const [showCreateUnitForm, setShowCreateUnitForm] = useState(false)
 
-	return (
-		<div className={classes.unitsPage}>
+// state for search function
+	const [query, setQuery] = useState("")
 
-			<div className={classes.button}>
-				<Button
+	// filter units by search by using derived state;
+	// -convert query to lower case and check if any part of the address contains the search
+	const queriedUnits = units.filter(unit => {
+		return (
+			unit.unitID.toLowerCase().includes(query.toLowerCase())  ||
+			unit.street.toLowerCase().includes(query.toLowerCase()) ||
+			unit.city.toLowerCase().includes(query.toLowerCase()) ||
+			unit.state.toLowerCase().includes(query.toLowerCase()) ||
+			unit.zip.toLowerCase().includes(query.toLowerCase())
+		)
+	})
+
+	return (
+		<div className={classes.container}>
+
+			<div className={classes.options}>
+				<div className={classes.search}>
+					<SearchUnits query={query} setQuery={setQuery} />
+				</div>
+				<div
+					className={classes.create}
 					onClick={()=>setShowCreateUnitForm(true)}
-				>Create Unit</Button>
+				>
+					Create Unit
+				</div>
 			</div>
 
 			{
@@ -28,12 +48,13 @@ const Units = () => {
 			}
 
 			<div className={classes.unitContainer}>
-			{
-				units.length > 0
-				&&
-				units.map(unit => <Unit key={unit.unitID} unit={unit}/>)
-			}
+				<div>
+					{
+						queriedUnits?.map(unit =><Unit key={unit._id} unit={unit}/>)
+					}
+				</div>
 			</div>
+
 		</div>
 	);
 };

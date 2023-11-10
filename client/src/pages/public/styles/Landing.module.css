@@ -9,11 +9,30 @@
     background-origin: initial;
     background-clip: initial;
     height: 720px;
-    padding: 72px;
+    padding: 4rem 3rem;
 }
 .content {
     justify-content: space-around;
     align-items: center;
+
+}
+.text {
+    line-height: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    color: var(--COLOR-DARK);
+    text-shadow: 0 0 24px var(--COLOR-LIGHT);
+    transition: 0.3s ease-in-out all;
+    padding-bottom: 3rem;
+}
+.title {
+    font-size: 32px;
+    font-weight: bolder;
+}
+.description {
+    padding: 0 3rem;
 }
 
 .auth {
@@ -23,21 +42,7 @@
 .element {
     display: none;
 }
-.text {
-    position: absolute;
-    bottom: 15%;
-    font-weight: bolder;
-    text-align: center;
-    color: var(--COLOR-ALT);
-    border: transparent;
-    border-radius: 8px;
-    padding: 0 8px;
-    margin: auto;
-    text-shadow: 0 0 24px var(--COLOR-LIGHT);
-    transition: 0.3s ease-in-out all;
-    z-index: 10;
 
-}
 
 
 .image {
@@ -50,18 +55,17 @@
 }
 
 @media (min-width: 480px) {
+    .container {
+        padding: 4rem;
+    }
     .element {
         display: none
     }
-    .text {
-        width: 100%;
-        position: relative;
-    }
-    .image {
-        height: 100%;
-    }
     .content {
         display: flex;
+    }
+    .title {
+        font-size: 56px;
     }
 
 }

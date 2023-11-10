@@ -1,8 +1,8 @@
 .infoBar {
     display: flex;
-    position: fixed;
+    position: sticky;
     top: 0;
-    background: linear-gradient(to right, #434343 0%, black 100%);
+    background: var(--COLOR-DARKER);
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -13,7 +13,6 @@
     font-family: "pastiche-brush", sans-serif;
     border-bottom: var(--COLOR-LIGHT) 2px solid;
 }
-
 
 .title {
     color: var(--COLOR-ALT);
