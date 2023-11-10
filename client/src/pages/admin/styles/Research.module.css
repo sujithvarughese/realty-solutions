@@ -4,13 +4,15 @@
     font-weight: 800;
     font-size: 20px;
     line-height: 1;
-    padding-top: 2rem;
+    padding-top: 3rem;
     text-transform: capitalize;
 }
 
 .search {
-    padding: 1rem 2em;
-    gap: 0.3rem;
+    display: flex;
+    margin: auto;
+    width: 90%;
+    justify-content: space-around;
     align-items: center;
 }
 

@@ -89,6 +89,7 @@ const Research = () => {
 						<div className={classes.state}>
 							<InputSelect
 								htmlFor="state"
+								label="State: "
 								type="text"
 								name="state"
 								list={states}
@@ -100,6 +101,7 @@ const Research = () => {
 								counties.length > 0 &&
 								<InputSelect
 									htmlFor="county"
+									label="County: "
 									type="text"
 									name="county"
 									list={counties}
@@ -112,6 +114,7 @@ const Research = () => {
 								fmrByZip?.length > 0 &&
 								<InputSelect
 									htmlFor="zip"
+									label="Zip Code: "
 									type="text"
 									name="zip"
 									list={fmrByZip.map(zip => zip.zip_code)}

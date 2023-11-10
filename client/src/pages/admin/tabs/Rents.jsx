@@ -44,40 +44,44 @@ const Rents = () => {
 		selectTenant()
 	}, [tenant])
 	return (
-		<div>
-
-			<Form onSubmit={handleSubmit} title="Rent Reciepts">
-				<div className={classes.receiptForm}>
-					<InputSelect
-						htmlFor="tenant"
-						label="tenant"
-						type="text"
-						name="tenant"
-						list={userList}
-						onChange={(e)=>setTenant(e.target.value)}
-					></InputSelect>
-					<InputSelect
-						htmlFor="year"
-						label="year: "
-						type="text"
-						name="year"
-						list={years}
-						onChange={(e)=>setYear(e.target.value)}
-					></InputSelect>
-					<InputSelect
-						htmlFor="month"
-						label="month: "
-						type="text"
-						name="month"
-						list={months}
-						onChange={(e)=>setMonth(e.target.value)}
-					></InputSelect>
+		<div className={classes.container}>
+			<div className={classes.formContainer}>
+				<div className={classes.title}>
+					Rent Receipts
+				</div>
+				<Form onSubmit={handleSubmit}>
+					<div className={classes.form}>
+						<InputSelect
+							htmlFor="tenant"
+							label="tenant"
+							type="text"
+							name="tenant"
+							list={userList}
+							onChange={(e)=>setTenant(e.target.value)}
+						></InputSelect>
+						<InputSelect
+							htmlFor="year"
+							label="year: "
+							type="text"
+							name="year"
+							list={years}
+							onChange={(e)=>setYear(e.target.value)}
+						></InputSelect>
+						<InputSelect
+							htmlFor="month"
+							label="month: "
+							type="text"
+							name="month"
+							list={months}
+							onChange={(e)=>setMonth(e.target.value)}
+						></InputSelect>
+					</div>
 					<div className={classes.button}>
 						<Button type="submit">Submit</Button>
 					</div>
+				</Form>
+			</div>
 
-				</div>
-			</Form>
 			<div className={classes.results}>
 				{
 					rentReceipts?.map(receipt =>

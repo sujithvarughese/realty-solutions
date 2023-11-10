@@ -38,8 +38,7 @@ const App = () => {
           element: <Accounting />,
           errorElement: <Error />,
           children: [
-            { index: false },
-            { path: "finances", element: <Finances /> },
+            { index: true, element: <Finances />  },
             { path: "rents", element: <Rents />, loader: rentsLoader},
           ]
         }

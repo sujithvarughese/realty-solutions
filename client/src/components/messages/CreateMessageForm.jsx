@@ -1,9 +1,10 @@
 import classes from "./styles/CreateMessageForm.module.css";
-import { Button, Form, Input, InputSelect, Modal } from "../../UI";
+import { Button, Form, Input, InputSelect, Modal, Card } from "../../UI";
 import { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
+import { flushSync } from "react-dom";
 
 const initialState = {
 	sender: "",
@@ -34,40 +35,49 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 	}
 
 	return (
+		<div>
 		<Modal>
 		<Form onSubmit={handleSubmit} title="create message">
-			<InputSelect
-				htmlFor="recipient"
-				label="recipient: "
-				type="text"
-				name="recipient"
-				list={addressBook}
-				value={values.recipient}
-				onChange={handleChange}
-			></InputSelect>
-			<Input
-				htmlFor="subject"
-				label="subject: "
-				type="text"
-				name="subject"
-				value={values.subject}
-				onChange={handleChange}
-			></Input>
-			Message:
-			<textarea
-				name="body"
-				value={values.body}
-				rows="20"
-				onChange={handleChange}
-			></textarea>
+			<div className={classes.form}>
+				<div className={classes.field}>
+					<InputSelect
+						htmlFor="recipient"
+						label="recipient: "
+						type="text"
+						name="recipient"
+						list={addressBook}
+						value={values.recipient}
+						onChange={handleChange}
+					></InputSelect>
+				</div>
+				<div className={classes.field}>
+					<Input
+						htmlFor="subject"
+						placeholder="Subject"
+						type="text"
+						name="subject"
+						value={values.subject}
+						onChange={handleChange}
+					></Input>
+				</div>
+				<div className={classes.field}>
+					<textarea
+						placeholder="Type message here..."
+						name="body"
+						value={values.body}
+						rows="20"
+						onChange={handleChange}
+					></textarea>
+				</div>
 
-
-			<div>
-				<Button type="submit">Send</Button>
-				<Button type="button" onClick={cancel}>Cancel</Button>
+				<div className={classes.buttons}>
+					<Button type="submit">Send</Button>
+					<Button type="button" onClick={cancel}>Cancel</Button>
+				</div>
 			</div>
 		</Form>
 		</Modal>
+		</div>
 	);
 };
 

@@ -9,8 +9,8 @@ const Accounting = () => {
 
 
 	return (
-		<div>
-
+		<div className={classes.container}>
+			<div className={classes.links}>
 			{
 				links.map((link, index) => {
 					return (
@@ -25,9 +25,8 @@ const Accounting = () => {
 					)
 				})
 			}
-
+			</div>
 			<Outlet />
-
 
 		</div>
 	);
@@ -37,7 +36,7 @@ const links = [
 	{
 		name: "Finances",
 		icon: "finances",
-		url: "finances"
+		url: ""
 
 	},
 	{

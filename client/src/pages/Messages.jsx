@@ -107,15 +107,7 @@ const Messages = () => {
 	}, [myInbox])
 
 	return (
-		<div className={classes.messages}>
-
-			<div className={classes.buttons}>
-				<div className={classes.title}>
-					Mailbox
-				</div>
-
-
-			</div>
+		<div className={classes.container}>
 
 
 			{ showCreateMessageForm &&
@@ -129,8 +121,6 @@ const Messages = () => {
 				<div className={classes.create} onClick={()=>setShowCreateMessageForm(true)}>
 					<BiMessageSquareEdit />
 				</div>
-
-
 				{
 					mobileExpanded ?
 
@@ -151,14 +141,9 @@ const Messages = () => {
 							</div>
 						</div>
 				}
-
-
-
-
 			</div>
 
 			<div className={classes.mailbox}>
-
 				<div className={classes.collapsed}>
 					{
 						currentMailbox.length > 0 ?
@@ -172,7 +157,7 @@ const Messages = () => {
 									showExpanded={()=>{}}
 								/>)
 							:
-							<div>No Messages in Inbox</div>
+							<div className={classes.empty}>No Messages in Inbox</div>
 					}
 				</div>
 
@@ -215,10 +200,7 @@ const Messages = () => {
 						}
 					</div>
 				}
-
-
 			</div>
-
 		</div>
 	);
 };

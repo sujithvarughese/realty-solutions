@@ -1,6 +1,6 @@
 import classes from "./styles/EditUserForm.module.css";
 import { useState } from "react";
-import { Button, Form, Input, Modal } from "../../UI/index.js";
+import { Button, Form, Input, Card } from "../../UI/index.js";
 import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
 
@@ -23,12 +23,14 @@ const EditUserForm = ({ cancel, user }) => {
 	}
 
 	return (
-		<Modal>
-			<Form onSubmit={handleSubmit} title="Edit User">
+		<div className={classes.container}>
+		<Card>
+		<Form onSubmit={handleSubmit} title="Edit User">
+			<div className={classes.form}>
 				<div className={classes.name}>
 					<Input
 						htmlFor="lastName"
-						label="Last Name: "
+						placeholder="LAST NAME"
 						type="text"
 						name="lastName"
 						value={values.lastName}
@@ -36,7 +38,7 @@ const EditUserForm = ({ cancel, user }) => {
 					></Input>
 					<Input
 						htmlFor="firstName"
-						label="First Name: "
+						placeholder="FIRST NAME"
 						type="text"
 						name="firstName"
 						value={values.firstName}
@@ -46,7 +48,7 @@ const EditUserForm = ({ cancel, user }) => {
 				<div className={classes.contact}>
 					<Input
 						htmlFor="email"
-						label="Email: "
+						placeholder="EMAIL"
 						type="email"
 						name="email"
 						value={values.email}
@@ -54,7 +56,7 @@ const EditUserForm = ({ cancel, user }) => {
 					></Input>
 					<Input
 						htmlFor="phone"
-						label="phone number: "
+						placeholder="PHONE"
 						type="text"
 						name="phone"
 						value={values.phone}
@@ -63,28 +65,30 @@ const EditUserForm = ({ cancel, user }) => {
 				</div>
 				<div className={classes.info}>
 					<Input
-						htmlFor="unit"
-						label="unit: "
-						type="text"
-						name="unit"
-						value={values.unit}
-						onChange={handleChange}
-					></Input>
-					<Input
 						htmlFor="rent"
-						label="rent: "
+						placeholder="RENT"
 						type="number"
 						name="rent"
 						value={values.rent}
 						onChange={handleChange}
 					></Input>
+					<Input
+						htmlFor="balance"
+						placeholder="BALANCE"
+						type="number"
+						name="balance"
+						value={values.balance}
+						onChange={handleChange}
+					></Input>
 				</div>
-				<div className={classes.btn}>
+				<div className={classes.buttons}>
 					<Button type="submit">Update User</Button>
 					<Button type="button" onClick={cancel}>Cancel</Button>
 				</div>
-			</Form>
-		</Modal>
+			</div>
+		</Form>
+		</Card>
+		</div>
 	);
 };
 
