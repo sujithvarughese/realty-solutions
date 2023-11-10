@@ -2,10 +2,10 @@ import express from "express"
 import bodyParser from "body-parser"
 import dotenv from "dotenv"
 import "express-async-errors";
-
 //security package imports
 import cors from "cors";
-
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 // router imports
 import authRouter from "./routes/auth-router.js"
 import unitRouter from "./routes/unit-router.js";
@@ -18,9 +18,8 @@ import cookieParser from "cookie-parser";
 import errorHandler from "./middleware/error-handler.js";
 import notFound from "./middleware/not-found.js";
 import { authenticateUser, authorizePermissions } from "./middleware/authentication.js";
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
 
+//---------------//
 const app = express()
 dotenv.config();
 

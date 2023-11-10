@@ -1,5 +1,5 @@
 import classes from "./styles/CreateUserForm.module.css";
-import { Input, Form, Button, Modal } from "../../UI";
+import { Input, Form, Button, Card } from "../../UI";
 import { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { axiosDB } from "../../utils/axios.js";
@@ -13,12 +13,10 @@ const initialState = {
 	unit: null,
 	phone: "",
 	rent: "",
-	balance: 0
+	balance: ""
 }
 
 const CreateUserForm = ({ cancel, unit }) => {
-
-	const { unitID, street } = unit
 
 	const [values, setValues] = useState(initialState)
 
@@ -38,70 +36,73 @@ const CreateUserForm = ({ cancel, unit }) => {
 	}
 
 	return (
-		<Modal>
+		<div className={classes.container}>
+		<Card>
 			<Form onSubmit={handleSubmit} title="Create User">
-				<div>{unitID} {street}</div>
-				<div className={classes.name}>
-					<Input
-						htmlFor="lastName"
-						label="Last Name: "
-						type="text"
-						name="lastName"
-						value={values.lastName}
-						onChange={handleChange}
-					></Input>
-					<Input
-						htmlFor="firstName"
-						label="First Name: "
-						type="text"
-						name="firstName"
-						value={values.firstName}
-						onChange={handleChange}
-					></Input>
-				</div>
-				<div className={classes.contact}>
-					<Input
-						htmlFor="email"
-						label="Email: "
-						type="email"
-						name="email"
-						value={values.email}
-						onChange={handleChange}
-					></Input>
-					<Input
-						htmlFor="phone"
-						label="phone number: "
-						type="text"
-						name="phone"
-						value={values.phone}
-						onChange={handleChange}
-					></Input>
-				</div>
-				<div className={classes.info}>
-					<Input
-						htmlFor="rent"
-						label="rent: "
-						type="number"
-						name="rent"
-						value={values.rent}
-						onChange={handleChange}
-					></Input>
-					<Input
-						htmlFor="balance"
-						label="balance: "
-						type="number"
-						name="balance"
-						value={values.balance}
-						onChange={handleChange}
-					></Input>
-				</div>
+				<div className={classes.form}>
+					<div className={classes.name}>
+						<Input
+							htmlFor="lastName"
+							placeholder="LAST NAME"
+							type="text"
+							name="lastName"
+							value={values.lastName}
+							onChange={handleChange}
+						></Input>
+						<Input
+							htmlFor="firstName"
+							placeholder="FIRST NAME"
+							type="text"
+							name="firstName"
+							value={values.firstName}
+							onChange={handleChange}
+						></Input>
+					</div>
+					<div className={classes.contact}>
+						<Input
+							htmlFor="email"
+							placeholder="EMAIL"
+							type="email"
+							name="email"
+							value={values.email}
+							onChange={handleChange}
+						></Input>
+						<Input
+							htmlFor="phone"
+							placeholder="PHONE"
+							type="text"
+							name="phone"
+							value={values.phone}
+							onChange={handleChange}
+						></Input>
+					</div>
+					<div className={classes.info}>
+						<Input
+							htmlFor="rent"
+							placeholder="RENT"
+							type="number"
+							name="rent"
+							value={values.rent}
+							onChange={handleChange}
+						></Input>
+						<Input
+							htmlFor="balance"
+							placeholder="BALANCE"
+							type="number"
+							name="balance"
+							value={values.balance}
+							onChange={handleChange}
+						></Input>
+					</div>
 
-				<div className={classes.btn}>
-					<Button type="submit">Create Account</Button>
-					<Button type="button" onClick={cancel}>Cancel</Button>
+					<div className={classes.buttons}>
+						<Button type="submit">Create Account</Button>
+						<Button type="button" onClick={cancel}>Cancel</Button>
+					</div>
 				</div>
 			</Form>
-		</Modal>
+		</Card>
+		</div>
 	);
 };
 

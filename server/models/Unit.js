@@ -21,7 +21,6 @@ const UnitSchema = new mongoose.Schema( {
 		type: String,
 		required: [true, "Please provide zip"]
 	},
-
 	image: {
 		type: String,
 	},
@@ -32,6 +31,17 @@ const UnitSchema = new mongoose.Schema( {
 	user: {
 		type: mongoose.Types.ObjectId,
 		ref: 'User'
+	},
+	tenant: {
+		lastName: {
+			type: String
+		},
+		firstName: {
+			type: String
+		},
+		rent: {
+			type: Number
+		}
 	},
 	bedrooms : {
 		type: Number,

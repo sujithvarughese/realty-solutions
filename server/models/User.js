@@ -91,7 +91,6 @@ UserSchema.pre("save", async function () {
 });
 
 UserSchema.pre("findOneAndUpdate", { document: true, query: false }, async function (next) {
-	console.log(this.password);
 	if (!this.isModified("password")) return;
 	try {
 		const salt = await bcrypt.genSalt(10);
@@ -104,8 +103,6 @@ UserSchema.pre("findOneAndUpdate", { document: true, query: false }, async funct
 
 // function on user to compare entered password to user.password
 UserSchema.methods.comparePassword = async function (candidatePassword) {
-	console.log(candidatePassword);
-	console.log(this.password);
 	try {
 		if (await bcrypt.compare(candidatePassword, this.password)) {
 			return true;

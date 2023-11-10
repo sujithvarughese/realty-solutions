@@ -1,8 +1,8 @@
 import express from "express"
 const router = express.Router();
-import { register, login, logout, createUser, getUserList, getAdminInfo, updateUser, getUserInfo } from "../controllers/auth-controller.js";
+import { register, login, logout, createUser, getUserList, getAdminInfo, updateUser, getUserInfo, createAdmin } from "../controllers/auth-controller.js";
 
-router.route("/user").post(createUser).patch(updateUser)
+router.route("/user").post(createUser).post(register)
 router.route("/register").post(register)
 router.route("/login").post(login)
 router.route('/logout').get(logout)

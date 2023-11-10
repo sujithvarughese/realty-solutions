@@ -9,10 +9,10 @@ const FinanceSchema = new mongoose.Schema({
 		type: "Number"
 	},
 	rent: {
-
+		type: Number
 	},
 	fairMarketRent: {
-
+		type: Number
 	},
 	mortgage: {
 		bank: {

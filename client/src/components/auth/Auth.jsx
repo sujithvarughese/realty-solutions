@@ -1,20 +1,11 @@
 import classes from "./styles/Auth.module.css";
-import { Login, Register } from "../"
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { useState } from "react";
 import { Card } from "../../UI";
 import AuthForm from "./AuthForm.jsx";
 
-const initialState = {
-	email: "",
-	password: ""
-}
-
 const Auth = () => {
 
-	const { user } = useGlobalContext()
-
-	const [values, setValues] = useState(initialState)
 	const [authState, setAuthState] = useState("register")
 
 	return (
@@ -35,11 +26,7 @@ const Auth = () => {
 					</div>
 				</div>
 
-				<AuthForm
-					authState={authState}
-					values={values}
-					setValues={setValues}
-				/>
+				<AuthForm authState={authState} />
 			</div>
 		</Card>
 	);

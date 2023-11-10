@@ -1,7 +1,7 @@
 import classes from "./styles/EditUnitForm.module.css";
 import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
-import { Button, Form, Input, InputSelect, Modal } from "../../UI/index.js";
+import { Button, Form, Input, InputSelect, Card } from "../../UI/index.js";
 import { useNavigate } from "react-router-dom";
 
 // combine with CreateUnitForm to clean
@@ -32,13 +32,14 @@ const EditUnitForm = ({ cancel, unit }) => {
 	}
 
 	return (
-		<Modal>
-			<Form onSubmit={handleSubmit} title="create unit">
+		<div className={classes.container}>
+		<Card>
+			<Form onSubmit={handleSubmit} title="Edit unit">
 				<div className={classes.form}>
 					<div className={classes.addressLine1}>
 						<Input
 							htmlFor="unitID"
-							label="unit: "
+							placeholder="UNIT"
 							type="text"
 							name="unitID"
 							value={values.unitID}
@@ -46,7 +47,7 @@ const EditUnitForm = ({ cancel, unit }) => {
 						></Input>
 						<Input
 							htmlFor="street"
-							label="street: "
+							placeholder="STREET"
 							type="text"
 							name="street"
 							value={values.street}
@@ -56,7 +57,7 @@ const EditUnitForm = ({ cancel, unit }) => {
 					<div className={classes.addressLine2}>
 						<Input
 							htmlFor="city"
-							label="city: "
+							placeholder="CITY"
 							type="text"
 							name="city"
 							value={values.city}
@@ -64,7 +65,7 @@ const EditUnitForm = ({ cancel, unit }) => {
 						></Input>
 						<InputSelect
 							htmlFor="state"
-							label="state: "
+							label="STATE"
 							type="text"
 							name="state"
 							list={states}
@@ -73,8 +74,8 @@ const EditUnitForm = ({ cancel, unit }) => {
 						></InputSelect>
 						<Input
 							htmlFor="zip"
-							label="zip: "
-							type="number"
+							placeholder="ZIP"
+							type="text"
 							name="zip"
 							value={values.zip}
 							onChange={handleChange}
@@ -83,7 +84,7 @@ const EditUnitForm = ({ cancel, unit }) => {
 					<div className={classes.info}>
 						<Input
 							htmlFor="image"
-							label="image: "
+							label="IMAGE"
 							type="file"
 							accept=".jpeg, .jpg, .png"
 							name="image"
@@ -91,7 +92,7 @@ const EditUnitForm = ({ cancel, unit }) => {
 						></Input>
 						<InputSelect
 							htmlFor="occupied"
-							label="occupied: "
+							label="OCCUPIED"
 							type="boolean"
 							name="occupied"
 							list={[{text: "Yes", value: true}, {text: "No", value: false}]}
@@ -100,7 +101,7 @@ const EditUnitForm = ({ cancel, unit }) => {
 						></InputSelect>
 						<Input
 							htmlFor="bedrooms"
-							label="bedrooms: "
+							placeholder="BEDR"
 							type="number"
 							min="0"
 							name="bedrooms"
@@ -109,7 +110,7 @@ const EditUnitForm = ({ cancel, unit }) => {
 						></Input>
 						<Input
 							htmlFor="bathrooms"
-							label="bathrooms: "
+							placeholder="BATH"
 							type="number"
 							min="0"
 							name="bathrooms"
@@ -117,15 +118,14 @@ const EditUnitForm = ({ cancel, unit }) => {
 							onChange={handleChange}
 						></Input>
 					</div>
-
-
-				</div>
-				<div>
-					<Button type="submit">Update Unit</Button>
-					<Button type="button" onClick={cancel}>Cancel</Button>
+					<div className={classes.buttons}>
+						<Button type="submit">Update Unit</Button>
+						<Button type="button" onClick={cancel}>Cancel</Button>
+					</div>
 				</div>
 			</Form>
-		</Modal>
+		</Card>
+		</div>
 	);
 };
 

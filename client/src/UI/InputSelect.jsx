@@ -2,7 +2,7 @@ import classes from "./styles/InputSelect.module.css";
 
 const InputSelect = (props) => {
 	return (
-		<div className={classes.input}>
+		<div className={classes.container}>
 			<label
 				className={classes.label}
 				{ ...props }
@@ -18,6 +18,7 @@ const InputSelect = (props) => {
 						return (
 							<option
 								key={index}
+								className={classes.input}
 								value={item.value || item}
 							>
 								{item.text || item}

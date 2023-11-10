@@ -1,5 +1,5 @@
 import classes from "./styles/CreateUnitForm.module.css";
-import { Button, Form, Input, InputSelect, Modal } from "../../UI";
+import { Button, Form, Input, InputSelect, Card } from "../../UI";
 import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
@@ -9,12 +9,12 @@ const initialState = {
 	street: "",
 	city: "",
 	state: "",
-	zip: 0,
+	zip: "",
 	image: "",
 	occupied: false,
 	user: null,
-	bedrooms: 0,
-	bathrooms: 0,
+	bedrooms: "",
+	bathrooms: "",
 	fairMarketRent: 0
 }
 
@@ -45,13 +45,14 @@ const CreateUnitForm = ({ cancel }) => {
 	}
 
 	return (
-		<Modal>
+		<div className={classes.container}>
+		<Card>
 		<Form onSubmit={handleSubmit} title="create unit">
 			<div className={classes.form}>
 				<div className={classes.addressLine1}>
 					<Input
 						htmlFor="unitID"
-						label="unit: "
+						placeholder="UNIT"
 						type="text"
 						name="unitID"
 						value={values.unitID}
@@ -59,7 +60,7 @@ const CreateUnitForm = ({ cancel }) => {
 					></Input>
 					<Input
 						htmlFor="street"
-						label="street: "
+						placeholder="STREET"
 						type="text"
 						name="street"
 						value={values.street}
@@ -69,7 +70,7 @@ const CreateUnitForm = ({ cancel }) => {
 				<div className={classes.addressLine2}>
 					<Input
 						htmlFor="city"
-						label="city: "
+						placeholder="CITY"
 						type="text"
 						name="city"
 						value={values.city}
@@ -77,7 +78,7 @@ const CreateUnitForm = ({ cancel }) => {
 					></Input>
 					<InputSelect
 						htmlFor="state"
-						label="state: "
+						label="STATE"
 						type="text"
 						name="state"
 						list={states}
@@ -86,8 +87,8 @@ const CreateUnitForm = ({ cancel }) => {
 					></InputSelect>
 					<Input
 						htmlFor="zip"
-						label="zip: "
-						type="number"
+						placeholder="ZIP"
+						type="text"
 						name="zip"
 						value={values.zip}
 						onChange={handleChange}
@@ -96,7 +97,7 @@ const CreateUnitForm = ({ cancel }) => {
 				<div className={classes.info}>
 					<Input
 						htmlFor="image"
-						label="image: "
+						label="IMAGE"
 						type="file"
 						accept=".jpeg, .jpg, .png"
 						name="image"
@@ -104,7 +105,7 @@ const CreateUnitForm = ({ cancel }) => {
 					></Input>
 					<InputSelect
 						htmlFor="occupied"
-						label="occupied: "
+						label="OCCUPIED"
 						type="boolean"
 						name="occupied"
 						list={[{text: "Yes", value: true}, {text: "No", value: false}]}
@@ -113,7 +114,7 @@ const CreateUnitForm = ({ cancel }) => {
 					></InputSelect>
 					<Input
 						htmlFor="bedrooms"
-						label="bedrooms: "
+						placeholder="BEDR"
 						type="number"
 						min="0"
 						name="bedrooms"
@@ -122,7 +123,7 @@ const CreateUnitForm = ({ cancel }) => {
 					></Input>
 					<Input
 						htmlFor="bathrooms"
-						label="bathrooms: "
+						placeholder="BATH"
 						type="number"
 						min="0"
 						name="bathrooms"
@@ -130,15 +131,14 @@ const CreateUnitForm = ({ cancel }) => {
 						onChange={handleChange}
 					></Input>
 				</div>
-
-
-			</div>
-			<div>
-				<Button type="submit">Create Unit</Button>
-				<Button type="button" onClick={cancel}>Cancel</Button>
+				<div className={classes.buttons}>
+					<Button type="submit">Create Unit</Button>
+					<Button type="button" onClick={cancel}>Cancel</Button>
+				</div>
 			</div>
 		</Form>
-		</Modal>
+		</Card>
+		</div>
 	);
 };
 

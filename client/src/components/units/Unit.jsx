@@ -16,7 +16,6 @@ const Unit = ({ unit }) => {
 
 		<div className={classes.container}>
 			<Card>
-
 				<div className={classes.content}>
 					<img src={image} alt="img" className={classes.image}/>
 
@@ -75,7 +74,8 @@ const Unit = ({ unit }) => {
 							<div className={classes.link} onClick={() => setShowCreateUserForm(true)}>Create User</div>
 						</div>
 					}
-
+				</div>
+				<div className={classes.forms}>
 					{/* forms open when state toggled */}
 					{ showEditUnitForm && <EditUnitForm cancel={()=>setShowEditUnitForm(false)} unit={unit}/>}
 					{ showCreateUserForm && <CreateUserForm cancel={()=>setShowCreateUserForm(false)} unit={unit}/> }

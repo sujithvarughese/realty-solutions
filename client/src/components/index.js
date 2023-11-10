@@ -4,8 +4,6 @@ import MobileNavbar from "./navigation/MobileNavbar.jsx";
 import DesktopNavbar from "./navigation/DesktopNavbar.jsx";
 
 import Auth from "./auth/Auth.jsx"
-import Login from "./auth/Login.jsx"
-import Register from "./auth/Register.jsx"
 
 import Unit from "./units/Unit.jsx";
 import CreateUnitForm from "./units/CreateUnitForm.jsx";
@@ -29,9 +27,6 @@ export {
 	DesktopNavbar,
 
 	Auth,
-	Login,
-	Register,
-
 	Unit,
 	CreateUnitForm,
 	EditUnitForm,

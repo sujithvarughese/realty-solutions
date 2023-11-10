@@ -20,7 +20,7 @@ const createUser = async (req, res) => {
 		firstName: req.body.firstName,
 		email: req.body.email,
 		// temporary password which user can change once admin gives account info
-		password: `${req.body.lastName}${req.body.firstName}`,
+		password: `${req.body.lastName}-${req.body.firstName}`,
 		unit: req.body.unit,
 		messages: [],
 		phone: req.body.phone,
@@ -32,7 +32,16 @@ const createUser = async (req, res) => {
 	const user = await User.create(newUser);
 
 	// update unit to include user
-	await Unit.findByIdAndUpdate(req.body.unit._id, { user: user, occupied: true })
+	await Unit.findByIdAndUpdate(req.body.unit._id,
+		{
+			user: user,
+			tenant: {
+				lastName: req.body.lastName,
+				firstName: req.body.firstName,
+				rent: req.body.rent
+			},
+			occupied: true
+		})
 	// send response JSON to include user fields
 	res.status(StatusCodes.CREATED).json({
 		message: "user registered",
@@ -40,21 +49,44 @@ const createUser = async (req, res) => {
 	});
 }
 
+const createAdmin = async (req, res) => {
+	// field must be labeled as admin and password must password
+	if (req.body.email !== "admin@mail.com" && req.body.password !== "password") {
+		throw new BadRequestError("Please provide correct values for admin");
+	}
+	const newAdmin = {
+		lastName: "admin",
+		firstName: "property",
+		email: req.body.email,
+		password: req.body.newPassword,
+		messages: [],
+		isAdmin: true
+	}
+	// create new admin in mongodb
+	const admin = await User.create(newAdmin);
+	// send response JSON
+	res.status(StatusCodes.CREATED).json({
+		message: "admin registered",
+		admin,
+	});
+
+}
+
 const register = async (req, res) => {
 	// first registered user must be set to admin
 	const isFirstUser = (await User.countDocuments({})) === 0
 	if (isFirstUser) {
 		// field must be labeled as admin and password must password
-		if (req.body.lastName !== "admin" && req.body.password !== "password") {
+		if (req.body.email !== "admin@mail.com" && req.body.password !== "password") {
 			throw new BadRequestError("Please provide correct values for admin");
 		}
+
 		const newAdmin = {
-			lastName: req.body.lastName,
-			firstName: req.body.firstName,
+			lastName: "admin",
+			firstName: "property",
 			email: req.body.email,
-			password: req.body.newPassword,
+			password: req.body.password,
 			messages: [],
-			phone: req.body.phone,
 			isAdmin: true
 		}
 		// create new admin in mongodb
@@ -63,11 +95,10 @@ const register = async (req, res) => {
 		res.status(StatusCodes.CREATED).json({
 			message: "admin registered",
 			user: admin,
-			lastName: user.lastName,
-			firstName: user.firstName
+			lastName: admin.lastName,
+			firstName: admin.firstName
 		});
 	}
-
 	// if any fields missing from user front end, throw error
 	if (!req.body.lastName || !req.body.firstName || !req.body.email || !req.body.password || !req.body.newPassword) {
 		throw new BadRequestError("Please provide all values");
@@ -184,4 +215,4 @@ const updateUser = async (req, res) => {
 	res.status(StatusCodes.OK).json({ msg: 'Update success' })
 }
 
-export { register, login, logout, createUser, getUserList, getAdminInfo, updateUser, getUserInfo }
+export { register, login, logout, createAdmin, createUser, getUserList, getAdminInfo, updateUser, getUserInfo }

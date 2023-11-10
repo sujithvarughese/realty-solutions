@@ -1,5 +1,13 @@
-.form {
+.container {
+    width: 80%;
+    margin: auto;
+}
 
+.form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+    gap: 1rem;
 }
 .addressLine1 {
     display: grid;
@@ -17,7 +25,14 @@
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 1rem;
 }
+.buttons {
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+    margin: auto;
+    width: 40%;
+}
 
-@media (min-width: 450px) {
+@media (min-width: 480px) {
 
 }

@@ -23,11 +23,10 @@ const authenticateUser = async (req, res, next) => {
 
 // authorize if user isAdmin
 const authorizePermissions = (req, res, next) => {
-	console.log('admin route');
-	next()
 	if (!req.user.isAdmin) {
 		throw new UnauthorizedError('Role not authorized')
 	}
+	next()
 
 }
 
