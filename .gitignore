@@ -12,7 +12,7 @@ dist-ssr
 
 # Ignore files related to API keys
 .env
-
+.env.production
 # Ignore SASS config files
 .sass-cache
 
