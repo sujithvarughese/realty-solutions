@@ -7,7 +7,6 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const Accounting = () => {
 
-
 	return (
 		<div className={classes.container}>
 			<div className={classes.links}>

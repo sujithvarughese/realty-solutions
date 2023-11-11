@@ -7,7 +7,6 @@
     gap: 0.5rem;
     color: var(--COLOR-DARKER);
     align-items: center;
-    margin: 1rem 0;
 }
 .image {
     width: 110px;
@@ -42,14 +41,12 @@
     display: none
 }
 
-@media (min-width: 600px) {
-    .content {
-        grid-template-columns: 1fr 2fr 1fr;
-        position: relative;
-        gap: 2rem;
+@media (min-width: 500px) {
+    .tenantPhone {
+        display: block;
     }
-    .mobileContact {
-        display: none;
+    .tenantEmail {
+        display: block;
     }
     .address {
         font-size: 16px;
@@ -63,23 +60,12 @@
         flex-direction: column;
         gap: 0.3rem;
     }
-    .actions {
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-        position: absolute;
-        right: 0;
-        align-self: center;
-    }
-
-    .link:hover {
-        color: var(--COLOR-ALT);
-        cursor: pointer;
-    }
 }
 @media (min-width: 800px) {
     .content {
         grid-template-columns: 1fr 2fr 1fr 1fr;
+        position: relative;
+        gap: 2rem;
     }
     .image {
         width: 200px;
@@ -95,12 +81,6 @@
     .details {
         display: block;
         align-self: center;
-    }
-    .tenantPhone {
-        display: block;
-    }
-    .tenantEmail {
-        display: block;
     }
     .mobileContact {
         display: none;
@@ -120,7 +100,5 @@
     }
 }
 @media (min-width: 1200px) {
-    .addressLine1 {
-        font-size: 28px;
-    }
+
 }

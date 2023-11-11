@@ -34,7 +34,9 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 	}
 
 	return (
+		<div className={classes.container}>
 		<Modal>
+		<Card>
 		<Form onSubmit={handleSubmit} title="create message">
 			<div className={classes.form}>
 				<div>
@@ -67,14 +69,16 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 						onChange={handleChange}
 					></textarea>
 				</div>
-
 				<div className={classes.buttons}>
 					<Button type="submit">Send</Button>
 					<Button type="button" onClick={cancel}>Cancel</Button>
 				</div>
 			</div>
 		</Form>
+		</Card>
 		</Modal>
+		</div>
+
 	);
 };
 

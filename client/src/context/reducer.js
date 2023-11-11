@@ -5,7 +5,8 @@ import {
 	LOGOUT_USER,
 	SET_IS_LOADING,
 	SET_USER,
-	SET_DATE
+	SET_DATE,
+	SET_UNITS
 } from "./actions.js";
 
 const reducer = (state, action) => {
@@ -53,6 +54,12 @@ const reducer = (state, action) => {
 		return {
 			...state,
 			date: action.payload.date
+		}
+	}
+	if (action.type === SET_UNITS) {
+		return {
+			...state,
+			units: action.payload.units
 		}
 	}
 

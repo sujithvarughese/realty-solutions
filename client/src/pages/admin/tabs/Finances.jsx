@@ -1,6 +1,11 @@
 import classes from "./styles/Finances.module.css";
+import { EditFinancialsForm, Unit, UnitFinancials } from "../../../components";
+import { useGlobalContext } from "../../../context/GlobalContext.jsx";
 
 const Finances = () => {
+
+	const { units } = useGlobalContext()
+
 	return (
 		<div>
 			<div>
@@ -11,6 +16,16 @@ const Finances = () => {
 			<div>
 				Rents by unit - including total rent amount
 			</div>
+			<div className={classes.unitContainer}>
+				<div>
+					{
+						units?.map(unit =><UnitFinancials key={unit._id} unit={unit}/>)
+					}
+				</div>
+			</div>
+
+			<EditFinancialsForm units={units}/>
+
 
 		</div>
 	);

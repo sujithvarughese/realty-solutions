@@ -1,6 +1,6 @@
-import classes from "./styles/Finances.module.css";
+import classes from "./styles/Financials.module.css";
 
-const Finances = () => {
+const Financials = () => {
 	return (
 		<div>
 			Mortgages by Unit:
@@ -11,4 +11,4 @@ const Finances = () => {
 	);
 };
 
-export default Finances;
+export default Financials;

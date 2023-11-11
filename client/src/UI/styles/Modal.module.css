@@ -1,12 +1,14 @@
 .modal {
     background: rgba(0, 0, 0, 0.5);
-    width: 50%;
     border-radius: 15px;
     z-index: 0;
-    padding: 3rem;
+    padding: 1rem;
     color: var(--COLOR-LIGHTER);
 }
 
-@media (min-width: 450px) {
+@media (min-width: 600px) {
+    .modal {
+        padding: 2rem;
+    }
 
 }

@@ -82,14 +82,6 @@ const EditUnitForm = ({ cancel, unit }) => {
 						></Input>
 					</div>
 					<div className={classes.info}>
-						<Input
-							htmlFor="image"
-							label="IMAGE"
-							type="file"
-							accept=".jpeg, .jpg, .png"
-							name="image"
-							onChange={e=>handleFileUpload(e)}
-						></Input>
 						<InputSelect
 							htmlFor="occupied"
 							label="OCCUPIED"
@@ -116,6 +108,16 @@ const EditUnitForm = ({ cancel, unit }) => {
 							name="bathrooms"
 							value={values.bathrooms}
 							onChange={handleChange}
+						></Input>
+					</div>
+					<div className={classes.imageUpload}>
+						<Input
+							htmlFor="image"
+							label="IMAGE"
+							type="file"
+							accept=".jpeg, .jpg, .png"
+							name="image"
+							onChange={e=>handleFileUpload(e)}
 						></Input>
 					</div>
 					<div className={classes.buttons}>

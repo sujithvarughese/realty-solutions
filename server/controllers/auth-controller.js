@@ -135,7 +135,6 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
-	console.log(`req.body: ${req.body}`);
 	// if any fields missing from user front end, throw error
 	if (!req.body.email || !req.body.password) {
 		throw new BadRequestError("please provide email and password");

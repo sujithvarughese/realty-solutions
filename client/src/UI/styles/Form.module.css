@@ -1,18 +1,12 @@
-.container {
-
-}
-
 .title {
     font-weight: 400;
-    font-size: 42px;
-    line-height: 1;
+    font-size: 24px;
     text-align: center;
     text-transform: capitalize;
 }
-.content {
 
-
-}
-
-@media (min-width: 450px) {
+@media (min-width: 600px) {
+    .title {
+        font-size: 36px;
+    }
 }

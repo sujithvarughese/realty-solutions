@@ -101,8 +101,6 @@ UserSchema.pre("findOneAndUpdate", { document: true, query: false }, async funct
 
 // function on user to compare entered password to user.password
 UserSchema.methods.comparePassword = async function (candidatePassword) {
-	console.log(this.password);
-	console.log(candidatePassword);
 	try {
 		if (await bcrypt.compare(candidatePassword, this.password)) {
 			return true;

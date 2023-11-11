@@ -1,8 +1,8 @@
 import classes from "./styles/Unit.module.css";
-import { CreateUserForm, EditUnitForm, EditUserForm, CreateMessageForm } from "../";
+import { CreateUserForm, EditUnitForm, EditUserForm, CreateMessageForm, EditFinancialsForm, CreateRentReceiptForm } from "../";
 import { useState } from "react";
 import { Button, Card } from "../../UI/index.js";
-import { Md1K } from "react-icons/md";
+
 const Unit = ({ unit }) => {
 
 	const { unitID, street, city, state, zip, image, occupied, user, bedrooms, bathrooms, fairMarketRent } = unit
@@ -11,6 +11,8 @@ const Unit = ({ unit }) => {
 	const [showCreateUserForm, setShowCreateUserForm] = useState(false)
 	const [showEditUserForm, setShowEditUserForm] = useState(false)
 	const [showMessageForm, setShowMessageForm] = useState(false)
+	const [showEditFinancialsForm, setShowEditFinancialsForm] = useState(false)
+	const [showCreateRentReceipt, setShowCreateRentReceipt] = useState(false)
 
 	return (
 
@@ -68,9 +70,36 @@ const Unit = ({ unit }) => {
 						// if occupied show edit user button, else show create user button
 						occupied ?
 						<div className={classes.actions}>
-							<div className={classes.link} onClick={() => setShowEditUnitForm(prevState => !prevState)}>Edit Unit</div>
-							<div className={classes.link} onClick={() => setShowEditUserForm(prevState => !prevState)}>Edit User</div>
-							<div className={classes.link} onClick={() => setShowMessageForm(prevState => !prevState)}>Message Tenant</div>
+							<div
+								className={classes.link}
+								onClick={() => setShowEditUnitForm(prevState => !prevState)}
+							>
+								{showEditUnitForm ? "Close Edit Unit" : "Edit Unit"}
+							</div>
+							<div
+								className={classes.link}
+								onClick={() => setShowEditFinancialsForm(prevState => !prevState)}
+							>
+								{showEditFinancialsForm ? "Close Financials" : "Edit Financials"}
+							</div>
+							<div
+								className={classes.link}
+								onClick={() => setShowEditUserForm(prevState => !prevState)}
+							>
+								{showEditUserForm ? "Close Edit User" : "Edit User"}
+							</div>
+							<div
+								className={classes.link}
+								onClick={() => setShowMessageForm(prevState => !prevState)}
+							>
+								Message Tenant
+							</div>
+							<div
+								className={classes.link}
+								onClick={() => setShowCreateRentReceipt(prevState => !prevState)}
+							>
+								{ showCreateRentReceipt ? "Close Form" : "Send Rent Receipt"}
+							</div>
 						</div>
 							:
 						<div className={classes.actions}>
@@ -82,9 +111,10 @@ const Unit = ({ unit }) => {
 				<div className={classes.forms}>
 					{/* forms open when state toggled */}
 					{ showEditUnitForm && <EditUnitForm cancel={()=>setShowEditUnitForm(false)} unit={unit}/>}
+					{ showEditFinancialsForm && <EditFinancialsForm cancel={()=>setShowEditFinancialsForm(false)} unit={unit}/>}
 					{ showCreateUserForm && <CreateUserForm cancel={()=>setShowCreateUserForm(false)} unit={unit}/> }
 					{ showEditUserForm && <EditUserForm cancel={()=>setShowEditUserForm(false)} user={user}/> }
-
+					{ showCreateRentReceipt && <CreateRentReceiptForm cancel={()=>setShowCreateRentReceipt(false)} user={user}/> }
 					{ showMessageForm &&
 						<CreateMessageForm
 							cancel={()=>setShowMessageForm(false)}

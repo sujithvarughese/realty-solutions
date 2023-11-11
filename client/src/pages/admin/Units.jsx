@@ -1,13 +1,18 @@
 import classes from "./styles/Units.module.css";
 import { CreateUnitForm } from "../../components/index.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { axiosDB } from "../../utils/axios.js";
 import { Unit, SearchUnits } from "../../components";
+import { useGlobalContext } from "../../context/GlobalContext.jsx";
 
 const Units = () => {
 	// units = [{ unit }, {},...]
 	const units = useLoaderData()
+	const { setUnits } = useGlobalContext()
+	useEffect(() => {
+		setUnits(units)
+	}, [])
 	// will open up form
 	const [showCreateUnitForm, setShowCreateUnitForm] = useState(false)
 

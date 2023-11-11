@@ -7,13 +7,15 @@ import {
 	LOGOUT_USER,
 	SET_IS_LOADING,
 	SET_USER,
-	SET_DATE
+	SET_DATE,
+	SET_UNITS
 } from "./actions.js";
 
 
 const initialState = {
 	date: Date.now(),
-	user: null
+	user: null,
+	units: null
 }
 
 const GlobalContext = createContext()
@@ -83,6 +85,13 @@ const GlobalProvider = ({ children }) => {
 		})
 	}
 
+	const setUnits = (units) => {
+		dispatch({
+			type: SET_UNITS,
+			payload: { units: units }
+		})
+	}
+
 	return (
 		<GlobalContext.Provider value={
 			{
@@ -92,7 +101,8 @@ const GlobalProvider = ({ children }) => {
 				logout,
 				setIsLoading,
 				setDate,
-				setUser
+				setUser,
+				setUnits
 			}
 		}>
 
