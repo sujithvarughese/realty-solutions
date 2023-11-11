@@ -28,6 +28,9 @@
     .options {
         line-height: 3rem;
     }
+    .button {
+        padding: 0;
+    }
 }
 @media (min-width: 1200px) {
 

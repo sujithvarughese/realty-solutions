@@ -49,8 +49,12 @@ const Unit = ({ unit }) => {
 					</div>
 
 					<div className={classes.mobileContact}>
-						<Button>Call</Button>
-						<Button onClick={() => setShowMessageForm(true)}>Email</Button>
+						<div className={classes.button}>
+							<Button>Call</Button>
+						</div>
+						<div className={classes.button}>
+							<Button onClick={() => setShowMessageForm(true)}>Email</Button>
+						</div>
 					</div>
 
 					<div className={classes.details}>

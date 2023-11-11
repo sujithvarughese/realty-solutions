@@ -23,10 +23,19 @@
 }
 
 
-@media (min-width: 480px) {
+@media (min-width: 550px) {
     .options {
         padding:  3rem;
     }
-
+}
+@media (min-width: 800px) {
+    .options {
+        padding:  3rem;
+    }
+}
+@media (min-width: 1200px) {
+    .options {
+        padding:  3rem;
+    }
 }
 
