@@ -18,7 +18,7 @@ const RentReceipt = (rentReceipt) => {
 					Date of Payment:
 				</div>
 				<div className={classes.value}>
-					{month} {date}, {year}
+					{date}
 				</div>
 			</div>
 

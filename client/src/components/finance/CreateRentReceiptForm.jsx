@@ -1,5 +1,5 @@
 import classes from "./styles/CreateRentReceiptForm.module.css";
-import { Form, Input, InputSelect, Button } from "../../UI";
+import { Form, Input, InputSelect, Button, Card} from "../../UI";
 import { useEffect, useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 
@@ -46,58 +46,75 @@ const CreateRentReceiptForm = ({ cancel }) => {
 		createRentReceipt(values)
 	}
 	return (
+		<div className={classes.container}>
+		<Card>
 		<Form onSubmit={handleSubmit}>
-			<InputSelect
-				htmlFor="user"
-				label="user: "
-				type="text"
-				name="user"
-				list={tenantList}
-				onChange={handleChange}
-			></InputSelect>
-			<InputSelect
-				htmlFor="year"
-				label="year: "
-				type="text"
-				name="year"
-				list={years}
-				onChange={handleChange}
-			></InputSelect>
-			<InputSelect
-				htmlFor="month"
-				label="month: "
-				type="text"
-				name="month"
-				list={months}
-				onChange={handleChange}
-			></InputSelect>
-			<Input
-				htmlFor="date"
-				label="Date: "
-				type="String"
-				name="date"
-				value={values.date}
-				onChange={handleChange}
-			></Input>
-			<Input
-				htmlFor="amountPaid"
-				label="Amount Paid: "
-				type="number"
-				name="amountPaid"
-				value={values.amountPaid}
-				onChange={handleChange}
-			></Input>
-			<Input
-				htmlFor="balance"
-				label="balance: "
-				type="number"
-				name="balance"
-				value={values.balance}
-				onChange={handleChange}
-			></Input>
-			<Button type="submit">Create Rent Receipt</Button>
-			<Button onClick={cancel}>Close</Button>
+			<div className={classes.form}>
+				<div>
+					<InputSelect
+						htmlFor="year"
+						label="year: "
+						type="text"
+						name="year"
+						list={years}
+						onChange={handleChange}
+					></InputSelect>
+					<InputSelect
+						htmlFor="month"
+						label="Month: "
+						type="text"
+						name="month"
+						list={months}
+						onChange={handleChange}
+					></InputSelect>
+					<Input
+						htmlFor="date"
+						label="Date Paid: "
+						type="Date"
+						name="date"
+						value={values.date}
+						onChange={handleChange}
+					></Input>
+				</div>
+				<div className={classes.tenant}>
+					<InputSelect
+						htmlFor="user"
+						label="tenant: "
+						type="text"
+						name="user"
+						list={tenantList}
+						onChange={handleChange}
+					></InputSelect>
+				</div>
+
+				<div>
+					<Input
+						htmlFor="amountPaid"
+						label="Amount Paid: "
+						type="number"
+						name="amountPaid"
+						value={values.amountPaid}
+						onChange={handleChange}
+					></Input>
+					<Input
+						htmlFor="balance"
+						label="balance: "
+						type="number"
+						name="balance"
+						value={values.balance}
+						onChange={handleChange}
+					></Input>
+				</div>
+
+			</div>
+			<div className={classes.buttons}>
+				<Button type="submit">Create Rent Receipt</Button>
+				<Button onClick={cancel}>Close</Button>
+			</div>
+
 		</Form>
+		</Card>
+		</div>
 	);
 };
 

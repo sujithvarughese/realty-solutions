@@ -1,0 +1,34 @@
+.container {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: 1rem;
+    margin: 0 auto;
+    width: 100%;
+}
+.form > * {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.tenant {
+    width: 100%;
+}
+.buttons {
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+    margin: auto;
+    width: 60%;
+}
+
+@media (min-width: 450px) {
+
+}

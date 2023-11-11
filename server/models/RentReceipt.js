@@ -17,7 +17,6 @@ const RentReceiptSchema = new mongoose.Schema({
 	},
 	date: {
 		type: String,
-		default: "1"
 	},
 	amountPaid: {
 		type: Number

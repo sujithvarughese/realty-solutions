@@ -19,6 +19,7 @@ const Rents = () => {
 	const getRentReceipts = async () => {
 		const response = await axiosDB(`/finance/rent/${tenant}/${year}/${month}`)
 		const { rentReceipts } = response.data
+		console.log(response.data);
 		setRentReceipts(rentReceipts)
 	}
 
@@ -29,7 +30,7 @@ const Rents = () => {
 
 	const selectTenant = async (tenant) => {
 		try {
-			const response = await axiosDB(`/auth/getUserInfo/${tenant}`)
+			const response = await axiosDB(`/auth/getUserInfo/${tenant._id}`)
 			const { name, address } = response.data
 			setUserInfo({ name, address })
 		} catch (error) {
@@ -41,66 +42,82 @@ const Rents = () => {
 	}, [tenant])
 	return (
 		<div className={classes.container}>
-			<div className={classes.formContainer}>
-				<div className={classes.title}>
-					Rent Receipts
+
+			<div className={classes.searchContainer}>
+				<div className={classes.search}>
+					<div className={classes.title}>
+						Search Rent Receipts
+					</div>
+					<Form onSubmit={handleSubmit}>
+						<div className={classes.form}>
+							<div className={classes.tenant}>
+								<InputSelect
+									htmlFor="tenant"
+									label="tenant"
+									type="text"
+									name="tenant"
+									list={userList}
+									onChange={(e)=>setTenant(e.target.value)}
+								></InputSelect>
+							</div>
+							<div className={classes.year}>
+								<InputSelect
+									htmlFor="year"
+									label="year: "
+									type="text"
+									name="year"
+									list={years}
+									onChange={(e)=>setYear(e.target.value)}
+								></InputSelect>
+							</div>
+							<div className={classes.month}>
+								<InputSelect
+									htmlFor="month"
+									label="month: "
+									type="text"
+									name="month"
+									list={months}
+									onChange={(e)=>setMonth(e.target.value)}
+								></InputSelect>
+							</div>
+
+						</div>
+						<div className={classes.button}>
+							<Button type="submit">Search</Button>
+						</div>
+					</Form>
 				</div>
-				<Form onSubmit={handleSubmit}>
-					<div className={classes.form}>
-						<InputSelect
-							htmlFor="tenant"
-							label="tenant"
-							type="text"
-							name="tenant"
-							list={userList}
-							onChange={(e)=>setTenant(e.target.value)}
-						></InputSelect>
-						<InputSelect
-							htmlFor="year"
-							label="year: "
-							type="text"
-							name="year"
-							list={years}
-							onChange={(e)=>setYear(e.target.value)}
-						></InputSelect>
-						<InputSelect
-							htmlFor="month"
-							label="month: "
-							type="text"
-							name="month"
-							list={months}
-							onChange={(e)=>setMonth(e.target.value)}
-						></InputSelect>
-					</div>
-					<div className={classes.button}>
-						<Button type="submit">Submit</Button>
-					</div>
-				</Form>
+				<div className={classes.results}>
+					{
+						rentReceipts?.map(receipt =>
+							<RentReceipt
+								key={receipt._id}
+								{...receipt}
+								lastName={name.lastName}
+								firstName={name.firstName}
+							/>
+
+						)
+					}
+				</div>
 			</div>
 
-			<div className={classes.results}>
+
+			<div className={classes.formMobile}>
 				{
-					rentReceipts?.map(receipt =>
-						<RentReceipt
-							key={receipt._id}
-							{...receipt}
-							lastName={name.lastName}
-							firstName={name.firstName}
-						/>
-
-					)
+					!showCreateRentReceiptForm &&
+					<Button onClick={()=>setShowCreateRentReceiptForm(true)}>Create Rent Receipt</Button>
 				}
-
 			</div>
 
-			{
-				!showCreateRentReceiptForm &&
-				<Button onClick={()=>setShowCreateRentReceiptForm(true)}>Create Rent Receipt</Button>
-			}
 
-			{
-				showCreateRentReceiptForm &&	<CreateRentReceiptForm cancel={()=>setShowCreateRentReceiptForm(false)}/>
-			}
+			<div className={classes.create}>
+				<div className={classes.title}>
+					Create Rent Receipt
+				</div>
+				<CreateRentReceiptForm cancel={()=>setShowCreateRentReceiptForm(false)}/>
+			</div>
+
 		</div>
 	);
 };
@@ -117,7 +134,21 @@ export const rentsLoader = async () => {
 
 const years = ["2023", "2022", "2021", "2020"]
 
+const monthsNum = [
+	{ text: "January", value: "01" },
+	{ text: "February", value: "02" },
+	{ text: "March", value: "03" },
+	{ text: "April", value: "04" },
+	{ text: "May", value: "05" },
+	{ text: "June", value: "06" },
+	{ text: "July", value: "07" },
+	{ text: "August", value: "08" },
+	{ text: "September", value: "09" },
+	{ text: "October", value: "10" },
+	{ text: "November", value: "11" },
+	{ text: "December", value: "12" }
+];
+
 const months = ["January","February","March","April","May","June","July",
 	"August","September","October","November","December"];
-
 export default Rents;

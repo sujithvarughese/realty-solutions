@@ -7,9 +7,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 1rem 0;
-
-
+    padding: 1rem 0 2rem 0;
 }
 .link {
     font-size: 28px;
@@ -25,7 +23,6 @@
     color: var(--COLOR-ALT);
     cursor: pointer;
 }
-
 
 @media (min-width: 480px) {
     .links {
