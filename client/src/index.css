@@ -8,6 +8,7 @@
   -moz-background-size: calc(100vw) calc(100vh);
   -o-background-size: calc(100vw) calc(100vh);
   background-size: calc(100vw) calc(100vh);
+  --COLOR-BACKGROUND: #F7F7F7;
   --COLOR-LIGHTER: #e0f0ea;
   --COLOR-LIGHT: #95adbe;
   --COLOR: #574f7d;
@@ -43,7 +44,7 @@ body {
   display: block;
   color: #424242;
   -webkit-font-smoothing: antialiased;
-
+  background-color: #F7F7F7;
 }
 ul {
   list-style: none;

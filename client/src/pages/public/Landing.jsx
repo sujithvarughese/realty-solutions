@@ -5,7 +5,6 @@ import { Auth } from "../../components"
 const Landing = () => {
 	return (
 		<div className={classes.container}>
-
 			<div className={classes.content}>
 
 				<div className={classes.text}>
@@ -22,8 +21,6 @@ const Landing = () => {
 				</div>
 
 			</div>
-
-
 		</div>
 	);
 };

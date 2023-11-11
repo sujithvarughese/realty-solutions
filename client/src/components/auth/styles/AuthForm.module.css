@@ -3,7 +3,6 @@
     flex-direction: column;
     gap: 1rem;
     padding-bottom: 1rem;
-
 }
 
 .options {
@@ -14,11 +13,22 @@
     line-height: 4rem;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 550px) {
+    .form {
+        gap: 2rem;
+    }
+    .button {
+        padding: 2rem 0;
+    }
+}
+@media (min-width: 800px) {
     .form {
         width: 340px;
     }
     .options {
         line-height: 3rem;
     }
+}
+@media (min-width: 1200px) {
+
 }

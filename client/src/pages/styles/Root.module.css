@@ -5,7 +5,7 @@
     display: block;
 }
 
-@media (min-width: 450px){
+@media (min-width: 600px){
     .infobar {
         display: none;
     }

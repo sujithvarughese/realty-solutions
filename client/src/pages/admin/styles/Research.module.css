@@ -11,9 +11,8 @@
 .search {
     display: flex;
     margin: auto;
-    width: 90%;
-    justify-content: space-around;
-    align-items: center;
+    gap: 2rem;
+    justify-content: center;
 }
 
 
@@ -39,7 +38,7 @@ tr {
 
 @media (min-width: 450px) {
     .search {
-        padding: 4rem 12rem;
+        padding: 4rem;
     }
     th {
         display: block;

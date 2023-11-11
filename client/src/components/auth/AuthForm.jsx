@@ -68,14 +68,17 @@ const AuthForm = ({ authState }) => {
 				</div>
 			}
 			</div>
-			<Button type="submit">
-				{
-					authState === "register" ?
-						"CREATE ACCOUNT"
-						:
-						"LOG INTO MY ACCOUNT"
-				}
-			</Button>
+			<div className={classes.button}>
+				<Button type="submit">
+					{
+						authState === "register" ?
+							"CREATE ACCOUNT"
+							:
+							"LOG INTO MY ACCOUNT"
+					}
+				</Button>
+			</div>
+
 
 		</Form>
 	);
