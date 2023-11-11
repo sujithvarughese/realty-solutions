@@ -1,9 +1,9 @@
 import RentReceipt from "../models/RentReceipt.js";
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError, UnauthenticatedError } from "../errors/index.js";
+import Finance from "../models/Finance.js";
 
 const getRentReceipts = async (req, res) => {
-	console.log(req.params);
 	if (!req.user.isAdmin) {
 		if (req.user.userID !== req.params.id) {
 			throw new UnauthenticatedError("Error validating user");
@@ -17,8 +17,17 @@ const getRentReceipts = async (req, res) => {
 const createRentReceipt = async (req, res) => {
 	//req.body = {user, year, month, date, amountPaid, balance}
 	const newRentReceipt = await RentReceipt.create(req.body)
-	console.log(newRentReceipt);
 	res.status(StatusCodes.CREATED).json({ newRentReceipt });
 }
 
-export { getRentReceipts, createRentReceipt }
+const createUnitFinances = async (req, res) => {
+	const newUnitFinance = await Finance.create(req.body)
+	res.status(StatusCodes.CREATED).json({ newUnitFinance });
+}
+
+const getUnitFinances = async (req, res) => {
+	const unitFinances = await Finance.findOne({ unit: req.params.unit })
+	res.status(StatusCodes.OK).json({ unitFinances });
+}
+
+export { getRentReceipts, createRentReceipt, createUnitFinances, getUnitFinances }

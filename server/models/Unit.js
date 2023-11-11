@@ -32,6 +32,10 @@ const UnitSchema = new mongoose.Schema( {
 		type: mongoose.Types.ObjectId,
 		ref: 'User'
 	},
+	finances: {
+		type: mongoose.Types.ObjectId,
+		ref: "Finance"
+	},
 	tenant: {
 		lastName: {
 			type: String

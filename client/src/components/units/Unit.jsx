@@ -1,5 +1,13 @@
 import classes from "./styles/Unit.module.css";
-import { CreateUserForm, EditUnitForm, EditUserForm, CreateMessageForm, EditFinancialsForm, CreateRentReceiptForm } from "../";
+import {
+	CreateUserForm,
+	EditUnitForm,
+	EditUserForm,
+	CreateMessageForm,
+	EditFinancialsForm,
+	CreateRentReceiptForm,
+	UnitFinancials
+} from "../";
 import { useState } from "react";
 import { Button, Card } from "../../UI/index.js";
 
@@ -13,6 +21,7 @@ const Unit = ({ unit }) => {
 	const [showMessageForm, setShowMessageForm] = useState(false)
 	const [showEditFinancialsForm, setShowEditFinancialsForm] = useState(false)
 	const [showCreateRentReceipt, setShowCreateRentReceipt] = useState(false)
+	const [showUnitFinancials, setShowUnitFinancials] = useState(false)
 
 	return (
 
@@ -78,6 +87,12 @@ const Unit = ({ unit }) => {
 							</div>
 							<div
 								className={classes.link}
+								onClick={() => setShowUnitFinancials(prevState => !prevState)}
+							>
+								View Finances
+							</div>
+							<div
+								className={classes.link}
 								onClick={() => setShowEditFinancialsForm(prevState => !prevState)}
 							>
 								{showEditFinancialsForm ? "Close Financials" : "Edit Financials"}
@@ -111,6 +126,7 @@ const Unit = ({ unit }) => {
 				<div className={classes.forms}>
 					{/* forms open when state toggled */}
 					{ showEditUnitForm && <EditUnitForm cancel={()=>setShowEditUnitForm(false)} unit={unit}/>}
+					{ showUnitFinancials && <UnitFinancials close={()=>setShowUnitFinancials(false)} unit={unit}/>}
 					{ showEditFinancialsForm && <EditFinancialsForm cancel={()=>setShowEditFinancialsForm(false)} unit={unit}/>}
 					{ showCreateUserForm && <CreateUserForm cancel={()=>setShowCreateUserForm(false)} unit={unit}/> }
 					{ showEditUserForm && <EditUserForm cancel={()=>setShowEditUserForm(false)} user={user}/> }

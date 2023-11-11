@@ -1,6 +1,7 @@
 import Unit from "../models/Unit.js";
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError } from "../errors/index.js";
+import Finance from "../models/Finance.js";
 
 const getMyUnit = async (req, res) => {
 	const myUnit = await Unit.findOne({ user: req.user.userID }).populate("user")
@@ -28,7 +29,21 @@ const createUnit = async (req, res) => {
 
 	// create new unit using UnitDetails model method
 	const newUnit = await Unit.create(req.body)
-
+	const newFinancialData = {
+		unit: newUnit,
+		purchasePrice: "",
+		rent: "",
+		fairMarketRent: "",
+		mortgage: {
+			bank: "",
+			loanAmount: "",
+			balance: "",
+			interest: "",
+			payment: "",
+		}
+	}
+	const newFinances = await Finance.create(newFinancialData)
+	await Unit.findByIdAndUpdate(newUnit, { finances: newFinances })
 	// send response JSON to include new unit
 	res.status(StatusCodes.CREATED).json({
 		unit: newUnit,

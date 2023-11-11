@@ -31,7 +31,6 @@ const AuthForm = ({ authState }) => {
 	}
 
 	const previewAsAdmin = () => {
-		console.log(credentials);
 		login(credentials)
 	}
 

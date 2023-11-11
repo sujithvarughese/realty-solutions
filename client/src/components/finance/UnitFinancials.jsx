@@ -1,53 +1,56 @@
 import classes from "./styles/UnitFinancials.module.css";
 import { Button, Card } from "../../UI/index.js";
 import { EditFinancialsForm, EditUnitForm } from "../index.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { axiosDB } from "../../utils/axios.js";
 
 
-const UnitFinancials = ({ unit }) => {
+const UnitFinancials = ({ close, unit }) => {
 
 	const { unitID, street, city, state, zip, image, occupied, bedrooms, bathrooms, fairMarketRent } = unit
-
+	const [finances, setFinances] = useState(null)
 	const [showEditFinancialsForm, setShowEditFinancialsForm] = useState(false)
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await axiosDB(`/finance/${unit._id}`)
+				const { unitFinances } = response.data
+				setFinances(unitFinances)
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		fetchData()
+	}, [])
 
 	return (
 		<div className={classes.container}>
 			<Card>
 				<div className={classes.content}>
-					<img src={image} alt="img" className={classes.image}/>
 
-					<div className={classes.info}>
-						<div className={classes.address}>
-							<div className={classes.addressLine1}>
-								<span>{unitID} </span>
-								<span>{street}</span>
-							</div>
-							<div className={classes.addressLine2}>
-								<span>{city}, </span>
-								<span>{state} </span>
-								<span>{zip}</span>
-							</div>
-							<div>
-								{bedrooms}-br / {bathrooms}-bath
-							</div>
-							<div>
-								{!occupied && "Vacant"}
-							</div>
-						</div>
+					<div>
+						Purchase Price: {finances?.purchasePrice}
+					</div>
+					<div>
+						Rent: {finances?.rent}
+					</div>
+					<div>
+						Fair Market Rent: {finances?.fairMarketRent}
+					</div>
+					<div>
+						Mortgage Information
+					</div>
+					<div>
+						Bank: {finances?.mortgage.bank}
+					</div>
+					<div>
+						Loan Amount: {finances?.mortgage.loanAmount}
 					</div>
 
-					<div className={classes.mobileContact}>
-						<div className={classes.button}>
 
-						</div>
-						<div className={classes.button}>
 
-						</div>
-					</div>
 
-					<div className={classes.details}>
-
-					</div>
 
 
 					<div className={classes.actions}>
