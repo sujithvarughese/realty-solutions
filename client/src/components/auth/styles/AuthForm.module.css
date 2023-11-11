@@ -4,7 +4,6 @@
     gap: 1rem;
     padding-bottom: 1rem;
 }
-
 .options {
     display: flex;
     gap: 1rem;
@@ -12,7 +11,14 @@
     align-items: center;
     line-height: 4rem;
 }
-
+.link {
+    color: var(--COLOR-LIGHT);
+    text-decoration: none;
+}
+.link:hover {
+    color: var(--COLOR-ALT);
+    cursor: pointer;
+}
 @media (min-width: 550px) {
     .form {
         gap: 2rem;

@@ -25,6 +25,15 @@ const AuthForm = ({ authState }) => {
 		}
 	}
 
+	const previewAsAdmin = () => {
+		const credentials = {
+			email: import.meta.env.VITE_ADMIN_LOGIN,
+			password: import.meta.env.VITE_ADMIN_PASSWORD
+		}
+		console.log(credentials);
+		login(credentials)
+	}
+
 	return (
 		<Form onSubmit={handleSubmit}>
 			<div className={classes.form}>
@@ -59,11 +68,11 @@ const AuthForm = ({ authState }) => {
 			{
 				authState !== "register" &&
 				<div className={classes.options}>
-					<div>
+					<div className={classes.link}>
 						Reset Password
 					</div>
-					<div>
-						Login as Guest
+					<div onClick={previewAsAdmin} className={classes.link}>
+						Preview as Admin
 					</div>
 				</div>
 			}
