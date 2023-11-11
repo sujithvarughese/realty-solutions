@@ -84,8 +84,9 @@ const Research = () => {
 				Search for Fair Market Rent Values:
 			</div>
 
+			<div className={classes.search}>
 				<Form>
-					<div className={classes.search}>
+					<div className={classes.form}>
 						<div className={classes.state}>
 							<InputSelect
 								htmlFor="state"
@@ -124,7 +125,7 @@ const Research = () => {
 						</div>
 					</div>
 				</Form>
-
+			</div>
 
 
 			<div className={classes.results}>
