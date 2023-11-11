@@ -21,6 +21,9 @@ import EditUserForm from "./users/EditUserForm.jsx";
 
 import CreateRentReceiptForm from "./finance/CreateRentReceiptForm.jsx";
 import RentReceipt from "./finance/RentReceipt.jsx"
+import CreateFinancialData from "./finance/CreateFinancialData.jsx";
+import Finances from "./finance/Finances.jsx";
+
 export {
 	InfoBar,
 	MobileNavbar,
@@ -44,4 +47,6 @@ export {
 
 	CreateRentReceiptForm,
 	RentReceipt,
+	CreateFinancialData,
+	Finances
 }

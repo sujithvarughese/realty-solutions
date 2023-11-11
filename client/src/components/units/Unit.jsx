@@ -68,9 +68,9 @@ const Unit = ({ unit }) => {
 						// if occupied show edit user button, else show create user button
 						occupied ?
 						<div className={classes.actions}>
-							<div className={classes.link} onClick={() => setShowEditUnitForm(true)}>Edit Unit</div>
-							<div className={classes.link} onClick={() => setShowEditUserForm(true)}>Edit User</div>
-							<div className={classes.link} onClick={() => setShowMessageForm(true)}>Message Tenant</div>
+							<div className={classes.link} onClick={() => setShowEditUnitForm(prevState => !prevState)}>Edit Unit</div>
+							<div className={classes.link} onClick={() => setShowEditUserForm(prevState => !prevState)}>Edit User</div>
+							<div className={classes.link} onClick={() => setShowMessageForm(prevState => !prevState)}>Message Tenant</div>
 						</div>
 							:
 						<div className={classes.actions}>
