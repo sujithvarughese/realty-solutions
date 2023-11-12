@@ -1,7 +1,7 @@
 import classes from "./styles/Research.module.css";
-import { axiosHUD } from "../../utils/axios.js";
+import { axiosHUD } from "../utils/axios.js";
 import { useState } from "react";
-import { Form, InputSelect } from "../../UI";
+import { Form, InputSelect } from "../UI";
 
 const Research = () => {
 

@@ -24,7 +24,8 @@ import RentReceipt from "./finance/RentReceipt.jsx"
 import EditFinancialsForm from "./finance/EditFinancialsForm.jsx";
 import Financials from "./finance/Financials.jsx";
 import UnitFinancials from "./finance/UnitFinancials.jsx";
-
+import Finances from "./finance/Finances.jsx";
+import Rents, { rentsLoader } from "./finance/Rents.jsx";
 export {
 	InfoBar,
 	MobileNavbar,
@@ -50,5 +51,8 @@ export {
 	RentReceipt,
 	EditFinancialsForm,
 	Financials,
-	UnitFinancials
+	UnitFinancials,
+	Rents,
+	rentsLoader,
+	Finances
 }

@@ -53,9 +53,6 @@ const UnitSchema = new mongoose.Schema( {
 	bathrooms: {
 		type: Number,
 	},
-	fairMarketRent: {
-		type: Number
-	},
 	createdAt: {
 		type: Date,
 		default: () => Date.now(),

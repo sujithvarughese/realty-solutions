@@ -1,9 +1,8 @@
 import classes from "./styles/MyUnit.module.css";
-import { axiosDB } from "../../utils/axios.js";
+import { axiosDB } from "../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
-import { useGlobalContext } from "../../context/GlobalContext.jsx";
+import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { useEffect } from "react";
-import { Button } from "../../UI/index.js";
 
 // homepage for tenant(user)
 const MyUnit = () => {

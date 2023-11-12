@@ -1,12 +1,12 @@
-import classes from "./styles/Payments.module.css";
-import { axiosDB } from "../../utils/axios.js";
-import { Button, Form, InputSelect } from "../../UI";
+import classes from "./styles/MyPayments.module.css";
+import { axiosDB } from "../utils/axios.js";
+import { Button, Form, InputSelect } from "../UI";
 import { useState } from "react";
-import { useGlobalContext } from "../../context/GlobalContext.jsx";
-import { RentReceipt } from "../../components/index.js";
+import { useGlobalContext } from "../context/GlobalContext.jsx";
+import { RentReceipt } from "../components/index.js";
 
 
-const Payments = () => {
+const MyPayments = () => {
 	const [year, setYear] = useState("2023")
 	const [month, setMonth] = useState("January")
 	const { user } = useGlobalContext()
@@ -71,4 +71,4 @@ const years = ["2023", "2022", "2021", "2020"]
 const months = ["January","February","March","April","May","June","July",
 	"August","September","October","November","December"];
 
-export default Payments;
+export default MyPayments;

@@ -14,22 +14,65 @@ const FinanceSchema = new mongoose.Schema({
 	fairMarketRent: {
 		type: Number
 	},
+	propertyTax: {
+		type: Number
+	},
+	insurance: {
+		company: {
+			type: String
+		},
+		agent: {
+			type: String
+		},
+		phone: {
+			type: String
+		},
+		email: {
+			type: String
+		},
+		payment: {
+			type: Number
+		},
+		coverage: {
+			type: String
+		}
+	},
 	mortgage: {
 		bank: {
 			type: String
 		},
-		loanAmount: {
-			type: Number
-		},
-		balance: {
+		principal: {
 			type: Number
 		},
 		interest: {
 			type: Number
 		},
-		payment: {
+		term: {
+			type: Number,
+		},
+		balance: {
 			type: Number
 		},
+		monthlyPayment: {
+			type: Number
+		},
+	},
+	hoa: {
+		company: {
+			type: String
+		},
+		agent: {
+			type: String
+		},
+		phone: {
+			type: String
+		},
+		email: {
+			type: String
+		},
+		payment: {
+			type: Number
+		}
 	},
 	createdAt: {
 		type: Date,

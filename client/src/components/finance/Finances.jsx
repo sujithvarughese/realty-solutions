@@ -1,6 +1,6 @@
 import classes from "./styles/Finances.module.css";
-import { EditFinancialsForm, Unit, UnitFinancials } from "../../../components";
-import { useGlobalContext } from "../../../context/GlobalContext.jsx";
+import { EditFinancialsForm, Unit, UnitFinancials } from "./../../components";
+import { useGlobalContext } from "../../context/GlobalContext.jsx";
 
 const Finances = () => {
 
@@ -30,5 +30,9 @@ const Finances = () => {
 		</div>
 	);
 };
+
+const calcMortgagePayoff = () => {
+
+}
 
 export default Finances;
