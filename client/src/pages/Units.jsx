@@ -9,6 +9,8 @@ import { useGlobalContext } from "../context/GlobalContext.jsx";
 const Units = () => {
 	// units = [{ unit }, {},...]
 	const units = useLoaderData()
+
+	// set units from loader to global state
 	const { setUnits } = useGlobalContext()
 	useEffect(() => {
 		setUnits(units)

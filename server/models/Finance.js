@@ -6,7 +6,7 @@ const FinanceSchema = new mongoose.Schema({
 		ref: "Unit"
 	},
 	purchasePrice: {
-		type: "Number"
+		type: Number
 	},
 	rent: {
 		type: Number
@@ -50,10 +50,10 @@ const FinanceSchema = new mongoose.Schema({
 		term: {
 			type: Number,
 		},
-		balance: {
+		paymentsMade: {
 			type: Number
 		},
-		monthlyPayment: {
+		payment: {
 			type: Number
 		},
 	},

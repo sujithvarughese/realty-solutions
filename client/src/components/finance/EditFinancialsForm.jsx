@@ -5,23 +5,46 @@ import { axiosDB } from "../../utils/axios.js";
 
 const initialMortgageState = {
 	bank: "",
-	loanAmount: "",
-	balance: "",
+	principal: "",
 	interest: "",
-	payment: ""
+	term: "",
+	paymentsMade: "",
+	balance: "",
+	monthlyPayment: ""
+}
+const initialInsuranceState = {
+	company: "",
+	agent: "",
+	phone: "",
+	email: "",
+	payment: "",
+	coverage: ""
+}
+const initialHoaState = {
+	company: "",
+	agent: "",
+	phone: "",
+	email: "",
+	payment: "",
 }
 const initialState = {
 	purchasePrice: "",
 	rent: "",
 	fairMarketRent: "",
-	mortgage: initialMortgageState
+	propertyTax: "",
+	mortgage: initialMortgageState,
+	insurance: initialInsuranceState,
+	hoa: initialHoaState
 }
 
 
-const EditFinancialsForm = ({ unit, cancel }) => {
+const EditFinancialsForm = ({ unit, finances, cancel }) => {
 
 	const [values, setValues] = useState(initialState)
+	const [financesState, setFinanceState] = useState(initialState)
 	const [mortgageValues, setMortgageValues] = useState(initialMortgageState)
+	const [insuranceValues, setInsuranceValues] = useState(initialInsuranceState)
+	const [hoaValues, setHoaValues] = useState(initialHoaState)
 
 	const handleChange = (e) => {
 		setValues({ ...values, [e.target.name]: e.target.value });
@@ -29,10 +52,16 @@ const EditFinancialsForm = ({ unit, cancel }) => {
 	const handleMortgageChange = (e) => {
 		setMortgageValues({ ...mortgageValues, [e.target.name]: e.target.value });
 	}
+	const handleInsuranceChange = (e) => {
+		setInsuranceValues({ ...insuranceValues, [e.target.name]: e.target.value });
+	}
+	const handleHoaChange = (e) => {
+		setHoaValues({ ...hoaValues, [e.target.name]: e.target.value });
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		createUnitFinances({ ...values, mortgage: { ...mortgageValues }, unit: unit._id })
+		createUnitFinances({ ...values, mortgage: { ...mortgageValues }, insurance: { ...insuranceValues }, hoa: { ...hoaValues }, unit: unit })
 		cancel()
 	}
 
@@ -67,7 +96,20 @@ const EditFinancialsForm = ({ unit, cancel }) => {
 							onChange={handleChange}
 						></Input>
 					</div>
+					<div>
+						<Input
+							htmlFor="propertyTax"
+							placeholder="PROPERTY TAX"
+							type="number"
+							name="propertyTax"
+							value={values.propertyTax}
+							onChange={handleChange}
+						></Input>
+					</div>
 					<div className={classes.row2}>
+						<div className={classes.title}>
+							Mortgage
+						</div>
 						<Input
 							htmlFor="bank"
 							placeholder="BANK"
@@ -79,19 +121,11 @@ const EditFinancialsForm = ({ unit, cancel }) => {
 					</div>
 					<div className={classes.row3}>
 						<Input
-							htmlFor="loanAmount"
+							htmlFor="principal"
 							placeholder="LOAN AMOUNT"
 							type="number"
-							name="loanAmount"
-							value={mortgageValues.loanAmount}
-							onChange={handleMortgageChange}
-						></Input>
-						<Input
-							htmlFor="balance"
-							placeholder="BALANCE"
-							type="number"
-							name="balance"
-							value={mortgageValues.balance}
+							name="principal"
+							value={mortgageValues.principal}
 							onChange={handleMortgageChange}
 						></Input>
 					</div>
@@ -105,12 +139,118 @@ const EditFinancialsForm = ({ unit, cancel }) => {
 							onChange={handleMortgageChange}
 						></Input>
 						<Input
+							htmlFor="term"
+							placeholder="TERM"
+							type="number"
+							name="term"
+							value={mortgageValues.term}
+							onChange={handleMortgageChange}
+						></Input>
+						<Input
+							htmlFor="paymentsMade"
+							placeholder="PAYMENTS MADE"
+							type="number"
+							name="paymentsMade"
+							value={mortgageValues.paymentsMade}
+							onChange={handleMortgageChange}
+						></Input>
+					</div>
+					<div>
+						<div className={classes.title}>
+							Insurance
+						</div>
+						<Input
+							htmlFor="company"
+							placeholder="NAME OF COMPANY"
+							type="text"
+							name="company"
+							value={insuranceValues.company}
+							onChange={handleInsuranceChange}
+						></Input>
+						<Input
+							htmlFor="agent"
+							placeholder="AGENT"
+							type="text"
+							name="agent"
+							value={insuranceValues.agent}
+							onChange={handleInsuranceChange}
+						></Input>
+						<Input
+							htmlFor="phone"
+							placeholder="PHONE"
+							type="text"
+							name="phone"
+							value={insuranceValues.phone}
+							onChange={handleInsuranceChange}
+						></Input>
+						<Input
+							htmlFor="email"
+							placeholder="EMAIL"
+							type="email"
+							name="email"
+							value={insuranceValues.email}
+							onChange={handleInsuranceChange}
+						></Input>
+						<Input
 							htmlFor="payment"
 							placeholder="PAYMENT"
 							type="number"
 							name="payment"
-							value={mortgageValues.payment}
-							onChange={handleMortgageChange}
+							value={insuranceValues.payment}
+							onChange={handleInsuranceChange}
+						></Input>
+						<Input
+							htmlFor="coverage"
+							placeholder="COVERAGE"
+							type="text"
+							name="coverage"
+							value={insuranceValues.coverage}
+							onChange={handleInsuranceChange}
+						></Input>
+					</div>
+					<div>
+						<div className={classes.title}>
+							Homeowners Association
+						</div>
+						<Input
+							htmlFor="company"
+							placeholder="NAME OF COMPANY"
+							type="text"
+							name="company"
+							value={hoaValues.company}
+							onChange={handleHoaChange}
+						></Input>
+						<Input
+							htmlFor="agent"
+							placeholder="AGENT"
+							type="text"
+							name="agent"
+							value={hoaValues.agent}
+							onChange={handleHoaChange}
+						></Input>
+						<Input
+							htmlFor="phone"
+							placeholder="PHONE"
+							type="text"
+							name="phone"
+							value={hoaValues.phone}
+							onChange={handleHoaChange}
+						></Input>
+						<Input
+							htmlFor="email"
+							placeholder="EMAIL"
+							type="email"
+							name="email"
+							value={hoaValues.email}
+							onChange={handleHoaChange}
+						></Input>
+						<Input
+							htmlFor="payment"
+							placeholder="PAYMENT"
+							type="number"
+							name="payment"
+							value={hoaValues.payment}
+							onChange={handleHoaChange}
 						></Input>
 					</div>
 					<div className={classes.buttons}>
@@ -127,7 +267,6 @@ const EditFinancialsForm = ({ unit, cancel }) => {
 const createUnitFinances = async (financeData) => {
 	try {
 		const response = await axiosDB.post("/finance", financeData)
-		console.log(response.data);
 	} catch (error) {
 		console.log(error);
 	}

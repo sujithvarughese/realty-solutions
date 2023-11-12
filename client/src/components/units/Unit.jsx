@@ -4,16 +4,18 @@ import {
 	EditUnitForm,
 	EditUserForm,
 	CreateMessageForm,
-	EditFinancialsForm,
 	CreateRentReceiptForm,
 	UnitFinancials
 } from "../";
 import { useState } from "react";
 import { Button, Card } from "../../UI/index.js";
+import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 
 const Unit = ({ unit }) => {
 
-	const { unitID, street, city, state, zip, image, occupied, user, bedrooms, bathrooms, fairMarketRent } = unit
+	const { unitID, street, city, state, zip, image, occupied, user, bedrooms, bathrooms } = unit
 	// state functions to hide and show forms
 	const [showEditUnitForm, setShowEditUnitForm] = useState(false)
 	const [showCreateUserForm, setShowCreateUserForm] = useState(false)
@@ -22,6 +24,11 @@ const Unit = ({ unit }) => {
 	const [showEditFinancialsForm, setShowEditFinancialsForm] = useState(false)
 	const [showCreateRentReceipt, setShowCreateRentReceipt] = useState(false)
 	const [showUnitFinancials, setShowUnitFinancials] = useState(false)
+
+	const navigate = useNavigate()
+	const navigateToUnitFinancials = () => {
+		navigate(`/accounting/${unit._id}`)
+	}
 
 	return (
 
@@ -85,12 +92,12 @@ const Unit = ({ unit }) => {
 							>
 								{showEditUnitForm ? "Close Edit Unit" : "Edit Unit"}
 							</div>
-							<div
+							<NavLink
+								to={`../accounting/${unit._id}`}
 								className={classes.link}
-								onClick={() => setShowUnitFinancials(prevState => !prevState)}
 							>
-								{showUnitFinancials ? "Close Finances" : "View Finances"}
-							</div>
+								View Finances
+							</NavLink>
 							<div
 								className={classes.link}
 								onClick={() => setShowEditUserForm(prevState => !prevState)}

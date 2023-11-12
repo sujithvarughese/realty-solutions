@@ -3,19 +3,22 @@ import { Button, Card, Form } from "../../UI/index.js";
 import { EditFinancialsForm, EditUnitForm } from "../index.js";
 import { useEffect, useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
+import { useParams } from "react-router-dom";
 
 
-const UnitFinancials = ({ close, unit }) => {
+const UnitFinancials = () => {
 
+	const { id } = useParams()
 	const [finances, setFinances] = useState(null)
 	const [showEditFinancialsForm, setShowEditFinancialsForm] = useState(false)
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await axiosDB(`/finance/${unit}`)
+				const response = await axiosDB(`/finance/${id}`)
 				const { unitFinances } = response.data
 				setFinances(unitFinances)
+				console.log(unitFinances);
 			} catch (error) {
 				console.log(error);
 			}
@@ -39,10 +42,7 @@ const UnitFinancials = ({ close, unit }) => {
 				</div>
 			</div>
 
-			{
-				showEditFinancialsForm ?
-					<EditFinancialsForm unit={unit} cancel={()=>setShowEditFinancialsForm(false)}/>
-					:
+
 					<div className={classes.table}>
 					<table>
 						<tbody>
@@ -64,7 +64,7 @@ const UnitFinancials = ({ close, unit }) => {
 						</tr>
 						<tr>
 							<td>Loan Amount</td>
-							<td>{finances?.mortgage.loanAmount}</td>
+							<td>{finances?.mortgage.principal}</td>
 						</tr>
 						<tr>
 							<td>Balance</td>
@@ -81,19 +81,21 @@ const UnitFinancials = ({ close, unit }) => {
 						</tbody>
 					</table>
 					</div>
-			}
+
 
 
 
 
 			<div className={classes.forms}>
 				{/* forms open when state toggled */}
-				{ showEditFinancialsForm && <EditFinancialsForm unit={unit}/>}
+				{ showEditFinancialsForm && <EditFinancialsForm unit={id} finances={finances} cancel={()=>setShowEditFinancialsForm(false)}/>}
 
 			</div>
 		</Card>
 		</div>
 	);
 };
+
+
 
 export default UnitFinancials;

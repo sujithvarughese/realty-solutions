@@ -22,8 +22,8 @@ import EditUserForm from "./users/EditUserForm.jsx";
 import CreateRentReceiptForm from "./finance/CreateRentReceiptForm.jsx";
 import RentReceipt from "./finance/RentReceipt.jsx"
 import EditFinancialsForm from "./finance/EditFinancialsForm.jsx";
-import Financials from "./finance/Financials.jsx";
-import UnitFinancials from "./finance/UnitFinancials.jsx";
+import FinancialSummary from "./finance/FinancialSummary.jsx";
+import UnitFinancials  from "./finance/UnitFinancials.jsx";
 import Finances from "./finance/Finances.jsx";
 import Rents, { rentsLoader } from "./finance/Rents.jsx";
 export {
@@ -50,8 +50,9 @@ export {
 	CreateRentReceiptForm,
 	RentReceipt,
 	EditFinancialsForm,
-	Financials,
+	FinancialSummary,
 	UnitFinancials,
+
 	Rents,
 	rentsLoader,
 	Finances

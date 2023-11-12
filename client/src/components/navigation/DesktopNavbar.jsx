@@ -19,7 +19,6 @@ const DesktopNavbar = ({ user, links, logout }) => {
 									key={index}
 									to={link.url}
 									className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
-									end
 								>
 									{link.name}
 								</NavLink>

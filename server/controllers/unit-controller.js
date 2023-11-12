@@ -9,15 +9,11 @@ const getMyUnit = async (req, res) => {
 }
 // get all units, and populate each with tenant information
 const getUnits = async (req, res) => {
-	console.log("getting units...");
 	const units = await Unit.find().populate("user")
 	res.status(StatusCodes.OK).json({ units })
 }
 
 const createUnit = async (req, res) => {
-	console.log(req.body);
-	// unit values sent from front end
-	const unit = req.body
 	// check if unit already exists
 	const duplicate = await Unit.findOne({
 		unitID: req.body.unitID,
@@ -29,24 +25,62 @@ const createUnit = async (req, res) => {
 
 	// create new unit using UnitDetails model method
 	const newUnit = await Unit.create(req.body)
+
+	// create empty Finance object for unit
 	const newFinancialData = {
 		unit: newUnit,
 		purchasePrice: "",
 		rent: "",
 		fairMarketRent: "",
+		propertyTax: "",
+		insurance: {
+			company: {
+				type: String
+			},
+			agent: {
+				type: String
+			},
+			phone: {
+				type: String
+			},
+			email: {
+				type: String
+			},
+			payment: {
+				type: Number
+			},
+			coverage: {
+				type: String
+			}
+		},
 		mortgage: {
-			bank: "",
-			loanAmount: "",
-			balance: "",
-			interest: "",
-			payment: "",
+			bank: {
+				type: String
+			},
+			principal: {
+				type: Number
+			},
+			interest: {
+				type: Number
+			},
+			term: {
+				type: Number,
+			},
+			balance: {
+				type: Number
+			},
+			monthlyPayment: {
+				type: Number
+			}
 		}
 	}
-	const newFinances = await Finance.create(newFinancialData)
-	await Unit.findByIdAndUpdate(newUnit, { finances: newFinances })
+	// create mongoose model
+	const newFinance = await Finance.create(newFinancialData)
+	// update unit model with Finance
+	const unit = await Unit.findByIdAndUpdate(newUnit, { finances: newFinance })
 	// send response JSON to include new unit
 	res.status(StatusCodes.CREATED).json({
-		unit: newUnit,
+		unit: unit,
 		msg: 'Create Unit Success'
 	})
 }

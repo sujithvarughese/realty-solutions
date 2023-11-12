@@ -6,22 +6,7 @@ const Accounting = () => {
 
 	return (
 		<div className={classes.container}>
-			<div className={classes.links}>
-			{
-				links.map((link, index) => {
-					return (
-						<NavLink
-							key={index}
-							to={link.url}
-							className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
-							end
-						>
-							{link.name}
-						</NavLink>
-					)
-				})
-			}
-			</div>
+
 			<Outlet />
 
 		</div>
