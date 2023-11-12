@@ -30,4 +30,9 @@ const getUnitFinances = async (req, res) => {
 	res.status(StatusCodes.OK).json({ unitFinances });
 }
 
-export { getRentReceipts, createRentReceipt, createUnitFinances, getUnitFinances }
+const getAllFinances = async (req, res) => {
+	const finances = await Finance.find()
+	res.status(StatusCodes.OK).json({ finances });
+}
+
+export { getRentReceipts, createRentReceipt, createUnitFinances, getUnitFinances, getAllFinances }

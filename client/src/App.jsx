@@ -14,7 +14,7 @@ import {
   Units,
   unitsLoader,
 } from "./pages";
-import { FinancialSummary, UnitFinancials } from "./components"
+import { FinancialSummary, financialSummaryLoader, UnitFinancials } from "./components"
 
 const App = () => {
 
@@ -35,7 +35,7 @@ const App = () => {
           element: <Accounting />,
           errorElement: <Error />,
           children: [
-            { index: true, element: <FinancialSummary />  },
+            { index: true, element: <FinancialSummary />, loader: financialSummaryLoader },
             { path: ":id", element: <UnitFinancials /> },
           ]
         }
