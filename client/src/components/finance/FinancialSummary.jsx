@@ -5,11 +5,15 @@ import { useLoaderData } from "react-router-dom";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { FinancialSummaryTotals } from "../"
 import { IoRemoveCircle } from "react-icons/io5"
+import {InputSelect} from "../../UI/index.js";
 const FinancialSummary = () => {
 
 	// finances = array of each unit's financial data
 	const finances = useLoaderData()
 	const { units } = useGlobalContext()
+
+	// allow users to view summary per month or year
+	const [term, setTerm] = useState(1)
 
 	// filter array we receive in loader to include address from {units} and only relevant data
 	const [unitFinances, setUnitFinances] = useState(finances.map(finance => {
@@ -32,6 +36,19 @@ const FinancialSummary = () => {
 
 	return (
 		<div>
+			<div>
+				<InputSelect
+					htmlFor="term"
+					label="Term: "
+					type="text"
+					name="term"
+					list={[{text: "monthly", value: 1}, {text: "yearly", value: 12}]}
+					onChange={(e)=>setTerm(e.target.value)}
+				>
+
+				</InputSelect>
+			</div>
+
 			<table className={classes.table}>
 				<thead className={classes.thead}>
 					<tr className={classes.tr}>
@@ -81,7 +98,7 @@ const FinancialSummary = () => {
 						)
 					})
 				}
-				<FinancialSummaryTotals unitFinances={unitFinances} />
+				<FinancialSummaryTotals unitFinances={unitFinances} term={term}/>
 
 				</tbody>
 			</table>

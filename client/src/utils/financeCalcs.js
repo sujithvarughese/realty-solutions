@@ -31,10 +31,15 @@ const calculateProfit = ({ annualPropertyTax, annualHomeInsurance, monthlyHoa, m
 
 
 // for financial summary; params: array of financial data for each unit
-const totalYearlyPropertyTax = data => convertToUSD(data.reduce((acc, unitFinance) => unitFinance.propertyTax + acc, 0))
-const totalYearlyInsurance = data => convertToUSD(data.reduce((acc, unitFinance) => unitFinance.insurance + acc, 0))
-const totalMonthlyHoa = data => convertToUSD(data.reduce((acc, unitFinance) => unitFinance.hoa + acc, 0))
-const totalRent = data => convertToUSD(data.reduce((acc, unitFinance) => unitFinance.rent + acc, 0))
+const totalPropertyTax = (data, term=12) => convertToUSD(((data.reduce((acc, unitFinance) => unitFinance.propertyTax + acc, 0))/12) * term)
+const totalInsurance = (data, term=12) => convertToUSD(((data.reduce((acc, unitFinance) => unitFinance.insurance + acc, 0))/12) * term)
+const totalHoa = (data, term=1) => convertToUSD((data.reduce((acc, unitFinance) => unitFinance.hoa + acc, 0)) * term)
+const totalRent = (data, term=1) => convertToUSD((data.reduce((acc, unitFinance) => unitFinance.rent + acc, 0)) * term)
+
+const totalProfit = (data, term) => {
 
 
-export { calculatePayoff, calculateMonthlyPayment, calculateProfit, totalYearlyPropertyTax, totalYearlyInsurance, totalMonthlyHoa, totalRent }
+}
+
+
+export { calculatePayoff, calculateMonthlyPayment, calculateProfit, totalPropertyTax, totalInsurance, totalHoa, totalRent, totalProfit }

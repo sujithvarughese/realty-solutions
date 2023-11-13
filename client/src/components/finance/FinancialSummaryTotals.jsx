@@ -1,8 +1,6 @@
 import classes from "./styles/FinancialSummaryTotals.module.css";
-import  { totalYearlyPropertyTax, totalYearlyInsurance, totalRent, totalMonthlyHoa} from "../../utils/financeCalcs.js";
-const FinancialSummaryTotals = ({ unitFinances }) => {
-
-    console.log(unitFinances)
+import  { totalPropertyTax, totalInsurance, totalRent, totalHoa, totalProfit } from "../../utils/financeCalcs.js";
+const FinancialSummaryTotals = ({ unitFinances, term }) => {
 
     return (
         <tr className={classes.tr}>
@@ -11,16 +9,19 @@ const FinancialSummaryTotals = ({ unitFinances }) => {
             </td>
             <td></td>
             <td className={classes.td}>
-                { totalYearlyPropertyTax(unitFinances) }
+                { totalPropertyTax(unitFinances, term) }
             </td>
             <td className={classes.td}>
-                { totalYearlyInsurance(unitFinances) }
+                { totalInsurance(unitFinances, term) }
             </td>
             <td className={classes.td}>
-                { totalRent(unitFinances) }
+                { totalRent(unitFinances, term) }
             </td>
             <td className={classes.td}>
-                { totalMonthlyHoa(unitFinances) }
+                { totalHoa(unitFinances, term) }
+            </td>
+            <td>
+                Total:
             </td>
         </tr>
     );
