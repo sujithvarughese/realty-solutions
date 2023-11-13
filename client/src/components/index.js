@@ -23,9 +23,13 @@ import CreateRentReceiptForm from "./finance/CreateRentReceiptForm.jsx";
 import RentReceipt from "./finance/RentReceipt.jsx"
 import EditFinancialsForm from "./finance/EditFinancialsForm.jsx";
 import FinancialSummary, { financialSummaryLoader } from "./finance/FinancialSummary.jsx";
-import UnitFinancials  from "./finance/UnitFinancials.jsx";
+import UnitFinancials, { unitFinancialsLoader }  from "./finance/UnitFinancials.jsx";
 import Finances from "./finance/Finances.jsx";
 import Rents, { rentsLoader } from "./finance/Rents.jsx";
+import CalculatePayoffForm from "./finance/CalculatePayoffForm.jsx";
+import CalculateMonthlyPaymentForm from "./finance/CalculateMonthlyPayment.jsx";
+import CalculateProfitForm from "./finance/CalculateProfitForm.jsx";
+
 export {
 	InfoBar,
 	MobileNavbar,
@@ -53,6 +57,10 @@ export {
 	FinancialSummary,
 	financialSummaryLoader,
 	UnitFinancials,
+	CalculatePayoffForm,
+	CalculateMonthlyPaymentForm,
+	CalculateProfitForm,
+	unitFinancialsLoader,
 
 	Rents,
 	rentsLoader,

@@ -131,9 +131,9 @@ const Research = () => {
 			<div className={classes.results}>
 				{
 					fmrData &&
-					<table>
-						<thead>
-							<tr>
+					<table className={classes.table}>
+						<thead className={classes.thead}>
+							<tr className={classes.tr}>
 								<th>
 									Fair Market Rent Values
 									<span className={classes.countyResult}>{` for ${county}`}</span>
@@ -147,25 +147,25 @@ const Research = () => {
 						</thead>
 
 						<tbody>
-							<tr>
-								<td>Efficiency</td>
-								<td>${fmrData["Efficiency"]}</td>
+							<tr className={classes.tr}>
+								<td className={classes.td}>Efficiency</td>
+								<td className={classes.td}>${fmrData["Efficiency"]}</td>
 							</tr>
-							<tr>
-								<td>One-Bedroom</td>
-								<td>${fmrData["One-Bedroom"]}</td>
+							<tr className={classes.tr}>
+								<td className={classes.td}>One-Bedroom</td>
+								<td className={classes.td}>${fmrData["One-Bedroom"]}</td>
 							</tr>
-							<tr>
-								<td>Two-Bedroom</td>
-								<td>${fmrData["Two-Bedroom"]}</td>
+							<tr className={classes.tr}>
+								<td className={classes.td}>Two-Bedroom</td>
+								<td className={classes.td}>${fmrData["Two-Bedroom"]}</td>
 							</tr>
-							<tr>
-								<td>Three-Bedroom</td>
-								<td>${fmrData["Three-Bedroom"]}</td>
+							<tr className={classes.tr}>
+								<td className={classes.td}>Three-Bedroom</td>
+								<td className={classes.td}>${fmrData["Three-Bedroom"]}</td>
 							</tr>
-							<tr>
-								<td>Four-Bedroom</td>
-								<td>${fmrData["Four-Bedroom"]}</td>
+							<tr className={classes.tr}>
+								<td className={classes.td}>Four-Bedroom</td>
+								<td className={classes.td}>${fmrData["Four-Bedroom"]}</td>
 							</tr>
 						</tbody>
 

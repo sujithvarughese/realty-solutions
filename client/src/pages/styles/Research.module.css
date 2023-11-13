@@ -21,38 +21,38 @@
     padding-left: 1rem;
 }
 
-table {
+.table {
     margin: 0 auto;
 }
-th {
+.th {
     display: none;
 }
-tr {
+.tr {
     display: flex;
     gap: 4rem;
     justify-content: space-between;
     border-bottom: var(--COLOR-LIGHT) 2px solid;
 }
-td {
+.td {
     font-size: 28px;
     padding: 0.5rem 0;
 }
 
-@media (min-width: 550px) {
+@media (min-width: 600px) {
     .title {
         font-size: 32px;
     }
     .form {
         padding: 2rem 7rem;
     }
-    th {
+    .th {
         display: block;
         font-size: 24px;
         line-height: 1;
         padding-bottom: 2rem;
         text-align: center;
     }
-    td {
+    .td {
         font-size:32px;
         padding: 1.5rem 0;
     }
@@ -60,13 +60,6 @@ td {
 @media (min-width: 800px) {
     .title {
         font-size: 20px;
-    }
-    th {
-        display: block;
-        font-size: 24px;
-        line-height: 1;
-        padding-bottom: 2rem;
-        text-align: center;
     }
     .form {
         padding: 2rem 15rem;

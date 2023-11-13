@@ -25,6 +25,12 @@ const createUnitFinances = async (req, res) => {
 	res.status(StatusCodes.CREATED).json({ newUnitFinance });
 }
 
+const updateUnitFinances = async (req, res) => {
+	// req.body = { ...Finance }
+	await Finance.findByIdAndUpdate(req.body.id, req.body)
+	res.status(StatusCodes.OK).json( { message: "Unit Finance Updated" } )
+}
+
 const getUnitFinances = async (req, res) => {
 	const unitFinances = await Finance.findOne({ unit: req.params.unit })
 	res.status(StatusCodes.OK).json({ unitFinances });
