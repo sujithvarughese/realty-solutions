@@ -1,4 +1,4 @@
-import classes from "./Accounting.module.css";
+import classes from "./styles/Accounting.module.css";
 import { NavLink, Outlet } from "react-router-dom";
 import {useState} from "react";
 
@@ -14,6 +14,12 @@ const Accounting = () => {
 					className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
 				>
 					Overview
+				</NavLink>
+				<NavLink
+					to="details"
+					className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
+				>
+					Details
 				</NavLink>
 				<NavLink
 					to="rents"

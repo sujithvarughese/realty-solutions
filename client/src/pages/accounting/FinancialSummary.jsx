@@ -1,11 +1,11 @@
 import classes from "./styles/FinancialSummary.module.css";
 import { useState } from "react";
-import { axiosDB } from "../../../utils/axios.js";
+import { axiosDB } from "../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
-import { useGlobalContext } from "../../../context/GlobalContext.jsx";
-import {FinancialSummaryTotals, FinancialSummaryValues, FinancialSummaryMobile } from "../../index.js"
-import {InputSelect} from "../../../UI/index.js";
-import {totalProfit} from "../../../utils/financeCalcs.js";
+import { useGlobalContext } from "../../context/GlobalContext.jsx";
+import {FinancialSummaryTotals, FinancialSummaryValues, FinancialSummaryMobile } from "../../components/index.js"
+import {InputSelect} from "../../UI/index.js";
+import {totalProfit} from "../../utils/financeCalcs.js";
 const FinancialSummary = () => {
 
 	// finances = array of each unit's financial data

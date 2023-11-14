@@ -93,7 +93,7 @@ const Unit = ({ unit }) => {
 								{showEditUnitForm ? "Close Edit Unit" : "Edit Unit"}
 							</div>
 							<NavLink
-								to={`../accounting/${unit._id}`}
+								to={`../accounting/details/${unit._id}`}
 								className={classes.link}
 							>
 								View Finances
