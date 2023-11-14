@@ -1,7 +1,9 @@
+.desktop {
+    display: none;
+}
 .container {
     margin: auto;
 }
-
 .options {
     display: flex;
     justify-content: space-between;
@@ -23,7 +25,13 @@
 }
 
 
-@media (min-width: 550px) {
+@media (min-width: 600px) {
+    .desktop {
+        display: block;
+    }
+    .mobile {
+        display: none;
+    }
     .options {
         padding:  3rem;
     }

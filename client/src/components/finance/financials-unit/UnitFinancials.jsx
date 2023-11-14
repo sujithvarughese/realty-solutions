@@ -27,16 +27,28 @@ const UnitFinancials = () => {
 		<div className={classes.container}>
 
 			<div className={classes.links}>
-				<div className={classes.link} onClick={()=>setDisplay("overview")}>
+				<div
+					className={display === "overview" ? classes.active : classes.link}
+					onClick={()=>setDisplay("overview")}
+				>
 					Overview
 				</div>
-				<div className={classes.link} onClick={()=>setDisplay("mortgage")}>
+				<div
+					className={display === "mortgage" ? classes.active : classes.link}
+					onClick={()=>setDisplay("mortgage")}
+				>
 					Mortgage
 				</div>
-				<div className={classes.link} onClick={()=>setDisplay("insurance")}>
+				<div
+					className={display === "insurance" ? classes.active : classes.link}
+					onClick={()=>setDisplay("insurance")}
+				>
 					Insurance
 				</div>
-				<div className={classes.link} onClick={()=>setDisplay("hoa")}>
+				<div
+					className={display === "hoa" ? classes.active : classes.link}
+					onClick={()=>setDisplay("hoa")}
+				>
 					HOA
 				</div>
 			</div>

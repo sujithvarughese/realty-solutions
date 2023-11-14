@@ -6,13 +6,25 @@ const FinancialSummaryValues = ({ unitFinance, term, removeUnit }) => {
 
     const { principal, interest, term: mortgageTerm } = unitFinance.mortgage
 
+    console.log(unitFinance)
+    console.log(term)
+    console.log(mortgageTerm)
     return (
         <tr className={classes.tr}>
-            <td onClick={()=>removeUnit(unitFinance.id)}>
-                <IoRemoveCircle />
-            </td>
             <td>
-                {unitFinance.address}
+                <div className={classes.addressCol}>
+                    <div
+                        className={classes.remove}
+                        onClick={()=>removeUnit(unitFinance.id)}
+                    >
+                        <IoRemoveCircle />
+                    </div>
+                    <div className={classes.address}>
+                        {unitFinance.address}
+                    </div>
+                </div>
+
+
             </td>
             <td>
                 {convertToUSD((calculateMonthlyPayment(principal, interest, mortgageTerm)) * term)}

@@ -21,8 +21,11 @@ const InfoBar = ({ user, logout }) => {
 
 			{
 				user &&
-					<div className={classes.logout}>
-						<Button onClick={logout}>Logout</Button>
+					<div
+						className={classes.link}
+						onClick={logout}
+					>
+						Logout
 					</div>
 			}
 

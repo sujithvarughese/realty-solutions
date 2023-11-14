@@ -21,16 +21,19 @@ const AccountingDetails = () => {
     }
 
     return (
-        <div>
-            <InputSelect
-                htmlFor="unit"
-                label="UNIT"
-                type="text"
-                name="unit"
-                list={unitList}
-                onChange={handleChange}
-            >
-            </InputSelect>
+        <div className={classes.container}>
+            <div className={classes.select}>
+                <InputSelect
+                    htmlFor="unit"
+                    label="UNIT"
+                    type="text"
+                    name="unit"
+                    list={unitList}
+                    onChange={handleChange}
+                >
+                </InputSelect>
+            </div>
+
 
             <Outlet />
         </div>

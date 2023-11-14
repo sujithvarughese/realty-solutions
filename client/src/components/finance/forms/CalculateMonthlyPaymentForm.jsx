@@ -24,7 +24,48 @@ const CalculateMonthlyPaymentForm = ({ principal, apr, termYears, setMonthlyPaym
         <div className={classes.container}>
             <Form onSubmit={handleSubmit} title="Calculate Monthly Payment">
                 <div className={classes.form}>
-                    <Input
+                    <div className={classes.row}>
+                        <label htmlFor="principal">Principal</label>
+                        <input
+                            className={classes.input}
+                            type="number"
+                            name="principal"
+                            value={values.principal}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={classes.row}>
+                        <label htmlFor="apr">APR</label>
+                        <input
+                            className={classes.input}
+                            type="number"
+                            name="apr"
+                            value={values.apr}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={classes.row}>
+                        <label htmlFor="termYears">Term Length (Years)</label>
+                        <input
+                            className={classes.input}
+                            type="number"
+                            name="termYears"
+                            value={values.termYears}
+                            onChange={handleChange}
+                        />
+                    </div>
+
+                    <div className={classes.button}>
+                        <Button>
+                            Get Monthly Payment
+                        </Button>
+                    </div>
+                </div>
+            </Form>
+        </div>
+    );
+};
+/* <Input
                         htmlFor="principal"
                         label="Principal: "
                         type="number"
@@ -47,16 +88,5 @@ const CalculateMonthlyPaymentForm = ({ principal, apr, termYears, setMonthlyPaym
                         name="termYears"
                         value={values.termYears}
                         onChange={handleChange}
-                    ></Input>
-                    <div className={classes.button}>
-                        <Button>
-                            Get Monthly Payment
-                        </Button>
-                    </div>
-                </div>
-            </Form>
-        </div>
-    );
-};
-
+                    ></Input>*/
 export default CalculateMonthlyPaymentForm;

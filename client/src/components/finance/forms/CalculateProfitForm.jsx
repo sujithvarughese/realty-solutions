@@ -24,6 +24,70 @@ const CalculateProfitForm = ({ propertyTax, homeInsurance, hoa, rent, setProfit 
         <div className={classes.container}>
             <Form onSubmit={handleSubmit} title="Calculate Profit">
                 <div className={classes.form}>
+
+                    <div className={classes.row}>
+                        <label htmlFor="annualPropertyTax">Annual Property Tax</label>
+                        <input
+                            className={classes.input}
+                            type="number"
+                            name="annualPropertyTax"
+                            value={values.annualPropertyTax}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={classes.row}>
+                        <label htmlFor="annualHomeInsurance">Annual Insurance</label>
+                        <input
+                            className={classes.input}
+                            type="number"
+                            name="annualHomeInsurance"
+                            value={values.annualHomeInsurance}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={classes.row}>
+                        <label htmlFor="monthlyHoa">Monthly Association Fee</label>
+                        <input
+                            className={classes.input}
+                            type="number"
+                            name="monthlyHoa"
+                            value={values.monthlyHoa}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={classes.row}>
+                        <label htmlFor="monthlyRent">Monthly Rent Income</label>
+                        <input
+                            className={classes.input}
+                            type="number"
+                            name="monthlyRent"
+                            value={values.monthlyRent}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={classes.term}>
+                        <InputSelect
+                            htmlFor="term"
+                            label="Term: "
+                            name="term"
+                            list={[{ text: "Monthly", value: 1 }, { text: "Annual", value: 12 }]}
+                            value={values.term}
+                            onChange={handleChange}
+                        ></InputSelect>
+                    </div>
+
+
+                    <div className={classes.button}>
+                        <Button>
+                            Calculate Monthly Profit
+                        </Button>
+                    </div>
+                </div>
+            </Form>
+        </div>
+    );
+};
+/*
                     <Input
                         htmlFor="annualPropertyTax"
                         label="Annual Property Tax: "
@@ -56,23 +120,5 @@ const CalculateProfitForm = ({ propertyTax, homeInsurance, hoa, rent, setProfit 
                         value={values.monthlyRent}
                         onChange={handleChange}
                     ></Input>
-                    <InputSelect
-                        htmlFor="term"
-                        label="Term: "
-                        name="term"
-                        list={[{ text: "Monthly", value: 1 }, { text: "Annual", value: 12 }]}
-                        value={values.term}
-                        onChange={handleChange}
-                    ></InputSelect>
-                    <div className={classes.button}>
-                        <Button>
-                            Calculate Monthly Profit
-                        </Button>
-                    </div>
-                </div>
-            </Form>
-        </div>
-    );
-};
-
+ */
 export default CalculateProfitForm;

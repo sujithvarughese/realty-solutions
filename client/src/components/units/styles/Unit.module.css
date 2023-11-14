@@ -41,7 +41,9 @@
 .actions {
 
 }
-
+.edit {
+    display: flex;
+}
 @media (min-width: 600px) {
     .content {
         grid-template-columns: 1fr 2fr 1fr;

@@ -25,6 +25,10 @@
     cursor: pointer;
 }
 
-.logout {
 
+.link {
+    color: var(--COLOR-LIGHT);
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
 }

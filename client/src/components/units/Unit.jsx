@@ -5,7 +5,8 @@ import {
 	EditUserForm,
 	CreateMessageForm,
 	CreateRentReceiptForm,
-	UnitFinancials
+	UnitFinancials,
+	EditUnit
 } from "../";
 import { useState } from "react";
 import { Button, Card } from "../../UI/index.js";
@@ -24,6 +25,7 @@ const Unit = ({ unit }) => {
 	const [showEditFinancialsForm, setShowEditFinancialsForm] = useState(false)
 	const [showCreateRentReceipt, setShowCreateRentReceipt] = useState(false)
 	const [showUnitFinancials, setShowUnitFinancials] = useState(false)
+	const [editUnit, setEditUnit] = useState(false)
 
 	const navigate = useNavigate()
 	const navigateToUnitFinancials = () => {
@@ -38,18 +40,27 @@ const Unit = ({ unit }) => {
 					<img src={image} alt="img" className={classes.image}/>
 
 					<div className={classes.info}>
-						<div className={classes.address}>
-							<div className={classes.addressLine1}>
-								<span>{unitID} </span>
-								<span>{street}</span>
-							</div>
-							<div className={classes.addressLine2}>
-								<span>{city}, </span>
-								<span>{state} </span>
-								<span>{zip}</span>
-							</div>
-						</div>
-
+						{
+							editUnit ?
+								<EditUnit cancel={()=>setEditUnit(false)} unit={unit}/>
+								:
+								<div className={classes.edit}>
+									<div className={classes.address}>
+										<div className={classes.addressLine1}>
+											<span>{unitID} </span>
+											<span>{street}</span>
+										</div>
+										<div className={classes.addressLine2}>
+											<span>{city}, </span>
+											<span>{state} </span>
+											<span>{zip}</span>
+										</div>
+									</div>
+									<div onClick={()=>setEditUnit(true)}>
+										Edit
+									</div>
+								</div>
+						}
 						{
 							user &&
 							<div className={classes.tenant}>

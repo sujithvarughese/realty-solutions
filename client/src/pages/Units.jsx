@@ -1,9 +1,8 @@
 import classes from "./styles/Units.module.css";
-import { CreateUnitForm } from "../components/index.js";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { axiosDB } from "../utils/axios.js";
-import { Unit, SearchUnits } from "../components";
+import { Unit, SearchUnits, CreateUnitForm, UnitMobile } from "../components";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 
 const Units = () => {
@@ -54,9 +53,14 @@ const Units = () => {
 			}
 
 			<div className={classes.unitContainer}>
-				<div>
+				<div className={classes.desktop}>
 					{
 						queriedUnits?.map(unit =><Unit key={unit._id} unit={unit}/>)
+					}
+				</div>
+				<div className={classes.mobile}>
+					{
+						queriedUnits?.map(unit =><UnitMobile key={unit._id} unit={unit}/>)
 					}
 				</div>
 			</div>

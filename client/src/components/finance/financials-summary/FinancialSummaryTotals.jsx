@@ -5,23 +5,20 @@ const FinancialSummaryTotals = ({ unitFinances, term }) => {
 
     return (
         <tr>
-            <td>
-                Totals:
-            </td>
             <td></td>
-            <td>
+            <td className={classes.totals}>
                 {convertToUSD(totalMortgage(unitFinances, term))}
             </td>
-            <td>
+            <td className={classes.totals}>
                 {convertToUSD(totalPropertyTax(unitFinances, term))}
             </td>
-            <td>
+            <td className={classes.totals}>
                 {convertToUSD(totalInsurance(unitFinances, term))}
             </td>
-            <td>
+            <td className={classes.totals}>
                 {convertToUSD(totalHoa(unitFinances, term))}
             </td>
-            <td>
+            <td className={classes.totals}>
                 {convertToUSD(totalRent(unitFinances, term))}
             </td>
         </tr>

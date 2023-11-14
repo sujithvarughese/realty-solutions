@@ -1,5 +1,5 @@
 import classes from "./styles/FinancialSummary.module.css";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { axiosDB } from "../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
@@ -36,14 +36,19 @@ const FinancialSummary = () => {
 	}
 
 	return (
-		<div>
-			<div>
+		<div className={classes.container}>
+
+			<div className={classes.title}>
+				Accounting Totals
+			</div>
+
+			<div className={classes.termSelect}>
 				<InputSelect
 					htmlFor="term"
 					label="Term: "
 					type="text"
 					name="term"
-					list={[{text: "monthly", value: 1}, {text: "yearly", value: 12}]}
+					list={[{text: "Monthly", value: 1}, {text: "Yearly", value: 12}]}
 					onChange={(e)=>setTerm(e.target.value)}
 				>
 
@@ -57,7 +62,6 @@ const FinancialSummary = () => {
 			<table className={classes.largeScreen}>
 				<thead>
 					<tr>
-						<th></th>
 						<th>Address</th>
 						<th>Mortgage</th>
 						<th>Tax</th>
@@ -81,8 +85,8 @@ const FinancialSummary = () => {
 
 				</tbody>
 			</table>
-			<div>
-				Total: {convertToUSD(totalProfit(unitFinances, term))}
+			<div className={classes.totalProfit}>
+				Total Profit: {convertToUSD(totalProfit(unitFinances, term))}
 			</div>
 		</div>
 	);

@@ -78,7 +78,7 @@ const CreateUnitForm = ({ cancel }) => {
 					></Input>
 					<InputSelect
 						htmlFor="state"
-						label="STATE"
+						placeholder="STATE"
 						type="text"
 						name="state"
 						list={states}
@@ -97,10 +97,10 @@ const CreateUnitForm = ({ cancel }) => {
 				<div className={classes.info}>
 					<InputSelect
 						htmlFor="occupied"
-						label="OCCUPIED"
+						placeholder="OCCUPIED"
 						type="boolean"
 						name="occupied"
-						list={[{text: "Yes", value: true}, {text: "No", value: false}]}
+						list={[{text: "Occupied", value: true}, {text: "Vacant", value: false}]}
 						value={values.occupied}
 						onChange={handleChange}
 					></InputSelect>

@@ -1,0 +1,25 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.image {
+    width: 100%;
+}
+.info {
+    text-align: center;
+}
+.addressLine1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+.addressLine2 {
+    font-size: 18px;
+}
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+.button {
+    width: 150px;
+}

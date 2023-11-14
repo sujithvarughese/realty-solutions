@@ -8,16 +8,14 @@ import {
     totalRent
 } from "../../../utils/financeCalcs.js";
 import {IoRemoveCircle} from "react-icons/io5";
+import {useEffect, useState} from "react";
 const FinancialSummaryMobile = ({ units, unitFinances, term, removeUnit }) => {
-
-
 
     return (
         <div className={classes.container}>
             <table>
                 <thead>
                     <tr>
-                        <th></th>
                         <th>Address</th>
                         <th>Finances</th>
                     </tr>
@@ -28,27 +26,57 @@ const FinancialSummaryMobile = ({ units, unitFinances, term, removeUnit }) => {
                         const { principal, interest, term: mortgageTerm } = unitFinance.mortgage
                         return (
                             <tr className={classes.values} key={unitFinance.id}>
-                                <td onClick={()=>removeUnit(unitFinance.id)}>
-                                    <IoRemoveCircle />
+                                <td className={classes.addressCol}>
+                                    <div>
+                                        {unitFinance.address}
+                                    </div>
+                                    <div
+                                        onClick={()=>removeUnit(unitFinance.id)}
+                                        className={classes.remove}
+                                    >
+                                        <IoRemoveCircle />
+                                    </div>
                                 </td>
-                                <td>
-                                    {unitFinance.address}
-                                </td>
-                                <td>
-                                    <div>
-                                        Mortgage: {convertToUSD((calculateMonthlyPayment(principal, interest, mortgageTerm)) * term)}
+                                <td className={classes.finances}>
+                                    <div className={classes.tr}>
+                                        <div className={classes.td}>
+                                            Mortgage
+                                        </div>
+                                        <div className={classes.td}>
+                                            {convertToUSD((calculateMonthlyPayment(principal, interest, mortgageTerm)) * term)}
+                                        </div>
                                     </div>
-                                    <div>
-                                        Tax: {convertToUSD(unitFinance.propertyTax * term)}
+                                    <div className={`${classes.tr} ${classes.shaded}`}>
+                                        <div className={classes.td}>
+                                            Tax
+                                        </div>
+                                        <div className={classes.td}>
+                                            {convertToUSD(unitFinance.propertyTax * term)}
+                                        </div>
                                     </div>
-                                    <div>
-                                        Insurance: {convertToUSD(unitFinance.insurance * term)}
+                                    <div className={classes.tr}>
+                                        <div className={classes.td}>
+                                            Insurance
+                                        </div>
+                                        <div className={classes.td}>
+                                            {convertToUSD(unitFinance.insurance * term)}
+                                        </div>
                                     </div>
-                                    <div>
-                                        HOA: {convertToUSD(unitFinance.hoa * term)}
+                                    <div className={`${classes.tr} ${classes.shaded}`}>
+                                        <div className={classes.td}>
+                                            HOA
+                                        </div>
+                                        <div className={classes.td}>
+                                            {convertToUSD(unitFinance.hoa * term)}
+                                        </div>
                                     </div>
-                                    <div>
-                                        Rent: {convertToUSD(unitFinance.rent * term)}
+                                    <div className={classes.tr}>
+                                        <div className={classes.td}>
+                                            Rent
+                                        </div>
+                                        <div className={classes.td}>
+                                            {convertToUSD(unitFinance.rent * term)}
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
