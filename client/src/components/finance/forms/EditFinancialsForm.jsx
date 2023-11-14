@@ -1,7 +1,7 @@
 import classes from "./styles/EditFinancialsForm.module.css";
-import { Button, Form, Input, Card } from "../../UI/index.js";
+import { Button, Form, Input, Card } from "../../../UI/index.js";
 import { useState } from "react";
-import { axiosDB } from "../../utils/axios.js";
+import { axiosDB } from "../../../utils/axios.js";
 
 const initialMortgageState = {
 	bank: "",

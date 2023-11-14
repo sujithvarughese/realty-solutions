@@ -1,10 +1,10 @@
 import classes from "./styles/Rents.module.css"
 import { useLoaderData } from "react-router-dom";
-import { Button, Form, InputSelect } from "../../UI";
-import { CreateRentReceiptForm } from "../../components";
+import { Button, Form, InputSelect } from "../../../UI/index.js";
+import { CreateRentReceiptForm } from "../../index.js";
 import { useEffect, useState } from "react";
-import { RentReceipt } from "../../components";
-import { axiosDB } from "../../utils/axios.js";
+import { RentReceipt } from "../../index.js";
+import { axiosDB } from "../../../utils/axios.js";
 
 const Rents = () => {
 	const userList = useLoaderData()

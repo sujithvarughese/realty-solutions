@@ -1,11 +1,11 @@
 import classes from "./styles/FinancialSummary.module.css";
 import { useState } from "react";
-import { axiosDB } from "../../utils/axios.js";
+import { axiosDB } from "../../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
-import { useGlobalContext } from "../../context/GlobalContext.jsx";
-import {FinancialSummaryTotals, FinancialSummaryValues} from "../"
+import { useGlobalContext } from "../../../context/GlobalContext.jsx";
+import {FinancialSummaryTotals, FinancialSummaryValues} from "../../index.js"
 import { IoRemoveCircle } from "react-icons/io5"
-import {InputSelect} from "../../UI/index.js";
+import {InputSelect} from "../../../UI/index.js";
 const FinancialSummary = () => {
 
 	// finances = array of each unit's financial data

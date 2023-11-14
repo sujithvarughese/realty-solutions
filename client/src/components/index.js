@@ -19,18 +19,22 @@ import MessageActions from "./messages/MessageActions.jsx";
 import CreateUserForm from "./users/CreateUserForm.jsx";
 import EditUserForm from "./users/EditUserForm.jsx";
 
-import CreateRentReceiptForm from "./finance/CreateRentReceiptForm.jsx";
-import RentReceipt from "./finance/RentReceipt.jsx"
-import EditFinancialsForm from "./finance/EditFinancialsForm.jsx";
-import FinancialSummary, { financialSummaryLoader } from "./finance/FinancialSummary.jsx";
-import FinancialSummaryTotals from "./finance/FinancialSummaryTotals.jsx";
-import FinancialSummaryValues from "./finance/FInancialSummaryValues.jsx";
-import UnitFinancials, { unitFinancialsLoader }  from "./finance/UnitFinancials.jsx";
-import Finances from "./finance/Finances.jsx";
-import Rents, { rentsLoader } from "./finance/Rents.jsx";
-import CalculatePayoffForm from "./finance/CalculatePayoffForm.jsx";
-import CalculateMonthlyPaymentForm from "./finance/CalculateMonthlyPayment.jsx";
-import CalculateProfitForm from "./finance/CalculateProfitForm.jsx";
+import CreateRentReceiptForm from "./finance/forms/CreateRentReceiptForm.jsx";
+import RentReceipt from "./finance/financials-unit/RentReceipt.jsx"
+import EditFinancialsForm from "./finance/forms/EditFinancialsForm.jsx";
+import FinancialSummary, { financialSummaryLoader } from "./finance/financials-summary/FinancialSummary.jsx";
+import FinancialSummaryTotals from "./finance/financials-summary/FinancialSummaryTotals.jsx";
+import FinancialSummaryValues from "./finance/financials-summary/FInancialSummaryValues.jsx";
+import UnitFinancials, { unitFinancialsLoader }  from "./finance/financials-unit/UnitFinancials.jsx";
+import Rents, { rentsLoader } from "./finance/financials-unit/Rents.jsx";
+import CalculatePayoffForm from "./finance/forms/CalculatePayoffForm.jsx";
+import CalculateMonthlyPaymentForm from "./finance/forms/CalculateMonthlyPaymentForm.jsx";
+import CalculateProfitForm from "./finance/forms/CalculateProfitForm.jsx";
+
+import FinancialsOverview from "./finance/financials-unit/FinancialsOverview.jsx";
+import MortgageDetails from "./finance/financials-unit/MortgageDetails.jsx";
+import InsuranceDetails from "./finance/financials-unit/InsuranceDetails.jsx";
+import HoaDetails from "./finance/financials-unit/HoaDetails.jsx";
 
 export {
 	InfoBar,
@@ -66,8 +70,11 @@ export {
 	CalculateProfitForm,
 	unitFinancialsLoader,
 
+	FinancialsOverview,
+	MortgageDetails,
+	InsuranceDetails,
+	HoaDetails,
 
 	Rents,
 	rentsLoader,
-	Finances
 }

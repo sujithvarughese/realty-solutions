@@ -1,6 +1,6 @@
 import classes from "./styles/CalculatePayoffForm.module.css";
-import { calculatePayoff } from "../../utils/financeCalcs.js";
-import { Input, Form, Button } from "../../UI/index.js";
+import { calculatePayoff } from "../../../utils/financeCalcs.js";
+import { Input, Form, Button } from "../../../UI/index.js";
 import {useState} from "react";
 
 const CalculatePayoffForm = ({ principal, apr, termYears, paymentsMade, setPayoffAmount }) => {

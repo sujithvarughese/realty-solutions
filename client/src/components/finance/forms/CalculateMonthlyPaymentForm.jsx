@@ -1,7 +1,7 @@
 import classes from "./styles/CalculateMonthlyPaymentForm.module.css";
 import {useState} from "react";
-import { calculateMonthlyPayment}  from "../../utils/financeCalcs.js";
-import {Button, Form, Input} from "../../UI/index.js";
+import { calculateMonthlyPayment}  from "../../../utils/financeCalcs.js";
+import {Button, Form, Input} from "../../../UI/index.js";
 
 const CalculateMonthlyPaymentForm = ({ principal, apr, termYears, setMonthlyPayment}) => {
 

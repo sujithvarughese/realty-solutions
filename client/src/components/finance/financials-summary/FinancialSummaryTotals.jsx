@@ -1,8 +1,7 @@
 import classes from "./styles/FinancialSummaryTotals.module.css";
-import  { totalMortgage, totalPropertyTax, totalInsurance, totalRent, totalHoa, totalProfit } from "../../utils/financeCalcs.js";
+import  { totalMortgage, totalPropertyTax, totalInsurance, totalRent, totalHoa, totalProfit } from "../../../utils/financeCalcs.js";
+
 const FinancialSummaryTotals = ({ unitFinances, term }) => {
-
-
 
     return (
         <tr className={classes.tr}>

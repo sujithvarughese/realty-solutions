@@ -20,12 +20,17 @@
 .state {
     padding-left: 1rem;
 }
-
 .table {
     margin: 0 auto;
+    padding: 0 2rem;
 }
-.th {
-    display: none;
+
+.head {
+    text-align: center;
+    padding: 0.5rem 0;
+}
+.zipResult {
+    font-weight: bold;
 }
 .tr {
     display: flex;
@@ -34,7 +39,7 @@
     border-bottom: var(--COLOR-LIGHT) 2px solid;
 }
 .td {
-    font-size: 28px;
+    font-size: 24px;
     padding: 0.5rem 0;
 }
 
@@ -44,13 +49,6 @@
     }
     .form {
         padding: 2rem 7rem;
-    }
-    .th {
-        display: block;
-        font-size: 24px;
-        line-height: 1;
-        padding-bottom: 2rem;
-        text-align: center;
     }
     .td {
         font-size:32px;
@@ -63,6 +61,9 @@
     }
     .form {
         padding: 2rem 15rem;
+    }
+    .table {
+        max-width: 600px;
     }
 }
 @media (min-width: 1200px) {

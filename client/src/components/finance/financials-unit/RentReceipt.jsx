@@ -1,5 +1,5 @@
 import classes from "./styles/RentReceipt.module.css"
-import { useGlobalContext } from "../../context/GlobalContext.jsx";
+import { useGlobalContext } from "../../../context/GlobalContext.jsx";
 
 
 const RentReceipt = (rentReceipt) => {

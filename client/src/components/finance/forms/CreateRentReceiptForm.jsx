@@ -1,7 +1,7 @@
 import classes from "./styles/CreateRentReceiptForm.module.css";
-import { Form, Input, InputSelect, Button, Card} from "../../UI";
+import { Form, Input, InputSelect, Button, Card} from "../../../UI/index.js";
 import { useEffect, useState } from "react";
-import { axiosDB } from "../../utils/axios.js";
+import { axiosDB } from "../../../utils/axios.js";
 
 
 const initialState = {

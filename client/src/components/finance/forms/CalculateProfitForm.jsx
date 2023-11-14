@@ -1,7 +1,7 @@
 import classes from "./styles/CalculateProfitForm.module.css";
-import {Button, Form, Input, InputSelect} from "../../UI/index.js";
+import {Button, Form, Input, InputSelect} from "../../../UI/index.js";
 import {useState} from "react";
-import {calculateProfit} from "../../utils/financeCalcs.js";
+import {calculateProfit} from "../../../utils/financeCalcs.js";
 const CalculateProfitForm = ({ propertyTax, homeInsurance, hoa, rent, setProfit }) => {
 
     const [values, setValues] = useState({
