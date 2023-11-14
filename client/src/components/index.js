@@ -24,6 +24,7 @@ import RentReceipt from "./finance/RentReceipt.jsx"
 import EditFinancialsForm from "./finance/EditFinancialsForm.jsx";
 import FinancialSummary, { financialSummaryLoader } from "./finance/FinancialSummary.jsx";
 import FinancialSummaryTotals from "./finance/FinancialSummaryTotals.jsx";
+import FinancialSummaryValues from "./finance/FInancialSummaryValues.jsx";
 import UnitFinancials, { unitFinancialsLoader }  from "./finance/UnitFinancials.jsx";
 import Finances from "./finance/Finances.jsx";
 import Rents, { rentsLoader } from "./finance/Rents.jsx";
@@ -58,6 +59,7 @@ export {
 	FinancialSummary,
 	financialSummaryLoader,
 	FinancialSummaryTotals,
+	FinancialSummaryValues,
 	UnitFinancials,
 	CalculatePayoffForm,
 	CalculateMonthlyPaymentForm,

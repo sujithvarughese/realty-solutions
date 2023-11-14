@@ -8,38 +8,41 @@ const convertToUSD = (number) => {
 }
 
 // calculate payoff amount using current data - user can change fields and see what results would be
-const calculatePayoff = ({ principal, apr, termYears, paymentsMade }) => {
+const calculatePayoff = (principal, apr, termYears, paymentsMade) => {
 	const interest = (apr/100) / 12
 	const term = termYears * 12
 	const result = principal * ((1 + interest) ** term  - (1 + interest) ** paymentsMade) / ((1 + interest) ** term - 1)
-	return convertToUSD(result)
+	return result
 }
 
-const calculateMonthlyPayment =  ({ principal, apr, termYears }) => {
+const calculateMonthlyPayment =  (principal, apr, termYears) => {
 	const interest = (apr/100)
 	const term = termYears * 12
 	const payment =  principal * (interest * (1 + interest) ** term) / ((1 + interest) ** term - 1)
-	return convertToUSD(payment)
+	return payment
 }
 
 // total profit = rent - property tax - insurance premium - association fees; default term: 1 month
-const calculateProfit = ({ annualPropertyTax, annualHomeInsurance, monthlyHoa, monthlyRent, term= 1 }) => {
+const calculateProfit = (annualPropertyTax, annualHomeInsurance, monthlyHoa, monthlyRent, term= 1) => {
 	const monthlyProfit = monthlyRent - annualPropertyTax/12 - annualHomeInsurance/12 - monthlyHoa
 	const profit = monthlyProfit * term
-	return convertToUSD(profit)
+	return profit
 }
 
 
 // for financial summary; params: array of financial data for each unit
-const totalPropertyTax = (data, term=12) => convertToUSD(((data.reduce((acc, unitFinance) => unitFinance.propertyTax + acc, 0))/12) * term)
-const totalInsurance = (data, term=12) => convertToUSD(((data.reduce((acc, unitFinance) => unitFinance.insurance + acc, 0))/12) * term)
-const totalHoa = (data, term=1) => convertToUSD((data.reduce((acc, unitFinance) => unitFinance.hoa + acc, 0)) * term)
-const totalRent = (data, term=1) => convertToUSD((data.reduce((acc, unitFinance) => unitFinance.rent + acc, 0)) * term)
+const totalMortgage = (data, term=1) => (data.reduce((acc, unitFinance) => {
+	const payment = calculateMonthlyPayment(unitFinance.mortgage.principal, unitFinance.mortgage.interest, unitFinance.mortgage.term)
+	return payment + acc
+	}, 0)) * term
+const totalPropertyTax = (data, term=12) => ((data.reduce((acc, unitFinance) => unitFinance.propertyTax + acc, 0))/12) * term
+const totalInsurance = (data, term=12) => ((data.reduce((acc, unitFinance) => unitFinance.insurance + acc, 0))/12) * term
+const totalHoa = (data, term=1) => (data.reduce((acc, unitFinance) => unitFinance.hoa + acc, 0)) * term
+const totalRent = (data, term=1) => (data.reduce((acc, unitFinance) => unitFinance.rent + acc, 0)) * term
 
-const totalProfit = (data, term) => {
+const totalProfit = (data, term) => totalRent(data, term) - totalMortgage(data, term) - totalInsurance(data, term) - totalHoa(data, term)
 
 
-}
 
 
-export { calculatePayoff, calculateMonthlyPayment, calculateProfit, totalPropertyTax, totalInsurance, totalHoa, totalRent, totalProfit }
+export { calculatePayoff, calculateMonthlyPayment, calculateProfit, totalMortgage, totalPropertyTax, totalInsurance, totalHoa, totalRent, totalProfit }

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
-import { FinancialSummaryTotals } from "../"
+import {FinancialSummaryTotals, FinancialSummaryValues} from "../"
 import { IoRemoveCircle } from "react-icons/io5"
 import {InputSelect} from "../../UI/index.js";
 const FinancialSummary = () => {
@@ -20,8 +20,9 @@ const FinancialSummary = () => {
 		const index = units.findIndex(unit => unit._id === finance.unit)
 		return {
 			id: finance._id,
-			propertyTax: finance.propertyTax,
-			insurance: finance.insurance.payment,
+			mortgage: finance.mortgage,
+			propertyTax: finance.propertyTax/12,
+			insurance: finance.insurance.payment/12,
 			hoa: finance.hoa.payment,
 			rent: finance.rent,
 			address: `${units[index].unitID} ${units[index].street}`
@@ -57,46 +58,32 @@ const FinancialSummary = () => {
 							Address
 						</th>
 						<th className={classes.th}>
-							Yearly Property Tax
+							Mortgage
 						</th>
 						<th className={classes.th}>
-							Yearly Insurance Premium
+							Tax
 						</th>
 						<th className={classes.th}>
-							Monthly HOA
+							Insurance
 						</th>
 						<th className={classes.th}>
-							Monthly Rent
+							HOA
+						</th>
+						<th className={classes.th}>
+							Rent
 						</th>
 					</tr>
 				</thead>
 
 				<tbody className={classes.tbody}>
 				{
-					unitFinances.map(unitFinance => {
-						return (
-							<tr className={classes.tr} key={unitFinance.id}>
-								<td onClick={()=>removeUnit(unitFinance.id)}>
-									<IoRemoveCircle />
-								</td>
-								<td className={classes.td}>
-									{unitFinance.address}
-								</td>
-								<td className={classes.td}>
-									{unitFinance.propertyTax}
-								</td>
-								<td className={classes.td}>
-									{unitFinance.insurance}
-								</td>
-								<td className={classes.td}>
-									{unitFinance.hoa}
-								</td>
-								<td className={classes.td}>
-									{unitFinance.rent}
-								</td>
-							</tr>
-						)
-					})
+					unitFinances.map(unitFinance =>
+						<FinancialSummaryValues
+							key={unitFinance.id}
+							unitFinance={unitFinance}
+							term={term}
+							removeUnit={removeUnit}
+						/>)
 				}
 				<FinancialSummaryTotals unitFinances={unitFinances} term={term}/>
 

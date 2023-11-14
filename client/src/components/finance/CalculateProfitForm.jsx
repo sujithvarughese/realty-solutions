@@ -17,7 +17,7 @@ const CalculateProfitForm = ({ propertyTax, homeInsurance, hoa, rent, setProfit 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(values)
-        const profit = calculateProfit(values)
+        const profit = calculateProfit(values.annualPropertyTax, values.annualHomeInsurance, values.monthlyHoa, values.monthlyRent, values.term)
         setProfit(profit)
     }
     return (

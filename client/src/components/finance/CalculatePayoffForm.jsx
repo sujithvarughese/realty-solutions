@@ -17,7 +17,7 @@ const CalculatePayoffForm = ({ principal, apr, termYears, paymentsMade, setPayof
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(values)
-        const payoff = calculatePayoff(values)
+        const payoff = calculatePayoff(values.principal, values.apr, values.termYears, values.paymentsMade)
         setPayoffAmount(payoff)
     }
 

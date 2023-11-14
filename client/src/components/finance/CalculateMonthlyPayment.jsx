@@ -16,7 +16,7 @@ const CalculateMonthlyPaymentForm = ({ principal, apr, termYears, setMonthlyPaym
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(values)
-        const payment = calculateMonthlyPayment(values)
+        const payment = calculateMonthlyPayment(values.principal, values.apr, values.termYears)
         setMonthlyPayment(payment)
     }
 
