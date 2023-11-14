@@ -1,4 +1,4 @@
-import classes from "./styles/FinancialSummaryValues.module.css";
+import classes from "./styles/FinancialSummary.module.css";
 import {IoRemoveCircle} from "react-icons/io5";
 import { calculateMonthlyPayment} from "../../../utils/financeCalcs.js";
 
@@ -11,22 +11,22 @@ const FinancialSummaryValues = ({ unitFinance, term, removeUnit }) => {
             <td onClick={()=>removeUnit(unitFinance.id)}>
                 <IoRemoveCircle />
             </td>
-            <td className={classes.td}>
+            <td>
                 {unitFinance.address}
             </td>
-            <td className={classes.td}>
+            <td>
                 {convertToUSD((calculateMonthlyPayment(principal, interest, mortgageTerm)) * term)}
             </td>
-            <td className={classes.td}>
+            <td>
                 {convertToUSD(unitFinance.propertyTax * term)}
             </td>
-            <td className={classes.td}>
+            <td>
                 {convertToUSD(unitFinance.insurance * term)}
             </td>
-            <td className={classes.td}>
+            <td>
                 {convertToUSD(unitFinance.hoa * term)}
             </td>
-            <td className={classes.td}>
+            <td>
                 {convertToUSD(unitFinance.rent * term)}
             </td>
         </tr>

@@ -1,4 +1,18 @@
-.th, .td, .tr {
+th, td, tr {
     border: 1px black solid
 }
 
+.largeScreen {
+    display: none;
+}
+
+@media (min-width: 600px) {
+    .largeScreen {
+        display: block;
+    }
+    .mobile {
+        display: none;
+    }
+
+
+}

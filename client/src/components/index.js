@@ -35,6 +35,7 @@ import FinancialsOverview from "./finance/financials-unit/FinancialsOverview.jsx
 import MortgageDetails from "./finance/financials-unit/MortgageDetails.jsx";
 import InsuranceDetails from "./finance/financials-unit/InsuranceDetails.jsx";
 import HoaDetails from "./finance/financials-unit/HoaDetails.jsx";
+import FinancialSummaryMobile from "./finance/financials-summary/FinancialSummaryMobile.jsx";
 
 export {
 	InfoBar,
@@ -74,6 +75,7 @@ export {
 	MortgageDetails,
 	InsuranceDetails,
 	HoaDetails,
+	FinancialSummaryMobile,
 
 	Rents,
 	rentsLoader,

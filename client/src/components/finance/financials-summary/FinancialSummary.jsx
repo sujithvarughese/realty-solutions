@@ -3,9 +3,10 @@ import { useState } from "react";
 import { axiosDB } from "../../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
 import { useGlobalContext } from "../../../context/GlobalContext.jsx";
-import {FinancialSummaryTotals, FinancialSummaryValues} from "../../index.js"
+import {FinancialSummaryTotals, FinancialSummaryValues, FinancialSummaryMobile } from "../../index.js"
 import { IoRemoveCircle } from "react-icons/io5"
 import {InputSelect} from "../../../UI/index.js";
+import {totalProfit} from "../../../utils/financeCalcs.js";
 const FinancialSummary = () => {
 
 	// finances = array of each unit's financial data
@@ -50,32 +51,24 @@ const FinancialSummary = () => {
 				</InputSelect>
 			</div>
 
-			<table className={classes.table}>
-				<thead className={classes.thead}>
-					<tr className={classes.tr}>
+			<div className={classes.mobile}>
+				<FinancialSummaryMobile units={units} unitFinances={unitFinances} term={term} removeUnit={removeUnit}/>
+			</div>
+
+			<table className={classes.largeScreen}>
+				<thead>
+					<tr>
 						<th></th>
-						<th className={classes.th}>
-							Address
-						</th>
-						<th className={classes.th}>
-							Mortgage
-						</th>
-						<th className={classes.th}>
-							Tax
-						</th>
-						<th className={classes.th}>
-							Insurance
-						</th>
-						<th className={classes.th}>
-							HOA
-						</th>
-						<th className={classes.th}>
-							Rent
-						</th>
+						<th>Address</th>
+						<th>Mortgage</th>
+						<th>Tax</th>
+						<th>Insurance</th>
+						<th>HOA</th>
+						<th>Rent</th>
 					</tr>
 				</thead>
 
-				<tbody className={classes.tbody}>
+				<tbody>
 				{
 					unitFinances.map(unitFinance =>
 						<FinancialSummaryValues
@@ -89,10 +82,19 @@ const FinancialSummary = () => {
 
 				</tbody>
 			</table>
+			<div>
+				Total: {convertToUSD(totalProfit(unitFinances, term))}
+			</div>
 		</div>
 	);
 };
 
+const convertToUSD = (number) => {
+	return  number.toLocaleString('en-US', {
+		style: 'currency',
+		currency: 'USD',
+	})
+}
 export const financialSummaryLoader = async () => {
 	try {
 		const response = await axiosDB("/finance")
