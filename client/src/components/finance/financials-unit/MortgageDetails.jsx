@@ -48,7 +48,14 @@ const MortgageDetails = ({ mortgage }) => {
                     termYears={mortgage.term}
                     setMonthlyPayment={setMonthlyPayment}
                 />
-                { monthlyPayment }
+                {
+                    monthlyPayment &&
+                    <div className={classes.result}>
+                        Monthly Payment: {convertToUSD(monthlyPayment)}
+                    </div>
+                }
+
+
             </div>
             <div className={classes.calcPayoff}>
                 <CalculatePayoffForm
@@ -58,7 +65,14 @@ const MortgageDetails = ({ mortgage }) => {
                     paymentsMade={mortgage.paymentsMade}
                     setPayoffAmount={setPayoffAmount}
                 />
-                { payoffAmount }
+                {
+                    payoffAmount &&
+                    <div className={classes.result}>
+                        Payoff Amount: {convertToUSD(payoffAmount)}
+                    </div>
+                }
+
+
             </div>
 
 
@@ -66,5 +80,10 @@ const MortgageDetails = ({ mortgage }) => {
 
     );
 };
-
+const convertToUSD = (number) => {
+    return  number.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    })
+}
 export default MortgageDetails;

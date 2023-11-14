@@ -1,8 +1,6 @@
-
 .content {
     padding: 1rem;
 }
-
 .links {
     display: flex;
     justify-content: space-between;
@@ -10,7 +8,6 @@
     max-width: 720px;
     margin: 0 auto;
 }
-
 .link {
     font-size: 20px;
     color: var(--COLOR-LIGHT);
@@ -26,7 +23,6 @@
     color: var(--COLOR-ALT);
     cursor: pointer;
 }
-
 .table {
     color: var(--COLOR-DARK);
     padding: 1rem;
@@ -49,14 +45,21 @@
 }
 .calcPayment {
     border-bottom: var(--COLOR-LIGHT) 2px solid;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
 }
-.calcPayoff {
-    padding-top: 1rem;
+
+.result {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 0.5rem;
 }
 .forms {
     max-width: 600px;
     margin: 0 auto;
 }
+
 @media (min-width: 600px) {
     .content {
         padding: 2rem 1rem;

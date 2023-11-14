@@ -37,10 +37,22 @@ const FinancialsOverview = ({ purchasePrice, rent, fairMarketRent, propertyTax, 
                     rent={rent}
                     setProfit={setProfit}
                 />
-                { profit }
+                {
+                    profit &&
+                    <div className={classes.result}>
+                        Total Profit: {convertToUSD(profit)}
+                    </div>
+                }
+
+
             </div>
         </div>
     );
 };
-
+const convertToUSD = (number) => {
+    return  number.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    })
+}
 export default FinancialsOverview;
