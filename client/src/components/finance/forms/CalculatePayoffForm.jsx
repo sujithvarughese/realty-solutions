@@ -23,7 +23,7 @@ const CalculatePayoffForm = ({ principal, apr, termYears, paymentsMade, setPayof
 
     return (
         <div className={classes.container}>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}  title="Calculate Mortgage Payoff">
             <div className={classes.form}>
             <Input
                 htmlFor="principal"
@@ -57,9 +57,12 @@ const CalculatePayoffForm = ({ principal, apr, termYears, paymentsMade, setPayof
                 value={values.paymentsMade}
                 onChange={handleChange}
             ></Input>
-            <Button>
-                Get Payoff Amount
-            </Button>
+            <div className={classes.button}>
+                <Button>
+                    Get Payoff Amount
+                </Button>
+            </div>
+
             </div>
         </Form>
         </div>

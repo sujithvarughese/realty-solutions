@@ -41,6 +41,15 @@ const MortgageDetails = ({ mortgage }) => {
                 </div>
             </div>
 
+            <div className={classes.calcPayment}>
+                <CalculateMonthlyPaymentForm
+                    principal={mortgage.principal}
+                    apr={mortgage.interest}
+                    termYears={mortgage.term}
+                    setMonthlyPayment={setMonthlyPayment}
+                />
+                { monthlyPayment }
+            </div>
             <div className={classes.calcPayoff}>
                 <CalculatePayoffForm
                     principal={mortgage.principal}
@@ -52,15 +61,7 @@ const MortgageDetails = ({ mortgage }) => {
                 { payoffAmount }
             </div>
 
-            <div className={classes.calcPayment}>
-                <CalculateMonthlyPaymentForm
-                    principal={mortgage.principal}
-                    apr={mortgage.interest}
-                    termYears={mortgage.term}
-                    setMonthlyPayment={setMonthlyPayment}
-                />
-                { monthlyPayment }
-            </div>
+
         </div>
 
     );

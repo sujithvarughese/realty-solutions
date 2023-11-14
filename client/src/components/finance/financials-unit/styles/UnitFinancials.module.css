@@ -3,32 +3,30 @@
 }
 
 .links {
-    position: relative;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: space-between;
     padding: 1rem 0;
 }
+
 .link {
     font-size: 18px;
     color: var(--COLOR-LIGHT);
-    text-align: center;
     padding: 0 0.5rem;
 }
 .active {
     font-size: 18px;
     color: var(--COLOR);
-    text-align: center;
     padding: 0 0.5rem;
 }
 .link:hover {
     color: var(--COLOR-ALT);
     cursor: pointer;
 }
+
 .table {
     color: var(--COLOR-DARK);
+    padding-bottom: 1rem;
 }
-
 .head {
     display: block;
     font-size: 20px;
@@ -71,7 +69,6 @@
         border-bottom: var(--COLOR-LIGHT) 2px solid;
     }
 }
-
 @media (min-width: 800px) {
     .content {
         display: flex;

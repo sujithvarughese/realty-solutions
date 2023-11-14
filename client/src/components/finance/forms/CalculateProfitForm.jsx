@@ -22,7 +22,7 @@ const CalculateProfitForm = ({ propertyTax, homeInsurance, hoa, rent, setProfit 
     }
     return (
         <div className={classes.container}>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} title="Calculate Profit">
                 <div className={classes.form}>
                     <Input
                         htmlFor="annualPropertyTax"
@@ -64,9 +64,11 @@ const CalculateProfitForm = ({ propertyTax, homeInsurance, hoa, rent, setProfit 
                         value={values.term}
                         onChange={handleChange}
                     ></InputSelect>
-                    <Button>
-                        Calculate Monthly Profit
-                    </Button>
+                    <div className={classes.button}>
+                        <Button>
+                            Calculate Monthly Profit
+                        </Button>
+                    </div>
                 </div>
             </Form>
         </div>

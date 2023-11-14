@@ -22,7 +22,7 @@ const CalculateMonthlyPaymentForm = ({ principal, apr, termYears, setMonthlyPaym
 
     return (
         <div className={classes.container}>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} title="Calculate Monthly Payment">
                 <div className={classes.form}>
                     <Input
                         htmlFor="principal"
@@ -48,9 +48,11 @@ const CalculateMonthlyPaymentForm = ({ principal, apr, termYears, setMonthlyPaym
                         value={values.termYears}
                         onChange={handleChange}
                     ></Input>
-                    <Button>
-                        Get Monthly Payment
-                    </Button>
+                    <div className={classes.button}>
+                        <Button>
+                            Get Monthly Payment
+                        </Button>
+                    </div>
                 </div>
             </Form>
         </div>
