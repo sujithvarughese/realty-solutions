@@ -93,7 +93,7 @@ const EditUnitForm = ({ cancel, unit }) => {
 						></InputSelect>
 						<Input
 							htmlFor="bedrooms"
-							placeholder="BEDR"
+							label="BEDR"
 							type="number"
 							min="0"
 							name="bedrooms"
@@ -102,7 +102,7 @@ const EditUnitForm = ({ cancel, unit }) => {
 						></Input>
 						<Input
 							htmlFor="bathrooms"
-							placeholder="BATH"
+							label="BATH"
 							type="number"
 							min="0"
 							name="bathrooms"

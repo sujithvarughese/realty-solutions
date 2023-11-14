@@ -3,12 +3,6 @@ import { Form, Input, Button } from "../../UI";
 import { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 
-
-const credentials = {
-	email: import.meta.env.VITE_ADMIN_LOGIN,
-	password: import.meta.env.VITE_ADMIN_PASSWORD
-}
-
 const AuthForm = ({ authState }) => {
 
 	const { login, register } = useGlobalContext()
@@ -28,10 +22,6 @@ const AuthForm = ({ authState }) => {
 			console.log(email, password);
 			register({ email, password })
 		}
-	}
-
-	const previewAsAdmin = () => {
-		login(credentials)
 	}
 
 	return (
@@ -70,9 +60,6 @@ const AuthForm = ({ authState }) => {
 				<div className={classes.options}>
 					<div className={classes.link}>
 						Reset Password
-					</div>
-					<div onClick={previewAsAdmin} className={classes.link}>
-						Preview as Admin
 					</div>
 				</div>
 			}

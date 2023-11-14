@@ -19,6 +19,18 @@
 .active {
     border-bottom: 5px var(--COLOR-DARK) solid;
 }
+.link {
+    color: var(--COLOR-DARK);
+    text-decoration: underline;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 2rem 0;
+}
+.link:hover {
+    color: var(--COLOR-ALT);
+    cursor: pointer;
+}
 
 @media (min-width: 550px) {
     .container {

@@ -1,11 +1,27 @@
-import classes from "./styles/Accounting.module.css";
+import classes from "./Accounting.module.css";
 import { NavLink, Outlet } from "react-router-dom";
+import {useState} from "react";
 
 
 const Accounting = () => {
 
+
 	return (
 		<div className={classes.container}>
+			<div className={classes.links}>
+				<NavLink
+					to="./"
+					className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
+				>
+					Overview
+				</NavLink>
+				<NavLink
+					to="rents"
+					className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
+				>
+					Rents
+				</NavLink>
+			</div>
 
 			<Outlet />
 
@@ -15,10 +31,15 @@ const Accounting = () => {
 
 const links = [
 	{
-		name: "Finances",
+		name: "Overview",
 		icon: "finances",
-		url: ""
+		url: "accounting"
 
+	},
+	{
+		name: "Details",
+		icon: "finances",
+		url: "accounting/"
 	},
 	{
 		name: "Rents",

@@ -48,18 +48,21 @@ const Rents = () => {
 					<div className={classes.title}>
 						Search Rent Receipts
 					</div>
+
+					<div className={classes.tenant}>
+						<InputSelect
+							htmlFor="tenant"
+							label="tenant"
+							type="text"
+							name="tenant"
+							list={userList}
+							onChange={(e)=>setTenant(e.target.value)}
+						></InputSelect>
+					</div>
+
 					<Form onSubmit={handleSubmit}>
 						<div className={classes.form}>
-							<div className={classes.tenant}>
-								<InputSelect
-									htmlFor="tenant"
-									label="tenant"
-									type="text"
-									name="tenant"
-									list={userList}
-									onChange={(e)=>setTenant(e.target.value)}
-								></InputSelect>
-							</div>
+
 							<div className={classes.year}>
 								<InputSelect
 									htmlFor="year"
@@ -112,10 +115,18 @@ const Rents = () => {
 
 
 			<div className={classes.create}>
-				<div className={classes.title}>
+				<div className={classes.title} onClick={()=>setShowCreateRentReceiptForm(!showCreateRentReceiptForm)}>
 					Create Rent Receipt
 				</div>
-				<CreateRentReceiptForm cancel={()=>setShowCreateRentReceiptForm(false)}/>
+				{
+					showCreateRentReceiptForm &&
+					<CreateRentReceiptForm
+						user={{_id: tenant, lastName: userInfo.lastName, firstName: userInfo.firstName}}
+						cancel={()=>setShowCreateRentReceiptForm(false)}
+					/>
+				}
+
+
 			</div>
 
 		</div>

@@ -14,7 +14,14 @@ import {
   Units,
   unitsLoader,
 } from "./pages";
-import { FinancialSummary, financialSummaryLoader, UnitFinancials, unitFinancialsLoader } from "./components"
+import {
+  FinancialSummary,
+  financialSummaryLoader,
+  Rents,
+  rentsLoader,
+  UnitFinancials,
+  unitFinancialsLoader } from "./components"
+import rents from "./components/finance/financials-unit/Rents.jsx";
 
 const App = () => {
 
@@ -37,6 +44,7 @@ const App = () => {
           children: [
             { index: true, element: <FinancialSummary />, loader: financialSummaryLoader },
             { path: ":id", element: <UnitFinancials />, loader: unitFinancialsLoader},
+            { path: "rents", element: <Rents />, loader: rentsLoader},
           ]
         }
       ]

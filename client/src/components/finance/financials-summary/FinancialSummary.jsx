@@ -4,7 +4,6 @@ import { axiosDB } from "../../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
 import { useGlobalContext } from "../../../context/GlobalContext.jsx";
 import {FinancialSummaryTotals, FinancialSummaryValues, FinancialSummaryMobile } from "../../index.js"
-import { IoRemoveCircle } from "react-icons/io5"
 import {InputSelect} from "../../../UI/index.js";
 import {totalProfit} from "../../../utils/financeCalcs.js";
 const FinancialSummary = () => {
@@ -18,7 +17,7 @@ const FinancialSummary = () => {
 
 	// filter array we receive in loader to include address from {units} and only relevant data
 	const [unitFinances, setUnitFinances] = useState(finances.map(finance => {
-		const index = units.findIndex(unit => unit._id === finance.unit)
+		const index = units?.findIndex(unit => unit._id === finance.unit)
 		return {
 			id: finance._id,
 			mortgage: finance.mortgage,
