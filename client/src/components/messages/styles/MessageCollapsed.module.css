@@ -9,7 +9,7 @@
     display: flex;
     gap: 0.5rem;
     align-items: center;
-    width: 12%;
+    width: 20px;
     font-size: 20px;
 }
 .senderDate {

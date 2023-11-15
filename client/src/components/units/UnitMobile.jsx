@@ -7,6 +7,9 @@ import { useState } from "react";
 const UnitMobile = ({ unit }) => {
 
     const { unitID, street, city, state, zip, image, user, tenant } = unit
+
+    const phone = tenant?.phone.replace(/[^0-9]/g, "")
+
     // state functions to hide and show forms
     const [showMessageForm, setShowMessageForm] = useState(false)
 
@@ -47,11 +50,13 @@ const UnitMobile = ({ unit }) => {
                     </div>
 
                     <div className={classes.buttons}>
+                        <a href={`tel:${phone}`}>
+                            <div className={classes.button}>
+                                <Button styles="buttonMobile">Call</Button>
+                            </div>
+                        </a>
                         <div className={classes.button}>
-                            <Button styles="buttonMobile">Call</Button>
-                        </div>
-                        <div className={classes.button}>
-                            <Button styles="buttonMobile" onClick={() => setShowMessageForm(true)}>Email</Button>
+                            <Button styles="buttonMobile" onClick={() => setShowMessageForm(true)}>Message</Button>
                         </div>
                     </div>
 
