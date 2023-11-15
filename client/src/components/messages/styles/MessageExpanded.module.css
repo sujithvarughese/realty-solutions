@@ -1,51 +1,41 @@
 .message {
-
     height: 100%;
     padding: .8rem .3rem;
 }
 .mobileCloseMessage {
 
 }
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.currentMessage {
+    background-color: var(--COLOR-LIGHT);
+    padding: 1rem;
+    border-radius: 20px;
+}
 .prevMessage {
-
+    padding: 2rem 1rem;
+    background-color: var(--COLOR-LIGHTER);
+    border-radius: 20px;
 }
 
 .senderDate {
     display: flex;
     justify-content: space-between;
 }
-
-.subjectFlag {
-    display: flex;
+.subjectContainer {
+    margin-bottom: 1rem;
 }
-.date {
-
-}
-.flag {
-
-}
-.messageData {
-
-}
-.sender {
-
-}
-
-.recipient {
-
-}
-
 .subject {
+    font-size: 24px;
     font-weight: bold;
 }
 
-.body {
-
-}
 
 @media (min-width: 450px) {
     .message {
-
         height: 100vh;
         position: sticky;
         top: 70px;

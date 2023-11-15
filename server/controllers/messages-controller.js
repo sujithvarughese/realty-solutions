@@ -4,7 +4,7 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError } from "../errors/index.js"
 
 const createMessage = async (req, res) => {
-	// req.body = { sender, recipient, subject, body }
+	// { sender, recipient, subject, body } = req.body
 	// validate just in case (schema already validates)
 	if (!req.body.recipient) {
 		throw new BadRequestError('please provide recipient')
@@ -64,14 +64,22 @@ const markMessageRead = async (req, res) => {
 }
 
 const toggleFlag = async (req,res) => {
-	// req.body = { message }
+	//  { message } = req.body
 	const message = await Message.findById(req.body)
 	await Message.findByIdAndUpdate(req.body, { flag: !message.flag})
 	res.status(StatusCodes.OK).json({ msg: 'message flag update success'})
 }
 
+const getMessage = async (req, res) => {
+	// { id } = req.params
+	const message = await Message
+		.findById(req.params.id)
+		.populate({path: "sender recipient", select: "lastName firstName _id"})
+	res.status(StatusCodes.OK).json({ message })
+}
+
 const deleteMessage = async (req, res) => {
-	// req.body = { message }
+	//  { message } = req.body
 	await Message.findByIdAndDelete(req.body)
 	res.status(StatusCodes.OK).json({ msg: 'message delete success'})
 }
@@ -83,6 +91,7 @@ export {
 	toggleFlag,
 	deleteMessage,
 	getInbox,
-	getOutbox
+	getOutbox,
+	getMessage
 
 }

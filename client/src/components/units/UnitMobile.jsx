@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const UnitMobile = ({ unit }) => {
 
-    const { unitID, street, city, state, zip, image, user } = unit
+    const { unitID, street, city, state, zip, image, user, tenant } = unit
     // state functions to hide and show forms
     const [showMessageForm, setShowMessageForm] = useState(false)
 
@@ -38,7 +38,7 @@ const UnitMobile = ({ unit }) => {
                             user &&
                             <div className={classes.tenant}>
                                 <div className={classes.tenantName}>
-                                    Tenant: {user.firstName} {user.lastName}
+                                    Tenant: {tenant.firstName} {tenant.lastName}
                                 </div>
 
 
@@ -64,7 +64,7 @@ const UnitMobile = ({ unit }) => {
                         <CreateMessageForm
                             cancel={()=>setShowMessageForm(false)}
                             addressBook={[{
-                                text: `${user.lastName}, ${user.firstName}`,
+                                text: `${tenant.lastName}, ${tenant.firstName}`,
                                 value: user._id
                             }]}
                         />

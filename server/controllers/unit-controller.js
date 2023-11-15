@@ -4,7 +4,7 @@ import { BadRequestError, NotFoundError } from "../errors/index.js";
 import Finance from "../models/Finance.js";
 
 const getMyUnit = async (req, res) => {
-	const myUnit = await Unit.findOne({ user: req.user.userID }).populate("user")
+	const myUnit = await Unit.findOne({ user: req.user.userID })
 	res.status(StatusCodes.OK).json({ myUnit })
 }
 // get all units, and populate each with tenant information

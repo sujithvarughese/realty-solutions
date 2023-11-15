@@ -154,14 +154,13 @@ const login = async (req, res) => {
 		throw new UnauthenticatedError("Invalid credentials");
 	}
 
-	// user variable with just the fields we want to send
+	// user variable with just the fields we want to send to attach (will also be saved in front end state)
 	const userInfo =
 		{
 			userID: user._id,
 			isAdmin: user.isAdmin,
 			lastName: user.lastName,
 			firstName: user.firstName,
-			rent: user.rent,
 			balance: user.balance
 		};
 

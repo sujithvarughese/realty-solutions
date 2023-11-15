@@ -1,7 +1,8 @@
 import classes from "./styles/FinancialSummaryMobile.module.css";
 import { NavLink } from "react-router-dom";
 import {
-    calculateMonthlyPayment, totalHoa,
+    calculateMonthlyPayment,
+    totalHoa,
     totalInsurance,
     totalMortgage, totalProfit,
     totalPropertyTax,
@@ -9,7 +10,7 @@ import {
 } from "../../../utils/financeCalcs.js";
 import {IoRemoveCircle} from "react-icons/io5";
 
-const FinancialSummaryMobile = ({ units, unitFinances, term, removeUnit }) => {
+const FinancialSummaryMobile = ({ unitFinances, term, removeUnit }) => {
 
     return (
         <div className={classes.container}>

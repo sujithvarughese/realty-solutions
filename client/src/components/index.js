@@ -16,6 +16,7 @@ import ReplyMessageForm from "./messages/ReplyMessageForm.jsx";
 import MessageExpanded from "./messages/MessageExpanded.jsx";
 import MessageCollapsed from "./messages/MessageCollapsed.jsx"
 import MessageActions from "./messages/MessageActions.jsx";
+import MessageContents from "./messages/MessageContents.jsx";
 
 import CreateUserForm from "./users/CreateUserForm.jsx";
 import EditUserForm from "./users/EditUserForm.jsx";
@@ -56,6 +57,7 @@ export {
 	MessageExpanded,
 	MessageCollapsed,
 	MessageActions,
+	MessageContents,
 
 	CreateUserForm,
 	EditUserForm,

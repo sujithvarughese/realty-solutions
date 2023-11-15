@@ -19,7 +19,6 @@ const AuthForm = ({ authState }) => {
 			if (password !== passwordRetype) {
 				return console.log("passwords dont match");
 			}
-			console.log(email, password);
 			register({ email, password })
 		}
 	}

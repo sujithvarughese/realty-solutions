@@ -1,23 +1,25 @@
 import classes from "./styles/Units.module.css";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import { useLoaderData } from "react-router-dom";
 import { axiosDB } from "../utils/axios.js";
 import { Unit, SearchUnits, CreateUnitForm, UnitMobile } from "../components";
-import { useGlobalContext } from "../context/GlobalContext.jsx";
+import {useGlobalContext} from "../context/GlobalContext.jsx";
+
 
 const Units = () => {
 	// units = [{ unit }, {},...]
 	const units = useLoaderData()
 
-	// set units from loader to global state
 	const { setUnits } = useGlobalContext()
 	useEffect(() => {
 		setUnits(units)
-	}, [])
+	}, []);
+
+
 	// will open up form
 	const [showCreateUnitForm, setShowCreateUnitForm] = useState(false)
 
-// state for search function
+	// state for search function
 	const [query, setQuery] = useState("")
 
 	// filter units by search by using derived state;
@@ -36,6 +38,8 @@ const Units = () => {
 		<div className={classes.container}>
 
 			<div className={classes.options}>
+
+				{/* Search bar */}
 				<div className={classes.search}>
 					<SearchUnits query={query} setQuery={setQuery} />
 				</div>
@@ -71,6 +75,7 @@ const Units = () => {
 
 export const unitsLoader = async () => {
 	try {
+		// all units
 		const response = await axiosDB("/units")
 		const { units } = response.data
 		return units

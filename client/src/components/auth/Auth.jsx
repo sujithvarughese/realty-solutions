@@ -33,6 +33,8 @@ const Auth = () => {
 					</div>
 				</div>
 
+				{/* form with input fields and button */}
+				{/* when user is detected in state, Root component will navigate accordingly to user */}
 				<AuthForm authState={authState} />
 			</div>
 

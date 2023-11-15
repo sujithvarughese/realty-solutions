@@ -1,18 +1,13 @@
 import classes from "./styles/Accounting.module.css";
-import {NavLink, Outlet, useNavigate} from "react-router-dom";
-import {useEffect} from "react";
+import { Outlet } from "react-router-dom";
 
+// /accounting will render overall finances and /accounting/:id will render by unit
 const Accounting = () => {
-
-
 	return (
 		<div className={classes.container}>
-
 			<Outlet />
-
 		</div>
 	);
 };
-
 
 export default Accounting;

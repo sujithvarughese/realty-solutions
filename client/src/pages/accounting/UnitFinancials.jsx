@@ -6,23 +6,20 @@ import {
 	HoaDetails,
 	Rents
 } from "../../components/index.js";
-import {useEffect, useState} from "react";
+import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
 
 
 const UnitFinancials = () => {
 
-
 	const unitFinancials = useLoaderData()
-	const [finances, setFinances] = useState(unitFinancials)
 	const [display, setDisplay] = useState("overview")
 
-	const { unit, purchasePrice, rent, fairMarketRent, insurance, mortgage, hoa } = finances
+	const { unit, purchasePrice, rent, propertyTax, fairMarketRent, insurance, mortgage, hoa } = unitFinancials
 	// { company, agent, phone, email, payment, coverage } = insurance
 	// { bank, principal, interest, term, paymentsMade, payment } = mortgage
 	// { company, agent, phone, email, payment } = hoa
-
 
 
 	return (
@@ -69,7 +66,7 @@ const UnitFinancials = () => {
 						purchasePrice={purchasePrice}
 						rent={rent}
 						fairMarketRent={fairMarketRent}
-						propertyTax={finances.propertyTax}
+						propertyTax={propertyTax}
 						homeInsurance={insurance.payment}
 						hoa={hoa.payment}
 					/>

@@ -2,28 +2,35 @@ import classes from "./styles/Messages.module.css";
 import { axiosDB } from "../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
 import { CreateMessageForm, MessageExpanded, MessageCollapsed } from "../components";
-import { Button } from "../UI/index.js";
 import { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
-import { BiSolidMessageAltEdit, BiMessageSquareEdit } from "react-icons/bi"
+import { BiMessageSquareEdit } from "react-icons/bi"
 import { TfiControlBackward } from "react-icons/tfi"
 
 const Messages = () => {
 	// messages = { inbox, outbox }
+	// message =
+	// 	{ sender: { lastName, firstName, _id },
+	// 	recipient: { lastName, firstName, _id} },
+	// 	subject, body, read, flag, date
 	const messages = useLoaderData()
 	const { inbox, outbox } = messages
+
+	const { user } = useGlobalContext()
+
+	// set in state to render changes in real time
 	const [myInbox, setMyInbox] = useState(inbox)
 	const [myOutbox, setMyOutbox] = useState(outbox)
 
-	const { user } = useGlobalContext()
+	// default to show inbox
+	const [currentMailbox, setCurrentMailbox] = useState(myInbox)
+	const [currentLink, setCurrentLink] = useState("inbox")
+
 
 	const [showCreateMessageForm, setShowCreateMessageForm] = useState(false)
 	const [addressBook, setAddressBook] = useState([])
 	const [expandedMessage, setExpandedMessage] = useState(inbox[0] || null)
 	const [mobileExpanded, setMobileExpanded] = useState(false)
-	// default to show inbox
-	const [currentMailbox, setCurrentMailbox] = useState(myInbox)
-	const [currentLink, setCurrentLink] = useState("inbox")
 
 	// fetch address book for admin
 	const getUserList = async () => {
@@ -36,7 +43,7 @@ const Messages = () => {
 		}
 	}
 
-	// fetch admin info to user can send messages
+	// fetch admin info so user can send messages
 	const getAdminInfo = async () => {
 		try {
 			const response = await axiosDB("/auth/getAdminInfo")
@@ -51,6 +58,7 @@ const Messages = () => {
 		try {
 			await axiosDB.patch("/messages/flag", message)
 			const updatedMailbox = [...currentMailbox]
+			// replace message in state with updated message with appropriate flag for both collapsed/expanded message
 			const messageIndex = updatedMailbox.findIndex(currentMessage => currentMessage._id === message._id)
 			updatedMailbox[messageIndex] = { ...updatedMailbox[messageIndex], flag: !updatedMailbox[messageIndex].flag}
 			setCurrentMailbox(updatedMailbox)
@@ -64,30 +72,19 @@ const Messages = () => {
 		try {
 			await axiosDB.patch("/messages/read", message)
 			const updatedMailbox = [...currentMailbox]
+			// replace message in state with updated message with appropriate read status
 			const messageIndex = updatedMailbox.findIndex(currentMessage => currentMessage._id === message._id)
 			updatedMailbox[messageIndex] = { ...updatedMailbox[messageIndex], read: true}
 			setCurrentMailbox(updatedMailbox)
 			setExpandedMessage(updatedMailbox[messageIndex])
-			// messages = { inbox, outbox }
+
 		} catch (error) {
 			throw new Error(error)
 		}
 	}
-	const clickInbox = async () => {
-		setCurrentLink("inbox")
-		const response = await axiosDB("/messages/inbox")
-		const { inbox } = response.data
-		setMyInbox(inbox)
-	}
 
-	const clickOutbox = async () => {
-		setCurrentLink("outbox")
-		const response = await axiosDB("/messages/outbox")
-		const { outbox } = response.data
-		setMyOutbox(outbox)
-	}
 	// determine which address book to get based on role (we don't want to give tenant access to other user data)
-	// address book will be returned as an array of objects { text: "lastName, firstName" or "admin", value: user._id }
+	// addr book returned from backend as array of objects { text: "lastName, firstName", value: user._id }
 	useEffect(() => {
 		if (user.isAdmin) {
 			getUserList()
@@ -96,6 +93,30 @@ const Messages = () => {
 		}
 	}, [])
 
+	// retrieve new messages as user clicks and set state to render inbox or outbox
+	const clickInbox = async () => {
+		setCurrentLink("inbox")
+		try {
+			const response = await axiosDB("/messages/inbox")
+			const { inbox } = response.data
+			setMyInbox(inbox)
+		} catch (error) {
+			console.log(error)
+		}
+
+	}
+	const clickOutbox = async () => {
+		setCurrentLink("outbox")
+		try {
+			const response = await axiosDB("/messages/outbox")
+			const { outbox } = response.data
+			setMyOutbox(outbox)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+	// when user clicks inbox or outbox, set currentMailbox
+	// displayed expanded message should be first (latest) message in array
 	useEffect(() => {
 		setExpandedMessage(myOutbox[0] || null)
 		setCurrentMailbox(myOutbox)
@@ -109,6 +130,7 @@ const Messages = () => {
 	return (
 		<div className={classes.container}>
 
+			{/* render create message modal when triggered */}
 			{ showCreateMessageForm &&
 				<CreateMessageForm
 					cancel={()=>setShowCreateMessageForm(false)}
@@ -126,7 +148,6 @@ const Messages = () => {
 				{/* for large screen, tabs for inbox and outbox; no back button */}
 				{
 					mobileExpanded ?
-
 						<div className={classes.back} onClick={()=>setMobileExpanded(false)}>
 							<TfiControlBackward />
 						</div>
@@ -161,7 +182,7 @@ const Messages = () => {
 									showExpanded={()=>{}}
 								/>)
 							:
-							<div className={classes.empty}>No Messages in Inbox</div>
+							<div className={classes.empty}>No Messages in this Mailbox</div>
 					}
 				</div>
 
@@ -173,6 +194,7 @@ const Messages = () => {
 				</div>
 
 				{
+					// mobileExpanded=true when message is open, so only show collapsed list when no msg selected
 					!mobileExpanded &&
 					<div className={classes.mobileCollapsed}>
 						{
@@ -187,13 +209,13 @@ const Messages = () => {
 										showExpanded={()=>setMobileExpanded(true)}
 									/>)
 								:
-								<div>No Messages in Inbox</div>
+								<div>No Messages in this Mailbox</div>
 						}
 					</div>
 				}
 
-				{/* when message is expanded in mobile, component will be rendered full screen */}
 				{
+					// when message is expanded in mobile, component will be rendered full screen
 					mobileExpanded &&
 					<div className={classes.mobileExpanded}>
 						{
@@ -212,6 +234,7 @@ const Messages = () => {
 
 export const myMessagesLoader = async () => {
 	try {
+		// retrieve all messages where sender or recipient matches using req.user info that is stored at login
 		const response = await axiosDB("/messages")
 		const { messages } = response.data
 		// messages = { inbox, outbox }

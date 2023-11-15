@@ -4,11 +4,9 @@ import {
 	EditUnitForm,
 	EditUserForm,
 	CreateMessageForm,
-	CreateRentReceiptForm,
 } from "../";
 import { useState } from "react";
-import { Button, Card } from "../../UI/index.js";
-import { useNavigate } from "react-router-dom";
+import { Card } from "../../UI/index.js";
 import { NavLink } from "react-router-dom";
 import { convertToUSD } from "../../utils/financeCalcs.js";
 import { BiMessageSquareEdit } from "react-icons/bi"
@@ -16,34 +14,26 @@ import { BiMessageSquareEdit } from "react-icons/bi"
 
 const Unit = ({ unit }) => {
 
-	const { unitID, street, city, state, zip, image, occupied, user, bedrooms, bathrooms } = unit
+	const { unitID, street, city, state, zip, image, bedrooms, bathrooms, tenant, user } = unit
 	// state functions to hide and show forms
 	const [showEditUnitForm, setShowEditUnitForm] = useState(false)
 	const [showCreateUserForm, setShowCreateUserForm] = useState(false)
 	const [showEditUserForm, setShowEditUserForm] = useState(false)
 	const [showMessageForm, setShowMessageForm] = useState(false)
-	const [showEditFinancialsForm, setShowEditFinancialsForm] = useState(false)
-	const [showCreateRentReceipt, setShowCreateRentReceipt] = useState(false)
-	const [showUnitFinancials, setShowUnitFinancials] = useState(false)
-
-	const navigate = useNavigate()
-	const navigateToUnitFinancials = () => {
-		navigate(`/accounting/${unit._id}`)
-	}
 
 	return (
 		<div className={classes.container}>
 			<Card>
 				<div className={classes.content}>
 
-				<NavLink
-					to={`../accounting/${unit._id}`}
-					className={classes.link}
-				>
-					<img src={image} alt="img" className={classes.image}/>
-				</NavLink>
-
-
+					{/* clicking image or address navigates to UnitFinancials */}
+					<NavLink
+						to={{ pathname: `../accounting/${unit._id }`}}
+						state={{ unitID, street }}
+						className={classes.link}
+					>
+						<img src={image} alt="img" className={classes.image}/>
+					</NavLink>
 
 					<div className={classes.info}>
 						{ showEditUnitForm && <EditUnitForm cancel={()=>setShowEditUnitForm(false)} unit={unit}/> }
@@ -53,7 +43,8 @@ const Unit = ({ unit }) => {
 							<div className={classes.addressContainer}>
 								<div className={classes.address}>
 									<NavLink
-										to={`../accounting/${unit._id}`}
+										to={{ pathname: `../accounting/${unit._id }`}}
+										state={{ unitID, street }}
 										className={classes.link}
 									>
 										<div className={classes.addressLine1}>
@@ -82,13 +73,13 @@ const Unit = ({ unit }) => {
 							<div className={classes.userContainer}>
 								<div className={classes.tenant}>
 									<div className={classes.tenantName}>
-										Tenant: {user.firstName} {user.lastName}
+										Tenant: {tenant.firstName} {tenant.lastName}
 									</div>
 									<div className={classes.tenantEmail}>
-										{user.email}
+										{tenant.email}
 									</div>
 									<div className={classes.tenantPhone}>
-										{user.phone}
+										{tenant.phone}
 									</div>
 								</div>
 								<div
@@ -110,16 +101,15 @@ const Unit = ({ unit }) => {
 						{
 							user &&
 							<div className={classes.rent}>
-								Rent: {convertToUSD(user.rent)}
+								Rent: {convertToUSD(tenant.rent)}
 							</div>
 						}
 
 					</div>
 
-
 					{
-						// if occupied show edit user button, else show create user button
-						occupied ?
+						// if occupied show message user icon, else show create user button
+						user ?
 						<div className={classes.actions}>
 							<div
 								className={classes.link}
@@ -137,17 +127,17 @@ const Unit = ({ unit }) => {
 						</div>
 					}
 				</div>
+
 				<div className={classes.forms}>
 					{/* forms open when state toggled */}
 
 					{ showCreateUserForm && <CreateUserForm cancel={()=>setShowCreateUserForm(false)} unit={unit}/> }
-					{ showCreateRentReceipt && <CreateRentReceiptForm cancel={()=>setShowCreateRentReceipt(false)} user={user}/> }
 
 					{ showMessageForm &&
 						<CreateMessageForm
 							cancel={()=>setShowMessageForm(false)}
 							addressBook={[{
-								text: `${user.lastName}, ${user.firstName}`,
+								text: `${tenant.lastName}, ${tenant.firstName}`,
 								value: user._id
 							}]}
 						/>

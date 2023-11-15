@@ -1,11 +1,12 @@
 import classes from "./styles/FinancialSummary.module.css";
-import {useEffect, useState} from "react";
+import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
-import {FinancialSummaryTotals, FinancialSummaryValues, FinancialSummaryMobile } from "../../components/index.js"
-import {InputSelect} from "../../UI/index.js";
-import {totalProfit} from "../../utils/financeCalcs.js";
+import { FinancialSummaryTotals, FinancialSummaryValues, FinancialSummaryMobile } from "../../components/index.js"
+import { InputSelect } from "../../UI/index.js";
+import { totalProfit, convertToUSD } from "../../utils/financeCalcs.js";
+
 const FinancialSummary = () => {
 
 	// finances = array of each unit's financial data
@@ -30,6 +31,7 @@ const FinancialSummary = () => {
 		}
 	}))
 
+	// user can remove unit using state to see potential changes in finances
 	const removeUnit = (id) => {
 		console.log(id)
 		const updatedList = unitFinances.filter(unitFinance => unitFinance.id !== id)
@@ -93,12 +95,6 @@ const FinancialSummary = () => {
 	);
 };
 
-const convertToUSD = (number) => {
-	return  number.toLocaleString('en-US', {
-		style: 'currency',
-		currency: 'USD',
-	})
-}
 export const financialSummaryLoader = async () => {
 	try {
 		const response = await axiosDB("/finance")

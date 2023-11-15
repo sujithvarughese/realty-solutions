@@ -1,7 +1,7 @@
 import classes from "./styles/Landing.module.css"
 import { Auth } from "../components"
-// home page for public (no user logged in)
 
+// home page for public (no user logged in)
 const Landing = () => {
 	return (
 		<div className={classes.container}>
@@ -16,6 +16,7 @@ const Landing = () => {
 					</div>
 				</div>
 
+				{/* Card with login/register options */}
 				<div className={classes.auth}>
 					<Auth />
 				</div>

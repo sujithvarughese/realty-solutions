@@ -24,10 +24,6 @@ const UnitSchema = new mongoose.Schema( {
 	image: {
 		type: String,
 	},
-	occupied: {
-		type: Boolean,
-		default: false
-	},
 	user: {
 		type: mongoose.Types.ObjectId,
 		ref: 'User'
@@ -43,9 +39,15 @@ const UnitSchema = new mongoose.Schema( {
 		firstName: {
 			type: String
 		},
+		email: {
+			type: String
+		},
+		phone: {
+			type: String
+		},
 		rent: {
 			type: Number
-		}
+		},
 	},
 	bedrooms : {
 		type: Number,
