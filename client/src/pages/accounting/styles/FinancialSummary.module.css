@@ -15,6 +15,7 @@
     line-height: 1;
     text-transform: capitalize;
 }
+
 th, td, tr {
     border: 1px black solid;
     padding: 1rem 0.2rem;

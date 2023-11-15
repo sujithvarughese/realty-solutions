@@ -3,7 +3,17 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError, UnauthenticatedError } from "../errors/index.js";
 import Finance from "../models/Finance.js";
 
-const getRentReceipts = async (req, res) => {
+const getYearlyRentReceipts = async (req, res) => {
+	if (!req.user.isAdmin) {
+		if (req.user.userID !== req.params.id) {
+			throw new UnauthenticatedError("Error validating user");
+		}
+	}
+
+	const rentReceipts = await RentReceipt.find({ user: req.params.id, year: req.params.year })
+	res.status(StatusCodes.OK).json({ rentReceipts })
+}
+const getMonthlyRentReceipts = async (req, res) => {
 	if (!req.user.isAdmin) {
 		if (req.user.userID !== req.params.id) {
 			throw new UnauthenticatedError("Error validating user");
@@ -13,7 +23,6 @@ const getRentReceipts = async (req, res) => {
 	const rentReceipts = await RentReceipt.find({ user: req.params.id, year: req.params.year, month: req.params.month })
 	res.status(StatusCodes.OK).json({ rentReceipts })
 }
-
 const createRentReceipt = async (req, res) => {
 	//req.body = {user, year, month, date, amountPaid, balance}
 	const newRentReceipt = await RentReceipt.create(req.body)
@@ -41,4 +50,4 @@ const getAllFinances = async (req, res) => {
 	res.status(StatusCodes.OK).json({ finances });
 }
 
-export { getRentReceipts, createRentReceipt, createUnitFinances, getUnitFinances, getAllFinances }
+export { getYearlyRentReceipts, getMonthlyRentReceipts, createRentReceipt, createUnitFinances, getUnitFinances, getAllFinances }

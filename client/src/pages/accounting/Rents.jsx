@@ -1,133 +1,94 @@
 import classes from "./styles/Rents.module.css"
 import { useLoaderData } from "react-router-dom";
-import { Button, Form, InputSelect } from "../../UI/index.js";
-import { CreateRentReceiptForm } from "../../components/index.js";
+import { CreateRentReceiptForm, SearchRentReceiptsForm } from "../../components/index.js";
 import { useEffect, useState } from "react";
 import { RentReceipt } from "../../components/index.js";
 import { axiosDB } from "../../utils/axios.js";
+import {InputSelect} from "../../UI/index.js";
 
 const Rents = () => {
 	const userList = useLoaderData()
-	const [showCreateRentReceiptForm, setShowCreateRentReceiptForm] = useState(false)
-	const [tenant, setTenant] = useState(userList[0]?.value)
-	const [year, setYear] = useState("2023")
-	const [month, setMonth] = useState("January")
+
 	const [rentReceipts, setRentReceipts] = useState([]);
+	const [userData, setUserData] = useState(null)
+	const [currentLink, setCurrentLink] = useState("search")
+	const [tenant, setTenant] = useState(userList[0]?.value)
 
-	const [userInfo, setUserInfo] = useState(null)
-
-	const getRentReceipts = async () => {
-		const response = await axiosDB(`/finance/rent/${tenant}/${year}/${month}`)
-		const { rentReceipts } = response.data
-		console.log(response.data);
-		setRentReceipts(rentReceipts)
-	}
-
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		getRentReceipts(year, month)
-	}
-
-	const selectTenant = async (tenant) => {
+	const handleSetTenant = async (tenantID) => {
+		setTenant(tenantID)
 		try {
-			const response = await axiosDB(`/auth/getUserInfo/${tenant._id}`)
-			const { name, address } = response.data
-			setUserInfo({ name, address })
+			const response = await axiosDB(`/auth/getUserInfo/${tenantID}`)
+			const { userInfo } = response.data
+			setUserData(userInfo)
 		} catch (error) {
-			console.log(error);
+			console.log(error)
 		}
 	}
-	useEffect(() => {
-		selectTenant()
-	}, [tenant])
+
 	return (
 		<div className={classes.container}>
 
-			<div className={classes.searchContainer}>
+			<div className={classes.tenant}>
+				<InputSelect
+					htmlFor="tenant"
+					label="tenant"
+					type="text"
+					name="tenant"
+					value={tenant}
+					list={userList}
+					onChange={(e)=>handleSetTenant(e.target.value)}
+				></InputSelect>
+			</div>
+
+			{
+				userData &&
+				<div className={classes.links}>
+					<div
+						className={currentLink === "search" ? classes.active : classes.link}
+						onClick={()=>setCurrentLink("search")}
+					>
+						Search
+					</div>
+					<div
+						className={currentLink === "create" ? classes.active : classes.link}
+						onClick={()=>setCurrentLink("create")}
+					>
+						Create
+					</div>
+				</div>
+
+			}
+
+
+			{
+				currentLink === "search" &&
 				<div className={classes.search}>
-					<div className={classes.title}>
-						Search Rent Receipts
+					<SearchRentReceiptsForm setRentReceipts={setRentReceipts} tenant={tenant}/>
+					<div className={classes.results}>
+						{
+							rentReceipts?.map(receipt =>
+								<RentReceipt
+									key={receipt._id}
+									{...receipt}
+								/>
+							)
+						}
 					</div>
-
-					<div className={classes.tenant}>
-						<InputSelect
-							htmlFor="tenant"
-							label="tenant"
-							type="text"
-							name="tenant"
-							list={userList}
-							onChange={(e)=>setTenant(e.target.value)}
-						></InputSelect>
-					</div>
-
-					<Form onSubmit={handleSubmit}>
-						<div className={classes.form}>
-
-							<div className={classes.year}>
-								<InputSelect
-									htmlFor="year"
-									label="year: "
-									type="text"
-									name="year"
-									list={years}
-									onChange={(e)=>setYear(e.target.value)}
-								></InputSelect>
-							</div>
-							<div className={classes.month}>
-								<InputSelect
-									htmlFor="month"
-									label="month: "
-									type="text"
-									name="month"
-									list={months}
-									onChange={(e)=>setMonth(e.target.value)}
-								></InputSelect>
-							</div>
-
-						</div>
-						<div className={classes.button}>
-							<Button type="submit">Search</Button>
-						</div>
-					</Form>
 				</div>
-				<div className={classes.results}>
-					{
-						rentReceipts?.map(receipt =>
-							<RentReceipt
-								key={receipt._id}
-								{...receipt}
-								lastName={name.lastName}
-								firstName={name.firstName}
-							/>
-
-						)
-					}
-				</div>
-			</div>
-
-
-			<div className={classes.formMobile}>
-				{
-					!showCreateRentReceiptForm &&
-					<Button onClick={()=>setShowCreateRentReceiptForm(true)}>Create Rent Receipt</Button>
-				}
-			</div>
-
-
-			<div className={classes.create}>
-				<div className={classes.title} onClick={()=>setShowCreateRentReceiptForm(!showCreateRentReceiptForm)}>
-					Create Rent Receipt
-				</div>
-				{
-					showCreateRentReceiptForm &&
+			}
+			{
+				currentLink === "create" &&
+				<div className={classes.create}>
 					<CreateRentReceiptForm
 						user={{_id: tenant, lastName: userInfo.lastName, firstName: userInfo.firstName}}
-						cancel={()=>setShowCreateRentReceiptForm(false)}
 					/>
-				}
+				</div>
+			}
 
 
-			</div>
+
+
+
 
 		</div>
 	);

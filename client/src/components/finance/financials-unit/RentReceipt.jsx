@@ -1,10 +1,23 @@
 import classes from "./styles/RentReceipt.module.css"
-import { useGlobalContext } from "../../../context/GlobalContext.jsx";
+import {useEffect, useState} from "react";
+import {axiosDB} from "../../../utils/axios.js";
 
+const RentReceipt = ({ month, year, date, amountPaid, balance, user }) => {
 
-const RentReceipt = (rentReceipt) => {
-	const { month, year, date, amountPaid, balance } = rentReceipt
-	const { user } = useGlobalContext()
+	const [userData, setUserData] = useState(null)
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await axiosDB(`/auth/getUserInfo/${user}`)
+				const { userInfo } = response.data
+				setUserData(userInfo)
+			} catch (error) {
+				console.log(error)
+			}
+		}
+		fetchData()
+	}, [])
 
 	return (
 		<div className={classes.rentReceipt}>
@@ -26,7 +39,7 @@ const RentReceipt = (rentReceipt) => {
 				<div className={classes.nameContainer}>
 					Received From:
 					<div className={classes.name}>
-						{user.firstName} {user.lastName}
+						{userData?.firstName} {userData?.lastName}
 					</div>
 				</div>
 
@@ -36,10 +49,10 @@ const RentReceipt = (rentReceipt) => {
 					</div>
 					<div className={classes.address}>
 						<div>
-							{user.unitID} {user.street}
+							{userData?.unitID} {userData?.street}
 						</div>
 						<div>
-							{user.city}, {user.state} {user.zip}
+							{userData?.city}, {userData?.state} {userData?.zip}
 						</div>
 					</div>
 				</div>

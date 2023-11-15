@@ -210,9 +210,17 @@ const getAdminInfo = async (req, res) => {
 
 const getUserInfo = async (req, res) => {
 	const address = await Unit.findOne({ user: req.params.id}).select("unitID street city state zip")
-	const name = await User.findById(req.params.id).select("lastName, firstName")
-	console.log(address);
-	res.status(StatusCodes.OK).json({ name, address })
+	const name = await User.findById(req.params.id).select("lastName firstName")
+	const userInfo = {
+		lastName: name.lastName,
+		firstName: name.firstName,
+		unitID: address.unitID,
+		street: address.street,
+		city: address.city,
+		state: address.state,
+		zip: address.zip
+	}
+	res.status(StatusCodes.OK).json({ userInfo })
 }
 
 const updateUser = async (req, res) => {

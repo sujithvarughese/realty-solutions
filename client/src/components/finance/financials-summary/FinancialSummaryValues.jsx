@@ -6,9 +6,6 @@ const FinancialSummaryValues = ({ unitFinance, term, removeUnit }) => {
 
     const { principal, interest, term: mortgageTerm } = unitFinance.mortgage
 
-    console.log(unitFinance)
-    console.log(term)
-    console.log(mortgageTerm)
     return (
         <tr className={classes.tr}>
             <td>

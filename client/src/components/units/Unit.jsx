@@ -33,7 +33,6 @@ const Unit = ({ unit }) => {
 	}
 
 	return (
-
 		<div className={classes.container}>
 			<Card>
 				<div className={classes.content}>

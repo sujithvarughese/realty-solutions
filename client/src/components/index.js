@@ -21,11 +21,12 @@ import MessageActions from "./messages/MessageActions.jsx";
 import CreateUserForm from "./users/CreateUserForm.jsx";
 import EditUserForm from "./users/EditUserForm.jsx";
 
+import SearchRentReceiptsForm from "./finance/forms/SearchRentReceiptsForm.jsx";
 import CreateRentReceiptForm from "./finance/forms/CreateRentReceiptForm.jsx";
 import RentReceipt from "./finance/financials-unit/RentReceipt.jsx"
 import EditFinancialsForm from "./finance/forms/EditFinancialsForm.jsx";
 import FinancialSummaryTotals from "./finance/financials-summary/FinancialSummaryTotals.jsx";
-import FinancialSummaryValues from "./finance/financials-summary/FInancialSummaryValues.jsx";
+import FinancialSummaryValues from "./finance/financials-summary/FinancialSummaryValues.jsx";
 import UnitFinancials, { unitFinancialsLoader }  from "./finance/financials-unit/UnitFinancials.jsx";
 import CalculatePayoffForm from "./finance/forms/CalculatePayoffForm.jsx";
 import CalculateMonthlyPaymentForm from "./finance/forms/CalculateMonthlyPaymentForm.jsx";
@@ -60,6 +61,7 @@ export {
 	CreateUserForm,
 	EditUserForm,
 
+	SearchRentReceiptsForm,
 	CreateRentReceiptForm,
 	RentReceipt,
 	EditFinancialsForm,
