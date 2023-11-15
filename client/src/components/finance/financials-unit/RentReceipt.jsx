@@ -2,7 +2,7 @@ import classes from "./styles/RentReceipt.module.css"
 import {useEffect, useState} from "react";
 import {axiosDB} from "../../../utils/axios.js";
 
-const RentReceipt = ({ month, year, date, amountPaid, balance, user }) => {
+const RentReceipt = ({ month, year, date, amountPaid, balance, unitID, street, city, state, zip, lastName, firstName, user }) => {
 
 	const [userData, setUserData] = useState(null)
 
@@ -39,17 +39,17 @@ const RentReceipt = ({ month, year, date, amountPaid, balance, user }) => {
 				<div className={classes.nameContainer}>
 					Received From:
 					<div className={classes.name}>
-						{userData?.firstName} {userData?.lastName}
+						{firstName} {lastName}
 					</div>
 				</div>
 
 				<div className={classes.addressContainer}>
 					<div className={classes.address}>
 						<div>
-							{userData?.unitID} {userData?.street}
+							{unitID} {street}
 						</div>
 						<div>
-							{userData?.city}, {userData?.state} {userData?.zip}
+							{city}, {state} {zip}
 						</div>
 					</div>
 				</div>

@@ -8,10 +8,13 @@ import {
 } from "../../components/index.js";
 import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
-import { useLoaderData } from "react-router-dom";
+import {useLoaderData, useLocation} from "react-router-dom";
 
 
 const UnitFinancials = () => {
+
+	const location = useLocation()
+	const { state } = location
 
 	const unitFinancials = useLoaderData()
 	const [display, setDisplay] = useState("overview")
@@ -58,6 +61,9 @@ const UnitFinancials = () => {
 				</div>
 			</div>
 
+			<div className={classes.unit}>
+				{state.unitID} {state.street}
+			</div>
 
 			<div className={classes.forms}>
 				{
@@ -81,7 +87,17 @@ const UnitFinancials = () => {
 					display === "hoa" && <HoaDetails hoa={hoa} />
 				}
 				{
-					display === "rents" && <Rents unit={unit}/>
+					display === "rents" &&
+					<Rents
+						unitID={state.unitID}
+						street={state.street}
+						city={state.city}
+						state={state.state}
+						zip={state.zip}
+						lastName={state.tenant.lastName}
+						firstName={state.tenant.firstName}
+						user={state.user}
+					/>
 				}
 			</div>
 		</div>

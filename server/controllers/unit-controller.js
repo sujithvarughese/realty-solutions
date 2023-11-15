@@ -9,7 +9,7 @@ const getMyUnit = async (req, res) => {
 }
 // get all units, and populate each with tenant information
 const getUnits = async (req, res) => {
-	const units = await Unit.find().populate("user")
+	const units = await Unit.find()
 	res.status(StatusCodes.OK).json({ units })
 }
 

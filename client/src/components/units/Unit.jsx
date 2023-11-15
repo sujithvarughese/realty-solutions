@@ -20,7 +20,6 @@ const Unit = ({ unit }) => {
 	const [showCreateUserForm, setShowCreateUserForm] = useState(false)
 	const [showEditUserForm, setShowEditUserForm] = useState(false)
 	const [showMessageForm, setShowMessageForm] = useState(false)
-
 	return (
 		<div className={classes.container}>
 			<Card>
@@ -29,7 +28,7 @@ const Unit = ({ unit }) => {
 					{/* clicking image or address navigates to UnitFinancials */}
 					<NavLink
 						to={{ pathname: `../accounting/${unit._id }`}}
-						state={{ unitID, street }}
+						state={{ unitID, street, city, state, zip, tenant, user }}
 						className={classes.link}
 					>
 						<img src={image} alt="img" className={classes.image}/>
@@ -44,7 +43,7 @@ const Unit = ({ unit }) => {
 								<div className={classes.address}>
 									<NavLink
 										to={{ pathname: `../accounting/${unit._id }`}}
-										state={{ unitID, street }}
+										state={{ unitID, street, city, state, zip, tenant, user }}
 										className={classes.link}
 									>
 										<div className={classes.addressLine1}>

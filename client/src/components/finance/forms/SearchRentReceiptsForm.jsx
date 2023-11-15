@@ -3,11 +3,11 @@ import {Button, Card, Form, InputSelect} from "../../../UI/index.js";
 import {useState} from "react";
 import {axiosDB} from "../../../utils/axios.js";
 
-const SearchRentReceiptsForm = ({ tenant, setRentReceipts }) => {
+const SearchRentReceiptsForm = ({ user, setRentReceipts }) => {
 
     const getRentReceipts = async (year) => {
         try {
-            const response = await axiosDB(`/finance/rent/${tenant.id}/${year}`)
+            const response = await axiosDB(`/finance/rent/${user}/${year}`)
             const { rentReceipts } = response.data
             setRentReceipts(rentReceipts)
         } catch (error) {
