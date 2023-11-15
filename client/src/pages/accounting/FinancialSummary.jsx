@@ -19,6 +19,7 @@ const FinancialSummary = () => {
 	const [unitFinances, setUnitFinances] = useState(finances.map(finance => {
 		const index = units?.findIndex(unit => unit._id === finance.unit)
 		return {
+			unit: finance.unit,
 			id: finance._id,
 			mortgage: finance.mortgage,
 			propertyTax: finance.propertyTax/12,

@@ -1,5 +1,5 @@
 import classes from "./styles/FinancialSummaryMobile.module.css";
-import {FinancialSummaryValues} from "../../index.js";
+import { NavLink } from "react-router-dom";
 import {
     calculateMonthlyPayment, totalHoa,
     totalInsurance,
@@ -8,7 +8,7 @@ import {
     totalRent
 } from "../../../utils/financeCalcs.js";
 import {IoRemoveCircle} from "react-icons/io5";
-import {useEffect, useState} from "react";
+
 const FinancialSummaryMobile = ({ units, unitFinances, term, removeUnit }) => {
 
     return (
@@ -27,9 +27,14 @@ const FinancialSummaryMobile = ({ units, unitFinances, term, removeUnit }) => {
                         return (
                             <tr className={classes.values} key={unitFinance.id}>
                                 <td className={classes.addressCol}>
-                                    <div>
-                                        {unitFinance.address}
-                                    </div>
+                                    <NavLink
+                                        to={`${unitFinance.unit}`}
+                                        className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
+                                    >
+                                        <div>
+                                            {unitFinance.address}
+                                        </div>
+                                    </NavLink>
                                     <div
                                         onClick={()=>removeUnit(unitFinance.id)}
                                         className={classes.remove}

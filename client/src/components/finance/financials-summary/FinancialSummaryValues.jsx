@@ -1,11 +1,12 @@
 import classes from "../../../pages/accounting/styles/FinancialSummary.module.css";
 import {IoRemoveCircle} from "react-icons/io5";
 import { calculateMonthlyPayment} from "../../../utils/financeCalcs.js";
+import {NavLink} from "react-router-dom";
 
 const FinancialSummaryValues = ({ unitFinance, term, removeUnit }) => {
 
+    const { unit } = unitFinance
     const { principal, interest, term: mortgageTerm } = unitFinance.mortgage
-
     return (
         <tr className={classes.tr}>
             <td>
@@ -16,9 +17,16 @@ const FinancialSummaryValues = ({ unitFinance, term, removeUnit }) => {
                     >
                         <IoRemoveCircle />
                     </div>
-                    <div className={classes.address}>
-                        {unitFinance.address}
-                    </div>
+
+                    <NavLink
+                        to={`${unit}`}
+                        className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
+                    >
+                        <div className={classes.address}>
+                            {unitFinance.address}
+                        </div>
+                    </NavLink>
+
                 </div>
 
 
