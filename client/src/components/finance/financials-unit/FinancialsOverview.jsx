@@ -1,4 +1,4 @@
-import classes from "./styles/UnitFinancials.module.css";
+import classes from "../../../pages/accounting/styles/UnitFinancials.module.css";
 import { CalculateProfitForm } from "../../"
 import {useState} from "react";
 

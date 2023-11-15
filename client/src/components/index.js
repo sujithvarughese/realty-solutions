@@ -26,7 +26,7 @@ import RentReceipt from "./finance/financials-unit/RentReceipt.jsx"
 import EditFinancialsForm from "./finance/forms/EditFinancialsForm.jsx";
 import FinancialSummaryTotals from "./finance/financials-summary/FinancialSummaryTotals.jsx";
 import FinancialSummaryValues from "./finance/financials-summary/FinancialSummaryValues.jsx";
-import UnitFinancials, { unitFinancialsLoader }  from "./finance/financials-unit/UnitFinancials.jsx";
+import UnitFinancials, { unitFinancialsLoader }  from "../pages/accounting/UnitFinancials.jsx";
 import CalculatePayoffForm from "./finance/forms/CalculatePayoffForm.jsx";
 import CalculateMonthlyPaymentForm from "./finance/forms/CalculateMonthlyPaymentForm.jsx";
 import CalculateProfitForm from "./finance/forms/CalculateProfitForm.jsx";
@@ -36,6 +36,7 @@ import MortgageDetails from "./finance/financials-unit/MortgageDetails.jsx";
 import InsuranceDetails from "./finance/financials-unit/InsuranceDetails.jsx";
 import HoaDetails from "./finance/financials-unit/HoaDetails.jsx";
 import FinancialSummaryMobile from "./finance/financials-summary/FinancialSummaryMobile.jsx";
+import Rents from "./finance/financials-unit/Rents.jsx";
 
 export {
 	InfoBar,
@@ -76,5 +77,5 @@ export {
 	InsuranceDetails,
 	HoaDetails,
 	FinancialSummaryMobile,
-
+	Rents
 }

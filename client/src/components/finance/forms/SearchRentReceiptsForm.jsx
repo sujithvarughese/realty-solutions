@@ -4,14 +4,10 @@ import {useState} from "react";
 import {axiosDB} from "../../../utils/axios.js";
 
 const SearchRentReceiptsForm = ({ tenant, setRentReceipts }) => {
-    const date = new Date()
-    const [year, setYear] = useState(date.toLocaleString('en-us',{ year:'numeric' }))
-    const [month, setMonth] = useState(date.toLocaleString('en-us',{ month:'long' }))
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    const getRentReceipts = async (year) => {
         try {
-            const response = await axiosDB(`/finance/rent/${tenant}/${year}/${month}`)
+            const response = await axiosDB(`/finance/rent/${tenant.id}/${year}`)
             const { rentReceipts } = response.data
             setRentReceipts(rentReceipts)
         } catch (error) {
@@ -22,7 +18,7 @@ const SearchRentReceiptsForm = ({ tenant, setRentReceipts }) => {
     return (
         <div className={classes.container}>
         <Card>
-        <Form onSubmit={handleSubmit}>
+        <Form>
             <div className={classes.form}>
                 <div className={classes.title}>
                     Search Rent Receipts
@@ -33,29 +29,10 @@ const SearchRentReceiptsForm = ({ tenant, setRentReceipts }) => {
                         placeholder="YEAR"
                         type="text"
                         name="year"
-                        value={year}
                         list={years}
-                        onChange={(e)=>setYear(e.target.value)}
+                        onChange={(e)=>getRentReceipts(e.target.value)}
                     ></InputSelect>
                 </div>
-                <div className={classes.month}>
-                    <InputSelect
-                        htmlFor="month"
-                        placeholder="MONTH"
-                        type="text"
-                        name="month"
-                        value={month}
-                        list={months}
-                        onChange={(e)=>setMonth(e.target.value)}
-                    ></InputSelect>
-                </div>
-                <div className={classes.buttons}>
-                    <Button>Get Rent Receipts</Button>
-                </div>
-
-
-
-
             </div>
         </Form>
         </Card>
@@ -64,7 +41,6 @@ const SearchRentReceiptsForm = ({ tenant, setRentReceipts }) => {
     );
 };
 
-const months = ["January","February","March","April","May","June","July",
-    "August","September","October","November","December"];
+
 const years = ["2023", "2022", "2021", "2020"]
 export default SearchRentReceiptsForm;

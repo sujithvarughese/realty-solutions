@@ -3,7 +3,6 @@ import { GlobalProvider } from "./context/GlobalContext.jsx";
 import {
   Error,
   Accounting,
-  AccountingDetails,
   MyPayments,
   Landing,
   Research,
@@ -16,8 +15,6 @@ import {
   unitsLoader,
   FinancialSummary,
   financialSummaryLoader,
-  Rents,
-  rentsLoader,
 } from "./pages";
 
 import {
@@ -46,13 +43,7 @@ const App = () => {
           errorElement: <Error />,
           children: [
             { index: true, element: <FinancialSummary />, loader: financialSummaryLoader },
-            { path: "rents", element: <Rents />, loader: rentsLoader},
-            { path: "details", element: <AccountingDetails />,
-              children: [
-                { path: ":id", element: <UnitFinancials />, loader: unitFinancialsLoader},
-              ]
-            },
-
+            { path: ":id", element: <UnitFinancials />, loader: unitFinancialsLoader},
           ]
         }
       ]

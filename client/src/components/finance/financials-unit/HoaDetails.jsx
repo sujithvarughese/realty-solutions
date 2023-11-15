@@ -1,4 +1,4 @@
-import classes from "./styles/UnitFinancials.module.css";
+import classes from "../../../pages/accounting/styles/UnitFinancials.module.css";
 const HoaDetails = ({ hoa }) => {
     return (
         <div className={classes.table}>

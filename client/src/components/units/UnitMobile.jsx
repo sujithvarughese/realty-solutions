@@ -23,7 +23,7 @@ const UnitMobile = ({ unit }) => {
                         <div className={classes.address}>
                             <div className={classes.addressLine1}>
                                 <NavLink
-                                    to={`../accounting/details/${unit._id}`}
+                                    to={`../accounting/${unit._id}`}
                                     className={classes.link}
                                 >
                                    {unitID} {street}

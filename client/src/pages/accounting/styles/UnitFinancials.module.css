@@ -4,17 +4,16 @@
 .links {
     display: flex;
     justify-content: space-between;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     max-width: 720px;
     margin: 0 auto;
 }
 .link {
-    font-size: 20px;
+    font-size: 18px;
     color: var(--COLOR-LIGHT);
-    padding: 0 0.5rem;
 }
 .active {
-    font-size: 20px;
+    font-size: 18px;
     color: var(--COLOR);
     font-weight: bold;
     padding: 0 0.5rem;

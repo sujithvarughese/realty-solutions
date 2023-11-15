@@ -1,27 +1,29 @@
 import classes from "./styles/UnitFinancials.module.css";
-import { Card } from "../../../UI/index.js";
 import {
 	FinancialsOverview,
 	MortgageDetails,
 	InsuranceDetails,
-	HoaDetails
-} from "../../index.js";
-import { useState } from "react";
-import { axiosDB } from "../../../utils/axios.js";
+	HoaDetails,
+	Rents
+} from "../../components/index.js";
+import {useEffect, useState} from "react";
+import { axiosDB } from "../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
+
 
 const UnitFinancials = () => {
 
+
 	const unitFinancials = useLoaderData()
 	const [finances, setFinances] = useState(unitFinancials)
-
 	const [display, setDisplay] = useState("overview")
 
-
-	const { purchasePrice, rent, fairMarketRent, insurance, mortgage, hoa } = finances
+	const { unit, purchasePrice, rent, fairMarketRent, insurance, mortgage, hoa } = finances
 	// { company, agent, phone, email, payment, coverage } = insurance
 	// { bank, principal, interest, term, paymentsMade, payment } = mortgage
 	// { company, agent, phone, email, payment } = hoa
+
+
 
 	return (
 		<div className={classes.container}>
@@ -51,6 +53,12 @@ const UnitFinancials = () => {
 				>
 					HOA
 				</div>
+				<div
+					className={display === "rents" ? classes.active : classes.link}
+					onClick={()=>setDisplay("rents")}
+				>
+					Rents
+				</div>
 			</div>
 
 
@@ -74,6 +82,9 @@ const UnitFinancials = () => {
 				}
 				{
 					display === "hoa" && <HoaDetails hoa={hoa} />
+				}
+				{
+					display === "rents" && <Rents unit={unit}/>
 				}
 			</div>
 		</div>

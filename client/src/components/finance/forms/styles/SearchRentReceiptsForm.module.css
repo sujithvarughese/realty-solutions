@@ -33,17 +33,3 @@
     }
 }
 
-@media (min-width: 800px) {
-    .form {
-        padding: 1rem 8rem;
-    }
-    .buttons {
-        padding: 0 5rem;
-    }
-}
-
-@media (min-width: 1200px) {
-    .buttons {
-        padding: 0 15rem;
-    }
-}

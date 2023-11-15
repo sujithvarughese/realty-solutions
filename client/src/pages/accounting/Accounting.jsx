@@ -8,21 +8,6 @@ const Accounting = () => {
 	return (
 		<div className={classes.container}>
 
-			<div className={classes.links}>
-				<NavLink
-					to="details"
-					className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
-				>
-					Details
-				</NavLink>
-				<NavLink
-					to="rents"
-					className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
-				>
-					Rents
-				</NavLink>
-			</div>
-
 			<Outlet />
 
 		</div>

@@ -207,11 +207,17 @@ const getAdminInfo = async (req, res) => {
 	}]
 	res.status(StatusCodes.OK).json({ adminInfo })
 }
-
 const getUserInfo = async (req, res) => {
-	const address = await Unit.findOne({ user: req.params.id}).select("unitID street city state zip")
-	const name = await User.findById(req.params.id).select("lastName firstName")
+	let address
+	let name
+	address = await Unit.findOne({ user: req.params.id}).select("unitID street city state zip")
+	name = await User.findById(req.params.id).select("lastName firstName")
+	if (!address || !name) {
+		address = await Unit.findById(req.params.id).select("unitID street city state zip user")
+		name = await User.findById(address.user).select("lastName firstName id")
+	}
 	const userInfo = {
+		id: name.id,
 		lastName: name.lastName,
 		firstName: name.firstName,
 		unitID: address.unitID,

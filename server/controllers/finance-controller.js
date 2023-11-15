@@ -9,7 +9,6 @@ const getYearlyRentReceipts = async (req, res) => {
 			throw new UnauthenticatedError("Error validating user");
 		}
 	}
-
 	const rentReceipts = await RentReceipt.find({ user: req.params.id, year: req.params.year })
 	res.status(StatusCodes.OK).json({ rentReceipts })
 }

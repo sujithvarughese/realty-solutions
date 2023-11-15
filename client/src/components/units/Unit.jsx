@@ -37,7 +37,7 @@ const Unit = ({ unit }) => {
 				<div className={classes.content}>
 
 				<NavLink
-					to={`../accounting/details/${unit._id}`}
+					to={`../accounting/${unit._id}`}
 					className={classes.link}
 				>
 					<img src={image} alt="img" className={classes.image}/>
@@ -53,7 +53,7 @@ const Unit = ({ unit }) => {
 							<div className={classes.addressContainer}>
 								<div className={classes.address}>
 									<NavLink
-										to={`../accounting/details/${unit._id}`}
+										to={`../accounting/${unit._id}`}
 										className={classes.link}
 									>
 										<div className={classes.addressLine1}>
