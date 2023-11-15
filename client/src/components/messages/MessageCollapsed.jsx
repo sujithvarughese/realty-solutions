@@ -9,7 +9,7 @@ const MessageCollapsed = ({ message, setExpandedMessage, markMessageRead, showEx
 	return (
 		// selecting anywhere on collapsed message will open expanded message, and mark as read
 		<div
-			className={classes.message}
+			className={classes.container}
 			onClick={() => {
 				setExpandedMessage(message)
 				markMessageRead(message)

@@ -10,6 +10,11 @@
     flex-direction: column;
     gap: 1.5rem;
 }
+.replyForm {
+    background-color: var(--COLOR-LIGHTER);
+    padding: 0.5rem;
+    border-radius: 20px;
+}
 .currentMessage {
     background-color: var(--COLOR-LIGHT);
     padding: 1rem;
@@ -34,11 +39,8 @@
 }
 
 
-@media (min-width: 450px) {
-    .message {
-        height: 100vh;
-        position: sticky;
-        top: 70px;
-        padding: 1.4rem 2rem;
+@media (min-width: 600px) {
+    .subjectContainer {
+        margin: 1rem 0;
     }
 }

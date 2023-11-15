@@ -48,6 +48,16 @@ const MessageExpanded = ({ message, toggleFlag }) => {
 
 
 			<div className={classes.messages}>
+				{
+					showCreateReply &&
+					<div className={classes.replyForm}>
+						<ReplyMessageForm
+							message={message}
+							closeReply={()=>setShowCreateReply(false)}
+						/>
+					</div>
+				}
+
 				<div className={classes.currentMessage}>
 					<MessageContents
 						lastName={sender.lastName}
@@ -57,8 +67,6 @@ const MessageExpanded = ({ message, toggleFlag }) => {
 						body={body}
 					/>
 				</div>
-
-
 
 				{
 					prevMessageContents &&
@@ -78,13 +86,6 @@ const MessageExpanded = ({ message, toggleFlag }) => {
 
 
 
-			{
-				showCreateReply &&
-				<ReplyMessageForm
-					message={message}
-					closeReply={()=>setShowCreateReply(false)}
-				/>
-			}
 
 
 		</div>

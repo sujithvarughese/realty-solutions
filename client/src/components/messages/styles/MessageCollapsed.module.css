@@ -1,9 +1,8 @@
-.message {
+.container {
     position: relative;
     display: flex;
     justify-content: flex-start;
     gap: 1.5rem;
-
     padding: 1.4rem 0;
 }
 .flagRead {
@@ -36,13 +35,12 @@
 }
 
 @media (min-width: 450px) {
-    .message {
+    .container {
         display: flex;
         gap: 1rem;
-
         padding: 1.4rem .03rem;
     }
-    .message:hover {
+    .container:hover {
         background-color: var(--COLOR-LIGHTER);
     }
     .senderDate {

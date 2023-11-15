@@ -1,9 +1,10 @@
 import classes from "./styles/ReplyMessageForm.module.css";
-import { Button, Form, Input, InputSelect, Modal } from "../../UI";
+import { Button, Form, Card } from "../../UI";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosDB } from "../../utils/axios.js";
+import { TfiClose } from "react-icons/tfi";
 
 const ReplyMessageForm = ({ message, closeReply }) => {
 
@@ -34,38 +35,29 @@ const ReplyMessageForm = ({ message, closeReply }) => {
 	}
 
 	return (
-		<Modal>
-		<Form onSubmit={handleSubmit} title="Reply">
-			<div className={classes.form}>
-				<div>
-					To: {message.sender.lastName}, {message.sender.firstName}
-				</div>
-				<div>
-					Subject: {message.subject}
-				</div>
-				<textarea
-					placeholder="Type reply here..."
-					name="body"
-					value={body}
-					rows="15"
-					onChange={handleChange}
-				></textarea>
-				<div className={classes.prevMessage}>
-					<div>
-						On {date.substring(0, 10)} at {date.substring(11,19)}, {message.sender.firstName} {message.sender.lastName} wrote:
-					</div>
-					<div className={classes.prevMessageBody}>
-						{message.body}
-					</div>
-
-				</div>
-				<div className={classes.buttons}>
-					<Button type="submit">Send</Button>
-					<Button type="button" onClick={closeReply}>Cancel</Button>
-				</div>
+		<div className={classes.container}>
+			<div className={classes.cancel} onClick={closeReply}>
+				< TfiClose />
 			</div>
-		</Form>
-		</Modal>
+			<Card>
+				<Form onSubmit={handleSubmit}>
+					<div className={classes.form}>
+						<textarea
+							placeholder="Type reply here..."
+							name="body"
+							value={body}
+							rows="15"
+							onChange={handleChange}
+						></textarea>
+
+						<div className={classes.button}>
+							<Button type="submit">Send Message</Button>
+						</div>
+					</div>
+				</Form>
+			</Card>
+		</div>
+
 	);
 };
 
