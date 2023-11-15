@@ -27,36 +27,35 @@ const SearchRentReceiptsForm = ({ tenant, setRentReceipts }) => {
                 <div className={classes.title}>
                     Search Rent Receipts
                 </div>
-                <div className={classes.content}>
-                    <div className={classes.year}>
-                        <InputSelect
-                            htmlFor="year"
-                            label="year: "
-                            type="text"
-                            name="year"
-                            value={year}
-                            list={years}
-                            onChange={(e)=>setYear(e.target.value)}
-                        ></InputSelect>
-                    </div>
-                    <div className={classes.month}>
-                        <InputSelect
-                            htmlFor="month"
-                            label="month: "
-                            type="text"
-                            name="month"
-                            value={month}
-                            list={months}
-                            onChange={(e)=>setMonth(e.target.value)}
-                        ></InputSelect>
-                    </div>
-
-                    <Button>
-                        Get Rent Receipts
-                    </Button>
-
-
+                <div className={classes.year}>
+                    <InputSelect
+                        htmlFor="year"
+                        placeholder="YEAR"
+                        type="text"
+                        name="year"
+                        value={year}
+                        list={years}
+                        onChange={(e)=>setYear(e.target.value)}
+                    ></InputSelect>
                 </div>
+                <div className={classes.month}>
+                    <InputSelect
+                        htmlFor="month"
+                        placeholder="MONTH"
+                        type="text"
+                        name="month"
+                        value={month}
+                        list={months}
+                        onChange={(e)=>setMonth(e.target.value)}
+                    ></InputSelect>
+                </div>
+                <div className={classes.buttons}>
+                    <Button>Get Rent Receipts</Button>
+                </div>
+
+
+
+
             </div>
         </Form>
         </Card>

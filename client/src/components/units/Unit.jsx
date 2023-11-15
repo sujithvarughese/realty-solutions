@@ -5,13 +5,13 @@ import {
 	EditUserForm,
 	CreateMessageForm,
 	CreateRentReceiptForm,
-	UnitFinancials,
-	EditUnit
 } from "../";
 import { useState } from "react";
 import { Button, Card } from "../../UI/index.js";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { convertToUSD } from "../../utils/financeCalcs.js";
+import { BiMessageSquareEdit } from "react-icons/bi"
 
 
 const Unit = ({ unit }) => {
@@ -25,7 +25,6 @@ const Unit = ({ unit }) => {
 	const [showEditFinancialsForm, setShowEditFinancialsForm] = useState(false)
 	const [showCreateRentReceipt, setShowCreateRentReceipt] = useState(false)
 	const [showUnitFinancials, setShowUnitFinancials] = useState(false)
-	const [editUnit, setEditUnit] = useState(false)
 
 	const navigate = useNavigate()
 	const navigateToUnitFinancials = () => {
@@ -36,59 +35,85 @@ const Unit = ({ unit }) => {
 		<div className={classes.container}>
 			<Card>
 				<div className={classes.content}>
+
+				<NavLink
+					to={`../accounting/details/${unit._id}`}
+					className={classes.link}
+				>
 					<img src={image} alt="img" className={classes.image}/>
+				</NavLink>
+
+
 
 					<div className={classes.info}>
+						{ showEditUnitForm && <EditUnitForm cancel={()=>setShowEditUnitForm(false)} unit={unit}/> }
+						{ showEditUserForm && <EditUserForm cancel={()=>setShowEditUserForm(false)} user={user}/> }
 						{
-							editUnit ?
-								<EditUnit cancel={()=>setEditUnit(false)} unit={unit}/>
-								:
-								<div className={classes.edit}>
-									<div className={classes.address}>
+							!showEditUnitForm && !showEditUserForm &&
+							<div className={classes.addressContainer}>
+								<div className={classes.address}>
+									<NavLink
+										to={`../accounting/details/${unit._id}`}
+										className={classes.link}
+									>
 										<div className={classes.addressLine1}>
 											<span>{unitID} </span>
 											<span>{street}</span>
 										</div>
-										<div className={classes.addressLine2}>
-											<span>{city}, </span>
-											<span>{state} </span>
-											<span>{zip}</span>
-										</div>
-									</div>
-									<div onClick={()=>setEditUnit(true)}>
-										Edit
+									</NavLink>
+
+
+									<div className={classes.addressLine2}>
+										<span>{city}, </span>
+										<span>{state} </span>
+										<span>{zip}</span>
 									</div>
 								</div>
+								<div
+									className={classes.edit}
+									onClick={()=>setShowEditUnitForm(true)}
+								>
+									[Edit]
+								</div>
+							</div>
 						}
 						{
-							user &&
-							<div className={classes.tenant}>
-								<div className={classes.tenantName}>
-									Tenant: {user.firstName} {user.lastName}
+							user && !showEditUserForm && !showEditUnitForm &&
+							<div className={classes.userContainer}>
+								<div className={classes.tenant}>
+									<div className={classes.tenantName}>
+										Tenant: {user.firstName} {user.lastName}
+									</div>
+									<div className={classes.tenantEmail}>
+										{user.email}
+									</div>
+									<div className={classes.tenantPhone}>
+										{user.phone}
+									</div>
 								</div>
-								<div className={classes.tenantEmail}>
-									{user.email}
-								</div>
-								<div className={classes.tenantPhone}>
-									{user.phone}
+								<div
+									className={classes.editUser}
+									onClick={()=>setShowEditUserForm(true)}
+								>
+									[Edit]
 								</div>
 							</div>
 						}
 					</div>
 
-					<div className={classes.mobileContact}>
-						<div className={classes.button}>
-							<Button>Call</Button>
-						</div>
-						<div className={classes.button}>
-							<Button onClick={() => setShowMessageForm(true)}>Email</Button>
-						</div>
-					</div>
+
 
 					<div className={classes.details}>
 						<div>
 							{bedrooms}-br / {bathrooms}-bath
 						</div>
+						{
+							user &&
+							<div className={classes.rent}>
+								Rent: {convertToUSD(user.rent)}
+							</div>
+						}
+
 					</div>
 
 
@@ -98,50 +123,26 @@ const Unit = ({ unit }) => {
 						<div className={classes.actions}>
 							<div
 								className={classes.link}
-								onClick={() => setShowEditUnitForm(prevState => !prevState)}
-							>
-								{showEditUnitForm ? "Close Edit Unit" : "Edit Unit"}
-							</div>
-							<NavLink
-								to={`../accounting/details/${unit._id}`}
-								className={classes.link}
-							>
-								View Finances
-							</NavLink>
-							<div
-								className={classes.link}
-								onClick={() => setShowEditUserForm(prevState => !prevState)}
-							>
-								{showEditUserForm ? "Close Edit User" : "Edit User"}
-							</div>
-							<div
-								className={classes.link}
 								onClick={() => setShowMessageForm(prevState => !prevState)}
 							>
-								Message Tenant
-							</div>
-							<div
-								className={classes.link}
-								onClick={() => setShowCreateRentReceipt(prevState => !prevState)}
-							>
-								{ showCreateRentReceipt ? "Close Form" : "Send Rent Receipt"}
+								<div className={classes.messageIcon}>
+									<BiMessageSquareEdit />
+								</div>
+
 							</div>
 						</div>
 							:
 						<div className={classes.actions}>
-							<div className={classes.link} onClick={() => setShowEditUnitForm(true)}>Edit Unit</div>
 							<div className={classes.link} onClick={() => setShowCreateUserForm(true)}>Create User</div>
 						</div>
 					}
 				</div>
 				<div className={classes.forms}>
 					{/* forms open when state toggled */}
-					{ showEditUnitForm && <EditUnitForm cancel={()=>setShowEditUnitForm(false)} unit={unit}/>}
-					{ showUnitFinancials && <UnitFinancials close={()=>setShowUnitFinancials(false)} unit={unit._id}/>}
 
 					{ showCreateUserForm && <CreateUserForm cancel={()=>setShowCreateUserForm(false)} unit={unit}/> }
-					{ showEditUserForm && <EditUserForm cancel={()=>setShowEditUserForm(false)} user={user}/> }
 					{ showCreateRentReceipt && <CreateRentReceiptForm cancel={()=>setShowCreateRentReceipt(false)} user={user}/> }
+
 					{ showMessageForm &&
 						<CreateMessageForm
 							cancel={()=>setShowMessageForm(false)}

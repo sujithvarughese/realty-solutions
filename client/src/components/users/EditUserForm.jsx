@@ -24,8 +24,7 @@ const EditUserForm = ({ cancel, user }) => {
 
 	return (
 		<div className={classes.container}>
-		<Card>
-		<Form onSubmit={handleSubmit} title="Edit User">
+		<Form onSubmit={handleSubmit}>
 			<div className={classes.form}>
 				<div className={classes.name}>
 					<Input
@@ -63,31 +62,12 @@ const EditUserForm = ({ cancel, user }) => {
 						onChange={handleChange}
 					></Input>
 				</div>
-				<div className={classes.info}>
-					<Input
-						htmlFor="rent"
-						placeholder="RENT"
-						type="number"
-						name="rent"
-						value={values.rent}
-						onChange={handleChange}
-					></Input>
-					<Input
-						htmlFor="balance"
-						placeholder="BALANCE"
-						type="number"
-						name="balance"
-						value={values.balance}
-						onChange={handleChange}
-					></Input>
-				</div>
 				<div className={classes.buttons}>
 					<Button type="submit">Update User</Button>
 					<Button type="button" onClick={cancel}>Cancel</Button>
 				</div>
 			</div>
 		</Form>
-		</Card>
 		</div>
 	);
 };

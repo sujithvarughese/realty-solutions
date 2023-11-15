@@ -44,9 +44,6 @@ const RentReceipt = ({ month, year, date, amountPaid, balance, user }) => {
 				</div>
 
 				<div className={classes.addressContainer}>
-					<div>
-						Property Address:
-					</div>
 					<div className={classes.address}>
 						<div>
 							{userData?.unitID} {userData?.street}
@@ -71,7 +68,7 @@ const RentReceipt = ({ month, year, date, amountPaid, balance, user }) => {
 
 				<div className={classes.amountContainer}>
 					<div>
-						Amount Paid:
+						Paid:
 					</div>
 					<div>
 						{amountPaid}

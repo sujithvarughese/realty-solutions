@@ -30,14 +30,17 @@ const CreateRentReceiptForm = ({ user, cancel }) => {
 		<Card>
 		<Form onSubmit={handleSubmit}>
 			<div className={classes.form}>
-				<div>
+				<div className={classes.title}>
+					Create Rent Receipt
+				</div>
+				<div className={classes.recipient}>
 					Rent Receipt for: {user.firstName} {user.lastName}
 				</div>
 				<div className={classes.date}>
 					<div className={classes.yearMonth}>
 						<InputSelect
 							htmlFor="year"
-							label="year: "
+							placeholder="YEAR"
 							type="text"
 							name="year"
 							list={years}
@@ -45,7 +48,7 @@ const CreateRentReceiptForm = ({ user, cancel }) => {
 						></InputSelect>
 						<InputSelect
 							htmlFor="month"
-							label="Month: "
+							placeholder="MONTH"
 							type="text"
 							name="month"
 							list={months}
@@ -66,7 +69,7 @@ const CreateRentReceiptForm = ({ user, cancel }) => {
 				<div className={classes.details}>
 					<Input
 						htmlFor="amountPaid"
-						label="Amount Paid: "
+						label="Amount: "
 						type="number"
 						name="amountPaid"
 						value={values.amountPaid}

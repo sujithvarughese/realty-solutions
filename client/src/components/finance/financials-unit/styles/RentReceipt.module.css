@@ -2,8 +2,8 @@
     background-color: white;
     color: black;
     border: black 1px solid;
-    padding: 2rem;
-    margin: 2rem;
+    padding: 1rem;
+    margin: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -17,20 +17,19 @@
     display: flex;
     flex-direction: column;
 }
-
 .title {
-    font-size: 42px;
-    font-weight: bolder;
+    font-size: 32px;
+    font-weight: bold;
     text-align: center;
 }
 .dateContainer {
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
     align-items: center;
 }
 .nameContainer {
     display: flex;
-    gap: 2rem;
+    justify-content: space-between;
 }
 .name {
     text-align: center;
@@ -40,15 +39,16 @@
 }
 .addressContainer {
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
 }
 .address {
-    display: flex;
-    flex-direction: column;
+    font-size: 16px;
+    margin: auto;
 }
 .monthYear {
+    font-size: 16px;
     display: flex;
-    gap: 3rem;
+    justify-content: space-between;
 }
 .amountContainer {
     font-size: 24px;
@@ -73,23 +73,35 @@
     display: flex;
 }
 
-@media (min-width: 450px) {
+@media (min-width: 600px) {
     .rentReceipt {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        font-size: 22px;
-        gap: 3rem;
-        padding: 3rem;
+
     }
-    .col1 {
-        gap: 3rem;
+    .dateContainer {
+        font-size: 28px;
     }
-    .amountContainer {
-        font-size: 36px;
-    }
-    .balanceContainer {
-        font-size: 36px;
+    .nameContainer {
+        font-size: 28px;
     }
 
+    .address {
+        font-size: 24px;
+        margin: auto;
+        line-height: 1.3;
+    }
+    .monthYear {
+        font-size: 22px;
+        justify-content: flex-start;
+    }
+    .amountContainer {
+        font-size: 32px;
+        border: 4px solid black;
+        padding: 1rem 2rem;
+    }
+    .balanceContainer {
+        font-size: 32px;
+        border: 4px solid black;
+        padding: 1rem 2rem;
+    }
 
 }

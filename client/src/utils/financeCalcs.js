@@ -45,4 +45,4 @@ const totalProfit = (data, term) => totalRent(data, term) - totalMortgage(data, 
 
 
 
-export { calculatePayoff, calculateMonthlyPayment, calculateProfit, totalMortgage, totalPropertyTax, totalInsurance, totalHoa, totalRent, totalProfit }
+export { convertToUSD, calculatePayoff, calculateMonthlyPayment, calculateProfit, totalMortgage, totalPropertyTax, totalInsurance, totalHoa, totalRent, totalProfit }

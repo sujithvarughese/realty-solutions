@@ -61,7 +61,7 @@ const Rents = () => {
 
 
 			{
-				currentLink === "search" &&
+				currentLink === "search" && userData &&
 				<div className={classes.search}>
 					<SearchRentReceiptsForm setRentReceipts={setRentReceipts} tenant={tenant}/>
 					<div className={classes.results}>
@@ -80,7 +80,8 @@ const Rents = () => {
 				currentLink === "create" &&
 				<div className={classes.create}>
 					<CreateRentReceiptForm
-						user={{_id: tenant, lastName: userInfo.lastName, firstName: userInfo.firstName}}
+						user={{_id: tenant, lastName: userData.lastName, firstName: userData.firstName}}
+						cancel={()=>{}}
 					/>
 				</div>
 			}
