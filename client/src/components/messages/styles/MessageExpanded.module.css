@@ -1,0 +1,46 @@
+.message {
+    height: 100%;
+    padding: .8rem .3rem;
+}
+.mobileCloseMessage {
+
+}
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.replyForm {
+    background-color: var(--COLOR-LIGHTER);
+    padding: 0.5rem;
+    border-radius: 20px;
+}
+.currentMessage {
+    background-color: var(--COLOR-LIGHT);
+    padding: 1rem;
+    border-radius: 20px;
+}
+.previousMessage {
+    padding: 2rem 1rem;
+    background-color: var(--COLOR-LIGHTER);
+    border-radius: 20px;
+}
+
+.senderDate {
+    display: flex;
+    justify-content: space-between;
+}
+.subjectContainer {
+    margin-bottom: 1rem;
+}
+.subject {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+@media (min-width: 600px) {
+    .subjectContainer {
+        margin: 1rem 0;
+    }
+}

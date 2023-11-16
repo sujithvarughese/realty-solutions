@@ -1,0 +1,34 @@
+.infoBar {
+    display: flex;
+    position: sticky;
+    top: 0;
+    background: var(--COLOR-DARKER);
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 4rem;
+    padding: 1px 20px;
+    z-index: 20;
+    text-align: center;
+    font-family: "pastiche-brush", sans-serif;
+    border-bottom: var(--COLOR-LIGHT) 2px solid;
+}
+
+.title {
+    color: var(--COLOR-ALT);
+    font-weight: bold;
+}
+
+.titleRedirect {
+    color: var(--COLOR-ALT);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.link {
+    color: var(--COLOR-LIGHT);
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: bold;
+}

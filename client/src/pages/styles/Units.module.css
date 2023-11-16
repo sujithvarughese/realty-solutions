@@ -1,0 +1,49 @@
+.desktop {
+    display: none;
+}
+.container {
+    margin: auto;
+}
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 1rem;
+}
+.search {
+    width: 70%;
+}
+.create {
+    cursor: pointer;
+    color: var(--COLOR-DARK);
+    text-decoration: none;
+}
+.create:hover {
+    color: var(--COLOR-ALT);
+    cursor: pointer;
+}
+
+
+@media (min-width: 600px) {
+    .desktop {
+        display: block;
+    }
+    .mobile {
+        display: none;
+    }
+    .options {
+        padding:  3rem;
+    }
+}
+@media (min-width: 800px) {
+    .options {
+        padding:  3rem;
+    }
+}
+@media (min-width: 1200px) {
+    .options {
+        padding:  3rem;
+    }
+}
+

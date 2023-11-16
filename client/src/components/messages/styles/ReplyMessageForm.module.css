@@ -1,0 +1,22 @@
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.cancel {
+    display: flex;
+    justify-content: end;
+    padding: 0.5rem;
+}
+.button {
+    width: 160px;
+    margin: 0 auto;
+}
+
+@media (min-width: 1000px) {
+    .button {
+        margin: 0;
+        align-self: end;
+    }
+}

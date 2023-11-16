@@ -1,0 +1,35 @@
+.container {
+
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    gap: 1rem;
+    width: 80vw;
+}
+.buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+@media (min-width: 600px) {
+    .form {
+        width: 60vw;
+    }
+}
+
+@media (min-width: 800px) {
+    .form {
+        width: 40vw;
+    }
+    .buttons {
+        padding: 0 3rem;
+    }
+}
+@media (min-width: 1200px) {
+    .buttons {
+        padding: 0 6rem;
+    }
+}

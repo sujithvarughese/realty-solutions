@@ -1,0 +1,44 @@
+{/* desktop display */}
+.container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.content {
+    position: relative;
+    background-color: var(--COLOR-DARK);
+    align-items: center;
+    padding: 1rem 2rem;
+    display: flex;
+    gap: 5rem;
+}
+
+.logo {
+    color: var(--COLOR-ALT);
+    font-size: 24px;
+}
+.links {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 18px;
+
+}
+.link {
+    color: var(--COLOR-LIGHT);
+    text-decoration: none;
+}
+.link:hover {
+    color: var(--COLOR-ALT);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+.active {
+    color: var(--COLOR-LIGHTER);
+}
+.logout {
+    position: absolute;
+    right: 4rem;
+}
+

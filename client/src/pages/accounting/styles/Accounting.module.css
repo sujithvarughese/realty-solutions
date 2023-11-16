@@ -1,0 +1,36 @@
+.container {
+    padding: 1rem;
+}
+
+.links {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem 0 2rem 0;
+}
+.link {
+    font-size: 28px;
+    color: var(--COLOR-LIGHT);
+    text-align: center;
+    padding: 0 0.5rem;
+    text-decoration: none;
+}
+.active {
+    color: var(--COLOR);
+}
+.link:hover {
+    color: var(--COLOR-ALT);
+    cursor: pointer;
+}
+
+@media (min-width: 480px) {
+    .links {
+        display: flex;
+        gap: 0.5rem;
+    }
+    .link {
+        font-size: 36px;
+    }
+
+}

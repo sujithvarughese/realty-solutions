@@ -1,0 +1,53 @@
+import classes from "../../../pages/accounting/styles/FinancialSummary.module.css";
+import {IoRemoveCircle} from "react-icons/io5";
+import { calculateMonthlyPayment} from "../../../utils/financeCalcs.js";
+import {NavLink} from "react-router-dom";
+import { convertToUSD } from "../../../utils/financeCalcs.js";
+
+const FinancialSummaryValues = ({ unitFinance, selectedTerm, removeUnit }) => {
+
+    const { unitID, financeID, houseNumber, street, apartmentNumber, city, state, zip, tenant, user } = unitFinance
+    const { principal, interest, term } = unitFinance.mortgage
+    return (
+        <tr className={classes.tr}>
+            <td>
+                <div className={classes.addressCol}>
+                    <div
+                        className={classes.remove}
+                        onClick={()=>removeUnit(unitFinance.financeID)}
+                    >
+                        <IoRemoveCircle />
+                    </div>
+
+                    <NavLink
+                        to={{ pathname: `../accounting/${unitID}`}}
+                        state={{ houseNumber, street, apartmentNumber, city, state, zip, tenant, user }}
+                        className={classes.link}
+                    >
+                        {houseNumber} {street} {apartmentNumber}
+                    </NavLink>
+
+                </div>
+
+
+            </td>
+            <td>
+                {convertToUSD((calculateMonthlyPayment(principal, interest, term)) * selectedTerm)}
+            </td>
+            <td>
+                {convertToUSD(unitFinance.propertyTax * selectedTerm)}
+            </td>
+            <td>
+                {convertToUSD(unitFinance.insurance * selectedTerm)}
+            </td>
+            <td>
+                {convertToUSD(unitFinance.hoa * selectedTerm)}
+            </td>
+            <td>
+                {convertToUSD(unitFinance.rent * selectedTerm)}
+            </td>
+        </tr>
+    );
+};
+
+export default FinancialSummaryValues;
