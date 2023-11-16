@@ -3,27 +3,39 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError } from "../errors/index.js";
 import Finance from "../models/Finance.js";
 
+// user
 const getMyUnit = async (req, res) => {
+	// find unit details based on data stored in req.user from login
 	const myUnit = await Unit.findOne({ user: req.user.userID })
-	res.status(StatusCodes.OK).json({ myUnit })
+	res.status(StatusCodes.OK)
+		.json({
+			msg: "Unit successfully retrieved",
+			myUnit: myUnit
+		})
 }
-// get all units, and populate each with tenant information
+// admin only
 const getUnits = async (req, res) => {
 	const units = await Unit.find()
-	res.status(StatusCodes.OK).json({ units })
+	res.status(StatusCodes.OK)
+		.json({
+			msg: "Units successfully retrieved",
+			units: units
+		})
 }
 
 const createUnit = async (req, res) => {
+	// { ...unit } = req.body
 	// check if unit already exists
 	const duplicate = await Unit.findOne({
-		unitID: req.body.unitID,
-		address: req.body.address
+		houseNumber: req.body.houseNumber,
+		address: req.body.address,
+		apartmentNumber: req.body.apartmentNumber
 	})
 	if (duplicate) {
 		throw new BadRequestError("MyUnit already exists!")
 	}
 
-	// create new unit using UnitDetails model method
+	// create new unit
 	const newUnit = await Unit.create(req.body)
 
 	// create empty Finance object for unit
@@ -32,27 +44,7 @@ const createUnit = async (req, res) => {
 		purchasePrice: "",
 		rent: "",
 		fairMarketRent: "",
-		propertyTax: "",
-		insurance: {
-			company: {
-				type: String
-			},
-			agent: {
-				type: String
-			},
-			phone: {
-				type: String
-			},
-			email: {
-				type: String
-			},
-			payment: {
-				type: Number
-			},
-			coverage: {
-				type: String
-			}
-		},
+		annualPropertyTax: "",
 		mortgage: {
 			bank: {
 				type: String
@@ -68,8 +60,42 @@ const createUnit = async (req, res) => {
 			},
 			balance: {
 				type: Number
+			}
+		},
+		insurance: {
+			company: {
+				type: String
 			},
-			monthlyPayment: {
+			agent: {
+				type: String
+			},
+			phone: {
+				type: String
+			},
+			email: {
+				type: String
+			},
+			annualPremium: {
+				type: Number
+			},
+			coverage: {
+				type: String
+			}
+		},
+		hoa: {
+			company: {
+				type: String
+			},
+			agent: {
+				type: String
+			},
+			phone: {
+				type: String
+			},
+			email: {
+				type: String
+			},
+			annualFee: {
 				type: Number
 			}
 		}
@@ -80,8 +106,8 @@ const createUnit = async (req, res) => {
 	const unit = await Unit.findByIdAndUpdate(newUnit, { finances: newFinance })
 	// send response JSON to include new unit
 	res.status(StatusCodes.CREATED).json({
-		unit: unit,
-		msg: 'Create Unit Success'
+		msg: "Unit successfully Created",
+		unit: unit
 	})
 }
 

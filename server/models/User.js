@@ -37,14 +37,6 @@ const UserSchema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "Unit"
 	},
-	inbox: [{
-		type: mongoose.Types.ObjectId,
-		ref: "Message"
-	}],
-	outbox: [{
-		type: mongoose.Types.ObjectId,
-		ref: "Message"
-	}],
 	phone: {
 		type: String,
 		trim: true,

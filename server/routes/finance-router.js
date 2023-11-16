@@ -1,19 +1,18 @@
 import express from "express"
 const router = express.Router();
 import {
-    getYearlyRentReceipts,
-    getMonthlyRentReceipts,
+    getRentReceipts,
     createRentReceipt,
     createUnitFinances,
     getUnitFinances,
-    getAllFinances
+    getFinancialOverview,
+    updateUnitFinances
 } from "../controllers/finance-controller.js";
 
-router.route("/rent/:id/:year").get(getYearlyRentReceipts)
-router.route("/rent/:id/:year/:month").get(getMonthlyRentReceipts)
+router.route("/rent/:unit/:year").get(getRentReceipts)
 router.route("/rent").post(createRentReceipt)
 router.route("/:unit").get(getUnitFinances)
-router.route("/").get(getAllFinances).post(createUnitFinances)
+router.route("/").get(getFinancialOverview).post(createUnitFinances).patch(updateUnitFinances)
 
 
 

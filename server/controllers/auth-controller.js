@@ -22,7 +22,6 @@ const createUser = async (req, res) => {
 		// temporary password which user can change once admin gives account info
 		password: `${req.body.lastName}-${req.body.firstName}`,
 		unit: req.body.unit,
-		messages: [],
 		phone: req.body.phone,
 		rent: req.body.rent,
 		balance: req.body.balance,
@@ -59,7 +58,6 @@ const createAdmin = async (req, res) => {
 		firstName: "property",
 		email: req.body.email,
 		password: req.body.newPassword,
-		messages: [],
 		isAdmin: true
 	}
 	// create new admin in mongodb
@@ -86,7 +84,6 @@ const register = async (req, res) => {
 			firstName: "property",
 			email: req.body.email,
 			password: req.body.password,
-			messages: [],
 			isAdmin: true
 		}
 		// create new admin in mongodb
@@ -159,9 +156,6 @@ const login = async (req, res) => {
 		{
 			userID: user._id,
 			isAdmin: user.isAdmin,
-			lastName: user.lastName,
-			firstName: user.firstName,
-			balance: user.balance
 		};
 
 	// create jwt with jwt.sign
@@ -219,8 +213,9 @@ const getUserInfo = async (req, res) => {
 		id: name.id,
 		lastName: name.lastName,
 		firstName: name.firstName,
-		unitID: address.unitID,
+		houseNumber: address.houseNumber,
 		street: address.street,
+		apartmentNumber: address.apartmentNumber,
 		city: address.city,
 		state: address.state,
 		zip: address.zip

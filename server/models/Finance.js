@@ -14,7 +14,7 @@ const FinanceSchema = new mongoose.Schema({
 	fairMarketRent: {
 		type: Number
 	},
-	propertyTax: {
+	annualPropertyTax: {
 		type: Number
 	},
 	insurance: {
@@ -30,7 +30,7 @@ const FinanceSchema = new mongoose.Schema({
 		email: {
 			type: String
 		},
-		payment: {
+		annualPremium: {
 			type: Number
 		},
 		coverage: {
@@ -53,9 +53,6 @@ const FinanceSchema = new mongoose.Schema({
 		paymentsMade: {
 			type: Number
 		},
-		payment: {
-			type: Number
-		},
 	},
 	hoa: {
 		company: {
@@ -70,7 +67,7 @@ const FinanceSchema = new mongoose.Schema({
 		email: {
 			type: String
 		},
-		payment: {
+		annualFee: {
 			type: Number
 		}
 	},

@@ -6,15 +6,6 @@ const RentReceiptSchema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: 'User'
 	},
-	year: {
-		type: String,
-		default: "2023",
-	},
-	month: {
-		type: String,
-		default: "January",
-		immutable: true
-	},
 	date: {
 		type: String,
 	},

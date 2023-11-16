@@ -13,39 +13,43 @@ const createMessage = async (req, res) => {
 		throw new BadRequestError('please provide body')
 	}
 	// create new message using Message model
-	const newMessage = await Message.create(req.body)
-	// get recipient's inbox to add new message to it
-	const recipientInbox = await User.findById(req.body.recipient).select("inbox")
-	// get senders outbox
-	const senderOutbox = await User.findById(req.body.sender).select("outbox")
-	// push new message into appropriate array
-	recipientInbox.inbox.push(newMessage)
-	senderOutbox.outbox.push(newMessage)
+	const message = await Message.create(req.body)
 
-	// update both users with updated array containing the new message
-	await User.findByIdAndUpdate(req.body.recipient, { inbox: recipientInbox.inbox })
-	await User.findByIdAndUpdate(req.body.sender, { outbox: senderOutbox.outbox })
-	// send response JSON to include appliance
-	res.status(StatusCodes.CREATED).json({ newMessage })
+	res.status(StatusCodes.CREATED)
+		.json({
+			msg: "New Message successfully sent",
+			message: message
+		})
 }
 const getInbox = async (req,res) => {
+	// fetch using req.user.userID
 	const inbox = await Message
 		.find({ recipient: req.user.userID })
 		.sort({ date: -1 })
 		.populate({path: "sender recipient", select: "lastName firstName _id"})
-	res.status(StatusCodes.OK).json({ inbox })
+	res.status(StatusCodes.OK)
+		.json({
+			msg: "Inbox successfully retrieved",
+			inbox: inbox
+		})
 }
 
 const getOutbox = async (req, res) => {
+	// fetch using req.user.userID
 	const outbox = await Message
 		.find({ sender: req.user.userID })
 		.sort({ date: -1 })
 		.populate({path: "sender recipient", select: "lastName firstName _id"})
-	res.status(StatusCodes.OK).json({ outbox })
+	res.status(StatusCodes.OK)
+		.json({
+			msg: "Outbox successfully retrieved",
+			outbox: outbox
+		})
 
 }
 
 const getAllMessages = async (req, res) => {
+	// fetch using req.user.userID
 	const inbox = await Message
 		.find({ recipient: req.user.userID })
 		.sort({ date: -1 })
@@ -55,27 +59,37 @@ const getAllMessages = async (req, res) => {
 		.sort({ date: -1 })
 		.populate({path: "sender recipient", select: "lastName firstName _id"})
 	const messages = { inbox, outbox }
-	res.status(StatusCodes.OK).json({ messages })
+	res.status(StatusCodes.OK)
+		.json({
+			msg: "Messages successfully retrieved",
+			messages: messages
+		})
 }
 
 const markMessageRead = async (req, res) => {
 	await Message.findByIdAndUpdate(req.body, { read: true })
-	res.status(StatusCodes.OK).json({ msg: 'message read status update success'})
+	res.status(StatusCodes.OK)
+		.json({ msg: 'message read status update success'})
 }
 
 const toggleFlag = async (req,res) => {
 	//  { message } = req.body
 	const message = await Message.findById(req.body)
 	await Message.findByIdAndUpdate(req.body, { flag: !message.flag})
-	res.status(StatusCodes.OK).json({ msg: 'message flag update success'})
+	res.status(StatusCodes.OK)
+		.json({ msg: 'message flag update success'})
 }
 
 const getMessage = async (req, res) => {
-	// { id } = req.params
+	// { message } = req.params
 	const message = await Message
-		.findById(req.params.id)
+		.findById(req.params.message)
 		.populate({path: "sender recipient", select: "lastName firstName _id"})
-	res.status(StatusCodes.OK).json({ message })
+	res.status(StatusCodes.OK)
+		.json({
+			msg: "Message successfully retrieved",
+			message: message
+		})
 }
 
 const deleteMessage = async (req, res) => {
@@ -93,5 +107,4 @@ export {
 	getInbox,
 	getOutbox,
 	getMessage
-
 }

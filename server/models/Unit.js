@@ -1,13 +1,16 @@
 import mongoose from 'mongoose'
 
 const UnitSchema = new mongoose.Schema( {
-	unitID: {
+	houseNumber: {
 		type: String,
-		required: [true, "Please provide unit"]
+		required: [true, "Please provide house number"]
 	},
 	street: {
 		type: String,
 		required: [true, "Please provide street"]
+	},
+	apartment: {
+		type: String,
 	},
 	city: {
 		type: String,
@@ -32,6 +35,12 @@ const UnitSchema = new mongoose.Schema( {
 		type: mongoose.Types.ObjectId,
 		ref: "Finance"
 	},
+	bedrooms : {
+		type: Number,
+	},
+	bathrooms: {
+		type: Number,
+	},
 	tenant: {
 		lastName: {
 			type: String
@@ -48,12 +57,6 @@ const UnitSchema = new mongoose.Schema( {
 		rent: {
 			type: Number
 		},
-	},
-	bedrooms : {
-		type: Number,
-	},
-	bathrooms: {
-		type: Number,
 	},
 	createdAt: {
 		type: Date,

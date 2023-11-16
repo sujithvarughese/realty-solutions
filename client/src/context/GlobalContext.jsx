@@ -44,6 +44,7 @@ const GlobalProvider = ({ children }) => {
 		try {
 			const response = await axiosDB.post("/auth/login", credentials)
 			const { user } = response.data
+			// const { userID, isAdmin } = user
 			dispatch({
 				type: LOGIN_USER,
 				payload: { user }

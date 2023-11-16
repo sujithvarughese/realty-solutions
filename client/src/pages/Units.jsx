@@ -5,7 +5,6 @@ import { axiosDB } from "../utils/axios.js";
 import { Unit, SearchUnits, CreateUnitForm, UnitMobile } from "../components";
 import {useGlobalContext} from "../context/GlobalContext.jsx";
 
-
 const Units = () => {
 	// units = [{ unit }, {},...]
 	const units = useLoaderData()
