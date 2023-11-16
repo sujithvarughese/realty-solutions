@@ -1,8 +1,9 @@
 import classes from "../../../pages/accounting/styles/UnitFinancials.module.css";
 import { CalculateProfitForm } from "../../"
 import {useState} from "react";
+import { convertToUSD } from "../../../utils/financeCalcs.js";
 
-const FinancialsOverview = ({ purchasePrice, rent, fairMarketRent, propertyTax, homeInsurance, hoa }) => {
+const FinancialsOverview = ({ purchasePrice, rent, fairMarketRent, annualPropertyTax, annualInsurancePremium, annualHoa }) => {
 
     const [profit, setProfit] = useState("")
 
@@ -31,9 +32,9 @@ const FinancialsOverview = ({ purchasePrice, rent, fairMarketRent, propertyTax, 
 
             <div className={classes.calcProfit}>
                 <CalculateProfitForm
-                    propertyTax={propertyTax}
-                    homeInsurance={homeInsurance}
-                    hoa={hoa}
+                    annualPropertyTax={annualPropertyTax}
+                    annualInsurancePremium={annualInsurancePremium}
+                    annualHoa={annualHoa}
                     rent={rent}
                     setProfit={setProfit}
                 />
@@ -49,10 +50,5 @@ const FinancialsOverview = ({ purchasePrice, rent, fairMarketRent, propertyTax, 
         </div>
     );
 };
-const convertToUSD = (number) => {
-    return  number.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    })
-}
+
 export default FinancialsOverview;

@@ -14,27 +14,33 @@ const FinancialSummary = () => {
 	const { units } = useGlobalContext()
 
 	// allow users to view summary per month or year
-	const [term, setTerm] = useState(1)
+	const [selectedTerm, setSelectedTerm] = useState(1)
 
 	// filter array we receive in loader to include address from {units} and only relevant data
 	const [unitFinances, setUnitFinances] = useState(finances.map(finance => {
-		const index = units?.findIndex(unit => unit._id === finance.unit)
+		const unit = units.find(unitInArray => unitInArray._id === finance.unit)
 		return {
-			unit: finance.unit,
-			id: finance._id,
+			unitID: finance.unit,
+			financeID: finance._id,
 			mortgage: finance.mortgage,
-			propertyTax: finance.propertyTax/12,
-			insurance: finance.insurance.payment/12,
-			hoa: finance.hoa.payment,
+			propertyTax: finance.annualPropertyTax/12,
+			insurance: finance.insurance.annualPremium/12,
+			hoa: finance.hoa.annualFee/12,
 			rent: finance.rent,
-			address: `${units[index].unitID} ${units[index].street}`
+			houseNumber: unit.houseNumber,
+			street: unit.street,
+			apartmentNumber: unit.apartmentNumber,
+			city: unit.city,
+			state: unit.state,
+			zip: unit.zip,
+			tenant: unit.tenant,
+			user: unit.user
 		}
 	}))
 
 	// user can remove unit using state to see potential changes in finances
-	const removeUnit = (id) => {
-		console.log(id)
-		const updatedList = unitFinances.filter(unitFinance => unitFinance.id !== id)
+	const removeUnit = (unitID) => {
+		const updatedList = unitFinances.filter(unitFinance => unitFinance.financeID !== unitID)
 		setUnitFinances(updatedList)
 	}
 
@@ -52,14 +58,14 @@ const FinancialSummary = () => {
 					type="text"
 					name="term"
 					list={[{text: "Monthly", value: 1}, {text: "Yearly", value: 12}]}
-					onChange={(e)=>setTerm(e.target.value)}
+					onChange={(e)=>setSelectedTerm(e.target.value)}
 				>
 
 				</InputSelect>
 			</div>
 
 			<div className={classes.mobile}>
-				<FinancialSummaryMobile units={units} unitFinances={unitFinances} term={term} removeUnit={removeUnit}/>
+				<FinancialSummaryMobile unitFinances={unitFinances} selectedTerm={selectedTerm} removeUnit={removeUnit}/>
 			</div>
 
 			<table className={classes.largeScreen}>
@@ -78,18 +84,18 @@ const FinancialSummary = () => {
 				{
 					unitFinances.map(unitFinance =>
 						<FinancialSummaryValues
-							key={unitFinance.id}
+							key={unitFinance.financeID}
 							unitFinance={unitFinance}
-							term={term}
+							selectedTerm={selectedTerm}
 							removeUnit={removeUnit}
 						/>)
 				}
-				<FinancialSummaryTotals unitFinances={unitFinances} term={term}/>
+				<FinancialSummaryTotals unitFinances={unitFinances} selectedTerm={selectedTerm}/>
 
 				</tbody>
 			</table>
 			<div className={classes.totalProfit}>
-				Total Profit: {convertToUSD(totalProfit(unitFinances, term))}
+				Total Profit: {convertToUSD(totalProfit(unitFinances, selectedTerm))}
 			</div>
 		</div>
 	);

@@ -5,14 +5,14 @@ import {
     createRentReceipt,
     createUnitFinances,
     getUnitFinances,
-    getFinancialOverview,
+    getFinancialSummary,
     updateUnitFinances
 } from "../controllers/finance-controller.js";
 
 router.route("/rent/:unit/:year").get(getRentReceipts)
 router.route("/rent").post(createRentReceipt)
 router.route("/:unit").get(getUnitFinances)
-router.route("/").get(getFinancialOverview).post(createUnitFinances).patch(updateUnitFinances)
+router.route("/").get(getFinancialSummary).post(createUnitFinances).patch(updateUnitFinances)
 
 
 

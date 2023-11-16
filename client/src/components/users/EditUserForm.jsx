@@ -4,9 +4,9 @@ import { Button, Form, Input, Card } from "../../UI/index.js";
 import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
 
-const EditUserForm = ({ cancel, user }) => {
+const EditUserForm = ({ cancel, userID, tenant }) => {
 	// pre-fill fields with current user values
-	const [values, setValues] = useState(user)
+	const [values, setValues] = useState(tenant)
 
 	const handleChange = (e) => {
 		setValues({ ...values, [e.target.name]: e.target.value });
@@ -15,7 +15,7 @@ const EditUserForm = ({ cancel, user }) => {
 	const navigate = useNavigate()
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-		await editUser(values)
+		await editUser({...values, _id: userID})
 		// navigate back to units page to render changes
 		navigate("/units");
 		// close form

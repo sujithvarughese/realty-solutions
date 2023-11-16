@@ -58,13 +58,13 @@ const getUnitFinances = async (req, res) => {
 		});
 }
 
-const getFinancialOverview = async (req, res) => {
-	const finance = await Finance.find()
+const getFinancialSummary = async (req, res) => {
+	const finances = await Finance.find()
 	res.status(StatusCodes.OK)
 		.json({
 			msg: "Financial overview successfully retrieved",
-			finance: finance
+			finances: finances
 		});
 }
 
-export { getRentReceipts,  createRentReceipt, createUnitFinances, updateUnitFinances, getUnitFinances, getFinancialOverview }
+export { getRentReceipts,  createRentReceipt, createUnitFinances, updateUnitFinances, getUnitFinances, getFinancialSummary }

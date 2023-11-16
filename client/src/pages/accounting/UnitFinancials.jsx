@@ -16,13 +16,13 @@ const UnitFinancials = () => {
 	const location = useLocation()
 	const { state } = location
 
-	const unitFinancials = useLoaderData()
+	const unitFinance = useLoaderData()
 	const [display, setDisplay] = useState("overview")
 
-	const { unit, purchasePrice, rent, propertyTax, fairMarketRent, insurance, mortgage, hoa } = unitFinancials
-	// { company, agent, phone, email, payment, coverage } = insurance
-	// { bank, principal, interest, term, paymentsMade, payment } = mortgage
-	// { company, agent, phone, email, payment } = hoa
+	const { purchasePrice, rent, annualPropertyTax, fairMarketRent, insurance, mortgage, hoa } = unitFinance
+	// { company, agent, phone, email, annualPremium, coverage } = insurance
+	// { bank, principal, interest, term, paymentsMade } = mortgage
+	// { company, agent, phone, email, annualFee } = hoa
 
 
 	return (
@@ -62,7 +62,7 @@ const UnitFinancials = () => {
 			</div>
 
 			<div className={classes.unit}>
-				{state.unitID} {state.street}
+				{state.houseNumber} {state.street} {state.apartmentNumber}
 			</div>
 
 			<div className={classes.forms}>
@@ -72,9 +72,9 @@ const UnitFinancials = () => {
 						purchasePrice={purchasePrice}
 						rent={rent}
 						fairMarketRent={fairMarketRent}
-						propertyTax={propertyTax}
-						homeInsurance={insurance.payment}
-						hoa={hoa.payment}
+						annualPropertyTax={annualPropertyTax}
+						annualInsurancePremium={insurance.annualPremium}
+						annualHoa={hoa.annualFee}
 					/>
 				}
 				{
@@ -89,14 +89,15 @@ const UnitFinancials = () => {
 				{
 					display === "rents" &&
 					<Rents
-						unitID={state.unitID}
+						houseNumber={state.houseNumber}
 						street={state.street}
+						apartmentNumber={state.apartmentNumber}
 						city={state.city}
 						state={state.state}
 						zip={state.zip}
 						lastName={state.tenant.lastName}
 						firstName={state.tenant.firstName}
-						user={state.user}
+						userID={state.user}
 					/>
 				}
 			</div>
@@ -107,8 +108,8 @@ const UnitFinancials = () => {
 export const unitFinancialsLoader = async ({ params }) => {
 	try {
 		const response = await axiosDB(`/finance/${params.id}`)
-		const { unitFinances } = response.data
-		return unitFinances
+		const { unitFinance } = response.data
+		return unitFinance
 	} catch (error) {
 		console.log(error);
 	}

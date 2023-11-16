@@ -2,12 +2,12 @@ import classes from "./styles/CalculateProfitForm.module.css";
 import {Button, Form, Input, InputSelect} from "../../../UI/index.js";
 import {useState} from "react";
 import {calculateProfit} from "../../../utils/financeCalcs.js";
-const CalculateProfitForm = ({ propertyTax, homeInsurance, hoa, rent, setProfit }) => {
+const CalculateProfitForm = ({ annualPropertyTax, annualInsurancePremium, annualHoa, rent, setProfit }) => {
 
     const [values, setValues] = useState({
-        annualPropertyTax: propertyTax,
-        annualHomeInsurance: homeInsurance,
-        monthlyHoa: hoa,
+        annualPropertyTax: annualPropertyTax,
+        annualInsurancePremium: annualInsurancePremium,
+        annualHoa: annualHoa,
         monthlyRent: rent,
         term: 1
     })
@@ -17,7 +17,7 @@ const CalculateProfitForm = ({ propertyTax, homeInsurance, hoa, rent, setProfit 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(values)
-        const profit = calculateProfit(values.annualPropertyTax, values.annualHomeInsurance, values.monthlyHoa, values.monthlyRent, values.term)
+        const profit = calculateProfit(values.annualPropertyTax, values.annualInsurancePremium, values.annualHoa, values.monthlyRent, values.term)
         setProfit(profit)
     }
     return (
@@ -36,22 +36,22 @@ const CalculateProfitForm = ({ propertyTax, homeInsurance, hoa, rent, setProfit 
                         />
                     </div>
                     <div className={classes.row}>
-                        <label htmlFor="annualHomeInsurance">Annual Insurance</label>
+                        <label htmlFor="annualInsurancePremium">Annual Insurance</label>
                         <input
                             className={classes.input}
                             type="number"
-                            name="annualHomeInsurance"
-                            value={values.annualHomeInsurance}
+                            name="annualInsurancePremium"
+                            value={values.annualInsurancePremium}
                             onChange={handleChange}
                         />
                     </div>
                     <div className={classes.row}>
-                        <label htmlFor="monthlyHoa">Monthly Association Fee</label>
+                        <label htmlFor="annualHoa">Monthly Association Fee</label>
                         <input
                             className={classes.input}
                             type="number"
-                            name="monthlyHoa"
-                            value={values.monthlyHoa}
+                            name="annualHoa"
+                            value={values.annualHoa}
                             onChange={handleChange}
                         />
                     </div>
@@ -87,38 +87,5 @@ const CalculateProfitForm = ({ propertyTax, homeInsurance, hoa, rent, setProfit 
         </div>
     );
 };
-/*
-                    <Input
-                        htmlFor="annualPropertyTax"
-                        label="Annual Property Tax: "
-                        type="number"
-                        name="annualPropertyTax"
-                        value={values.annualPropertyTax}
-                        onChange={handleChange}
-                    ></Input>
-                    <Input
-                        htmlFor="annualHomeInsurance"
-                        label="Home Insurance Annual Premium: "
-                        type="number"
-                        name="annualHomeInsurance"
-                        value={values.annualHomeInsurance}
-                        onChange={handleChange}
-                    ></Input>
-                    <Input
-                        htmlFor="monthlyHoa"
-                        label="HOA Monthly Payment "
-                        type="number"
-                        name="monthlyHoa"
-                        value={values.monthlyHoa}
-                        onChange={handleChange}
-                    ></Input>
-                    <Input
-                        htmlFor="monthlyRent"
-                        label="Rent: "
-                        type="number"
-                        name="monthlyRent"
-                        value={values.monthlyRent}
-                        onChange={handleChange}
-                    ></Input>
- */
+
 export default CalculateProfitForm;

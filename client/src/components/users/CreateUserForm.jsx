@@ -1,7 +1,6 @@
 import classes from "./styles/CreateUserForm.module.css";
 import { Input, Form, Button, Card } from "../../UI";
 import { useState } from "react";
-import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +15,7 @@ const initialState = {
 	balance: ""
 }
 
-const CreateUserForm = ({ cancel, unit }) => {
+const CreateUserForm = ({ cancel, unitID }) => {
 
 	const [values, setValues] = useState(initialState)
 
@@ -28,7 +27,7 @@ const CreateUserForm = ({ cancel, unit }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		// pass unit to database so unit will be in mongo user document
-		await createUser({ ...values, unit: unit })
+		await createUser({ ...values, unit: unitID })
 		// navigate back to units page to render changes
 		navigate("/units");
 		// close form

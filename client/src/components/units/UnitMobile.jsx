@@ -6,11 +6,12 @@ import { useState } from "react";
 
 const UnitMobile = ({ unit }) => {
 
-    const { unitID, street, city, state, zip, image, user, tenant } = unit
+    const { houseNumber, street, city, apartmentNumber, state, zip, image, user, tenant } = unit
 
+    // remove all non-digit chars in phone number to dial in phone app
     const phone = tenant?.phone.replace(/[^0-9]/g, "")
 
-    // state functions to hide and show forms
+    // state function to hide and show create new message
     const [showMessageForm, setShowMessageForm] = useState(false)
 
     return (
@@ -27,10 +28,10 @@ const UnitMobile = ({ unit }) => {
                             <div className={classes.addressLine1}>
                                 <NavLink
                                     to={{ pathname: `../accounting/${unit._id }`}}
-                                    state={{ unitID, street, city, state, zip, tenant, user }}
+                                    state={{ houseNumber, street, apartmentNumber, city, state, zip, tenant, user }}
                                     className={classes.link}
                                 >
-                                   {unitID} {street}
+                                   {houseNumber} {street} {apartmentNumber}
                                 </NavLink>
                             </div>
                             <div className={classes.addressLine2}>
@@ -71,7 +72,7 @@ const UnitMobile = ({ unit }) => {
                             cancel={()=>setShowMessageForm(false)}
                             addressBook={[{
                                 text: `${tenant.lastName}, ${tenant.firstName}`,
-                                value: user._id
+                                value: user
                             }]}
                         />
                     }

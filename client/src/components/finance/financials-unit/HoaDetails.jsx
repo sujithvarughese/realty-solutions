@@ -23,8 +23,8 @@ const HoaDetails = ({ hoa }) => {
                     <div className={classes.td}>{hoa.email}</div>
                 </div>
                 <div className={classes.tr}>
-                    <div className={classes.td}>Payment</div>
-                    <div className={classes.td}>{hoa.payment}</div>
+                    <div className={classes.td}>Annual Fee</div>
+                    <div className={classes.td}>{hoa.annualFee}</div>
                 </div>
             </div>
         </div>

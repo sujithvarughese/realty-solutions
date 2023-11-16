@@ -37,7 +37,7 @@ const totalMortgage = (data, term=1) => (data.reduce((acc, unitFinance) => {
 	}, 0)) * term
 const totalPropertyTax = (data, term=12) => ((data.reduce((acc, unitFinance) => unitFinance.propertyTax + acc, 0))/12) * term
 const totalInsurance = (data, term=12) => ((data.reduce((acc, unitFinance) => unitFinance.insurance + acc, 0))/12) * term
-const totalHoa = (data, term=1) => (data.reduce((acc, unitFinance) => unitFinance.hoa + acc, 0)) * term
+const totalHoa = (data, term=12) => ((data.reduce((acc, unitFinance) => unitFinance.hoa + acc, 0))/12) * term
 const totalRent = (data, term=1) => (data.reduce((acc, unitFinance) => unitFinance.rent + acc, 0)) * term
 
 const totalProfit = (data, term) => totalRent(data, term) - totalMortgage(data, term) - totalInsurance(data, term) - totalHoa(data, term)

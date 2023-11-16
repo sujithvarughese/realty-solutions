@@ -25,8 +25,9 @@ const Units = () => {
 	// -convert query to lower case and check if any part of the address contains the search
 	const queriedUnits = units.filter(unit => {
 		return (
-			unit.unitID.toLowerCase().includes(query.toLowerCase())  ||
+			unit.houseNumber.toLowerCase().includes(query.toLowerCase())  ||
 			unit.street.toLowerCase().includes(query.toLowerCase()) ||
+			unit.apartmentNumber.toLowerCase().includes(query.toLowerCase()) ||
 			unit.city.toLowerCase().includes(query.toLowerCase()) ||
 			unit.state.toLowerCase().includes(query.toLowerCase()) ||
 			unit.zip.toLowerCase().includes(query.toLowerCase())

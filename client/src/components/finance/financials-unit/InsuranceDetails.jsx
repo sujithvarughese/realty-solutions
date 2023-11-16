@@ -24,8 +24,8 @@ const InsuranceDetails = ({ insurance }) => {
                     <div className={classes.td}>{insurance.email}</div>
                 </div>
                 <div className={classes.tr}>
-                    <div className={classes.td}>Payment</div>
-                    <div className={classes.td}>{insurance.payment}</div>
+                    <div className={classes.td}>Premium</div>
+                    <div className={classes.td}>{insurance.annualPremium}</div>
                 </div>
                 <div className={classes.tr}>
                     <div className={classes.td}>Coverage</div>

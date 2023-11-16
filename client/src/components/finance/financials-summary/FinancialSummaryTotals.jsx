@@ -1,36 +1,30 @@
 import classes from "../../../pages/accounting/styles/FinancialSummary.module.css";
 import  { totalMortgage, totalPropertyTax, totalInsurance, totalRent, totalHoa, totalProfit } from "../../../utils/financeCalcs.js";
+import { convertToUSD } from "../../../utils/financeCalcs.js";
 
-const FinancialSummaryTotals = ({ unitFinances, term }) => {
+const FinancialSummaryTotals = ({ unitFinances, selectedTerm }) => {
 
     return (
         <tr>
             <td></td>
             <td className={classes.totals}>
-                {convertToUSD(totalMortgage(unitFinances, term))}
+                {convertToUSD(totalMortgage(unitFinances, selectedTerm))}
             </td>
             <td className={classes.totals}>
-                {convertToUSD(totalPropertyTax(unitFinances, term))}
+                {convertToUSD(totalPropertyTax(unitFinances, selectedTerm))}
             </td>
             <td className={classes.totals}>
-                {convertToUSD(totalInsurance(unitFinances, term))}
+                {convertToUSD(totalInsurance(unitFinances, selectedTerm))}
             </td>
             <td className={classes.totals}>
-                {convertToUSD(totalHoa(unitFinances, term))}
+                {convertToUSD(totalHoa(unitFinances, selectedTerm))}
             </td>
             <td className={classes.totals}>
-                {convertToUSD(totalRent(unitFinances, term))}
+                {convertToUSD(totalRent(unitFinances, selectedTerm))}
             </td>
         </tr>
     );
 };
 
-// function to convert to dollar format
-const convertToUSD = (number) => {
-    return  number.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    })
-}
 
 export default FinancialSummaryTotals;

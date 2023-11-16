@@ -1,6 +1,7 @@
 import classes from "../../../pages/accounting/styles/UnitFinancials.module.css";
 import {CalculateMonthlyPaymentForm, CalculatePayoffForm} from "../../index.js";
 import {useState} from "react";
+import { convertToUSD } from "../../../utils/financeCalcs.js";
 
 const MortgageDetails = ({ mortgage }) => {
 
@@ -33,10 +34,6 @@ const MortgageDetails = ({ mortgage }) => {
                     <div className={classes.tr}>
                         <div className={classes.td}>Payments Made</div>
                         <div className={classes.td}>{mortgage.paymentsMade}</div>
-                    </div>
-                    <div className={classes.tr}>
-                        <div className={classes.td}>Monthly Payment</div>
-                        <div className={classes.td}>{mortgage.payment}</div>
                     </div>
                 </div>
             </div>
@@ -80,10 +77,5 @@ const MortgageDetails = ({ mortgage }) => {
 
     );
 };
-const convertToUSD = (number) => {
-    return  number.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    })
-}
+
 export default MortgageDetails;

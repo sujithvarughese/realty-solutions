@@ -14,12 +14,14 @@ import { BiMessageSquareEdit } from "react-icons/bi"
 
 const Unit = ({ unit }) => {
 
-	const { unitID, street, city, state, zip, image, bedrooms, bathrooms, tenant, user } = unit
+	const { houseNumber, street, city, apartmentNumber, state, zip, image, bedrooms, bathrooms, tenant, user } = unit
+
 	// state functions to hide and show forms
 	const [showEditUnitForm, setShowEditUnitForm] = useState(false)
 	const [showCreateUserForm, setShowCreateUserForm] = useState(false)
 	const [showEditUserForm, setShowEditUserForm] = useState(false)
 	const [showMessageForm, setShowMessageForm] = useState(false)
+
 	return (
 		<div className={classes.container}>
 			<Card>
@@ -28,7 +30,7 @@ const Unit = ({ unit }) => {
 					{/* clicking image or address navigates to UnitFinancials */}
 					<NavLink
 						to={{ pathname: `../accounting/${unit._id }`}}
-						state={{ unitID, street, city, state, zip, tenant, user }}
+						state={{ houseNumber, street, apartmentNumber, city, state, zip, tenant, user }}
 						className={classes.link}
 					>
 						<img src={image} alt="img" className={classes.image}/>
@@ -36,19 +38,20 @@ const Unit = ({ unit }) => {
 
 					<div className={classes.info}>
 						{ showEditUnitForm && <EditUnitForm cancel={()=>setShowEditUnitForm(false)} unit={unit}/> }
-						{ showEditUserForm && <EditUserForm cancel={()=>setShowEditUserForm(false)} user={user}/> }
+						{ showEditUserForm && <EditUserForm cancel={()=>setShowEditUserForm(false)} userID={user} tenant={tenant}/> }
 						{
 							!showEditUnitForm && !showEditUserForm &&
 							<div className={classes.addressContainer}>
 								<div className={classes.address}>
 									<NavLink
 										to={{ pathname: `../accounting/${unit._id }`}}
-										state={{ unitID, street, city, state, zip, tenant, user }}
+										state={{ houseNumber, street, apartmentNumber, city, state, zip, tenant, user }}
 										className={classes.link}
 									>
 										<div className={classes.addressLine1}>
-											<span>{unitID} </span>
+											<span>{houseNumber}</span>
 											<span>{street}</span>
+											<span>{apartmentNumber}</span>
 										</div>
 									</NavLink>
 
@@ -130,14 +133,14 @@ const Unit = ({ unit }) => {
 				<div className={classes.forms}>
 					{/* forms open when state toggled */}
 
-					{ showCreateUserForm && <CreateUserForm cancel={()=>setShowCreateUserForm(false)} unit={unit}/> }
+					{ showCreateUserForm && <CreateUserForm cancel={()=>setShowCreateUserForm(false)} unitID={unit}/> }
 
 					{ showMessageForm &&
 						<CreateMessageForm
 							cancel={()=>setShowMessageForm(false)}
 							addressBook={[{
 								text: `${tenant.lastName}, ${tenant.firstName}`,
-								value: user._id
+								value: user
 							}]}
 						/>
 					}

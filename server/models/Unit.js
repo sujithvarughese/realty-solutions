@@ -9,7 +9,7 @@ const UnitSchema = new mongoose.Schema( {
 		type: String,
 		required: [true, "Please provide street"]
 	},
-	apartment: {
+	apartmentNumber: {
 		type: String,
 	},
 	city: {

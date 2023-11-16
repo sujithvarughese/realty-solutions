@@ -5,28 +5,29 @@ import { RentReceipt } from "../../index.js";
 import { axiosDB } from "../../../utils/axios.js";
 import {InputSelect} from "../../../UI/index.js";
 
-const Rents = ({ unitID, street, city, state, zip, firstName, lastName, user }) => {
+const Rents = ({ houseNumber, street, apartmentNumber, city, state, zip, firstName, lastName, userID }) => {
 
 	const [rentReceipts, setRentReceipts] = useState([]);
 
 	const date = new Date()
 	const [year, setYear] = useState(date.toLocaleString('en-us',{ year:'numeric' }))
+
 	useEffect(() => {
-		const fetchTenantData = async () => {
+		const fetchRentReceipts = async () => {
 			try {
-				const response = await axiosDB(`/finance/rent/${user}/${year}`)
+				const response = await axiosDB(`/finance/rent/${userID}/${year}`)
 				const { rentReceipts } = response.data
 				const updatedReceipts = rentReceipts.map(receipt => {
 					return {
 						...receipt,
-						unitID,
+						houseNumber,
 						street,
+						apartmentNumber,
 						city,
 						state,
 						zip,
 						lastName,
 						firstName,
-						user
 					}
 				})
 				setRentReceipts(updatedReceipts)
@@ -34,7 +35,7 @@ const Rents = ({ unitID, street, city, state, zip, firstName, lastName, user }) 
 				console.log(error)
 			}
 		}
-		fetchTenantData()
+		fetchRentReceipts()
 	}, []);
 
 
@@ -44,7 +45,7 @@ const Rents = ({ unitID, street, city, state, zip, firstName, lastName, user }) 
 			<div className={classes.head}>
 				Rent Receipts
 			</div>
-			<SearchRentReceiptsForm user={user} setRentReceipts={setRentReceipts}/>
+			<SearchRentReceiptsForm userID={userID} setRentReceipts={setRentReceipts}/>
 
 			<div>
 				{
