@@ -5,6 +5,7 @@ import {
     getMessages,
     getMessage,
     markMessageRead,
+    markMessageUnread,
     toggleFlag,
     deleteMessage,
     getPreviousMessages
