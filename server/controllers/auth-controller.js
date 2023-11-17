@@ -37,7 +37,9 @@ const createUser = async (req, res) => {
 			tenant: {
 				lastName: req.body.lastName,
 				firstName: req.body.firstName,
-				rent: req.body.rent
+				rent: req.body.rent,
+				email: req.body.email,
+				phone: req.body.phone
 			},
 			occupied: true
 		})

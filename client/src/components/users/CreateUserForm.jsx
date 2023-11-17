@@ -12,7 +12,8 @@ const initialState = {
 	unit: null,
 	phone: "",
 	rent: "",
-	balance: ""
+	balance: "",
+	tenant: ""
 }
 
 const CreateUserForm = ({ cancel, unitID }) => {

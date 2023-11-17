@@ -5,17 +5,16 @@ import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
 
 const initialState = {
-	unitID: "",
+	houseNumber: "",
 	street: "",
+	apartmentNumber: "",
 	city: "",
 	state: "",
 	zip: "",
 	image: "",
-	occupied: false,
 	user: null,
 	bedrooms: "",
 	bathrooms: "",
-	fairMarketRent: 0
 }
 
 const CreateUnitForm = ({ cancel }) => {
@@ -51,11 +50,11 @@ const CreateUnitForm = ({ cancel }) => {
 			<div className={classes.form}>
 				<div className={classes.addressLine1}>
 					<Input
-						htmlFor="unitID"
-						placeholder="UNIT"
+						htmlFor="houseNumber"
+						placeholder="HOUSE NUMBER"
 						type="text"
-						name="unitID"
-						value={values.unitID}
+						name="houseNumber"
+						value={values.houseNumber}
 						onChange={handleChange}
 					></Input>
 					<Input
@@ -64,6 +63,14 @@ const CreateUnitForm = ({ cancel }) => {
 						type="text"
 						name="street"
 						value={values.street}
+						onChange={handleChange}
+					></Input>
+					<Input
+						htmlFor="apartmentNumber"
+						placeholder="APARTMENT NUMBER"
+						type="text"
+						name="apartmentNumber"
+						value={values.apartmentNumber}
 						onChange={handleChange}
 					></Input>
 				</div>
@@ -95,15 +102,6 @@ const CreateUnitForm = ({ cancel }) => {
 					></Input>
 				</div>
 				<div className={classes.info}>
-					<InputSelect
-						htmlFor="occupied"
-						placeholder="OCCUPIED"
-						type="boolean"
-						name="occupied"
-						list={[{text: "Occupied", value: true}, {text: "Vacant", value: false}]}
-						value={values.occupied}
-						onChange={handleChange}
-					></InputSelect>
 					<Input
 						htmlFor="bedrooms"
 						placeholder="BEDR"

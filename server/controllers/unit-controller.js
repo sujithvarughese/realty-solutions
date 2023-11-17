@@ -46,58 +46,26 @@ const createUnit = async (req, res) => {
 		fairMarketRent: "",
 		annualPropertyTax: "",
 		mortgage: {
-			bank: {
-				type: String
-			},
-			principal: {
-				type: Number
-			},
-			interest: {
-				type: Number
-			},
-			term: {
-				type: Number,
-			},
-			balance: {
-				type: Number
-			}
+			bank: "",
+			principal: "",
+			interest: "",
+			term: "",
+			paymentsMade: ""
 		},
 		insurance: {
-			company: {
-				type: String
-			},
-			agent: {
-				type: String
-			},
-			phone: {
-				type: String
-			},
-			email: {
-				type: String
-			},
-			annualPremium: {
-				type: Number
-			},
-			coverage: {
-				type: String
-			}
+			company: "",
+			agent: "",
+			phone: "",
+			email: "",
+			annualPremium: "",
+			coverage: ""
 		},
 		hoa: {
-			company: {
-				type: String
-			},
-			agent: {
-				type: String
-			},
-			phone: {
-				type: String
-			},
-			email: {
-				type: String
-			},
-			annualFee: {
-				type: Number
-			}
+			company: "",
+			agent: "",
+			phone: "",
+			email: "",
+			annualFee: ""
 		}
 	}
 	// create mongoose model
