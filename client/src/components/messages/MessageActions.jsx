@@ -1,13 +1,12 @@
 import classes from "./styles/MessageActions.module.css";
-import { RiReplyFill } from "react-icons/ri"
-import { TbFlag, TbFlagFilled } from "react-icons/tb";
+import { RiReplyLine } from "react-icons/ri"
+import { TiFlag, TiFlagOutline } from "react-icons/ti"
+import { CiUnread } from "react-icons/ci"
 import { IoTrashOutline } from "react-icons/io5"
 import { axiosDB } from "../../utils/axios.js";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 
-const MessageActions = ({ message, reply, toggleFlag }) => {
+const MessageActions = ({ message, reply, toggleFlag, markMessageUnread }) => {
 
 	const { user } = useGlobalContext()
 	const { date, sender, recipient, subject, body, read, flag } = message
@@ -15,15 +14,26 @@ const MessageActions = ({ message, reply, toggleFlag }) => {
 	return (
 		<div className={classes.actions}>
 
-
 			<div className={classes.reply} onClick={reply}>
-				<RiReplyFill />
+				<RiReplyLine />
 			</div>
-
 
 			<div className={classes.flag} onClick={()=>toggleFlag(message)}>
-				{ flag ? <TbFlagFilled /> : <TbFlag />}
+				{ flag ? <TiFlag /> : <TiFlagOutline />}
 			</div>
+
+			<div className={classes.delete} onClick={()=>console.log("Unauthorized to delete!")}>
+				<IoTrashOutline />
+			</div>
+
+			{
+				message.read &&
+				<div className={classes.unread} onClick={()=>markMessageUnread(message)}>
+					<CiUnread />
+				</div>
+			}
+
+
 		</div>
 	);
 };

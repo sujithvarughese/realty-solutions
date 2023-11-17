@@ -4,13 +4,28 @@
     justify-content: flex-start;
     gap: 1.5rem;
     padding: 1.4rem 0;
+    border-bottom: 1px solid var(--COLOR-DARK);
 }
-.flagRead {
+.alerts {
+    position: relative;
     display: flex;
     gap: 0.5rem;
     align-items: center;
     width: 20px;
     font-size: 20px;
+}
+.replied {
+    position: absolute;
+    top: 0;
+}
+.read {
+    position: absolute;
+    color: dodgerblue;
+}
+.flag {
+    position: absolute;
+    bottom: 0;
+    color: darkorange;
 }
 .senderDate {
     display: flex;
@@ -54,7 +69,7 @@
     .date {
         font-size: 12px;
     }
-    .flagRead {
+    .alerts {
         padding-left: 1rem;
         display: flex;
         flex-direction: column;

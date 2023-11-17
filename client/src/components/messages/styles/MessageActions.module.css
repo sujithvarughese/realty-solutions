@@ -1,20 +1,11 @@
 .actions {
     display: flex;
     gap: 2rem;
-
+    font-size: 32px;
+    cursor: pointer;
 }
 
-.reply {
-    font-size: 24px;
-}
-
-.delete {
-
-}
-
-.flag {
-    font-size: 24px;
-}
+.unread,
 .reply,
 .flag,
 .delete:hover {

@@ -1,8 +1,10 @@
 import classes from "./styles/MessageCollapsed.module.css";
-import { TbFlagFilled } from "react-icons/tb";
+import { TiFlag } from "react-icons/ti"
 import { FcInfo } from "react-icons/fc"
+import { GoDotFill } from "react-icons/go"
 import { RiShareForwardFill } from "react-icons/ri"
-const MessageCollapsed = ({ message, setExpandedMessage, markMessageRead, showExpanded, userID }) => {
+import {useState} from "react";
+const MessageCollapsed = ({ message, setExpandedMessage, markMessageRead, showExpanded, userID, closeReply }) => {
 
 	const { sender, recipient, subject, body, read, flag } = message
 
@@ -18,18 +20,19 @@ const MessageCollapsed = ({ message, setExpandedMessage, markMessageRead, showEx
 				setExpandedMessage(message)
 				markMessageRead(message)
 				showExpanded()
+				closeReply()
 			}}
 		>
 			{/* icons dynamically render to show flag and read status */}
-			<div className={classes.flagRead}>
+			<div className={classes.alerts}>
 				<div className={classes.replied}>
 					{ sender._id === userID && <RiShareForwardFill /> }
 				</div>
 				<div className={classes.read}>
-					{ recipient._id === userID && !read && <FcInfo />}
+					{ recipient._id === userID && !read && <GoDotFill />}
 				</div>
 				<div className={classes.flag}>
-					{ recipient._id === userID && flag && <TbFlagFilled /> }
+					{ recipient._id === userID && flag && <TiFlag /> }
 				</div>
 			</div>
 

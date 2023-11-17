@@ -1,97 +1,65 @@
 .container {
-    padding: 0 1rem;
+    padding: 0.5rem;
 }
 .mailbox {
     border-top: var(--COLOR-DARK) solid 2px;
 }
-.collapsed {
+.nav {
+    display: flex;
+}
+.largeScreen {
     display: none;
-}
-.expanded {
-    display: none;
-}
-.mobileCollapsed {
-
-}
-.mobileExpanded {
-    height: 100%;
-}
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 8rem;
-    padding: 0 1rem;
-}
-.button {
-    display: flex;
-    align-items: center;
-}
-.mobileCloseMessage {
-    display: flex;
 }
 .back {
     font-size: 56px;
+    line-height: 1;
 }
 .create {
     cursor: pointer;
-    position: absolute;
-    left: 2%;
     font-size: 56px;
+    line-height: 1;
 }
 .links {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 1rem 0;
+    display: none;
 }
-.link {
-    font-size: 28px;
-    color: var(--COLOR-LIGHT);
-    text-align: center;
-    padding: 0 0.5rem;
-}
-.active {
-    font-size: 28px;
-    color: var(--COLOR);
-    text-align: center;
-    padding: 0 0.5rem;
-}
-.link:hover {
-    color: var(--COLOR-ALT);
-    cursor: pointer;
-}
+
 .empty {
     text-align: center;
 }
+.noMessage {
+    font-size: 36px;
+    text-align: center;
+    padding: 10rem 0;
+}
 @media (min-width: 600px) {
-    .mailbox {
+    .largeScreen {
         display: grid;
         grid-template-columns: 2fr 5fr;
     }
-    .create {
-        font-size: 56px;
-    }
     .links {
         display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: end;
         gap: 0.5rem;
     }
     .link {
-        font-size: 36px;
+        font-size: 28px;
+        color: var(--COLOR-LIGHT);
+        text-align: center;
+        padding: 0 0.5rem;
+    }
+    .link:hover {
+        color: var(--COLOR-ALT);
+        cursor: pointer;
     }
     .active {
-        font-size: 36px;
+        font-size: 28px;
+        color: var(--COLOR);
+        text-align: center;
+        padding: 0 0.5rem;
     }
-    .collapsed {
-        display: block;
-    }
-    .expanded {
-        display: block;
-    }
-    .mobileCollapsed {
-        display: none;
-    }
-    .mobileExpanded {
+    .mobile {
         display: none;
     }
     .mobileCloseMessage {

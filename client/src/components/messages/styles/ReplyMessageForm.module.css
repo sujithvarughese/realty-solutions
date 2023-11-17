@@ -1,4 +1,8 @@
-
+.container {
+    background-color: var(--COLOR-LIGHT);
+    padding: 0.5rem;
+    border-radius: 20px;
+}
 .form {
     display: flex;
     flex-direction: column;
@@ -8,6 +12,8 @@
     display: flex;
     justify-content: end;
     padding: 0.5rem;
+    color: var(--COLOR-LIGHTER);
+    cursor: pointer;
 }
 .button {
     width: 160px;

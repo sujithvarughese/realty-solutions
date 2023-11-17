@@ -1,37 +1,34 @@
-.message {
-    height: 100%;
+.container {
     padding: .8rem .3rem;
 }
-.mobileCloseMessage {
-
+.actions {
+    position: absolute;
+    right: 1rem;
+    top: 5rem;
 }
 .messages {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
 }
-.replyForm {
-    background-color: var(--COLOR-LIGHTER);
-    padding: 0.5rem;
-    border-radius: 20px;
-}
-
-
-.senderDate {
+.previousMessages {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 1rem;
 }
 .subjectContainer {
-    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
 }
 .subject {
     font-size: 24px;
     font-weight: bold;
 }
-
-
 @media (min-width: 600px) {
-    .subjectContainer {
-        margin: 1rem 0;
+    .container {
+        position: relative;
+    }
+    .actions {
+        right: 0.3rem;
+        top: auto;
     }
 }
