@@ -8,10 +8,8 @@ const MessageContents = ({ senderID, lastName, firstName, date, subject, body })
     const currentDate = new Date(date)
     const dateStr = currentDate.toLocaleString('en-US',{ year:'numeric', month:'short', day:'numeric', timeZone: 'UTC' })
     const time = currentDate.toLocaleTimeString("en-US")
-
     const { user } = useGlobalContext()
-    console.log(senderID)
-    console.log(user.userID)
+
     return (
         <div className={user.userID === senderID ? classes.senderContainer : classes.recipientContainer}>
             <Card>

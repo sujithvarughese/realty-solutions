@@ -3,30 +3,22 @@ import {MessageActions, MessageContents, ReplyMessageForm} from "../";
 import { axiosDB } from "../../utils/axios.js";
 import {useEffect, useState} from "react";
 
-const MessageExpanded = ({ message, toggleFlag }) => {
+const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnread }) => {
 
 	const { date, sender, recipient, subject, body, read, flag } = message
-	const [previousMessagesArray, setPreviousMessagesArray] = useState([])
+	const [previousMessages, setPreviousMessages] = useState([])
 
-	const fetchPreviousMessages = async () => {
-		try {
-			const response = await axiosDB(`/messages/previous/${message._id}`)
-			const { previousMessages } = response.data
-			console.log(previousMessages)
-			setPreviousMessagesArray(previousMessages)
-		} catch (error) {
-			console.log(error)
-		}
-	}
-
-	// clear state when new message is clicked
 	useEffect(() => {
-		if (message.previousMessage) {
-			fetchPreviousMessages()
-		} else {
-			setPreviousMessagesArray([])
+		const previousMessagesArray = []
+		let currentMessage = message
+		while (currentMessage.previousMessage) {
+			const previousMessage = messages.find(message => message._id === currentMessage.previousMessage)
+			previousMessagesArray.push(previousMessage)
+			currentMessage = previousMessage
 		}
-	}, [message]);
+		setPreviousMessages(previousMessagesArray)
+
+	}, [message])
 
 
 	const [showCreateReply, setShowCreateReply] = useState(false)
@@ -34,12 +26,16 @@ const MessageExpanded = ({ message, toggleFlag }) => {
 	return (
 		<div className={classes.message}>
 
-			{/* component renders create message icon and toggle flag icon */}
-			<MessageActions
-				message={message}
-				reply={()=>setShowCreateReply(true)}
-				toggleFlag={toggleFlag}
-			/>
+			{
+				// component renders create message icon and toggle flag icon only for incoming messages
+				recipient._id === userID &&
+				<MessageActions
+					message={message}
+					reply={()=>setShowCreateReply(true)}
+					toggleFlag={toggleFlag}
+				/>
+			}
+
 
 
 			<div className={classes.subjectContainer}>
@@ -70,10 +66,10 @@ const MessageExpanded = ({ message, toggleFlag }) => {
 				</div>
 
 				{
-					previousMessagesArray.length > 0 &&
+					previousMessages.length > 0 &&
 					<div className={classes.previousMessages}>
 						{
-							previousMessagesArray.map(previousMessage => {
+							previousMessages.map(previousMessage => {
 								return (
 									<div className={classes.previousMessage} key={previousMessage._id}>
 										<MessageContents

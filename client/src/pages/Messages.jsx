@@ -73,6 +73,21 @@ const Messages = () => {
 		}
 	}
 
+	const markMessageUnread = async (message) => {
+		try {
+			await axiosDB.patch("/messages/unread", message)
+			const updatedMailbox = [...currentMailbox]
+			// replace message in state with updated message with appropriate read status
+			const messageIndex = updatedMailbox.findIndex(currentMessage => currentMessage._id === message._id)
+			updatedMailbox[messageIndex] = { ...updatedMailbox[messageIndex], read: true}
+			setCurrentMailbox(updatedMailbox)
+			setExpandedMessage(updatedMailbox[messageIndex])
+
+		} catch (error) {
+			throw new Error(error)
+		}
+	}
+
 	useEffect(() => {
 		// determine which address book to get based on role (we don't want to give tenant access to other user data)
 		// addr book returned from backend as array of objects { text: "lastName, firstName", value: user._id }
@@ -170,7 +185,13 @@ const Messages = () => {
 				<div className={classes.expanded}>
 					{
 						expandedMessage &&
-						<MessageExpanded message={expandedMessage} toggleFlag={toggleFlag}/>
+						<MessageExpanded
+							message={expandedMessage}
+							messages={messages}
+							toggleFlag={toggleFlag}
+							userID={user.userID}
+							markMessageUnread={markMessageUnread}
+						/>
 					}
 				</div>
 
@@ -202,7 +223,13 @@ const Messages = () => {
 					<div className={classes.mobileExpanded}>
 						{
 							expandedMessage &&
-							<MessageExpanded message={expandedMessage} toggleFlag={toggleFlag} />
+							<MessageExpanded
+								message={expandedMessage}
+								messages={messages}
+								toggleFlag={toggleFlag}
+								userID={user.userID}
+								markMessageUnread={markMessageUnread}
+							/>
 						}
 					</div>
 				}

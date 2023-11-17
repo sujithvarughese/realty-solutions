@@ -4,7 +4,11 @@ import { FcInfo } from "react-icons/fc"
 import { RiShareForwardFill } from "react-icons/ri"
 const MessageCollapsed = ({ message, setExpandedMessage, markMessageRead, showExpanded, userID }) => {
 
-	const { date, sender, recipient, subject, body, read, flag } = message
+	const { sender, recipient, subject, body, read, flag } = message
+
+	const currentDate = new Date(message.date)
+	const date = currentDate.toLocaleString('en-US',{ year:'numeric', month:'short', day:'numeric', timeZone: 'UTC' })
+	const time = currentDate.toLocaleTimeString("en-US")
 
 	return (
 		// selecting anywhere on collapsed message will open expanded message, and mark as read
@@ -33,12 +37,26 @@ const MessageCollapsed = ({ message, setExpandedMessage, markMessageRead, showEx
 			<div className={classes.details}>
 				<div className={classes.senderDate}>
 
-					<div className={classes.sender}>
-						{sender.lastName}, {sender.firstName}
-					</div>
+					{
+						userID === recipient._id ?
+							<div className={classes.sender}>
+								{sender.lastName}, {sender.firstName}
+							</div>
+							:
+							<div className={classes.sender}>
+								{recipient.lastName}, {recipient.firstName}
+							</div>
+					}
+
 
 					<div className={classes.date}>
-						{date.substring(0, 10)}
+						<div>
+							{date}
+						</div>
+						<div>
+							{time}
+						</div>
+
 					</div>
 				</div>
 
