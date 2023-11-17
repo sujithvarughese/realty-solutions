@@ -27,7 +27,7 @@ const ReplyMessageForm = ({ message, closeReply }) => {
 			recipient: message.sender._id,
 			subject: message.subject,
 			body: body,
-			prevMessage: message._id
+			previousMessage: message._id
 		})
 		// navigate back to messages to update messages display
 		navigate("/messages");

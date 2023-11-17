@@ -6,7 +6,6 @@ import {useEffect, useState} from "react";
 const MessageExpanded = ({ message, toggleFlag }) => {
 
 	const { date, sender, recipient, subject, body, read, flag } = message
-
 	const [previousMessagesArray, setPreviousMessagesArray] = useState([])
 
 	const fetchPreviousMessages = async () => {
@@ -63,6 +62,7 @@ const MessageExpanded = ({ message, toggleFlag }) => {
 					<MessageContents
 						lastName={sender.lastName}
 						firstName={sender.firstName}
+						senderID={sender._id}
 						date={date}
 						subject={subject}
 						body={body}
@@ -79,6 +79,7 @@ const MessageExpanded = ({ message, toggleFlag }) => {
 										<MessageContents
 											lastName={previousMessage.sender.lastName}
 											firstName={previousMessage.sender.firstName}
+											senderID={sender._id}
 											date={previousMessage.date}
 											subject={previousMessage.subject}
 											body={previousMessage.body}

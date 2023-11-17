@@ -1,5 +1,12 @@
-.container {
-
+.senderContainer {
+    background-color: var(--COLOR-LIGHT);
+    padding: 1rem;
+    border-radius: 20px;
+}
+.recipientContainer {
+    padding: 2rem 1rem;
+    background-color: var(--COLOR-LIGHTER);
+    border-radius: 20px;
 }
 .contents {
     display: flex;

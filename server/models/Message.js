@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import validator from "validator";
 
 const MessageSchema = new mongoose.Schema({
 	sender :{
@@ -27,6 +26,10 @@ const MessageSchema = new mongoose.Schema({
 	previousMessage: {
 		type: mongoose.Types.ObjectId,
 		ref: 'Message'
+	},
+	headNode: {
+		type: Boolean,
+		default: true
 	},
 	date: {
 		type: Date,

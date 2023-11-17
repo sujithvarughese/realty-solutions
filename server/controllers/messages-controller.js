@@ -12,6 +12,10 @@ const createMessage = async (req, res) => {
 	if (!req.body.body) {
 		throw new BadRequestError('please provide body')
 	}
+	// if message is a reply, find the previous message and set headNode=false so current message becomes latest message
+	if (req.body.previousMessage) {
+		await Message.findByIdAndUpdate(req.body.previousMessage, { headNode: false })
+	}
 	// create new message using Message model
 	const message = await Message.create(req.body)
 
@@ -21,8 +25,22 @@ const createMessage = async (req, res) => {
 			message: message
 		})
 }
+
+const getMessages = async (req, res) => {
+	// inbox will have messages where latest message sender or recipient is user
+	const messages = await Message
+		.find().or([{ recipient: req.user.userID }, { sender: req.user.userID }])
+		.sort({ date: -1 })
+		.populate({path: "sender recipient", select: "lastName firstName _id"})
+	// outbox list of all messages where sender is user
+	res.status(StatusCodes.OK)
+		.json({
+			msg: "Inbox successfully retrieved",
+			messages: messages
+		})
+}
+
 const getInbox = async (req,res) => {
-	console.log("hello")
 	// fetch using req.user.userID
 	const inbox = await Message
 		.find({ recipient: req.user.userID })
@@ -124,6 +142,7 @@ const deleteMessage = async (req, res) => {
 
 export {
 	createMessage,
+	getMessages,
 	getAllMessages,
 	markMessageRead,
 	toggleFlag,

@@ -8,24 +8,15 @@ import { BiMessageSquareEdit } from "react-icons/bi"
 import { TfiControlBackward } from "react-icons/tfi"
 
 const Messages = () => {
-	// messages = { inbox, outbox }
-	// message =
-	// 	{ sender: { lastName, firstName, _id },
-	// 	recipient: { lastName, firstName, _id} },
-	// 	subject, body, read, flag, date
+	// messages = { inbox, outbox }	// message = { sender: { lastName, firstName, _id }, recipient, subject, body, read, flag, date, previousMessage
 	const messages = useLoaderData()
-	const { inbox, outbox } = messages
-
 	const { user } = useGlobalContext()
-	// set in state to render changes in real time
-	const [myInbox, setMyInbox] = useState(inbox)
-	const [myOutbox, setMyOutbox] = useState(outbox)
 
-	// default to show inbox
-	const [currentMailbox, setCurrentMailbox] = useState(myInbox)
-	const [currentLink, setCurrentLink] = useState("inbox")
-
-
+	const [currentMailbox, setCurrentMailbox] = useState([])
+	const [myIncoming, setMyIncoming] = useState([])
+	const [myOutgoing, setMyOutgoing] = useState([])
+	const [myMessages, setMyMessages] = useState([])
+	const [currentLink, setCurrentLink] = useState("all")
 	const [showCreateMessageForm, setShowCreateMessageForm] = useState(false)
 	const [addressBook, setAddressBook] = useState([])
 	const [expandedMessage, setExpandedMessage] = useState(null)
@@ -82,49 +73,22 @@ const Messages = () => {
 		}
 	}
 
-	// determine which address book to get based on role (we don't want to give tenant access to other user data)
-	// addr book returned from backend as array of objects { text: "lastName, firstName", value: user._id }
 	useEffect(() => {
+		// determine which address book to get based on role (we don't want to give tenant access to other user data)
+		// addr book returned from backend as array of objects { text: "lastName, firstName", value: user._id }
 		if (user.isAdmin) {
 			getUserList()
 		} else {
 			getAdminInfo()
 		}
-	}, [])
-
-	// retrieve new messages as user clicks and set state to render inbox or outbox
-	const clickInbox = async () => {
-		setCurrentLink("inbox")
-		try {
-			const response = await axiosDB("/messages/inbox")
-			const { inbox } = response.data
-			setMyInbox(inbox)
-		} catch (error) {
-			console.log(error)
-		}
-
-	}
-	const clickOutbox = async () => {
-		setCurrentLink("outbox")
-		try {
-			const response = await axiosDB("/messages/outbox")
-			const { outbox } = response.data
-			setMyOutbox(outbox)
-		} catch (error) {
-			console.log(error)
-		}
-	}
-	// when user clicks inbox or outbox, set currentMailbox
-	// displayed expanded message should be first (latest) message in array
-	useEffect(() => {
-		setExpandedMessage(null)
-		setCurrentMailbox(myOutbox)
-	}, [myOutbox])
-
-	useEffect(() => {
-		setExpandedMessage(null)
-		setCurrentMailbox(myInbox)
-	}, [myInbox])
+		const conversations = messages.filter(message => message.headNode && (message.recipient._id === user.userID || message.sender._id === user.userID))
+		const incoming = messages.filter(message => message.recipient._id === user.userID)
+		const outgoing = messages.filter(message => message.sender._id === user.userID)
+		setCurrentMailbox(conversations)
+		setMyMessages(conversations)
+		setMyIncoming(incoming)
+		setMyOutgoing(outgoing)
+	}, []);
 
 	return (
 		<div className={classes.container}>
@@ -153,14 +117,31 @@ const Messages = () => {
 						:
 						<div className={classes.links}>
 							<div
-								className={currentLink === "inbox" ? classes.active : classes.link}
-								onClick={clickInbox}>
-								Inbox
+								className={currentLink === "all" ? classes.active : classes.link}
+								onClick= {()=> {
+									setExpandedMessage(null)
+									setCurrentMailbox(myMessages)
+									setCurrentLink("all")
+								}}>
+								All Messages
 							</div>
 							<div
-								className={currentLink === "outbox" ? classes.active : classes.link}
-								onClick={clickOutbox}>
-								Outbox
+								className={currentLink === "incoming" ? classes.active : classes.link}
+								onClick= {()=> {
+									setExpandedMessage(null)
+									setCurrentMailbox(myIncoming)
+									setCurrentLink("incoming")
+								}}>
+								Incoming
+							</div>
+							<div
+								className={currentLink === "outgoing" ? classes.active : classes.link}
+								onClick= {()=> {
+									setExpandedMessage(null)
+									setCurrentMailbox(myOutgoing)
+									setCurrentLink("outgoing")
+								}}>
+								Outgoing
 							</div>
 						</div>
 				}
@@ -179,6 +160,7 @@ const Messages = () => {
 									markMessageRead={markMessageRead}
 									toggleFlag={toggleFlag}
 									showExpanded={()=>{}}
+									userID={user.userID}
 								/>)
 							:
 							<div className={classes.empty}>No Messages in this Mailbox</div>
@@ -206,6 +188,7 @@ const Messages = () => {
 										markMessageRead={markMessageRead}
 										toggleFlag={toggleFlag}
 										showExpanded={()=>setMobileExpanded(true)}
+										userID={user.userID}
 									/>)
 								:
 								<div>No Messages in this Mailbox</div>
@@ -219,10 +202,7 @@ const Messages = () => {
 					<div className={classes.mobileExpanded}>
 						{
 							expandedMessage &&
-							<MessageExpanded
-								message={expandedMessage}
-								toggleFlag={toggleFlag}
-							/>
+							<MessageExpanded message={expandedMessage} toggleFlag={toggleFlag} />
 						}
 					</div>
 				}
@@ -236,7 +216,6 @@ export const myMessagesLoader = async () => {
 		// retrieve all messages where sender or recipient matches using req.user info that is stored at login
 		const response = await axiosDB("/messages")
 		const { messages } = response.data
-		// messages = { inbox, outbox }
 		return messages
 	} catch (error) {
 		throw new Error(error)
