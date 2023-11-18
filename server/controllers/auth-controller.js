@@ -4,8 +4,6 @@ import User from "../models/User.js";
 import Unit from "../models/Unit.js";
 import { attachCookies, createJWT } from "../utils/index.js";
 
-
-
 const register = async (req, res) => {
 	//{ account, unit, email, password, lastName, firstName, phone } = req.body
 	const userAlreadyExists = await User.findOne({ email: req.body.email });
@@ -37,14 +35,28 @@ const register = async (req, res) => {
 				phone: req.body.phone
 			},
 		})
-	res.status(StatusCodes.CREATED).json({
-		message: "user registered",
-		user: {
+
+	// user variable with just the fields we want to send to attach (will also be saved in front end state)
+	const userInfo =
+		{
+			userID: user._id,
+			isAdmin: user.isAdmin,
 			email: user.email,
-			lastName: user.lastName,
-			firstName: user.firstName
-		}
+			firstName: user.firstName,
+			lastName: user.lastName
+		};
+
+	// create jwt with jwt.sign
+	const token = createJWT({ payload: userInfo });
+
+	// create cookie in the response, where we attach token
+	attachCookies({ res, token });
+
+	res.status(StatusCodes.OK).json({
+		message: "user register success",
+		user: userInfo,
 	});
+
 }
 
 const login = async (req, res) => {

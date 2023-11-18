@@ -11,7 +11,8 @@ import authRouter from "./routes/auth-router.js"
 import unitRouter from "./routes/unit-router.js";
 import messageRouter from "./routes/message-router.js";
 import financeRouter from "./routes/finance-router.js";
-
+import registrationRouter from "./routes/registration-router.js"
+import accountRouter from "./routes/account-router.js"
 // remaining middleware imports
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
@@ -54,6 +55,8 @@ app.use("/api/v1/auth", authRouter);  // login, logout, register
 app.use("/api/v1/units", authenticateUser, unitRouter)
 app.use("/api/v1/messages", authenticateUser, messageRouter)
 app.use("/api/v1/finance", authenticateUser, financeRouter)
+app.use("/api/v1/accounts", authenticateUser, financeRouter)
+app.use("/api/v1/registration", authenticateUser, financeRouter)
 app.use(notFound);
 app.use(errorHandler);
 
