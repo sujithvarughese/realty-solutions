@@ -1,6 +1,10 @@
 import mongoose from 'mongoose'
 
 const UnitSchema = new mongoose.Schema( {
+	account: {
+		type: mongoose.Types.ObjectId,
+		ref: "Account"
+	},
 	houseNumber: {
 		type: String,
 		required: [true, "Please provide house number"]

@@ -1,3 +1,4 @@
+import AccountVerification from "./AccountVerification.jsx";
 import Error from "./Error.jsx";
 import Accounting from "./accounting/Accounting.jsx";
 import MyPayments from "./MyPayments.jsx";
@@ -11,6 +12,7 @@ import Units, { unitsLoader } from "./Units.jsx";
 import UnitFinancials, { unitFinancialsLoader }  from "./accounting/UnitFinancials.jsx";
 
 export {
+    AccountVerification,
     Error,
     Accounting,
     MyPayments,

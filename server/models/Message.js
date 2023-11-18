@@ -1,6 +1,10 @@
 import mongoose from 'mongoose'
 
 const MessageSchema = new mongoose.Schema({
+	account: {
+		type: mongoose.Types.ObjectId,
+		ref: "Account"
+	},
 	sender :{
 		type: mongoose.Types.ObjectId,
 		ref: 'User'

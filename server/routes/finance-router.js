@@ -1,5 +1,8 @@
 import express from "express"
 const router = express.Router();
+import { authorizePermissions } from "../middleware/authentication.js";
+
+
 import {
     getRentReceipts,
     createRentReceipt,
@@ -10,9 +13,12 @@ import {
 } from "../controllers/finance-controller.js";
 
 router.route("/rent/:unit/:year").get(getRentReceipts)
-router.route("/rent").post(createRentReceipt)
-router.route("/:unit").get(getUnitFinances)
-router.route("/").get(getFinancialSummary).post(createUnitFinances).patch(updateUnitFinances)
+router.route("/rent").post(authorizePermissions, createRentReceipt)
+router.route("/:unit").get(authorizePermissions, getUnitFinances)
+router.route("/")
+    .get(authorizePermissions, getFinancialSummary)
+    .post(authorizePermissions, createUnitFinances)
+    .patch(authorizePermissions, updateUnitFinances)
 
 
 

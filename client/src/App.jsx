@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { GlobalProvider } from "./context/GlobalContext.jsx";
 import {
+  AccountVerification,
   Error,
   Accounting,
   MyPayments,
@@ -33,6 +34,7 @@ const App = () => {
       errorElement: <Error />,
       children: [
         { index: true, element: <Landing /> },
+        { path: "verify", element: < AccountVerification /> },
         { path: "research", element: <Research /> },
         { path: "units", element: <Units />, loader: unitsLoader },
         { path: "home", element: <MyUnit />, loader: myUnitLoader},

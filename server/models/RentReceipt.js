@@ -2,6 +2,10 @@ import mongoose from 'mongoose'
 import validator from "validator";
 
 const RentReceiptSchema = new mongoose.Schema({
+	account: {
+		type: mongoose.Types.ObjectId,
+		ref: "Account"
+	},
 	user : {
 		type: mongoose.Types.ObjectId,
 		ref: 'User'

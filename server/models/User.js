@@ -4,6 +4,10 @@ import bcrypt from "bcryptjs";
 import { InternalServerError, UnauthenticatedError } from "../errors/index.js";
 
 const UserSchema = new mongoose.Schema({
+	account: {
+		type: mongoose.Types.ObjectId,
+		ref: "Account"
+	},
 	lastName: {
 		type: String,
 		required: [true, "please provide name"],
@@ -80,6 +84,19 @@ UserSchema.pre("save", async function () {
 	}
 });
 
+UserSchema.methods.updatePassword = async function (){
+	try {
+		const salt = await bcrypt.genSalt(10);
+		console.log(this.password)
+		this.password = await bcrypt.hash(this.password, salt);
+		console.log(this.password)
+		this.save()
+		return true
+	} catch (error) {
+		throw new InternalServerError("password hash failed");
+	}
+}
+/*
 UserSchema.pre("findOneAndUpdate", { document: true, query: false }, async function (next) {
 	if (!this.isModified("password")) return;
 	try {
@@ -90,7 +107,7 @@ UserSchema.pre("findOneAndUpdate", { document: true, query: false }, async funct
 		throw new InternalServerError("password hash failed");
 	}
 });
-
+*/
 // function on user to compare entered password to user.password
 UserSchema.methods.comparePassword = async function (candidatePassword) {
 	try {

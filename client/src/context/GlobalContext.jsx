@@ -38,9 +38,24 @@ const GlobalProvider = ({ children }) => {
 		} catch (error) {
 			console.log(error);
 		}
-
 	}
+
+	const verifyAccount = async (credentials) => {
+		// { email, registrationCode }
+		try {
+			const response = await axiosDB.patch("/auth/verify", credentials)
+			const { user } = response.data
+			dispatch({
+				type: LOGIN_USER,
+				payload: { user }
+			})
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	const login = async (credentials) => {
+		// { email, password } = credentials
 		try {
 			const response = await axiosDB.post("/auth/login", credentials)
 			const { user } = response.data
@@ -98,6 +113,7 @@ const GlobalProvider = ({ children }) => {
 			{
 				...state,
 				register,
+				verifyAccount,
 				login,
 				logout,
 				setIsLoading,

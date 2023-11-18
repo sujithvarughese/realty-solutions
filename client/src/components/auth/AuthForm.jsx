@@ -5,21 +5,18 @@ import { useGlobalContext } from "../../context/GlobalContext.jsx";
 
 const AuthForm = ({ authState }) => {
 
-	const { login, register } = useGlobalContext()
+	const { login, verifyAccount } = useGlobalContext()
 
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
-	const [passwordRetype, setPasswordRetype] = useState("")
+	const [registrationCode, setRegistrationCode] = useState("")
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		if (authState === "login") {
 			login({ email, password })
 		} else {
-			if (password !== passwordRetype) {
-				return console.log("passwords dont match");
-			}
-			register({ email, password })
+			verifyAccount({ email, password })
 		}
 	}
 
@@ -34,40 +31,34 @@ const AuthForm = ({ authState }) => {
 					value={email}
 					onChange={(e)=>setEmail(e.target.value)}
 				></Input>
-				<Input
-					htmlFor="password"
-					placeholder="PASSWORD"
-					type="password"
-					name="password"
-					value={password}
-					onChange={(e)=>setPassword(e.target.value)}
-				></Input>
 				{
-					authState === "register" &&
-					<Input
-						htmlFor="passwordRetype"
-						placeholder="CONFIRM PASSWORD"
-						type="password"
-						name="passwordRetype"
-						value={passwordRetype}
-						onChange={(e)=>setPasswordRetype(e.target.value)}
-					></Input>
+					authState === "register" ?
+						<Input
+							htmlFor="code"
+							type="text"
+							name="code"
+							placeholder="REGISTRATION CODE"
+							value={registrationCode}
+							onChange={(e)=>setRegistrationCode(e.target.value)}
+						></Input>
+					:
+						<Input
+							htmlFor="password"
+							placeholder="PASSWORD"
+							type="password"
+							name="password"
+							value={password}
+							onChange={(e)=>setPassword(e.target.value)}
+						></Input>
 				}
 
-			{
-				authState !== "register" &&
-				<div className={classes.options}>
-					<div className={classes.link}>
-						Reset Password
-					</div>
-				</div>
-			}
+
 			</div>
 			<div className={classes.button}>
 				<Button type="submit">
 					{
 						authState === "register" ?
-							"CREATE ACCOUNT"
+							"REGISTER"
 							:
 							"LOG INTO MY ACCOUNT"
 					}

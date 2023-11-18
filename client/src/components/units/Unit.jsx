@@ -49,8 +49,8 @@ const Unit = ({ unit }) => {
 										className={classes.link}
 									>
 										<div className={classes.addressLine1}>
-											<span>{houseNumber}</span>
-											<span>{street}</span>
+											<span>{houseNumber} </span>
+											<span>{street} </span>
 											<span>{apartmentNumber}</span>
 										</div>
 									</NavLink>

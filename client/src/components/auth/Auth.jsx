@@ -23,7 +23,7 @@ const Auth = () => {
 						className={`${classes.tab} ${authState === "register" && classes.active}`}
 						onClick={()=>setAuthState("register")}
 					>
-						Create Account
+						Register
 					</div>
 					<div
 						className={`${classes.tab} ${authState === "login" && classes.active}`}

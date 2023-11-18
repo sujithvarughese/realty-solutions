@@ -9,7 +9,7 @@ import {
     toggleFlag,
     deleteMessage,
     getPreviousMessages
-} from "../controllers/messages-controller.js";
+} from "../controllers/message-controller.js";
 
 router.route("/read").patch(markMessageRead)
 router.route("/unread").patch(markMessageUnread)

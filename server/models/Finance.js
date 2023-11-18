@@ -1,6 +1,10 @@
 import mongoose from 'mongoose'
 
 const FinanceSchema = new mongoose.Schema({
+	account: {
+		type: mongoose.Types.ObjectId,
+		ref: "Account"
+	},
 	unit: {
 		type: mongoose.Types.ObjectId,
 		ref: "Unit"
