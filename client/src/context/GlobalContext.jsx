@@ -6,14 +6,11 @@ import {
 	LOGIN_USER,
 	LOGOUT_USER,
 	SET_IS_LOADING,
-	SET_USER,
-	SET_DATE,
 	SET_UNITS
 } from "./actions.js";
 
 
 const initialState = {
-	date: Date.now(),
 	user: null,
 	units: null
 }
@@ -24,26 +21,10 @@ const GlobalProvider = ({ children }) => {
 
 	const [state, dispatch] = useReducer(reducer, initialState)
 
-
-	const register = async (credentials) => {
-		try {
-			const response = await axiosDB.post("/auth/register", credentials)
-			// user = { userID: _id, isAdmin: isAdmin }
-			const { user, lastName, firstName } = response.data
-			dispatch({
-				type: REGISTER_USER,
-				payload: { user, lastName, firstName }
-			})
-
-		} catch (error) {
-			console.log(error);
-		}
-	}
-
-	const verifyAccount = async (credentials) => {
+	const verifyRegistration = async (credentials) => {
 		// { email, registrationCode }
 		try {
-			const response = await axiosDB.patch("/auth/verify", credentials)
+			const response = await axiosDB.patch("/registration/verify", credentials)
 			const { user } = response.data
 			dispatch({
 				type: LOGIN_USER,
@@ -68,7 +49,6 @@ const GlobalProvider = ({ children }) => {
 			console.log(error);
 		}
 	}
-
 	const logout = async () => {
 		await axiosDB("/auth/logout");
 		dispatch({ type: LOGOUT_USER });
@@ -80,27 +60,6 @@ const GlobalProvider = ({ children }) => {
 			payload: { isLoading: bool }
 		})
 	}
-	const setUser = (user) => {
-		const { lastName, firstName, unitID, street, city, state, zip } = user
-		dispatch({
-			type: SET_USER,
-			payload: { lastName, firstName, unitID, street, city, state, zip }
-		})
-	}
-
-	const setDate = () => {
-		const dateInstance = new Date()
-		const year = dateInstance.getFullYear()
-		const month = dateInstance.getMonth()
-		const date = dateInstance.getDate()
-		const day = dateInstance.getDay()
-		const today = { year, month, date, day }
-		dispatch({
-			type: SET_DATE,
-			payload: { date: today }
-		})
-	}
-
 	const setUnits = (units) => {
 		dispatch({
 			type: SET_UNITS,
@@ -112,13 +71,10 @@ const GlobalProvider = ({ children }) => {
 		<GlobalContext.Provider value={
 			{
 				...state,
-				register,
-				verifyAccount,
+				verifyRegistration,
 				login,
 				logout,
 				setIsLoading,
-				setDate,
-				setUser,
 				setUnits
 			}
 		}>

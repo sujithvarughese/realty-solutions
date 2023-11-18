@@ -28,7 +28,8 @@ const login = async (req, res) => {
 	const userInfo =
 		{
 			userID: user._id,
-			isAdmin: user.isAdmin,
+			account: user.account,
+			role: user.role,
 			email: user.email,
 			firstName: user.firstName,
 			lastName: user.lastName

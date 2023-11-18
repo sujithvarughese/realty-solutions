@@ -3,6 +3,7 @@ import { GlobalProvider } from "./context/GlobalContext.jsx";
 import {
   AccountVerification,
   AdminAccess,
+  adminAccessLoader,
   Error,
   Accounting,
   MyPayments,
@@ -41,7 +42,7 @@ const App = () => {
         { path: "home", element: <MyUnit />, loader: myUnitLoader },
         { path: "payments", element: <MyPayments /> },
         { path: "messages", element: <Messages />, loader: myMessagesLoader },
-        { path: "admin", element: <AdminAccess /> },
+        { path: "admin", element: <AdminAccess />, loader: adminAccessLoader},
         { path: "accounting",
           element: <Accounting />,
           errorElement: <Error />,

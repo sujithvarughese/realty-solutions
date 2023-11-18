@@ -1,5 +1,5 @@
 import AccountVerification from "./AccountVerification.jsx";
-import AdminAccess from "./AdminAccess.jsx";
+import AdminAccess, { adminAccessLoader } from "./admin/AdminAccess.jsx";
 import Error from "./Error.jsx";
 import Accounting from "./accounting/Accounting.jsx";
 import MyPayments from "./MyPayments.jsx";
@@ -15,6 +15,7 @@ import UnitFinancials, { unitFinancialsLoader }  from "./accounting/UnitFinancia
 export {
     AccountVerification,
     AdminAccess,
+    adminAccessLoader,
     Error,
     Accounting,
     MyPayments,

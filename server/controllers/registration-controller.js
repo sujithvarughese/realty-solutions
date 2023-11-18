@@ -7,8 +7,9 @@ import Unit from "../models/Unit.js";
 
 // account admin function to create user eligible to register
 const createRegistration = async (req, res) => {
+    console.log(req.body)
     // if any fields missing from user front end, throw error
-    if (!req.body.lastName || !req.body.firstName || !req.body.email || req.body.unit) {
+    if (!req.body.lastName || !req.body.firstName || !req.body.email) {
         throw new BadRequestError("Please provide all values");
     }
     // validate that user not already in database
@@ -41,10 +42,13 @@ const createRegistration = async (req, res) => {
 const verifyRegistration = async (req, res) => {
     // { email, registrationCode, password } = req.body
 
+    // retrieve registration data with registration code
     const registration = await RegistrationCode.findOne({ email: req.body.email }).select("+code");
     if (!registration) {
         throw new UnauthenticatedError("Email not found. Check credentials or contact an administrator");
     }
+
+    // code must match created code when registration was created (admin must give code to user)
     const registrationCodeVerified = await registration.compareRegistrationCode(req.body.registrationCode)
     if (!registrationCodeVerified) {
         throw new UnauthenticatedError("Invalid registration code");
@@ -62,9 +66,11 @@ const verifyRegistration = async (req, res) => {
         role: "user"
     }
 
+    // create new User instance (password will automatically get hashed and saved using pre middleware)
     const user = await User.create(newUser)
 
-    // user variable with just the fields we want to send to attach (will also be saved in front end state)
+    // user variable with just the fields we want to send to attach (will also be saved in front end state so do not
+    // send confidential user data)
     const userInfo = {
         userID: user._id,
         role: user.role,
@@ -73,6 +79,7 @@ const verifyRegistration = async (req, res) => {
         lastName: user.lastName
     };
 
+    // tenant object created to store in unit instance
     const tenant = {
         lastName: registration.lastName,
         firstName: registration.firstName,
@@ -80,6 +87,7 @@ const verifyRegistration = async (req, res) => {
         phone: registration.phone,
         rent: registration.rent,
     }
+
     // create jwt with jwt.sign
     const token = createJWT({ payload: userInfo })
 

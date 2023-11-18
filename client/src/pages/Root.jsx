@@ -21,12 +21,14 @@ const Root = () => {
 	// if user changes, check if admin or user and set links for navigation and navigate accordingly
 	useEffect(() => {
 		if (user && Object.keys(user).length > 0) {
-			if (user.isAdmin) {
+			if (user.role === "account-admin") {
 				setLinks(adminLinks)
 				navigate("/units");
-			} else {
+			} else if (user.role === "user"){
 				setLinks(userLinks)
 				navigate("/home");
+			} else if (user.role === "system-admin") {
+				navigate("/admin")
 			}
 		} else {
 			setLinks(publicLinks)

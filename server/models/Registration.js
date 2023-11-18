@@ -9,11 +9,6 @@ const RegistrationSchema = new mongoose.Schema({
         ref: 'Account',
         required: true
     },
-    unit: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Unit',
-        required: true
-    },
     email: {
         type: String,
         required: true,
@@ -41,13 +36,15 @@ const RegistrationSchema = new mongoose.Schema({
         trim: true,
         maxlength: 20,
     },
+    unit: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Unit',
+    },
     rent: {
         type: Number,
-        default: 0
     },
     balance: {
         type: Number,
-        default: 0
     },
     code: {
         type: String,

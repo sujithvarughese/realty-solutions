@@ -8,12 +8,10 @@ const initialState = {
 	lastName: "",
 	firstName: "",
 	email: "",
-	password: "",
 	unit: null,
 	phone: "",
 	rent: "",
 	balance: "",
-	tenant: ""
 }
 
 const CreateUserForm = ({ cancel, unitID }) => {
@@ -25,10 +23,12 @@ const CreateUserForm = ({ cancel, unitID }) => {
 	}
 
 	const navigate = useNavigate()
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		// pass unit to database so unit will be in mongo user document
-		await createUser({ ...values, unit: unitID })
+		const response = await createUser({ ...values, unit: unitID })
+		console.log(response)
 		// navigate back to units page to render changes
 		navigate("/units");
 		// close form
@@ -108,9 +108,9 @@ const CreateUserForm = ({ cancel, unitID }) => {
 
 const createUser = async (credentials) => {
 	try {
-		const response = await axiosDB.post("/auth/user", credentials)
-		// response.data --> user = { userID: _id, isAdmin: isAdmin }
-		console.log(response.data)
+		const response = await axiosDB.post("/registration/create", credentials)
+		const { registration } = response.data
+		return registration
 	} catch (error) {
 		console.log(error);
 	}

@@ -19,3 +19,5 @@
 
 
 
+1. Create System Admin
+2. Create Account with registration Info for account-admin

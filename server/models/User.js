@@ -8,18 +8,6 @@ const UserSchema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "Account"
 	},
-	lastName: {
-		type: String,
-		required: [true, "please provide name"],
-		minLength: 2,
-		maxLength: 40,
-		trim: true
-	},
-	firstName: {
-		type: String,
-		maxLength: 40,
-		trim: true
-	},
 	email: {
 		type: String,
 		required: [true, "please provide email"],
@@ -36,6 +24,18 @@ const UserSchema = new mongoose.Schema({
 		minLength: 6,
 		maxLength: 25,
 		select: false // hidden unless explicitly called
+	},
+	lastName: {
+		type: String,
+		required: [true, "please provide name"],
+		minLength: 2,
+		maxLength: 40,
+		trim: true
+	},
+	firstName: {
+		type: String,
+		maxLength: 40,
+		trim: true
 	},
 	unit: {
 		type: mongoose.Types.ObjectId,

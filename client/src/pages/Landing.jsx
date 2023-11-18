@@ -21,14 +21,7 @@ const Landing = () => {
 				<div className={classes.auth}>
 					<Auth />
 				</div>
-
-
-				<div className={classes.admin}>
-					<NavLink to="admin">
-						Admin Access
-					</NavLink>
-				</div>
-
+				
 			</div>
 		</div>
 	);

@@ -2,13 +2,15 @@ import classes from "./styles/AuthForm.module.css";
 import { Form, Input, Button } from "../../UI";
 import { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
+import auth from "./Auth.jsx";
 
 const AuthForm = ({ authState }) => {
 
-	const { login, verifyAccount } = useGlobalContext()
+	const { login, verifyRegistration } = useGlobalContext()
 
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
+	const [passwordConfirm, setPasswordConfirm] = useState("")
 	const [registrationCode, setRegistrationCode] = useState("")
 
 	const handleSubmit = (e) => {
@@ -16,7 +18,10 @@ const AuthForm = ({ authState }) => {
 		if (authState === "login") {
 			login({ email, password })
 		} else {
-			verifyAccount({ email, password })
+			if (password !== passwordConfirm) {
+				return console.log("passwords do not match")
+			}
+			verifyRegistration({ email, registrationCode, password })
 		}
 	}
 
@@ -32,24 +37,34 @@ const AuthForm = ({ authState }) => {
 					onChange={(e)=>setEmail(e.target.value)}
 				></Input>
 				{
-					authState === "register" ?
-						<Input
-							htmlFor="code"
-							type="text"
-							name="code"
-							placeholder="REGISTRATION CODE"
-							value={registrationCode}
-							onChange={(e)=>setRegistrationCode(e.target.value)}
-						></Input>
-					:
-						<Input
-							htmlFor="password"
-							placeholder="PASSWORD"
-							type="password"
-							name="password"
-							value={password}
-							onChange={(e)=>setPassword(e.target.value)}
-						></Input>
+					authState === "register" &&
+					<Input
+						htmlFor="code"
+						type="text"
+						name="code"
+						placeholder="REGISTRATION CODE"
+						value={registrationCode}
+						onChange={(e)=>setRegistrationCode(e.target.value)}
+					></Input>
+				}
+				<Input
+					htmlFor="password"
+					placeholder="PASSWORD"
+					type="password"
+					name="password"
+					value={password}
+					onChange={(e)=>setPassword(e.target.value)}
+				></Input>
+				{
+					authState === "register" &&
+					<Input
+						htmlFor="passwordConfirm"
+						placeholder="CONFIRM PASSWORD"
+						type="password"
+						name="passwordConfirm"
+						value={passwordConfirm}
+						onChange={(e)=>setPasswordConfirm(e.target.value)}
+					></Input>
 				}
 
 
