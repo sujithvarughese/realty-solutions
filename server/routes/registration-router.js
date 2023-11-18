@@ -4,3 +4,5 @@ import { createRegistration, verifyRegistration } from "../controllers/registrat
 
 router.route("/create").post(createRegistration)
 router.route("/verify").post(verifyRegistration)
+
+export default router

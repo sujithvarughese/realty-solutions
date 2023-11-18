@@ -55,8 +55,8 @@ app.use("/api/v1/auth", authRouter);  // login, logout, register
 app.use("/api/v1/units", authenticateUser, unitRouter)
 app.use("/api/v1/messages", authenticateUser, messageRouter)
 app.use("/api/v1/finance", authenticateUser, financeRouter)
-app.use("/api/v1/accounts", authenticateUser, financeRouter)
-app.use("/api/v1/registration", authenticateUser, financeRouter)
+app.use("/api/v1/account", accountRouter)
+app.use("/api/v1/registration", authenticateUser, registrationRouter)
 app.use(notFound);
 app.use(errorHandler);
 

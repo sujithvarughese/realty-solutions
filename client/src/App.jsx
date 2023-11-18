@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { GlobalProvider } from "./context/GlobalContext.jsx";
 import {
   AccountVerification,
+  AdminAccess,
   Error,
   Accounting,
   MyPayments,
@@ -37,15 +38,16 @@ const App = () => {
         { path: "verify", element: < AccountVerification /> },
         { path: "research", element: <Research /> },
         { path: "units", element: <Units />, loader: unitsLoader },
-        { path: "home", element: <MyUnit />, loader: myUnitLoader},
+        { path: "home", element: <MyUnit />, loader: myUnitLoader },
         { path: "payments", element: <MyPayments /> },
-        { path: "messages", element: <Messages />, loader: myMessagesLoader},
+        { path: "messages", element: <Messages />, loader: myMessagesLoader },
+        { path: "admin", element: <AdminAccess /> },
         { path: "accounting",
           element: <Accounting />,
           errorElement: <Error />,
           children: [
             { index: true, element: <FinancialSummary />, loader: financialSummaryLoader },
-            { path: ":id", element: <UnitFinancials />, loader: unitFinancialsLoader},
+            { path: ":id", element: <UnitFinancials />, loader: unitFinancialsLoader },
           ]
         }
       ]

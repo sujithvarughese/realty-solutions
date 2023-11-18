@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError, UnauthenticatedError } from "../errors/index.js";
 import RegistrationCode from "../models/Registration.js";
 import User from "../models/User.js";
+import Unit from "../models/Unit.js";
 
 // account admin function to create user eligible to register
 const createRegistration = async (req, res) => {
@@ -26,21 +27,21 @@ const createRegistration = async (req, res) => {
         rent: req.body.rent,
         balance: req.body.balance,
         code: randomCode,
-        isAdmin: false
+        role: "user"
     }
 
     const newRegistration = await RegistrationCode.create(registration)
 
     res.status(StatusCodes.CREATED).json({
-        message: "Registration Code created. Please give code to user for registration",
+        message: "Registration Code created. Please give code to user to complete registration",
         registration: newRegistration
     });
 }
 
 const verifyRegistration = async (req, res) => {
-    // { email, registrationCode } = req.body
+    // { email, registrationCode, password } = req.body
 
-    const registration = RegistrationCode.findOne({ email: req.body.email }).select("+password");
+    const registration = await RegistrationCode.findOne({ email: req.body.email }).select("+code");
     if (!registration) {
         throw new UnauthenticatedError("Email not found. Check credentials or contact an administrator");
     }
@@ -48,19 +49,51 @@ const verifyRegistration = async (req, res) => {
     if (!registrationCodeVerified) {
         throw new UnauthenticatedError("Invalid registration code");
     }
-    const user = {
+    const newUser = {
         account: registration.account,
         unit: registration.unit,
         email: registration.email,
+        password: req.body.password,
         lastName: registration.lastName,
         firstName: registration.firstName,
+        phone: registration.phone,
         rent: registration.rent,
-        balance: registration.balance
-
+        balance: registration.balance,
+        role: "user"
     }
+
+    const user = await User.create(newUser)
+
+    // user variable with just the fields we want to send to attach (will also be saved in front end state)
+    const userInfo = {
+        userID: user._id,
+        role: user.role,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName
+    };
+
+    const tenant = {
+        lastName: registration.lastName,
+        firstName: registration.firstName,
+        email: registration.email,
+        phone: registration.phone,
+        rent: registration.rent,
+    }
+    // create jwt with jwt.sign
+    const token = createJWT({ payload: userInfo })
+
+    // create cookie in the response, where we attach token
+    attachCookies({ res, token })
+
+    await Unit.findByIdAndUpdate(registration.unit,
+        { user: user, tenant: tenant })
+
+    // delete instance because it is not needed since user is created
+    await RegistrationCode.findByIdAndDelete(registration._id)
     res.status(StatusCodes.OK).json({
-        message: "Registration Found",
-        user: user
+        message: "Registration Verified",
+        user: userInfo
     });
 
 }

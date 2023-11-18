@@ -4,61 +4,6 @@ import User from "../models/User.js";
 import Unit from "../models/Unit.js";
 import { attachCookies, createJWT } from "../utils/index.js";
 
-const register = async (req, res) => {
-	//{ account, unit, email, password, lastName, firstName, phone } = req.body
-	const userAlreadyExists = await User.findOne({ email: req.body.email });
-	if (userAlreadyExists) {
-		throw new BadRequestError("User already exists");
-	}
-	// create new user in mongodb
-	const user = await User.create({
-		account: req.body.account,
-		unit: req.body.unit,
-		email: req.body.email,
-		lastName: req.body.lastName,
-		firstName: req.body.firstName,
-		password: req.body.password,
-		phone: req.body.phone,
-		rent: req.body.rent,
-		balance: req.body.balance,
-		isAdmin: false,
-		verified: false
-	});
-	await Unit.findByIdAndUpdate(req.body.unit,
-		{
-			user: user,
-			tenant: {
-				lastName: req.body.lastName,
-				firstName: req.body.firstName,
-				rent: req.body.rent,
-				email: req.body.email,
-				phone: req.body.phone
-			},
-		})
-
-	// user variable with just the fields we want to send to attach (will also be saved in front end state)
-	const userInfo =
-		{
-			userID: user._id,
-			isAdmin: user.isAdmin,
-			email: user.email,
-			firstName: user.firstName,
-			lastName: user.lastName
-		};
-
-	// create jwt with jwt.sign
-	const token = createJWT({ payload: userInfo });
-
-	// create cookie in the response, where we attach token
-	attachCookies({ res, token });
-
-	res.status(StatusCodes.OK).json({
-		message: "user register success",
-		user: userInfo,
-	});
-
-}
-
 const login = async (req, res) => {
 	// if any fields missing from user front end, throw error
 	if (!req.body.email || !req.body.password) {
@@ -140,4 +85,4 @@ const updateUser = async (req, res) => {
 	res.status(StatusCodes.OK).json({ msg: 'Update success' })
 }
 
-export { register, login, logout, getUserList, getAdminInfo, updateUser }
+export { login, logout, getUserList, getAdminInfo, updateUser }

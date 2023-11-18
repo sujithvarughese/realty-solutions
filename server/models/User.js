@@ -54,6 +54,11 @@ const UserSchema = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
+	role: {
+		type: String,
+		enum: ["user", "account-admin", "system-admin"],
+		required: true
+	},
 	isAdmin: {
 		type: Boolean,
 		default: false
@@ -72,7 +77,6 @@ const UserSchema = new mongoose.Schema({
 // function to hash user entered password on new user creation before we save
 // will be invoked on user everytime save() is called on this
 UserSchema.pre("save", async function () {
-	// can use this.modifiedPaths() to return all modified values on user.save()
 	// if password was not modified, we can return from this function without
 	// ...inadvertently hashing password again
 	if (!this.isModified("password")) return;
@@ -96,18 +100,7 @@ UserSchema.methods.updatePassword = async function (){
 		throw new InternalServerError("password hash failed");
 	}
 }
-/*
-UserSchema.pre("findOneAndUpdate", { document: true, query: false }, async function (next) {
-	if (!this.isModified("password")) return;
-	try {
-		const salt = await bcrypt.genSalt(10);
-		this.password = await bcrypt.hash(this.password, salt);
-		next()
-	} catch (error) {
-		throw new InternalServerError("password hash failed");
-	}
-});
-*/
+
 // function on user to compare entered password to user.password
 UserSchema.methods.comparePassword = async function (candidatePassword) {
 	try {
