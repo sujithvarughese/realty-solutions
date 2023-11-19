@@ -88,4 +88,4 @@ RegistrationSchema.methods.compareRegistrationCode = async function (candidateCo
 };
 
 
-export default mongoose.model('RegistrationCode', RegistrationSchema)
+export default mongoose.model('Registration', RegistrationSchema)

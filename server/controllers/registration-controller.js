@@ -1,13 +1,13 @@
 import crypto from "crypto";
 import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError, UnauthenticatedError } from "../errors/index.js";
-import RegistrationCode from "../models/Registration.js";
+import Registration from "../models/Registration.js";
 import User from "../models/User.js";
 import Unit from "../models/Unit.js";
 
 // account admin function to create user eligible to register
 const createRegistration = async (req, res) => {
-    console.log(req.body)
+    // { email, lastName, firstName } = req.body
     // if any fields missing from user front end, throw error
     if (!req.body.lastName || !req.body.firstName || !req.body.email) {
         throw new BadRequestError("Please provide all values");
@@ -31,7 +31,7 @@ const createRegistration = async (req, res) => {
         role: "user"
     }
 
-    const newRegistration = await RegistrationCode.create(registration)
+    const newRegistration = await Registration.create(registration)
 
     res.status(StatusCodes.CREATED).json({
         message: "Registration Code created. Please give code to user to complete registration",
@@ -41,9 +41,8 @@ const createRegistration = async (req, res) => {
 
 const verifyRegistration = async (req, res) => {
     // { email, registrationCode, password } = req.body
-
     // retrieve registration data with registration code
-    const registration = await RegistrationCode.findOne({ email: req.body.email }).select("+code");
+    const registration = await Registration.findOne({ email: req.body.email }).select("+code");
     if (!registration) {
         throw new UnauthenticatedError("Email not found. Check credentials or contact an administrator");
     }
@@ -53,21 +52,13 @@ const verifyRegistration = async (req, res) => {
     if (!registrationCodeVerified) {
         throw new UnauthenticatedError("Invalid registration code");
     }
-    const newUser = {
-        account: registration.account,
-        unit: registration.unit,
-        email: registration.email,
-        password: req.body.password,
-        lastName: registration.lastName,
-        firstName: registration.firstName,
-        phone: registration.phone,
-        rent: registration.rent,
-        balance: registration.balance,
-        role: "user"
-    }
+
+    // convert model document to plain js object to delete registration._id property that is no longer needed
+    const newUser = registration.toObject()
+    delete newUser._id
 
     // create new User instance (password will automatically get hashed and saved using pre middleware)
-    const user = await User.create(newUser)
+    const user = await User.create({ ...newUser, password: req.body.password })
 
     // user variable with just the fields we want to send to attach (will also be saved in front end state so do not
     // send confidential user data)
@@ -80,12 +71,15 @@ const verifyRegistration = async (req, res) => {
     };
 
     // tenant object created to store in unit instance
-    const tenant = {
-        lastName: registration.lastName,
-        firstName: registration.firstName,
-        email: registration.email,
-        phone: registration.phone,
-        rent: registration.rent,
+    if (newUser.role === "user") {
+        const tenant = {
+            lastName: registration.lastName,
+            firstName: registration.firstName,
+            email: registration.email,
+            phone: registration.phone,
+            rent: registration.rent,
+        }
+        await Unit.findByIdAndUpdate(registration.unit, { user: user, tenant: tenant })
     }
 
     // create jwt with jwt.sign
@@ -94,14 +88,13 @@ const verifyRegistration = async (req, res) => {
     // create cookie in the response, where we attach token
     attachCookies({ res, token })
 
-    await Unit.findByIdAndUpdate(registration.unit,
-        { user: user, tenant: tenant })
 
     // delete instance because it is not needed since user is created
-    await RegistrationCode.findByIdAndDelete(registration._id)
+    await Registration.findByIdAndDelete(registration._id)
+
     res.status(StatusCodes.OK).json({
         message: "Registration Verified",
-        user: userInfo
+        userInfo: userInfo
     });
 
 }

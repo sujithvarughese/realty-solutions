@@ -1,38 +1,58 @@
 import classes from "./styles/AdminAccess.module.css";
 import { axiosDB } from "../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
-import CreateAccountForm from "./CreateAccountForm.jsx";
+import CreateAccountAdminForm from "./CreateAccountAdminRegistrationForm.jsx";
 import {useState} from "react";
+import AccountInfo from "./AccountInfo.jsx";
 
 const AdminAccess = () => {
 
     const accounts = useLoaderData()
-    const [showCreateAccountForm, setShowCreateAccountForm] = useState(false)
+
+    const [accountsState, setAccountsState] = useState(accounts)
+    const createAccount = async () => {
+        try {
+            const response = await axiosDB.post("/accounts")
+            const { account } = response.data
+            setAccountsState([ ...accountsState, account ])
+            console.log(account)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     return (
         <div>
-            Accounts
-            <div>
+            <div onClick={createAccount}>
+                Create Account
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Accounts</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        Account Id
+                    </td>
+                    <td>
+                        Email
+                    </td>
+                    <td>
+                        Admin Name
+                    </td>
+                </tr>
                 {
-                    accounts.map(account => {
-                        return (
-                            <div key={account._id}>
-                                {account.admin.email}
-                                {account.admin.lastName}
-                                {account.admin.firstName}
-                            </div>
-                        )
-                    })
+                    accountsState?.map(account => <AccountInfo key={account._id} account={account}/>)
                 }
-            </div>
-            <div onClick={()=>setShowCreateAccountForm(true)}>
-                Create new account
-            </div>
-            {
-                showCreateAccountForm &&
-                <CreateAccountForm cancel={()=>setShowCreateAccountForm(false)}/>
-            }
+                </tbody>
+
+            </table>
         </div>
+
     );
 };
 

@@ -1,4 +1,4 @@
-import classes from "./styles/CreateAccountForm.module.css";
+import classes from "./styles/CreateAccountAdminRegistrationForm.module.css";
 import {Button, Card, Form, Input} from "../../UI/index.js";
 import {useState} from "react";
 import {axiosDB} from "../../utils/axios.js";
@@ -10,7 +10,7 @@ const initialState = {
     lastName: "",
     firstName: ""
 }
-const CreateAccountForm = ({ cancel }) => {
+const CreateAccountAdminRegistrationForm = ({ cancel, account }) => {
 
     const [values, setValues] = useState(initialState)
 
@@ -21,21 +21,18 @@ const CreateAccountForm = ({ cancel }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axiosDB.post("/accounts")
-            const { account } = response.data
-            console.log(account)
+            const response = await axiosDB.post("/accounts", { ...values, account: account, role: "account-admin" })
+            const { registration } = response.data
+            console.log(registration)
         } catch(error) {
             console.log(error)
         }
     }
 
-
-
-
     return (
         <div className={classes.container}>
             <Card>
-                <Form onSubmit={handleSubmit} title="Create Account">
+                <Form onSubmit={handleSubmit} title="Create Account Admin Registration">
                     <div className={classes.form}>
                         Admin Info:
                         <div className={classes.name}>
@@ -74,25 +71,6 @@ const CreateAccountForm = ({ cancel }) => {
                                 onChange={handleChange}
                             ></Input>
                         </div>
-                        <div className={classes.info}>
-                            <Input
-                                htmlFor="rent"
-                                placeholder="RENT"
-                                type="number"
-                                name="rent"
-                                value={values.rent}
-                                onChange={handleChange}
-                            ></Input>
-                            <Input
-                                htmlFor="balance"
-                                placeholder="BALANCE"
-                                type="number"
-                                name="balance"
-                                value={values.balance}
-                                onChange={handleChange}
-                            ></Input>
-                        </div>
-
                         <div className={classes.buttons}>
                             <Button type="submit">Create Account</Button>
                             <Button type="button" onClick={cancel}>Cancel</Button>
@@ -104,4 +82,4 @@ const CreateAccountForm = ({ cancel }) => {
     );
 };
 
-export default CreateAccountForm;
+export default CreateAccountAdminRegistrationForm;

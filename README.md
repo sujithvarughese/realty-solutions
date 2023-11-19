@@ -8,7 +8,7 @@
 
 **Account**
 * One account per company
-* Contains one admin(property owner or manager) and multiple users(tenants)
+* Each account contains one admin(property owner or manager) and multiple users(tenants)
 * Account admin is created when account instance is created
 
 **Registration**
@@ -18,6 +18,18 @@
 
 
 
+System admin permissions
+1. Create Account Admin
+2. Create Account Admin Registration (Account Admin must verify registration to complete setup and create User)
 
-1. Create System Admin
-2. Create Account with registration Info for account-admin
+Account Admin Permissions
+1. Create/Edit Unit
+2. Once Unit exists, account admin can 
+   1. Add user registration to vacant Unit (User must verify registration)
+   2. Edit user data
+3. Create/Edit Unit Financial Data
+4. Create/View Rent Receipts
+
+User permissions
+1. View user's unit data including financial data pertinent to user
+2. Send/receive messages to/from account admin

@@ -48,11 +48,9 @@ const UserSchema = new mongoose.Schema({
 	},
 	rent: {
 		type: Number,
-		default: 0
 	},
 	balance: {
 		type: Number,
-		default: 0
 	},
 	role: {
 		type: String,

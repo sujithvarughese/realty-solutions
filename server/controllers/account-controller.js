@@ -2,18 +2,45 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError, UnauthenticatedError } from "../errors/index.js";
 import Account from "../models/Account.js";
 import User from "../models/User.js";
+import crypto from "crypto";
+import Registration from "../models/Registration.js";
 
-// hidden function for admin only to create new accounts(account has its own admin and users)
+// function for system admin only to create new accounts(account has its own admin and users)
 // when creating account, account admin should also be set up
 const createAccount = async (req, res) => {
-    // { email, phone, password, lastName, firstName } = req.body
-    const accountAdmin = await User.create({ ...req.body, role: "account-admin" })
-    const account = await Account.create({ admin: accountAdmin._id })
-    await User.findByIdAndUpdate(accountAdmin._id, { account: account._id })
+    const account = await Account.create({ admin: null })
     res.status(StatusCodes.CREATED).json({
         message: "Account created",
-        account: account,
-        admin: accountAdmin
+        account: account
+    });
+}
+
+const createAccountAdminRegistration = async (req, res) => {
+    // { account, email, lastName, firstName, role } = req.body
+    // if any fields missing from user front end, throw error
+    if (!req.body.lastName || !req.body.firstName || !req.body.email) {
+        throw new BadRequestError("Please provide all values");
+    }
+    // validate that user not already in database
+    const userAlreadyExists = await User.findOne({ email: req.body.email });
+    if (userAlreadyExists) {
+        throw new BadRequestError("User already exists");
+    }
+    const randomCode = crypto.randomBytes(8).toString("hex")
+    const registration = {
+        account: req.body.account,
+        email: req.body.email,
+        lastName: req.body.lastName,
+        firstName: req.body.firstName,
+        code: randomCode,
+        role: req.body.role
+    }
+
+    const newRegistration = await Registration.create(registration)
+
+    res.status(StatusCodes.CREATED).json({
+        message: "Registration Code created. Please give code to account admin to complete registration",
+        registration: newRegistration
     });
 }
 
