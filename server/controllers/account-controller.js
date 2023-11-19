@@ -16,7 +16,7 @@ const createAccount = async (req, res) => {
 }
 
 const createAccountAdminRegistration = async (req, res) => {
-    // { account, email, lastName, firstName, role } = req.body
+    // { account, email, lastName, firstName } = req.body
     // if any fields missing from user front end, throw error
     if (!req.body.lastName || !req.body.firstName || !req.body.email) {
         throw new BadRequestError("Please provide all values");
@@ -33,7 +33,8 @@ const createAccountAdminRegistration = async (req, res) => {
         lastName: req.body.lastName,
         firstName: req.body.firstName,
         code: randomCode,
-        role: req.body.role
+        isAdmin: true,
+        role: "account-admin"
     }
 
     const newRegistration = await Registration.create(registration)
@@ -46,7 +47,7 @@ const createAccountAdminRegistration = async (req, res) => {
 
 const createSystemAdmin = async (req, res) => {
     // { lastName: "Administrator", firstName: "System", email, phone, password }
-    const systemAdmin = await User.create({ ...req.body, role: "system-admin" })
+    const systemAdmin = await User.create({ ...req.body, isAdmin: true, role: "system-admin" })
     res.status(StatusCodes.CREATED).json({
         message: "System Admin Created",
         systemAdmin: systemAdmin

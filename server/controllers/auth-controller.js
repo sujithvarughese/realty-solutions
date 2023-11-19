@@ -29,10 +29,13 @@ const login = async (req, res) => {
 		{
 			userID: user._id,
 			account: user.account,
+			isAdmin: user.isAdmin,
 			role: user.role,
 			email: user.email,
 			firstName: user.firstName,
-			lastName: user.lastName
+			lastName: user.lastName,
+			rent: user.rent,
+			balance: user.balance
 		};
 
 	// create jwt with jwt.sign

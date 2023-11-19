@@ -9,13 +9,13 @@ const Units = () => {
 	// units = [{ unit }, {},...]
 	const units = useLoaderData()
 
+	// set in global state
 	const { setUnits } = useGlobalContext()
 	useEffect(() => {
 		setUnits(units)
 	}, []);
 
-
-	// will open up form
+	// state to trigger show create unit form
 	const [showCreateUnitForm, setShowCreateUnitForm] = useState(false)
 
 	// state for search function

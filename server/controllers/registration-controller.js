@@ -28,6 +28,7 @@ const createRegistration = async (req, res) => {
         rent: req.body.rent,
         balance: req.body.balance,
         code: randomCode,
+        isAdmin: false,
         role: "user"
     }
 
@@ -64,6 +65,7 @@ const verifyRegistration = async (req, res) => {
     // send confidential user data)
     const userInfo = {
         userID: user._id,
+        isAdmin: user.isAdmin,
         role: user.role,
         email: user.email,
         firstName: user.firstName,
@@ -94,7 +96,7 @@ const verifyRegistration = async (req, res) => {
 
     res.status(StatusCodes.OK).json({
         message: "Registration Verified",
-        userInfo: userInfo
+        user: userInfo
     });
 
 }
