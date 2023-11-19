@@ -2,7 +2,6 @@ import { createContext, useContext, useReducer } from "react";
 import reducer from "./reducer.js";
 import { axiosDB } from "../utils/axios.js";
 import {
-	REGISTER_USER,
 	LOGIN_USER,
 	LOGOUT_USER,
 	SET_IS_LOADING,

@@ -39,7 +39,7 @@ const Auth = () => {
 			</div>
 
 			<div onClick={previewAsAdmin} className={classes.link}>
-				Preview as Admin
+				Preview as Property Manager
 			</div>
 		</Card>
 	);

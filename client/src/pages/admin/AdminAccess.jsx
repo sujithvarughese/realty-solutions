@@ -2,10 +2,12 @@ import classes from "./styles/AdminAccess.module.css";
 import { axiosDB } from "../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
 import CreateAccountForm from "./CreateAccountForm.jsx";
+import {useState} from "react";
 
 const AdminAccess = () => {
 
     const accounts = useLoaderData()
+    const [showCreateAccountForm, setShowCreateAccountForm] = useState(false)
 
     return (
         <div>
@@ -23,7 +25,13 @@ const AdminAccess = () => {
                     })
                 }
             </div>
-            <CreateAccountForm />
+            <div onClick={()=>setShowCreateAccountForm(true)}>
+                Create new account
+            </div>
+            {
+                showCreateAccountForm &&
+                <CreateAccountForm cancel={()=>setShowCreateAccountForm(false)}/>
+            }
         </div>
     );
 };

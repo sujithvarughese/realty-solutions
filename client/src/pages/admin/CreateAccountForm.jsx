@@ -10,7 +10,7 @@ const initialState = {
     lastName: "",
     firstName: ""
 }
-const CreateAccountForm = () => {
+const CreateAccountForm = ({ cancel }) => {
 
     const [values, setValues] = useState(initialState)
 
