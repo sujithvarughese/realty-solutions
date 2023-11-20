@@ -71,19 +71,3 @@ textarea {
 table {
   border-collapse: collapse;
 }
-
-/*
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background: linear-gradient(to right, #434343 0%, black 100%);
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-
-
-}
