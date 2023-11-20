@@ -23,20 +23,20 @@ const login = async (req, res) => {
 	if (!passwordVerified) {
 		throw new UnauthenticatedError("Invalid credentials");
 	}
-
+	console.log(user)
 	// user variable with just the fields we want to send to attach (will also be saved in front end state)
-	const userInfo =
-		{
-			userID: user._id,
-			account: user.account,
-			isAdmin: user.isAdmin,
-			role: user.role,
-			email: user.email,
-			firstName: user.firstName,
-			lastName: user.lastName,
-			rent: user.rent,
-			balance: user.balance
-		};
+	const userInfo = {
+		userID: user._id,
+		account: user.account,
+		isAdmin: user.isAdmin,
+		role: user.role,
+		email: user.email,
+		firstName: user.firstName,
+		lastName: user.lastName,
+		rent: user.rent,
+		balance: user.balance,
+		isSystemAdmin: user.isSystemAdmin
+	};
 
 	// create jwt with jwt.sign
 	const token = createJWT({ payload: userInfo });

@@ -62,4 +62,4 @@ const getAccounts = async (req,res) => {
     })
 }
 
-export { createAccount, createSystemAdmin, getAccounts }
+export { createAccount, createSystemAdmin, createAccountAdminRegistration, getAccounts }

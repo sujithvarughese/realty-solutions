@@ -61,6 +61,10 @@ const UserSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false
 	},
+	isSystemAdmin: {
+		type: Boolean,
+		default: false
+	},
 	createdAt: {
 		type: Date,
 		default: () => Date.now(),

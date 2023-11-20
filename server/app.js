@@ -18,7 +18,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import errorHandler from "./middleware/error-handler.js";
 import notFound from "./middleware/not-found.js";
-import { authenticateUser, authorizePermissions } from "./middleware/authentication.js";
+import { authenticateUser, authorizePermissions, authorizeSystemAdmin } from "./middleware/authentication.js";
 
 //---------------//
 const app = express()
@@ -51,11 +51,10 @@ app.get("/api/v1", (req, res) => {
 })
 
 app.use("/api/v1/auth", authRouter);  // login, logout, register
-
 app.use("/api/v1/units", authenticateUser, unitRouter)
 app.use("/api/v1/messages", authenticateUser, messageRouter)
 app.use("/api/v1/finance", authenticateUser, financeRouter)
-app.use("/api/v1/accounts", accountRouter)
+app.use("/api/v1/accounts", authenticateUser, authorizeSystemAdmin, accountRouter)
 app.use("/api/v1/registration", authenticateUser, registrationRouter)
 app.use(notFound);
 app.use(errorHandler);

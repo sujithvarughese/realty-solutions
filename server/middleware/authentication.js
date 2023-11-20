@@ -15,6 +15,9 @@ const authenticateUser = async (req, res, next) => {
 		const payload = validateJWT({ token })
 		// make user obh on req obj to always know userID and isAdmin
 		req.user = { userID: payload.userID, isAdmin: payload.isAdmin, role: payload.role }
+		if (payload.isSystemAdmin) {
+			req.user.isSystemAdmin = payload.isSystemAdmin
+		}
 		next()
 	} catch (error) {
 		throw new UnauthenticatedError('token not verified')
@@ -23,11 +26,18 @@ const authenticateUser = async (req, res, next) => {
 
 // authorize if user isAdmin
 const authorizePermissions = (req, res, next) => {
+	console.log(req.user)
 	if (!req.user.isAdmin) {
 		throw new UnauthorizedError('Role not authorized')
 	}
 	next()
-
 }
 
-export { authenticateUser, authorizePermissions };
+const authorizeSystemAdmin = (req, res, next) => {
+	if (!req.user.isSystemAdmin) {
+		throw new UnauthorizedError('Role not authorized')
+	}
+	next()
+}
+
+export { authenticateUser, authorizePermissions, authorizeSystemAdmin };
