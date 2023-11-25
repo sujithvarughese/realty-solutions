@@ -1,5 +1,5 @@
 import classes from "./styles/CreateUnitForm.module.css";
-import { Button, Form, Input, InputSelect, Card } from "../../UI";
+import { Button, Form, Input, Select, Card } from "../../ui";
 import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
@@ -83,15 +83,13 @@ const CreateUnitForm = ({ cancel }) => {
 						value={values.city}
 						onChange={handleChange}
 					></Input>
-					<InputSelect
-						htmlFor="state"
-						placeholder="STATE"
+					<Select
 						type="text"
 						name="state"
 						list={states}
 						value={values.state}
 						onChange={handleChange}
-					></InputSelect>
+					></Select>
 					<Input
 						htmlFor="zip"
 						placeholder="ZIP"

@@ -1,4 +1,4 @@
-import classes from "../../../pages/accounting/styles/FinancialSummary.module.css";
+import classes from "../../../pages/accounting/styles/Accounting.module.css";
 import  { totalMortgage, totalPropertyTax, totalInsurance, totalRent, totalHoa, totalProfit } from "../../../utils/financeCalcs.js";
 import { convertToUSD } from "../../../utils/financeCalcs.js";
 

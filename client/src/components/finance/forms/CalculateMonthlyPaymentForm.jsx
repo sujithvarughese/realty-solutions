@@ -1,7 +1,8 @@
-import classes from "./styles/CalculateMonthlyPaymentForm.module.css";
+import classes from "./styles/financeForms.module.css";
 import {useState} from "react";
 import { calculateMonthlyPayment}  from "../../../utils/financeCalcs.js";
-import {Button, Form, Input} from "../../../UI/index.js";
+import {Button, Form, Input} from "../../../ui/index.js";
+import FormRow from "../../../ui/FormRow.jsx";
 
 const CalculateMonthlyPaymentForm = ({ principal, apr, termYears, setMonthlyPayment}) => {
 
@@ -23,70 +24,36 @@ const CalculateMonthlyPaymentForm = ({ principal, apr, termYears, setMonthlyPaym
     return (
         <div className={classes.container}>
             <Form onSubmit={handleSubmit} title="Calculate Monthly Payment">
-                <div className={classes.form}>
-                    <div className={classes.row}>
-                        <label htmlFor="principal">Principal</label>
-                        <input
-                            className={classes.input}
-                            type="number"
-                            name="principal"
-                            value={values.principal}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className={classes.row}>
-                        <label htmlFor="apr">APR</label>
-                        <input
-                            className={classes.input}
-                            type="number"
-                            name="apr"
-                            value={values.apr}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className={classes.row}>
-                        <label htmlFor="termYears">Term Length (Years)</label>
-                        <input
-                            className={classes.input}
-                            type="number"
-                            name="termYears"
-                            value={values.termYears}
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <div className={classes.button}>
-                        <Button>
-                            Get Monthly Payment
-                        </Button>
-                    </div>
-                </div>
-            </Form>
-        </div>
-    );
-};
-/* <Input
-                        htmlFor="principal"
-                        label="Principal: "
+                <FormRow label="Principal">
+                    <Input
                         type="number"
                         name="principal"
                         value={values.principal}
                         onChange={handleChange}
                     ></Input>
+                </FormRow>
+                <FormRow label="APR">
                     <Input
-                        htmlFor="apr"
-                        label="APR: "
                         type="number"
                         name="apr"
                         value={values.apr}
                         onChange={handleChange}
                     ></Input>
+                </FormRow>
+                <FormRow label="Term Length (Years)">
                     <Input
-                        htmlFor="termYears"
-                        label="Term Length (in Years): "
                         type="number"
                         name="termYears"
                         value={values.termYears}
                         onChange={handleChange}
-                    ></Input>*/
+                    ></Input>
+                </FormRow>
+                <div className={classes.button}>
+                    <Button type="submit">Get Monthly Payment</Button>
+                </div>
+            </Form>
+        </div>
+    );
+};
+
 export default CalculateMonthlyPaymentForm;

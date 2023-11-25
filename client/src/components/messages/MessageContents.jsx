@@ -1,5 +1,5 @@
 import classes from "./styles/MessageContents.module.css";
-import { Card } from "../../UI"
+import { Card } from "../../ui"
 import {useState} from "react";
 import {useGlobalContext} from "../../context/GlobalContext.jsx";
 

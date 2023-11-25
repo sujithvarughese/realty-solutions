@@ -3,7 +3,7 @@ import { CreateRentReceiptForm, SearchRentReceiptsForm } from "../../index.js";
 import { useEffect, useState } from "react";
 import { RentReceipt } from "../../index.js";
 import { axiosDB } from "../../../utils/axios.js";
-import {InputSelect} from "../../../UI/index.js";
+
 
 const Rents = ({ houseNumber, street, apartmentNumber, city, state, zip, firstName, lastName, userID }) => {
 

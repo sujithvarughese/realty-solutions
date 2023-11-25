@@ -1,7 +1,8 @@
-import classes from "./styles/CalculatePayoffForm.module.css";
+import classes from "./styles/financeForms.module.css";
 import { calculatePayoff } from "../../../utils/financeCalcs.js";
-import { Input, Form, Button } from "../../../UI/index.js";
+import { Input, Form, Button } from "../../../ui/index.js";
 import {useState} from "react";
+import FormRow from "../../../ui/FormRow.jsx";
 
 const CalculatePayoffForm = ({ principal, apr, termYears, paymentsMade, setPayoffAmount }) => {
 
@@ -24,93 +25,47 @@ const CalculatePayoffForm = ({ principal, apr, termYears, paymentsMade, setPayof
     return (
         <div className={classes.container}>
         <Form onSubmit={handleSubmit}  title="Calculate Mortgage Payoff">
-            <div className={classes.form}>
-
-                <div className={classes.row}>
-                    <label htmlFor="principal">Principal</label>
-                    <input
-                        className={classes.input}
+                <FormRow label="Principal">
+                    <Input
                         type="number"
                         name="principal"
                         value={values.principal}
                         onChange={handleChange}
-                    />
-                </div>
-                <div className={classes.row}>
-                    <label htmlFor="apr">APR</label>
-                    <input
-                        className={classes.input}
+                    ></Input>
+                </FormRow>
+
+                <FormRow label="APR">
+                    <Input
                         type="number"
                         name="apr"
                         value={values.apr}
                         onChange={handleChange}
-                    />
-                </div>
-                <div className={classes.row}>
-                    <label htmlFor="termYears">Term Length (Years)</label>
-                    <input
-                        className={classes.input}
+                    ></Input>
+                </FormRow>
+
+                <FormRow label="Term Length (Years)">
+                    <Input
                         type="number"
                         name="termYears"
                         value={values.termYears}
                         onChange={handleChange}
-                    />
-                </div>
-                <div className={classes.row}>
-                    <label htmlFor="paymentsMade">Total Payments Made</label>
-                    <input
-                        className={classes.input}
+                    ></Input>
+                </FormRow>
+
+                <FormRow label="Total Payments Made">
+                    <Input
                         type="number"
                         name="paymentsMade"
                         value={values.paymentsMade}
                         onChange={handleChange}
-                    />
-                </div>
-
-
-
+                    ></Input>
+                </FormRow>
             <div className={classes.button}>
-                <Button>
-                    Get Payoff Amount
-                </Button>
-            </div>
-
+                <Button type="submit">Get Payoff Amount</Button>
             </div>
         </Form>
         </div>
     );
 };
-/*            <Input
-                htmlFor="principal"
-                label="Principal: "
-                type="number"
-                name="principal"
-                value={values.principal}
-                onChange={handleChange}
-            ></Input>
-            <Input
-                htmlFor="apr"
-                label="APR: "
-                type="number"
-                name="apr"
-                value={values.apr}
-                onChange={handleChange}
-            ></Input>
-            <Input
-                htmlFor="termYears"
-                label="Term Length (in Years): "
-                type="number"
-                name="termYears"
-                value={values.termYears}
-                onChange={handleChange}
-            ></Input>
-            <Input
-                htmlFor="paymentsMade"
-                label="Number of Payments Made: "
-                type="number"
-                name="paymentsMade"
-                value={values.paymentsMade}
-                onChange={handleChange}
-            ></Input>
-            */
+
 export default CalculatePayoffForm;

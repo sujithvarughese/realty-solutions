@@ -1,5 +1,5 @@
 import classes from "./styles/UnitMobile.module.css";
-import { Button, Card } from "../../UI/index.js";
+import { Button, Card } from "../../ui/index.js";
 import { CreateMessageForm } from "../index.js";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
@@ -54,11 +54,11 @@ const UnitMobile = ({ unit }) => {
                     <div className={classes.buttons}>
                         <a href={`tel:${phone}`}>
                             <div className={classes.button}>
-                                <Button styles="buttonMobile">Call</Button>
+                                <Button>Call</Button>
                             </div>
                         </a>
                         <div className={classes.button}>
-                            <Button styles="buttonMobile" onClick={() => setShowMessageForm(true)}>Message</Button>
+                            <Button onClick={() => setShowMessageForm(true)}>Message</Button>
                         </div>
                     </div>
 

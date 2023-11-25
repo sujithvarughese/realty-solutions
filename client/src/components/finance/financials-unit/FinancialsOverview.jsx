@@ -31,6 +31,7 @@ const FinancialsOverview = ({ purchasePrice, rent, fairMarketRent, annualPropert
             </div>
 
             <div className={classes.calcProfit}>
+
                 <CalculateProfitForm
                     annualPropertyTax={annualPropertyTax}
                     annualInsurancePremium={annualInsurancePremium}
@@ -38,6 +39,7 @@ const FinancialsOverview = ({ purchasePrice, rent, fairMarketRent, annualPropert
                     rent={rent}
                     setProfit={setProfit}
                 />
+
                 {
                     profit &&
                     <div className={classes.result}>

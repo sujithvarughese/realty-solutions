@@ -1,5 +1,5 @@
 import classes from "./styles/AccountVerification.module.css";
-import {Button, Form, Input} from "../UI/index.js";
+import {Button, Form, Input} from "../ui/index.js";
 import {useState} from "react";
 import {useLocation} from "react-router-dom";
 import {useGlobalContext} from "../context/GlobalContext.jsx";

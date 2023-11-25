@@ -1,5 +1,5 @@
 import classes from "./styles/ReplyMessageForm.module.css";
-import { Button, Form, Card } from "../../UI";
+import { Button, Form, Card, Textarea } from "../../ui";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -42,13 +42,13 @@ const ReplyMessageForm = ({ message, closeReply }) => {
 			<Card>
 				<Form onSubmit={handleSubmit}>
 					<div className={classes.form}>
-						<textarea
+						<Textarea
 							placeholder="Type reply here..."
 							name="body"
 							value={body}
 							rows="15"
 							onChange={handleChange}
-						></textarea>
+						></Textarea>
 
 						<div className={classes.button}>
 							<Button type="submit">Send Message</Button>

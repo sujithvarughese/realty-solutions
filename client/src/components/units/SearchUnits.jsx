@@ -1,10 +1,9 @@
-import { Input, Button } from "../../UI/index.js";
+import { Input, Button } from "../../ui/index.js";
 
 const SearchUnits = ({ query, setQuery }) => {
 
 	return (
 		<Input
-			htmlFor="search"
 			type="text"
 			name="search"
 			placeholder="SEARCH UNITS"

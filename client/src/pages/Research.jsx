@@ -1,7 +1,8 @@
 import classes from "./styles/Research.module.css";
 import { axiosHUD } from "../utils/axios.js";
 import { useState } from "react";
-import { Form, InputSelect } from "../UI";
+import { Form, Select } from "../ui";
+import FormRow from "../ui/FormRow.jsx";
 
 const Research = () => {
 
@@ -87,42 +88,50 @@ const Research = () => {
 			<div className={classes.search}>
 				<Form>
 					<div className={classes.form}>
-						<div className={classes.state}>
-							<InputSelect
-								htmlFor="state"
-								label="State: "
-								type="text"
-								name="state"
-								list={states}
-								onChange={handleChangeStateCode}
-							></InputSelect>
+						<div className={classes.row}>
+								<div>
+									State:
+								</div>
+
+								<Select
+									type="text"
+									name="state"
+									list={states}
+									onChange={handleChangeStateCode}
+								></Select>
+
+
 						</div>
-						<div className={classes.county}>
-							{
-								counties.length > 0 &&
-								<InputSelect
-									htmlFor="county"
-									label="County: "
+						{
+							counties.length > 0 &&
+							<div className={classes.row}>
+								<div>
+									County:
+								</div>
+								<Select
 									type="text"
 									name="county"
 									list={counties}
 									onChange={handleChangeCounty}
-								></InputSelect>
-							}
-						</div>
-						<div className={classes.zip}>
-							{
-								fmrByZip?.length > 0 &&
-								<InputSelect
-									htmlFor="zip"
-									label="Zip Code: "
+								></Select>
+							</div>
+
+						}
+						{
+							fmrByZip?.length > 0 &&
+							<div className={classes.row}>
+								<div>
+									Zip Code:
+								</div>
+								<Select
 									type="text"
 									name="zip"
 									list={fmrByZip.map(zip => zip.zip_code)}
 									onChange={handleSelectZipCode}
-								></InputSelect>
-							}
-						</div>
+								></Select>
+							</div>
+						}
+
 					</div>
 				</Form>
 			</div>

@@ -17,6 +17,7 @@ const UnitFinancials = () => {
 	const { state } = location
 
 	const unitFinance = useLoaderData()
+	console.log(unitFinance)
 	const [display, setDisplay] = useState("overview")
 
 	const { purchasePrice, rent, annualPropertyTax, fairMarketRent, insurance, mortgage, hoa } = unitFinance
@@ -27,34 +28,33 @@ const UnitFinancials = () => {
 
 	return (
 		<div className={classes.container}>
-
 			<div className={classes.links}>
 				<div
-					className={display === "overview" ? classes.active : classes.link}
+					className={`${classes.link} ${display === "overview" && classes.active}`}
 					onClick={()=>setDisplay("overview")}
 				>
 					Overview
 				</div>
 				<div
-					className={display === "mortgage" ? classes.active : classes.link}
+					className={`${classes.link} ${display === "mortgage" && classes.active}`}
 					onClick={()=>setDisplay("mortgage")}
 				>
 					Mortgage
 				</div>
 				<div
-					className={display === "insurance" ? classes.active : classes.link}
+					className={`${classes.link} ${display === "insurance" && classes.active}`}
 					onClick={()=>setDisplay("insurance")}
 				>
 					Insurance
 				</div>
 				<div
-					className={display === "hoa" ? classes.active : classes.link}
+					className={`${classes.link} ${display === "hoa" && classes.active}`}
 					onClick={()=>setDisplay("hoa")}
 				>
 					HOA
 				</div>
 				<div
-					className={display === "rents" ? classes.active : classes.link}
+					className={`${classes.link} ${display === "rents" && classes.active}`}
 					onClick={()=>setDisplay("rents")}
 				>
 					Rents

@@ -1,4 +1,4 @@
-import classes from "../../../pages/accounting/styles/FinancialSummary.module.css";
+import classes from "../../../pages/accounting/styles/Accounting.module.css";
 import {IoRemoveCircle} from "react-icons/io5";
 import { calculateMonthlyPayment} from "../../../utils/financeCalcs.js";
 import {NavLink} from "react-router-dom";

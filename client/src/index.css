@@ -42,22 +42,12 @@ a {
 ul {
   list-style: none;
 }
-button {
-  cursor: pointer;
-}
 
-button:focus,
-button:focus-visible,
-textarea:focus,
-select:focus,
-input:focus {
+textarea:focus {
   outline: 4px auto -webkit-focus-ring-color;
   outline-offset: -1px;
 }
 
-button:has(svg) {
-  line-height: 0;
-}
 
 img {
   max-width: 100%;
@@ -68,16 +58,11 @@ p, h1, h2, h3, h4, h5, h6 {
   hyphens: auto;
 }
 
-textarea {
-  font-size: 16px;
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  border: 1px solid #bcccdc;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-  0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
 table {
   border-collapse: collapse;
+  color: var(--COLOR-DARK);
+}
+
+@media (min-width: 600px) {
+  
 }

@@ -1,9 +1,10 @@
 import classes from "./styles/CreateMessageForm.module.css";
-import { Button, Form, Input, InputSelect, Modal, Card } from "../../UI";
+import {Button, Form, Input, Textarea, Modal, Card, Select} from "../../ui";
 import { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
+import FormRow from "../../ui/FormRow.jsx";
 
 const initialState = {
 	sender: "",
@@ -39,36 +40,34 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 		<Card>
 		<Form onSubmit={handleSubmit} title="create message">
 			<div className={classes.form}>
-				<div>
-					<InputSelect
-						htmlFor="recipient"
-						label="to: "
-						type="text"
-						name="recipient"
-						list={addressBook}
-						value={values.recipient}
-						onChange={handleChange}
-					></InputSelect>
+
+				<div className={classes.to}>
+					<FormRow label="To:">
+						<Select
+							type="text"
+							name="recipient"
+							list={addressBook}
+							value={values.recipient}
+							onChange={handleChange}
+						></Select>
+					</FormRow>
 				</div>
-				<div>
-					<Input
-						htmlFor="subject"
-						placeholder="Subject"
-						type="text"
-						name="subject"
-						value={values.subject}
-						onChange={handleChange}
-					></Input>
-				</div>
-				<div>
-					<textarea
-						placeholder="Type new message here..."
-						name="body"
-						value={values.body}
-						rows="15"
-						onChange={handleChange}
-					></textarea>
-				</div>
+				<Input
+					htmlFor="subject"
+					placeholder="Subject"
+					type="text"
+					name="subject"
+					value={values.subject}
+					onChange={handleChange}
+				></Input>
+				<Textarea
+					placeholder="Type new message here..."
+					name="body"
+					value={values.body}
+					rows="15"
+					onChange={handleChange}
+				></Textarea>
+
 				<div className={classes.buttons}>
 					<Button type="submit">Send</Button>
 					<Button type="button" onClick={cancel}>Cancel</Button>

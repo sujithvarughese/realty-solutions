@@ -1,11 +1,12 @@
-import classes from "./styles/FinancialSummary.module.css";
+import classes from "./styles/Accounting.module.css";
 import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { FinancialSummaryTotals, FinancialSummaryValues, FinancialSummaryMobile } from "../../components/index.js"
-import { InputSelect } from "../../UI/index.js";
+import { Select } from "../../ui/index.js";
 import { totalProfit, convertToUSD } from "../../utils/financeCalcs.js";
+import FormRow from "../../ui/FormRow.jsx";
 
 const FinancialSummary = () => {
 
@@ -51,18 +52,17 @@ const FinancialSummary = () => {
 				Accounting Totals
 			</div>
 
-			<div className={classes.termSelect}>
-				<InputSelect
-					htmlFor="term"
-					label="Term: "
+
+			<FormRow label="Term">
+				<Select
 					type="text"
 					name="term"
 					list={[{text: "Monthly", value: 1}, {text: "Yearly", value: 12}]}
 					onChange={(e)=>setSelectedTerm(e.target.value)}
 				>
+				</Select>
+			</FormRow>
 
-				</InputSelect>
-			</div>
 
 			<div className={classes.mobile}>
 				<FinancialSummaryMobile unitFinances={unitFinances} selectedTerm={selectedTerm} removeUnit={removeUnit}/>

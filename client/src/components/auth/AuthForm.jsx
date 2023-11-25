@@ -1,9 +1,12 @@
-import classes from "./styles/AuthForm.module.css";
-import { Form, Input, Button } from "../../UI";
+import classes from "./styles/Auth.module.css";
+import {Form, Input, Button} from "../../ui";
 import { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
-import auth from "./Auth.jsx";
 
+const credentials = {
+	email: import.meta.env.VITE_ADMIN_LOGIN,
+	password: import.meta.env.VITE_ADMIN_PASSWORD
+}
 const AuthForm = ({ authState }) => {
 
 	const { login, verifyRegistration } = useGlobalContext()
@@ -13,6 +16,9 @@ const AuthForm = ({ authState }) => {
 	const [passwordConfirm, setPasswordConfirm] = useState("")
 	const [registrationCode, setRegistrationCode] = useState("")
 
+	const previewAsAdmin = () => {
+		login(credentials)
+	}
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		if (authState === "login") {
@@ -27,49 +33,45 @@ const AuthForm = ({ authState }) => {
 
 	return (
 		<Form onSubmit={handleSubmit}>
-			<div className={classes.form}>
+			<Input
+				htmlFor="email"
+				type="email"
+				name="email"
+				placeholder="EMAIL"
+				value={email}
+				onChange={(e)=>setEmail(e.target.value)}
+			></Input>
+			{
+				authState === "register" &&
 				<Input
-					htmlFor="email"
-					type="email"
-					name="email"
-					placeholder="EMAIL"
-					value={email}
-					onChange={(e)=>setEmail(e.target.value)}
+					htmlFor="code"
+					type="text"
+					name="code"
+					placeholder="REGISTRATION CODE"
+					value={registrationCode}
+					onChange={(e)=>setRegistrationCode(e.target.value)}
 				></Input>
-				{
-					authState === "register" &&
-					<Input
-						htmlFor="code"
-						type="text"
-						name="code"
-						placeholder="REGISTRATION CODE"
-						value={registrationCode}
-						onChange={(e)=>setRegistrationCode(e.target.value)}
-					></Input>
-				}
+			}
+			<Input
+				htmlFor="password"
+				placeholder="PASSWORD"
+				type="password"
+				name="password"
+				value={password}
+				onChange={(e)=>setPassword(e.target.value)}
+			></Input>
+			{
+				authState === "register" &&
 				<Input
-					htmlFor="password"
-					placeholder="PASSWORD"
+					htmlFor="passwordConfirm"
+					placeholder="CONFIRM PASSWORD"
 					type="password"
-					name="password"
-					value={password}
-					onChange={(e)=>setPassword(e.target.value)}
+					name="passwordConfirm"
+					value={passwordConfirm}
+					onChange={(e)=>setPasswordConfirm(e.target.value)}
 				></Input>
-				{
-					authState === "register" &&
-					<Input
-						htmlFor="passwordConfirm"
-						placeholder="CONFIRM PASSWORD"
-						type="password"
-						name="passwordConfirm"
-						value={passwordConfirm}
-						onChange={(e)=>setPasswordConfirm(e.target.value)}
-					></Input>
-				}
-
-
-			</div>
-			<div className={classes.button}>
+			}
+			<div className={classes.buttons}>
 				<Button type="submit">
 					{
 						authState === "register" ?
@@ -78,9 +80,8 @@ const AuthForm = ({ authState }) => {
 							"LOG INTO MY ACCOUNT"
 					}
 				</Button>
+				<Button type="click" onClick={previewAsAdmin}>Preview</Button>
 			</div>
-
-
 		</Form>
 	);
 };

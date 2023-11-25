@@ -1,5 +1,5 @@
 import classes from "./styles/CreateAccountAdminRegistrationForm.module.css";
-import {Button, Card, Form, Input} from "../../UI/index.js";
+import {Button, Card, Form, Input} from "../../ui/index.js";
 import {useState} from "react";
 import {axiosDB} from "../../utils/axios.js";
 

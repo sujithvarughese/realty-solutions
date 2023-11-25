@@ -1,5 +1,5 @@
 import classes from "./styles/CreateUserForm.module.css";
-import { Input, Form, Button, Card } from "../../UI";
+import { Input, Form, Button, Card } from "../../ui";
 import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";

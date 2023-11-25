@@ -1,6 +1,6 @@
 import classes from "./styles/InfoBar.module.css"
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
-import { Button } from "../../UI";
+import { Button } from "../../ui";
 import { useNavigate } from "react-router-dom";
 
 const InfoBar = ({ user, logout }) => {

@@ -1,9 +1,10 @@
 import classes from "./styles/MyPayments.module.css";
 import { axiosDB } from "../utils/axios.js";
-import { Button, Form, InputSelect } from "../UI";
+import { Button, Form, Select } from "../ui";
 import { useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { RentReceipt } from "../components/index.js";
+import FormRow from "../ui/FormRow.jsx";
 
 
 const MyPayments = () => {
@@ -31,22 +32,14 @@ const MyPayments = () => {
 			</div>
 			<Form onSubmit={handleSubmit}>
 				<div className={classes.form}>
-					<InputSelect
-						htmlFor="year"
-						label="year: "
-						type="text"
-						name="year"
-						list={years}
-						onChange={(e)=>setYear(e.target.value)}
-					></InputSelect>
-					<InputSelect
-						htmlFor="month"
-						label="month: "
-						type="text"
-						name="month"
-						list={months}
-						onChange={(e)=>setMonth(e.target.value)}
-					></InputSelect>
+					<FormRow label="Year: ">
+						<Select
+							type="text"
+							name="year"
+							list={years}
+							onChange={(e)=>setYear(e.target.value)}
+						></Select>
+					</FormRow>
 				</div>
 					<div className={classes.button}>
 						<Button type="submit">Submit</Button>

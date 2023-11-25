@@ -1,6 +1,9 @@
 .container {
 
 }
+.to {
+    width: 180px;
+}
 .form {
     display: flex;
     flex-direction: column;

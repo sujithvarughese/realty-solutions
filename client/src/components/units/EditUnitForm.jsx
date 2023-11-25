@@ -1,6 +1,6 @@
 import classes from "./styles/EditUnitForm.module.css";
 
-import {Input, InputSelect, Form, Button} from "../../UI/index.js";
+import {Input, Form, Button, Select} from "../../ui/index.js";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {axiosDB} from "../../utils/axios.js";
@@ -58,15 +58,13 @@ const EditUnitForm = ({ cancel, unit }) => {
 							value={values.city}
 							onChange={handleChange}
 						></Input>
-						<InputSelect
-							htmlFor="state"
-							placeholder="STATE"
+						<Select
 							type="text"
 							name="state"
 							list={states}
 							value={values.state}
 							onChange={handleChange}
-						></InputSelect>
+						></Select>
 						<Input
 							htmlFor="zip"
 							placeholder="ZIP"
