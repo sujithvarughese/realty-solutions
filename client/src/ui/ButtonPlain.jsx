@@ -2,18 +2,14 @@ import styled from "styled-components";
 
 const ButtonPlain = styled.button`
 	cursor: pointer;
-    width: 100%;
-	font-size: 20px;
-	font-weight: bold;
 	border: none;
+    font-size: 16px;
 	letter-spacing: 1px;
-	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-	0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	transition: 0.3s ease-in-out all;
-	text-transform: capitalize;
 
 	&:active {
-		transform: scale(0.95);
+      color: var(--COLOR-LIGHTER);
+      font-weight: bolder;
 	}
 	
 	&:hover {
@@ -27,14 +23,11 @@ const ButtonPlain = styled.button`
 		outline: 4px auto -webkit-focus-ring-color;
 		outline-offset: -1px;
 	}
-
-	&:has(svg) {
-		line-height: 0;
-	}
-	
-	@media(min-width: 600px) {
-		font-size: 12px;
-	}
+  @media(min-width: 600px) {
+    font-size: 28px;
+    color: var(--COLOR-LIGHT);
+    text-align: center;
+  }
 `
 
 

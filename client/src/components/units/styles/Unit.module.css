@@ -1,9 +1,7 @@
-.container {
-    margin: 1rem;
-}
+
 .content {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 2fr 3fr 0.1fr;
     gap: 0.5rem;
     color: var(--COLOR-DARKER);
     align-items: center;
@@ -35,7 +33,12 @@
     line-height: 2rem;
 }
 .addressLine1 {
+    font-weight: 600;
     font-size: 22px;
+}
+.addressLine2 {
+    display: flex;
+    align-items: center;
 }
 .tenantName {
     font-size: 16px;
@@ -59,13 +62,15 @@
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
     cursor: pointer;
 }
+.rent {
+    font-weight: 600;
+}
 .messageIcon {
     font-size: 56px;
-    padding-right: 1rem;
 }
 @media (min-width: 800px) {
     .content {
-        grid-template-columns: 2fr 4fr 3fr 1fr;
+        grid-template-columns: 3fr 5fr 2fr 0.1fr;
     }
     .details {
         display: flex;
@@ -73,22 +78,19 @@
         gap: 1rem;
         align-items: center;
     }
+    .addressLine1 {
+        font-size: 28px;
+    }
     .tenantName {
         font-size: 18px;
     }
     .tenant {
         font-size: 16px;
     }
-    .rent {
-        font-size: 20px;
-    }
-    .messageIcon {
-        padding-right: 3rem;
-    }
 }
 @media (min-width: 1000px) {
     .content {
-        grid-template-columns: 2fr 3fr 2fr 1fr;
+        grid-template-columns: 3fr 5fr 2fr 0.1fr;
     }
     .addressLine1 {
         font-size: 32px;
@@ -96,4 +98,5 @@
     .addressLine2 {
         font-size: 20px;
     }
+
 }

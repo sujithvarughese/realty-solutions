@@ -1,4 +1,4 @@
-import classes from "./styles/UnitFinancials.module.css";
+import classes from "./styles/FinancesUnit.module.css";
 import {
 	FinanceDetails,
 	MortgageDetails,
@@ -64,42 +64,45 @@ const FinancesUnit = () => {
 				{state.houseNumber} {state.street} {state.apartmentNumber}
 			</div>
 
-			<div className={classes.forms}>
-				{
-					display === "overview" &&
-					<FinanceDetails
-						purchasePrice={purchasePrice}
-						rent={rent}
-						fairMarketRent={fairMarketRent}
-						annualPropertyTax={annualPropertyTax}
-						annualInsurancePremium={insurance.annualPremium}
-						annualHoa={hoa.annualFee}
-					/>
-				}
-				{
-					display === "mortgage" && <MortgageDetails mortgage={mortgage}/>
-				}
-				{
-					display === "insurance" && <InsuranceDetails insurance={insurance} />
-				}
-				{
-					display === "hoa" && <HoaDetails hoa={hoa} />
-				}
-				{
-					display === "rents" &&
-					<RentDetails
-						houseNumber={state.houseNumber}
-						street={state.street}
-						apartmentNumber={state.apartmentNumber}
-						city={state.city}
-						state={state.state}
-						zip={state.zip}
-						lastName={state.tenant.lastName}
-						firstName={state.tenant.firstName}
-						userID={state.user}
-					/>
-				}
+			<div className={classes.content}>
+				<div className={classes.forms}>
+					{
+						display === "overview" &&
+						<FinanceDetails
+							purchasePrice={purchasePrice}
+							rent={rent}
+							fairMarketRent={fairMarketRent}
+							annualPropertyTax={annualPropertyTax}
+							annualInsurancePremium={insurance.annualPremium}
+							annualHoa={hoa.annualFee}
+						/>
+					}
+					{
+						display === "mortgage" && <MortgageDetails mortgage={mortgage}/>
+					}
+					{
+						display === "insurance" && <InsuranceDetails insurance={insurance} />
+					}
+					{
+						display === "hoa" && <HoaDetails hoa={hoa} />
+					}
+					{
+						display === "rents" &&
+						<RentDetails
+							houseNumber={state.houseNumber}
+							street={state.street}
+							apartmentNumber={state.apartmentNumber}
+							city={state.city}
+							state={state.state}
+							zip={state.zip}
+							lastName={state.tenant.lastName}
+							firstName={state.tenant.firstName}
+							userID={state.user}
+						/>
+					}
+				</div>
 			</div>
+
 		</div>
 	);
 };

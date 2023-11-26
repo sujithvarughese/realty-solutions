@@ -36,7 +36,7 @@ import FinanceDetails from "./finance/financials-unit/FinanceDetails.jsx";
 import MortgageDetails from "./finance/financials-unit/MortgageDetails.jsx";
 import InsuranceDetails from "./finance/financials-unit/InsuranceDetails.jsx";
 import HoaDetails from "./finance/financials-unit/HoaDetails.jsx";
-import FinancesTotalMobile from "../pages/accounting/FinancesTotalMobile.jsx";
+import FinancesMobileTable from "./finance/financials-total/FinancesMobileTable.jsx";
 import RentDetails from "./finance/financials-unit/RentDetails.jsx";
 
 export {
@@ -78,6 +78,6 @@ export {
 	MortgageDetails,
 	InsuranceDetails,
 	HoaDetails,
-	FinancesTotalMobile,
+	FinancesMobileTable,
 	RentDetails
 }

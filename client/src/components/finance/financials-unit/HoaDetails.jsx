@@ -1,6 +1,8 @@
-import classes from "../../../pages/accounting/styles/UnitFinancials.module.css";
+import classes from "./styles/FinanceUnitDetails.module.css";
+import {convertToUSD} from "../../../utils/financeCalcs.js";
 const HoaDetails = ({ hoa }) => {
     return (
+        <div className={classes.container}>
         <div className={classes.table}>
             <div className={classes.head}>
                 Home Owner's Association
@@ -24,9 +26,10 @@ const HoaDetails = ({ hoa }) => {
                 </div>
                 <div className={classes.tr}>
                     <div className={classes.td}>Annual Fee</div>
-                    <div className={classes.td}>{hoa.annualFee}</div>
+                    <div className={classes.td}>{convertToUSD(hoa.annualFee)}</div>
                 </div>
             </div>
+        </div>
         </div>
     );
 };

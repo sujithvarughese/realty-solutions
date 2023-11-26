@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 1rem;
 }
-.select {
+.links {
     display: flex;
     justify-content: space-around;
     text-align: center;
@@ -32,8 +32,9 @@
 @media (min-width: 600px) {
     .container {
         padding: 2rem 0;
+        height: 490px;
     }
-    .select {
+    .links {
         font-size: 22px;
     }
 }

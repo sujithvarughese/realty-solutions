@@ -1,4 +1,4 @@
-import classes from "./styles/FinancesTotalMobile.module.css";
+import classes from "./styles/FinancesMobileTable.module.css";
 import { NavLink } from "react-router-dom";
 import {
     calculateMonthlyPayment,
@@ -7,14 +7,21 @@ import {
     totalMortgage, totalProfit,
     totalPropertyTax,
     totalRent
-} from "../../utils/financeCalcs.js";
+} from "../../../utils/financeCalcs.js";
 import {IoRemoveCircle} from "react-icons/io5";
-import { convertToUSD } from "../../utils/financeCalcs.js";
+import { convertToUSD } from "../../../utils/financeCalcs.js";
+import {ButtonIcon, ButtonPlain} from "../../../ui/index.js";
 
-const FinancesTotalMobile = ({ unitFinances, selectedTerm, removeUnit }) => {
+const FinancesMobileTable = ({ unitFinances, selectedTerm, removeUnit }) => {
 
     return (
         <div className={classes.container}>
+
+            <div className={classes.links}>
+                <ButtonPlain>Details</ButtonPlain>
+                <ButtonPlain>Total</ButtonPlain>
+            </div>
+
             <table>
                 <thead>
                     <tr>
@@ -25,24 +32,26 @@ const FinancesTotalMobile = ({ unitFinances, selectedTerm, removeUnit }) => {
                 <tbody>
                 {
                     unitFinances.map(unitFinance => {
+                        const { unitID, financeID, houseNumber, street, apartmentNumber, city, state, zip, tenant, user } = unitFinance
                         const { principal, interest, term } = unitFinance.mortgage
                         return (
                             <tr className={classes.values} key={unitFinance.financeID}>
                                 <td className={classes.addressCol}>
                                     <NavLink
-                                        to={`${unitFinance.unitID}`}
-                                        className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
+                                        to={{ pathname: `../accounting/${unitID}`}}
+                                        state={{ houseNumber, street, apartmentNumber, city, state, zip, tenant, user }}
+                                        className={classes.link}
                                     >
-                                        <div>
-                                            {unitFinance.address}
-                                        </div>
+                                        <ButtonPlain>{houseNumber} {street} {apartmentNumber}</ButtonPlain>
                                     </NavLink>
-                                    <div
+
+                                    <ButtonIcon
                                         onClick={()=>removeUnit(unitFinance.financeID)}
-                                        className={classes.remove}
-                                    >
-                                        <IoRemoveCircle />
-                                    </div>
+                                        fontSize="32px"
+                                        color="darkred"
+                                    ><IoRemoveCircle />
+                                    </ButtonIcon>
+
                                 </td>
                                 <td className={classes.finances}>
                                     <div className={classes.tr}>
@@ -92,6 +101,7 @@ const FinancesTotalMobile = ({ unitFinances, selectedTerm, removeUnit }) => {
                 }
                 </tbody>
             </table>
+
             <div className={classes.table}>
                 <div className={classes.title}>
                     Combined Finances
@@ -147,11 +157,8 @@ const FinancesTotalMobile = ({ unitFinances, selectedTerm, removeUnit }) => {
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     );
 };
 
-export default FinancesTotalMobile;
+export default FinancesMobileTable;

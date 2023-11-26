@@ -80,50 +80,47 @@ const Research = () => {
 	}
 
 	return (
-		<div>
-			<div className={classes.title}>
+		<div className={classes.container}>
+			<div className="title">
 				Search for Fair Market Rent Values:
 			</div>
 
-			<div className={classes.form}>
-				<Form>
-					<FormRow label="State">
-						<Select
-							type="text"
-							name="state"
-							list={states}
-							onChange={handleChangeStateCode}
-						></Select>
-					</FormRow>
-					{
-						counties.length > 0 &&
-						<FormRow label="County">
+			<div>
+				<div className={classes.form}>
+					<Form>
+						<FormRow label="State">
 							<Select
 								type="text"
-								name="county"
-								list={counties}
-								onChange={handleChangeCounty}
+								name="state"
+								list={states}
+								onChange={handleChangeStateCode}
 							></Select>
 						</FormRow>
-					}
-					{
-						fmrByZip?.length > 0 &&
-						<FormRow label="Zip Code">
-							<Select
-								type="text"
-								name="zip"
-								list={fmrByZip.map(zip => zip.zip_code)}
-								onChange={handleSelectZipCode}
-							></Select>
-						</FormRow>
-					}
-				</Form>
-			</div>
+						{
+							counties.length > 0 &&
+							<FormRow label="County">
+								<Select
+									type="text"
+									name="county"
+									list={counties}
+									onChange={handleChangeCounty}
+								></Select>
+							</FormRow>
+						}
+						{
+							fmrByZip?.length > 0 &&
+							<FormRow label="Zip Code">
+								<Select
+									type="text"
+									name="zip"
+									list={fmrByZip.map(zip => zip.zip_code)}
+									onChange={handleSelectZipCode}
+								></Select>
+							</FormRow>
+						}
+					</Form>
+				</div>
 
-
-
-
-			<div className={classes.results}>
 				{
 					fmrData &&
 					<div className={classes.table}>
@@ -154,7 +151,6 @@ const Research = () => {
 								<div className={classes.td}>${fmrData["Four-Bedroom"]}</div>
 							</div>
 						</div>
-
 					</div>
 				}
 			</div>

@@ -1,4 +1,4 @@
-import classes from "../../../pages/accounting/styles/UnitFinancials.module.css"
+import classes from "./styles/FinanceUnitDetails.module.css";
 import { CreateRentReceiptForm, SearchRentReceiptsForm } from "../../index.js";
 import { useEffect, useState } from "react";
 import { RentReceipt } from "../../index.js";
@@ -41,7 +41,8 @@ const RentDetails = ({ houseNumber, street, apartmentNumber, city, state, zip, f
 
 
 	return (
-		<div className={classes.table}>
+		<div className={classes.container}>
+
 			<div className={classes.head}>
 				Rent Receipts
 			</div>
@@ -57,6 +58,7 @@ const RentDetails = ({ houseNumber, street, apartmentNumber, city, state, zip, f
 					)
 				}
 			</div>
+
 		</div>
 	);
 };

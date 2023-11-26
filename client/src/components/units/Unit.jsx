@@ -11,7 +11,6 @@ import { NavLink } from "react-router-dom";
 import { convertToUSD } from "../../utils/financeCalcs.js";
 import { BiMessageSquareEdit } from "react-icons/bi"
 
-
 const Unit = ({ unit }) => {
 
 	const { houseNumber, street, city, apartmentNumber, state, zip, image, bedrooms, bathrooms, tenant, user } = unit
@@ -57,15 +56,18 @@ const Unit = ({ unit }) => {
 
 
 									<div className={classes.addressLine2}>
-										<span>{city}, </span>
-										<span>{state} </span>
-										<span>{zip}</span>
+										<div>
+											<span>{city}, </span>
+											<span>{state} </span>
+											<span>{zip}</span>
+										</div>
+										<ButtonEdit
+											onClick={()=>setShowEditUnitForm(true)}
+										>[Edit]
+										</ButtonEdit>
 									</div>
 								</div>
-								<ButtonEdit
-									onClick={()=>setShowEditUnitForm(true)}
-								>[Edit]
-								</ButtonEdit>
+
 
 							</div>
 						}

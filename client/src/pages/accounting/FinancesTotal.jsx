@@ -1,9 +1,9 @@
-import classes from "./styles/Accounting.module.css";
+import classes from "./styles/FinancesTotal.module.css";
 import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
-import { FinancesTotalCalculated, FinancesTotalUnitValues, FinancesTotalMobile } from "../../components/index.js"
+import { FinancesTotalCalculated, FinancesTotalUnitValues, FinancesMobileTable } from "../../components/index.js"
 import { Select } from "../../ui/index.js";
 import { totalProfit, convertToUSD } from "../../utils/financeCalcs.js";
 import FormRow from "../../ui/FormRow.jsx";
@@ -48,28 +48,29 @@ const FinancesTotal = () => {
 	return (
 		<div className={classes.container}>
 
-			<div className={classes.title}>
+			<div className="title">
 				Accounting Totals
 			</div>
 
+			<div className={classes.content}>
+				<div className={classes.form}>
+					<FormRow label="Term">
+						<Select
+							type="text"
+							name="term"
+							list={[{text: "Monthly", value: 1}, {text: "Yearly", value: 12}]}
+							onChange={(e)=>setSelectedTerm(e.target.value)}
+						>
+						</Select>
+					</FormRow>
+				</div>
 
-			<FormRow label="Term">
-				<Select
-					type="text"
-					name="term"
-					list={[{text: "Monthly", value: 1}, {text: "Yearly", value: 12}]}
-					onChange={(e)=>setSelectedTerm(e.target.value)}
-				>
-				</Select>
-			</FormRow>
+				<div className={classes.mobile}>
+					<FinancesMobileTable unitFinances={unitFinances} selectedTerm={selectedTerm} removeUnit={removeUnit}/>
+				</div>
 
-
-			<div className={classes.mobile}>
-				<FinancesTotalMobile unitFinances={unitFinances} selectedTerm={selectedTerm} removeUnit={removeUnit}/>
-			</div>
-
-			<table className={classes.largeScreen}>
-				<thead>
+				<table className={classes.largeScreen}>
+					<thead>
 					<tr>
 						<th>Address</th>
 						<th>Mortgage</th>
@@ -78,25 +79,28 @@ const FinancesTotal = () => {
 						<th>HOA</th>
 						<th>Rent</th>
 					</tr>
-				</thead>
+					</thead>
 
-				<tbody>
-				{
-					unitFinances.map(unitFinance =>
-						<FinancesTotalUnitValues
-							key={unitFinance.financeID}
-							unitFinance={unitFinance}
-							selectedTerm={selectedTerm}
-							removeUnit={removeUnit}
-						/>)
-				}
-				<FinancesTotalCalculated unitFinances={unitFinances} selectedTerm={selectedTerm}/>
+					<tbody>
+					{
+						unitFinances.map(unitFinance =>
+							<FinancesTotalUnitValues
+								key={unitFinance.financeID}
+								unitFinance={unitFinance}
+								selectedTerm={selectedTerm}
+								removeUnit={removeUnit}
+							/>)
+					}
+					<FinancesTotalCalculated unitFinances={unitFinances} selectedTerm={selectedTerm}/>
 
-				</tbody>
-			</table>
-			<div className={classes.totalProfit}>
-				Total Profit: {convertToUSD(totalProfit(unitFinances, selectedTerm))}
+					</tbody>
+				</table>
+
+				<div className={classes.totalProfit}>
+					Total Profit: {convertToUSD(totalProfit(unitFinances, selectedTerm))}
+				</div>
 			</div>
+
 		</div>
 	);
 };

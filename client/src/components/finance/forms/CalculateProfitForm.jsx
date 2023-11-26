@@ -1,4 +1,4 @@
-import classes from "./styles/financeForms.module.css";
+import classes from "./styles/FinanceCalculationForms.module.css";
 import {Button, Form, Input, Select} from "../../../ui/index.js";
 import {useState} from "react";
 import {calculateProfit} from "../../../utils/financeCalcs.js";

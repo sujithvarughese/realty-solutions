@@ -1,4 +1,4 @@
-import classes from "../../../pages/accounting/styles/Accounting.module.css";
+import classes from "../../../pages/accounting/styles/FinancesTotal.module.css";
 import {IoRemoveCircle} from "react-icons/io5";
 import { calculateMonthlyPayment} from "../../../utils/financeCalcs.js";
 import {NavLink} from "react-router-dom";
@@ -9,6 +9,7 @@ const FinancesTotalUnitValues = ({ unitFinance, selectedTerm, removeUnit }) => {
     const { unitID, financeID, houseNumber, street, apartmentNumber, city, state, zip, tenant, user } = unitFinance
     const { principal, interest, term } = unitFinance.mortgage
     return (
+
         <tr className={classes.tr}>
             <td>
                 <div className={classes.addressCol}>

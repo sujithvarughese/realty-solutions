@@ -77,10 +77,10 @@ const AuthForm = ({ authState }) => {
 						authState === "register" ?
 							"REGISTER"
 							:
-							"LOG INTO MY ACCOUNT"
+							"LOG IN"
 					}
 				</Button>
-				<Button type="click" onClick={previewAsAdmin}>Preview</Button>
+				<Button type="click" onClick={previewAsAdmin}>PREVIEW</Button>
 			</div>
 		</Form>
 	);

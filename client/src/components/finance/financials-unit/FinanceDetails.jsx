@@ -1,4 +1,4 @@
-import classes from "../../../pages/accounting/styles/UnitFinancials.module.css";
+import classes from "./styles/FinanceUnitDetails.module.css";
 import { CalculateProfitForm } from "../../"
 import {useState} from "react";
 import { convertToUSD } from "../../../utils/financeCalcs.js";
@@ -17,15 +17,15 @@ const FinanceDetails = ({ purchasePrice, rent, fairMarketRent, annualPropertyTax
                 <div className={classes.body}>
                     <div className={classes.tr}>
                         <div className={classes.td}>Purchase Price</div>
-                        <div className={classes.td}>{purchasePrice}</div>
+                        <div className={classes.td}>{convertToUSD(purchasePrice)}</div>
                     </div>
                     <div className={classes.tr}>
                         <div className={classes.td}>Rent</div>
-                        <div className={classes.td}>{rent}</div>
+                        <div className={classes.td}>{convertToUSD(rent)}</div>
                     </div>
                     <div className={classes.tr}>
                         <div className={classes.td}>Fair Market Rent</div>
-                        <div className={classes.td}>{fairMarketRent}</div>
+                        <div className={classes.td}>{convertToUSD(fairMarketRent)}</div>
                     </div>
                 </div>
             </div>

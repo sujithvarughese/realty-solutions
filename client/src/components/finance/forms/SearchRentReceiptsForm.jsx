@@ -1,6 +1,7 @@
 import classes from "./styles/SearchRentReceiptsForm.module.css";
 import { Card, Form, Select } from "../../../ui/index.js";
 import { axiosDB } from "../../../utils/axios.js";
+import FormRow from "../../../ui/FormRow.jsx";
 
 const SearchRentReceiptsForm = ({ userID, setRentReceipts }) => {
 
@@ -17,18 +18,20 @@ const SearchRentReceiptsForm = ({ userID, setRentReceipts }) => {
     return (
         <div className={classes.container}>
         <Card>
-        <Form title="Search Rent Receipts">
+        <div>
             <div className={classes.form}>
                 <div className={classes.year}>
-                    <Select
-                        type="text"
-                        name="year"
-                        list={years}
-                        onChange={(e)=>getRentReceipts(e.target.value)}
-                    ></Select>
+                    <FormRow label="Year">
+                        <Select
+                            type="text"
+                            name="year"
+                            list={years}
+                            onChange={(e)=>getRentReceipts(e.target.value)}
+                        ></Select>
+                    </FormRow>
                 </div>
             </div>
-        </Form>
+        </div>
         </Card>
 
         </div>

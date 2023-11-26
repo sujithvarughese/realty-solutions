@@ -10,7 +10,7 @@ const Auth = () => {
 	return (
 		<Card>
 			<div className={classes.container}>
-				<div className={classes.select}>
+				<div className={classes.links}>
 					<div
 						className={`${classes.link} ${authState === "register" && classes.active}`}
 						onClick={()=>setAuthState("register")}
@@ -27,13 +27,8 @@ const Auth = () => {
 
 				{/* form with input fields and button */}
 				{/* when user is detected in state, Root component will navigate accordingly to user */}
-				<div className={classes.authForm}>
-					<AuthForm authState={authState} />
-				</div>
-
+				<AuthForm authState={authState} />
 			</div>
-
-
 		</Card>
 	);
 };

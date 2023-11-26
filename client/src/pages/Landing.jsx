@@ -1,14 +1,13 @@
 import classes from "./styles/Landing.module.css"
 import { Auth } from "../components"
-import {NavLink} from "react-router-dom";
 
 // home page for public (no user logged in)
 const Landing = () => {
 	return (
 		<div className={classes.container}>
-			<div className={classes.content}>
 
-				<div className={classes.text}>
+
+				<div className={classes.caption}>
 					<div className={classes.title}>
 						Realty Solutions
 					</div>
@@ -18,11 +17,8 @@ const Landing = () => {
 				</div>
 
 				{/* Card with login/register options */}
-				<div className={classes.auth}>
-					<Auth />
-				</div>
-				
-			</div>
+				<Auth />
+
 		</div>
 	);
 };

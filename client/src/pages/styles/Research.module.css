@@ -1,13 +1,11 @@
-.title {
+.form {
+    max-width: 380px;
     margin: 0 auto;
-    text-align: center;
-    font-weight: 800;
-    font-size: 20px;
+    padding-top: 1rem;
 }
-
 .table {
     margin: 0 auto;
-    padding: 0 2rem;
+    max-width: 600px;
 }
 .head {
     text-align: center;
@@ -29,31 +27,8 @@
 
 
 @media (min-width: 600px) {
-    .title {
-        font-size: 32px;
-    }
-    .form {
-        padding: 2rem 7rem;
-    }
     .td {
         font-size:32px;
         padding: 1.5rem 0;
     }
-}
-@media (min-width: 800px) {
-    .title {
-        font-size: 20px;
-    }
-    .form {
-        padding: 2rem 15rem;
-    }
-    .table {
-        max-width: 600px;
-    }
-}
-@media (min-width: 1200px) {
-    .form {
-        padding: 2rem 20rem;
-    }
-
 }

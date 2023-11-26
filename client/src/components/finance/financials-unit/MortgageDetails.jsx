@@ -1,4 +1,4 @@
-import classes from "../../../pages/accounting/styles/UnitFinancials.module.css";
+import classes from "./styles/FinanceUnitDetails.module.css";
 import {CalculateMonthlyPaymentForm, CalculatePayoffForm} from "../../index.js";
 import {useState} from "react";
 import { convertToUSD } from "../../../utils/financeCalcs.js";
@@ -21,15 +21,15 @@ const MortgageDetails = ({ mortgage }) => {
                     </div>
                     <div className={classes.tr}>
                         <div className={classes.td}>Principal</div>
-                        <div className={classes.td}>{mortgage.principal}</div>
+                        <div className={classes.td}>{convertToUSD(mortgage.principal)}</div>
                     </div>
                     <div className={classes.tr}>
                         <div className={classes.td}>Interest</div>
-                        <div className={classes.td}>{mortgage.interest}</div>
+                        <div className={classes.td}>{mortgage.interest}%</div>
                     </div>
                     <div className={classes.tr}>
                         <div className={classes.td}>Term</div>
-                        <div className={classes.td}>{mortgage.term}</div>
+                        <div className={classes.td}>{mortgage.term} months</div>
                     </div>
                     <div className={classes.tr}>
                         <div className={classes.td}>Payments Made</div>
@@ -51,9 +51,8 @@ const MortgageDetails = ({ mortgage }) => {
                         Monthly Payment: {convertToUSD(monthlyPayment)}
                     </div>
                 }
-
-
             </div>
+
             <div className={classes.calcPayoff}>
                 <CalculatePayoffForm
                     principal={mortgage.principal}
@@ -68,8 +67,6 @@ const MortgageDetails = ({ mortgage }) => {
                         Payoff Amount: {convertToUSD(payoffAmount)}
                     </div>
                 }
-
-
             </div>
 
 

@@ -5,7 +5,7 @@
     display: block;
 }
 .main {
-    padding-bottom: 4rem ;
+    padding: 1rem 1rem 4rem 1rem;
 }
 @media (min-width: 600px){
     .infobar {

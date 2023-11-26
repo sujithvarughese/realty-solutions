@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.head {
+    display: none;
+}
+.tr {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: var(--COLOR-LIGHT) 2px solid;
+}
+.td {
+    padding: 0.5rem 0;
+}
+.calcPayment {
+    border-bottom: var(--COLOR-LIGHT) 2px solid;
+    padding-bottom: 1rem;
+}
+.result {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 0.5rem;
+}
+@media (min-width: 600px) {
+    .head {
+        display: block;
+        font-size: 20px;
+        text-align: center;
+    }
+    .tr {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: var(--COLOR-LIGHT) 2px solid;
+    }
+}

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { BiMessageSquareEdit } from "react-icons/bi"
 import { TfiControlBackward } from "react-icons/tfi"
+import {ButtonIcon} from "../ui/index.js";
 
 const Messages = () => {
 	// messages = { inbox, outbox }	// message = { sender: { lastName, firstName, _id }, recipient, subject, body, read, flag, date, previousMessage
@@ -125,9 +126,12 @@ const Messages = () => {
 						<TfiControlBackward />
 					</div>
 						:
-					<div className={classes.create} onClick={()=>setShowCreateMessageForm(true)}>
-						<BiMessageSquareEdit />
-					</div>
+						<ButtonIcon
+							onClick={()=>setShowCreateMessageForm(prevState => !prevState)}
+							fontSize="56px"
+						>
+							<BiMessageSquareEdit />
+						</ButtonIcon>
 				}
 
 					<div className={classes.links}>

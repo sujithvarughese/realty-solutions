@@ -4,7 +4,6 @@ const Button = styled.button`
 	cursor: pointer;
 	color: #fff;
     width: 100%;
-	font-size: 20px;
 	font-weight: bold;
 	background: var(--COLOR-DARK);
 	border: none;
@@ -15,10 +14,6 @@ const Button = styled.button`
 	0 2px 4px -1px rgba(0, 0, 0, 0.06);
 	transition: 0.3s ease-in-out all;
 	text-transform: capitalize;
-
-	&:active {
-		transform: scale(0.95);
-	}
 	
 	&:hover {
 		background: var(--COLOR-DARK);
