@@ -85,56 +85,42 @@ const Research = () => {
 				Search for Fair Market Rent Values:
 			</div>
 
-			<div className={classes.search}>
+			<div className={classes.form}>
 				<Form>
-					<div className={classes.form}>
-						<div className={classes.row}>
-								<div>
-									State:
-								</div>
-
-								<Select
-									type="text"
-									name="state"
-									list={states}
-									onChange={handleChangeStateCode}
-								></Select>
-
-
-						</div>
-						{
-							counties.length > 0 &&
-							<div className={classes.row}>
-								<div>
-									County:
-								</div>
-								<Select
-									type="text"
-									name="county"
-									list={counties}
-									onChange={handleChangeCounty}
-								></Select>
-							</div>
-
-						}
-						{
-							fmrByZip?.length > 0 &&
-							<div className={classes.row}>
-								<div>
-									Zip Code:
-								</div>
-								<Select
-									type="text"
-									name="zip"
-									list={fmrByZip.map(zip => zip.zip_code)}
-									onChange={handleSelectZipCode}
-								></Select>
-							</div>
-						}
-
-					</div>
+					<FormRow label="State">
+						<Select
+							type="text"
+							name="state"
+							list={states}
+							onChange={handleChangeStateCode}
+						></Select>
+					</FormRow>
+					{
+						counties.length > 0 &&
+						<FormRow label="County">
+							<Select
+								type="text"
+								name="county"
+								list={counties}
+								onChange={handleChangeCounty}
+							></Select>
+						</FormRow>
+					}
+					{
+						fmrByZip?.length > 0 &&
+						<FormRow label="Zip Code">
+							<Select
+								type="text"
+								name="zip"
+								list={fmrByZip.map(zip => zip.zip_code)}
+								onChange={handleSelectZipCode}
+							></Select>
+						</FormRow>
+					}
 				</Form>
 			</div>
+
+
 
 
 			<div className={classes.results}>

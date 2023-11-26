@@ -10,7 +10,6 @@
     flex-direction: column;
     padding-top: 2rem;
     gap: 1rem;
-    width: 80vw;
 }
 .buttons {
     display: flex;
@@ -19,15 +18,11 @@
 }
 
 @media (min-width: 600px) {
-    .form {
-        width: 60vw;
-    }
+
 }
 
 @media (min-width: 800px) {
-    .form {
-        width: 40vw;
-    }
+
     .buttons {
         padding: 0 3rem;
     }

@@ -39,40 +39,38 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 		<Modal>
 		<Card>
 		<Form onSubmit={handleSubmit} title="create message">
-			<div className={classes.form}>
-
-				<div className={classes.to}>
-					<FormRow label="To:">
-						<Select
-							type="text"
-							name="recipient"
-							list={addressBook}
-							value={values.recipient}
-							onChange={handleChange}
-						></Select>
-					</FormRow>
-				</div>
-				<Input
-					htmlFor="subject"
-					placeholder="Subject"
-					type="text"
-					name="subject"
-					value={values.subject}
-					onChange={handleChange}
-				></Input>
-				<Textarea
-					placeholder="Type new message here..."
-					name="body"
-					value={values.body}
-					rows="15"
-					onChange={handleChange}
-				></Textarea>
-
-				<div className={classes.buttons}>
-					<Button type="submit">Send</Button>
-					<Button type="button" onClick={cancel}>Cancel</Button>
-				</div>
+			<div className={classes.to}>
+				<FormRow label="To:">
+					<Select
+						type="text"
+						name="recipient"
+						list={addressBook}
+						value={values.recipient}
+						onChange={handleChange}
+					></Select>
+				</FormRow>
 			</div>
+			<Input
+				htmlFor="subject"
+				placeholder="Subject"
+				type="text"
+				name="subject"
+				value={values.subject}
+				onChange={handleChange}
+			></Input>
+			<Textarea
+				placeholder="Type new message here..."
+				name="body"
+				value={values.body}
+				rows="15"
+				onChange={handleChange}
+			></Textarea>
+
+			<div className={classes.buttons}>
+				<Button type="submit">Send</Button>
+				<Button type="button" onClick={cancel}>Cancel</Button>
+			</div>
+
 		</Form>
 		</Card>
 		</Modal>

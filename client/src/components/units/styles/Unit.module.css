@@ -30,12 +30,6 @@
 .userContainer {
     display: flex;
 }
-.edit {
-    padding: 0.3rem 0 0 0.4rem;
-}
-.editUser {
-    padding: 0 0.4rem;
-}
 .address {
     font-size: 18px;
     line-height: 2rem;

@@ -7,15 +7,14 @@
     flex-direction: column;
     padding-top: 2rem;
     gap: 1rem;
-    width: 300px;
+
 }
 .addressLine1 {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     gap: 0.3rem;
 
 }
-
 .addressLine2 {
     display: grid;
     grid-template-columns: 2fr 1fr 2fr;
@@ -36,39 +35,4 @@
     padding: 0 1rem;
 }
 
-@media (min-width: 600px) {
-    .addressLine1 {
-        display: grid;
-        grid-template-columns: 1fr 3fr 1fr;
-        gap: 1rem;
-    }
 
-    .addressLine2 {
-        display: grid;
-        grid-template-columns: 2fr 1fr 2fr;
-        gap: 1rem;
-    }
-    .info {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 1rem;
-    }
-
-    .imageUpload {
-        padding: 0 7rem;
-    }
-}
-
-@media (min-width: 800px) {
-    .buttons {
-        padding: 0 5rem;
-    }
-    .imageUpload {
-        padding: 9rem;
-    }
-}
-@media (min-width: 1200px) {
-    .buttons {
-        padding: 0 15rem;
-    }
-}

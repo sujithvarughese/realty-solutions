@@ -2,8 +2,9 @@ import styled from "styled-components"
 
 const Input = styled.input`
     width: 100%;
-	height: 4rem;
+	height: 3rem;
 	padding: 0.5rem;
+    font-size: 14px;
 	border-radius: 5px;
 	border: 1px solid #bcccdc;
 	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -13,11 +14,9 @@ const Input = styled.input`
 	outline: 4px auto -webkit-focus-ring-color;
 	outline-offset: -1px;
 	}
-
-	@media (min-width: 800px) {
-		height: 3rem;
-		font-size: 16px;
-
+  @media (min-width: 600px) {
+    font-size: 16px;
+  }
 `
 
 export default Input

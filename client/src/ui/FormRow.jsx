@@ -1,9 +1,10 @@
 import styled from "styled-components"
 
 const StyledFormRow = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  gap: 0.3rem;
+  gap: 0.5rem;
   align-items: center;
 
   & > * {

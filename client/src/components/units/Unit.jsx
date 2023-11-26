@@ -6,7 +6,7 @@ import {
 	CreateMessageForm,
 } from "../";
 import { useState } from "react";
-import { Card } from "../../ui/index.js";
+import { Card, ButtonEdit, Button, ButtonIcon } from "../../ui/index.js";
 import { NavLink } from "react-router-dom";
 import { convertToUSD } from "../../utils/financeCalcs.js";
 import { BiMessageSquareEdit } from "react-icons/bi"
@@ -62,12 +62,11 @@ const Unit = ({ unit }) => {
 										<span>{zip}</span>
 									</div>
 								</div>
-								<div
-									className={classes.edit}
+								<ButtonEdit
 									onClick={()=>setShowEditUnitForm(true)}
-								>
-									[Edit]
-								</div>
+								>[Edit]
+								</ButtonEdit>
+
 							</div>
 						}
 						{
@@ -84,12 +83,10 @@ const Unit = ({ unit }) => {
 										{tenant.phone}
 									</div>
 								</div>
-								<div
-									className={classes.editUser}
+								<ButtonEdit
 									onClick={()=>setShowEditUserForm(true)}
-								>
-									[Edit]
-								</div>
+								>[Edit]
+								</ButtonEdit>
 							</div>
 						}
 					</div>
@@ -113,15 +110,14 @@ const Unit = ({ unit }) => {
 						// if occupied show message user icon, else show create user button
 						user ?
 						<div className={classes.actions}>
-							<div
-								className={classes.link}
-								onClick={() => setShowMessageForm(prevState => !prevState)}
-							>
-								<div className={classes.messageIcon}>
-									<BiMessageSquareEdit />
-								</div>
 
-							</div>
+							<ButtonIcon
+								onClick={()=>setShowMessageForm(prevState => !prevState)}
+								fontSize="56px"
+							>
+								<BiMessageSquareEdit />
+							</ButtonIcon>
+
 						</div>
 							:
 						<div className={classes.actions}>

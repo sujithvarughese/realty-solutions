@@ -11,9 +11,6 @@
     position: relative;
     padding: 1rem;
 }
-.search {
-    width: 420px;
-}
 .create {
     cursor: pointer;
     color: var(--COLOR-DARK);
