@@ -1,6 +1,3 @@
-.container {
-
-}
 .form {
     display: flex;
     flex-direction: column;
@@ -14,12 +11,10 @@
 .name {
     display: grid;
     grid-template-columns: 1fr 1fr;
-
 }
 .contact {
     display: grid;
     grid-template-columns: 1fr 1fr;
-
 }
 .buttons {
     display: flex;

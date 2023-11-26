@@ -6,7 +6,9 @@ const ButtonPlain = styled.button`
     font-size: 16px;
 	letter-spacing: 1px;
 	transition: 0.3s ease-in-out all;
-
+    color: ${props=> props.active === true ? "var(--COLOR-DARK)" : "var(--COLOR-LIGHT)"};
+    font-size: ${props=> props.fontSize};
+  
 	&:active {
       color: var(--COLOR-LIGHTER);
       font-weight: bolder;

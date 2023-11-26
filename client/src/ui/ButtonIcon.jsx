@@ -4,12 +4,13 @@ const Button = styled.button`
 	cursor: pointer;
 	border: none;
     background-color: ${props=> props.backgroundColor};
-    color: ${props=> props.color};
+    color: ${props => props.color};
+    font-size: ${props => props.fontSize};
 	border-radius: 6px;
 	transition: 0.3s ease-in-out all;
-    font-size: ${props=> props.fontSize};
 
-	
+
+  
 	&:hover {
 		background: var(--COLOR-DARK);
 		color: var(--COLOR-ALT);
