@@ -1,5 +1,6 @@
 import classes from "./styles/Units.module.css";
 import {useEffect, useState} from "react";
+import { Button } from "../ui"
 import { useLoaderData } from "react-router-dom";
 import { axiosDB } from "../utils/axios.js";
 import { Unit, SearchUnits, CreateUnitForm, UnitMobile } from "../components";
@@ -43,12 +44,11 @@ const Units = () => {
 				<div className={classes.search}>
 					<SearchUnits query={query} setQuery={setQuery} />
 				</div>
-				<div
-					className={classes.create}
-					onClick={()=>setShowCreateUnitForm(true)}
-				>
-					Create Unit
+				<div>
+					<Button onClick={()=>setShowCreateUnitForm(!showCreateUnitForm)}>
+						{!showCreateUnitForm ? "Create Unit" : "Hide Form"}</Button>
 				</div>
+
 			</div>
 
 			{

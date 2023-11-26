@@ -1,4 +1,4 @@
-import classes from "./styles/FinancialSummaryMobile.module.css";
+import classes from "./styles/FinancesTotalMobile.module.css";
 import { NavLink } from "react-router-dom";
 import {
     calculateMonthlyPayment,
@@ -7,11 +7,11 @@ import {
     totalMortgage, totalProfit,
     totalPropertyTax,
     totalRent
-} from "../../../utils/financeCalcs.js";
+} from "../../utils/financeCalcs.js";
 import {IoRemoveCircle} from "react-icons/io5";
-import { convertToUSD } from "../../../utils/financeCalcs.js";
+import { convertToUSD } from "../../utils/financeCalcs.js";
 
-const FinancialSummaryMobile = ({ unitFinances, selectedTerm, removeUnit }) => {
+const FinancesTotalMobile = ({ unitFinances, selectedTerm, removeUnit }) => {
 
     return (
         <div className={classes.container}>
@@ -154,4 +154,4 @@ const FinancialSummaryMobile = ({ unitFinances, selectedTerm, removeUnit }) => {
     );
 };
 
-export default FinancialSummaryMobile;
+export default FinancesTotalMobile;

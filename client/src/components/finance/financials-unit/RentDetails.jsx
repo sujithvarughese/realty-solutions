@@ -5,7 +5,7 @@ import { RentReceipt } from "../../index.js";
 import { axiosDB } from "../../../utils/axios.js";
 
 
-const Rents = ({ houseNumber, street, apartmentNumber, city, state, zip, firstName, lastName, userID }) => {
+const RentDetails = ({ houseNumber, street, apartmentNumber, city, state, zip, firstName, lastName, userID }) => {
 
 	const [rentReceipts, setRentReceipts] = useState([]);
 
@@ -62,4 +62,4 @@ const Rents = ({ houseNumber, street, apartmentNumber, city, state, zip, firstNa
 };
 
 
-export default Rents;
+export default RentDetails;

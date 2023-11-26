@@ -25,19 +25,19 @@ import SearchRentReceiptsForm from "./finance/forms/SearchRentReceiptsForm.jsx";
 import CreateRentReceiptForm from "./finance/forms/CreateRentReceiptForm.jsx";
 import RentReceipt from "./finance/financials-unit/RentReceipt.jsx"
 import EditFinancialsForm from "./finance/forms/EditFinancialsForm.jsx";
-import FinancialSummaryTotals from "./finance/financials-summary/FinancialSummaryTotals.jsx";
-import FinancialSummaryValues from "./finance/financials-summary/FinancialSummaryValues.jsx";
-import UnitFinancials, { unitFinancialsLoader }  from "../pages/accounting/UnitFinancials.jsx";
+import FinancesTotalCalculated from "./finance/financials-total/FinancesTotalCalculated.jsx";
+import FinancesTotalUnitValues from "./finance/financials-total/FinancesTotalUnitValues.jsx";
+import FinancesUnit, { unitFinancialsLoader }  from "../pages/accounting/FinancesUnit.jsx";
 import CalculatePayoffForm from "./finance/forms/CalculatePayoffForm.jsx";
 import CalculateMonthlyPaymentForm from "./finance/forms/CalculateMonthlyPaymentForm.jsx";
 import CalculateProfitForm from "./finance/forms/CalculateProfitForm.jsx";
 
-import FinancialsOverview from "./finance/financials-unit/FinancialsOverview.jsx";
+import FinanceDetails from "./finance/financials-unit/FinanceDetails.jsx";
 import MortgageDetails from "./finance/financials-unit/MortgageDetails.jsx";
 import InsuranceDetails from "./finance/financials-unit/InsuranceDetails.jsx";
 import HoaDetails from "./finance/financials-unit/HoaDetails.jsx";
-import FinancialSummaryMobile from "./finance/financials-summary/FinancialSummaryMobile.jsx";
-import Rents from "./finance/financials-unit/Rents.jsx";
+import FinancesTotalMobile from "../pages/accounting/FinancesTotalMobile.jsx";
+import RentDetails from "./finance/financials-unit/RentDetails.jsx";
 
 export {
 	InfoBar,
@@ -66,18 +66,18 @@ export {
 	CreateRentReceiptForm,
 	RentReceipt,
 	EditFinancialsForm,
-	FinancialSummaryTotals,
-	FinancialSummaryValues,
-	UnitFinancials,
+	FinancesTotalCalculated,
+	FinancesTotalUnitValues,
+	FinancesUnit,
 	CalculatePayoffForm,
 	CalculateMonthlyPaymentForm,
 	CalculateProfitForm,
 	unitFinancialsLoader,
 
-	FinancialsOverview,
+	FinanceDetails,
 	MortgageDetails,
 	InsuranceDetails,
 	HoaDetails,
-	FinancialSummaryMobile,
-	Rents
+	FinancesTotalMobile,
+	RentDetails
 }

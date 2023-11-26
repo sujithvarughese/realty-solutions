@@ -5,6 +5,10 @@ const StyledFormRow = styled.div`
   justify-content: space-between;
   gap: 0.3rem;
   align-items: center;
+
+  & > * {
+    flex: 1 1 0px;
+  }
 `
 
 const Label = styled.label`

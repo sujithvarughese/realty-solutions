@@ -2,7 +2,7 @@ import classes from "../../../pages/accounting/styles/Accounting.module.css";
 import  { totalMortgage, totalPropertyTax, totalInsurance, totalRent, totalHoa, totalProfit } from "../../../utils/financeCalcs.js";
 import { convertToUSD } from "../../../utils/financeCalcs.js";
 
-const FinancialSummaryTotals = ({ unitFinances, selectedTerm }) => {
+const FinancesTotalCalculated = ({ unitFinances, selectedTerm }) => {
 
     return (
         <tr>
@@ -27,4 +27,4 @@ const FinancialSummaryTotals = ({ unitFinances, selectedTerm }) => {
 };
 
 
-export default FinancialSummaryTotals;
+export default FinancesTotalCalculated;

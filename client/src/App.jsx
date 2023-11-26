@@ -16,12 +16,12 @@ import {
   myMessagesLoader,
   Units,
   unitsLoader,
-  FinancialSummary,
+  FinancesTotal,
   financialSummaryLoader,
 } from "./pages";
 
 import {
-  UnitFinancials,
+  FinancesUnit,
   unitFinancialsLoader
 } from "./components"
 
@@ -47,8 +47,8 @@ const App = () => {
           element: <Accounting />,
           errorElement: <Error />,
           children: [
-            { index: true, element: <FinancialSummary />, loader: financialSummaryLoader },
-            { path: ":id", element: <UnitFinancials />, loader: unitFinancialsLoader },
+            { index: true, element: <FinancesTotal />, loader: financialSummaryLoader },
+            { path: ":id", element: <FinancesUnit />, loader: unitFinancialsLoader },
           ]
         }
       ]

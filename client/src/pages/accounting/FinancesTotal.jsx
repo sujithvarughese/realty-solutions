@@ -3,12 +3,12 @@ import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import { useLoaderData } from "react-router-dom";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
-import { FinancialSummaryTotals, FinancialSummaryValues, FinancialSummaryMobile } from "../../components/index.js"
+import { FinancesTotalCalculated, FinancesTotalUnitValues, FinancesTotalMobile } from "../../components/index.js"
 import { Select } from "../../ui/index.js";
 import { totalProfit, convertToUSD } from "../../utils/financeCalcs.js";
 import FormRow from "../../ui/FormRow.jsx";
 
-const FinancialSummary = () => {
+const FinancesTotal = () => {
 
 	// finances = array of each unit's financial data
 	const finances = useLoaderData()
@@ -65,7 +65,7 @@ const FinancialSummary = () => {
 
 
 			<div className={classes.mobile}>
-				<FinancialSummaryMobile unitFinances={unitFinances} selectedTerm={selectedTerm} removeUnit={removeUnit}/>
+				<FinancesTotalMobile unitFinances={unitFinances} selectedTerm={selectedTerm} removeUnit={removeUnit}/>
 			</div>
 
 			<table className={classes.largeScreen}>
@@ -83,14 +83,14 @@ const FinancialSummary = () => {
 				<tbody>
 				{
 					unitFinances.map(unitFinance =>
-						<FinancialSummaryValues
+						<FinancesTotalUnitValues
 							key={unitFinance.financeID}
 							unitFinance={unitFinance}
 							selectedTerm={selectedTerm}
 							removeUnit={removeUnit}
 						/>)
 				}
-				<FinancialSummaryTotals unitFinances={unitFinances} selectedTerm={selectedTerm}/>
+				<FinancesTotalCalculated unitFinances={unitFinances} selectedTerm={selectedTerm}/>
 
 				</tbody>
 			</table>
@@ -111,4 +111,4 @@ export const financialSummaryLoader = async () => {
 	}
 }
 
-export default FinancialSummary;
+export default FinancesTotal;

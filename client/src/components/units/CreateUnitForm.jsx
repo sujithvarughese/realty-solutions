@@ -1,5 +1,5 @@
 import classes from "./styles/CreateUnitForm.module.css";
-import { Button, Form, Input, Select, Card } from "../../ui";
+import { Button, Form, Input, Select, Card, Modal } from "../../ui";
 import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
@@ -45,6 +45,7 @@ const CreateUnitForm = ({ cancel }) => {
 
 	return (
 		<div className={classes.container}>
+		<Modal>
 		<Card>
 		<Form onSubmit={handleSubmit} title="create unit">
 			<div className={classes.form}>
@@ -136,6 +137,7 @@ const CreateUnitForm = ({ cancel }) => {
 			</div>
 		</Form>
 		</Card>
+		</Modal>
 		</div>
 	);
 };

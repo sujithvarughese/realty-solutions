@@ -27,7 +27,7 @@ const Unit = ({ unit }) => {
 			<Card>
 				<div className={classes.content}>
 
-					{/* clicking image or address navigates to UnitFinancials */}
+					{/* clicking image or address navigates to FinancesUnit */}
 					<NavLink
 						to={{ pathname: `../accounting/${unit._id }`}}
 						state={{ houseNumber, street, apartmentNumber, city, state, zip, tenant, user }}

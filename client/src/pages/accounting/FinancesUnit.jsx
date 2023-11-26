@@ -1,23 +1,22 @@
 import classes from "./styles/UnitFinancials.module.css";
 import {
-	FinancialsOverview,
+	FinanceDetails,
 	MortgageDetails,
 	InsuranceDetails,
 	HoaDetails,
-	Rents
+	RentDetails
 } from "../../components/index.js";
 import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import {useLoaderData, useLocation} from "react-router-dom";
 
 
-const UnitFinancials = () => {
+const FinancesUnit = () => {
 
 	const location = useLocation()
 	const { state } = location
 
 	const unitFinance = useLoaderData()
-	console.log(unitFinance)
 	const [display, setDisplay] = useState("overview")
 
 	const { purchasePrice, rent, annualPropertyTax, fairMarketRent, insurance, mortgage, hoa } = unitFinance
@@ -68,7 +67,7 @@ const UnitFinancials = () => {
 			<div className={classes.forms}>
 				{
 					display === "overview" &&
-					<FinancialsOverview
+					<FinanceDetails
 						purchasePrice={purchasePrice}
 						rent={rent}
 						fairMarketRent={fairMarketRent}
@@ -88,7 +87,7 @@ const UnitFinancials = () => {
 				}
 				{
 					display === "rents" &&
-					<Rents
+					<RentDetails
 						houseNumber={state.houseNumber}
 						street={state.street}
 						apartmentNumber={state.apartmentNumber}
@@ -115,4 +114,4 @@ export const unitFinancialsLoader = async ({ params }) => {
 	}
 }
 
-export default UnitFinancials;
+export default FinancesUnit;

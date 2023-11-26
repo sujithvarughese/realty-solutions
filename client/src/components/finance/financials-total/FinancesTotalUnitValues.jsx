@@ -4,7 +4,7 @@ import { calculateMonthlyPayment} from "../../../utils/financeCalcs.js";
 import {NavLink} from "react-router-dom";
 import { convertToUSD } from "../../../utils/financeCalcs.js";
 
-const FinancialSummaryValues = ({ unitFinance, selectedTerm, removeUnit }) => {
+const FinancesTotalUnitValues = ({ unitFinance, selectedTerm, removeUnit }) => {
 
     const { unitID, financeID, houseNumber, street, apartmentNumber, city, state, zip, tenant, user } = unitFinance
     const { principal, interest, term } = unitFinance.mortgage
@@ -50,4 +50,4 @@ const FinancialSummaryValues = ({ unitFinance, selectedTerm, removeUnit }) => {
     );
 };
 
-export default FinancialSummaryValues;
+export default FinancesTotalUnitValues;

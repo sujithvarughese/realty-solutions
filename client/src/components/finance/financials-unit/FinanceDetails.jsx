@@ -3,7 +3,7 @@ import { CalculateProfitForm } from "../../"
 import {useState} from "react";
 import { convertToUSD } from "../../../utils/financeCalcs.js";
 
-const FinancialsOverview = ({ purchasePrice, rent, fairMarketRent, annualPropertyTax, annualInsurancePremium, annualHoa }) => {
+const FinanceDetails = ({ purchasePrice, rent, fairMarketRent, annualPropertyTax, annualInsurancePremium, annualHoa }) => {
 
     const [profit, setProfit] = useState("")
 
@@ -53,4 +53,4 @@ const FinancialsOverview = ({ purchasePrice, rent, fairMarketRent, annualPropert
     );
 };
 
-export default FinancialsOverview;
+export default FinanceDetails;
