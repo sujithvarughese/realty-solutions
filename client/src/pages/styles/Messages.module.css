@@ -1,0 +1,68 @@
+.container {
+    padding: 0.5rem;
+}
+.mailbox {
+    border-top: var(--COLOR-DARK) solid 2px;
+}
+.nav {
+    display: flex;
+}
+.largeScreen {
+    display: none;
+}
+.back {
+    font-size: 56px;
+    line-height: 1;
+}
+.create {
+    cursor: pointer;
+    font-size: 56px;
+    line-height: 1;
+}
+.links {
+    display: none;
+}
+
+.empty {
+    text-align: center;
+}
+.noMessage {
+    font-size: 36px;
+    text-align: center;
+    padding: 10rem 0;
+}
+@media (min-width: 600px) {
+    .largeScreen {
+        display: grid;
+        grid-template-columns: 2fr 5fr;
+    }
+    .links {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: end;
+        gap: 0.5rem;
+    }
+    .link {
+        font-size: 28px;
+        color: var(--COLOR-LIGHT);
+        text-align: center;
+        padding: 0 0.5rem;
+    }
+    .link:hover {
+        color: var(--COLOR-ALT);
+        cursor: pointer;
+    }
+    .active {
+        font-size: 28px;
+        color: var(--COLOR);
+        text-align: center;
+        padding: 0 0.5rem;
+    }
+    .mobile {
+        display: none;
+    }
+    .mobileCloseMessage {
+        display: none;
+    }
+}
