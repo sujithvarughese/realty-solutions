@@ -10,7 +10,7 @@ const getRentReceipts = async (req, res) => {
 			throw new UnauthenticatedError("Error validating user");
 		}
 	}
-	const rentReceipts = await RentReceipt.find({ user: req.params.unit, year: req.params.year })
+	const rentReceipts = await RentReceipt.find({ user: req.params.user, date: { $regex: req.params.date } })
 	res.status(StatusCodes.OK)
 		.json({
 			msg: "Rent Receipts Successfully retrieved",

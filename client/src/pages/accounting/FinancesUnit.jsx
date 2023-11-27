@@ -17,7 +17,6 @@ const FinancesUnit = () => {
 
 	const unitFinance = useLoaderData()
 	const [display, setDisplay] = useState("overview")
-
 	const [financeState, setFinanceState] = useState(unitFinance)
 
 	// { _id, purchasePrice, rent, annualPropertyTax, fairMarketRent, insurance, mortgage, hoa } = unitFinance

@@ -2,31 +2,30 @@ import classes from "./styles/RentReceiptForms.module.css";
 import {Button, Card, Form, Select} from "../../../ui/index.js";
 import { axiosDB } from "../../../utils/axios.js";
 import FormRow from "../../../ui/FormRow.jsx";
+import {useState} from "react";
 
-const SearchRentReceiptsForm = ({ userID, setRentReceipts }) => {
+const SearchRentReceiptsForm = ({ fetchRentReceipts }) => {
 
-    const getRentReceipts = async (year) => {
-        try {
-            const response = await axiosDB(`/finance/rent/${userID}/${year}`)
-            const { rentReceipts } = response.data
-            setRentReceipts(rentReceipts)
-        } catch (error) {
-            console.log(error)
-        }
+    const date = new Date()
+    const [year, setYear] = useState(date.toLocaleString('en-us',{ year:'numeric' }))
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        fetchRentReceipts(year)
     }
 
     return (
 
         <Card>
             <div className={classes.content}>
-                <Form className={classes.form} title="Search">
+                <Form className={classes.form} title="Search" onSubmit={handleSubmit}>
                     <div className={classes.year}>
                         <FormRow label="Year">
                             <Select
                                 type="text"
                                 name="year"
                                 list={years}
-                                onChange={(e)=>getRentReceipts(e.target.value)}
+                                onChange={(e)=>setYear(e.target.value)}
                             ></Select>
                         </FormRow>
                     </div>

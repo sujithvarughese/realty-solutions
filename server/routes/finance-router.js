@@ -12,7 +12,7 @@ import {
     updateUnitFinances
 } from "../controllers/finance-controller.js";
 
-router.route("/rent/:unit/:year").get(getRentReceipts)
+router.route("/rent/:user/:date").get(getRentReceipts)
 router.route("/rent").post(authorizePermissions, createRentReceipt)
 router.route("/:unit").get(authorizePermissions, getUnitFinances)
 router.route("/")
