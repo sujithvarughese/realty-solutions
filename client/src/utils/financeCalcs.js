@@ -9,6 +9,9 @@ const convertToUSD = (number) => {
 
 // calculate payoff amount using current data - user can change fields and see what results would be
 const calculatePayoff = (principal, apr, termYears, paymentsMade) => {
+	if (!principal || !apr ||!termYears || !paymentsMade) {
+		return 0
+	}
 	const interest = (apr/100) / 12
 	const term = termYears * 12
 	const result = principal * ((1 + interest) ** term  - (1 + interest) ** paymentsMade) / ((1 + interest) ** term - 1)
@@ -16,6 +19,9 @@ const calculatePayoff = (principal, apr, termYears, paymentsMade) => {
 }
 
 const calculateMonthlyPayment =  (principal, apr, termYears) => {
+	if (!principal || !apr ||!termYears) {
+		return 0
+	}
 	const interest = (apr/100)
 	const term = termYears * 12
 	const payment =  principal * (interest * (1 + interest) ** term) / ((1 + interest) ** term - 1)

@@ -1,6 +1,6 @@
 .infoBar {
     display: flex;
-    position: sticky;
+    position: fixed;
     top: 0;
     background: var(--COLOR-DARKER);
     justify-content: space-between;

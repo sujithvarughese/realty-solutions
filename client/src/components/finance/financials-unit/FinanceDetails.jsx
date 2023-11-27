@@ -1,11 +1,40 @@
 import classes from "./styles/FinanceUnitDetails.module.css";
-import { CalculateProfitForm } from "../../"
+import { CalculateProfitForm} from "../../"
 import {useState} from "react";
 import { convertToUSD } from "../../../utils/financeCalcs.js";
+import {axiosDB} from "../../../utils/axios.js";
+import FinanceDetailsRow from "./FinanceDetailsRow.jsx";
+import {Input, Button, ButtonEdit} from "../../../ui/index.js";
 
-const FinanceDetails = ({ purchasePrice, rent, fairMarketRent, annualPropertyTax, annualInsurancePremium, annualHoa }) => {
+const FinanceDetails = ({ updateUnitFinance, purchasePrice, rent, fairMarketRent, annualPropertyTax, annualInsurancePremium, annualHoa }) => {
 
     const [profit, setProfit] = useState("")
+
+    const [editMode, setEditMode] = useState(false)
+
+    const [values, setValues] = useState({
+        purchasePrice: purchasePrice,
+        rent: rent,
+        fairMarketRent: fairMarketRent
+    })
+
+    const handleChange = (e) => {
+        setValues({ ...values, [e.target.name]: e.target.value })
+    }
+
+    const cancel = () => {
+        setValues({
+            purchasePrice: purchasePrice,
+            rent: rent,
+            fairMarketRent: fairMarketRent
+        })
+        setEditMode(false)
+    }
+
+    const update = () => {
+        updateUnitFinance(values)
+        setEditMode(false)
+    }
 
     return (
         <div className={classes.container}>
@@ -14,41 +43,78 @@ const FinanceDetails = ({ purchasePrice, rent, fairMarketRent, annualPropertyTax
                 <div className={classes.head}>
                     Overview
                 </div>
+                { !editMode && <ButtonEdit onClick={()=>setEditMode(!editMode)}>[Edit]</ButtonEdit> }
+
                 <div className={classes.body}>
-                    <div className={classes.tr}>
-                        <div className={classes.td}>Purchase Price</div>
-                        <div className={classes.td}>{convertToUSD(purchasePrice)}</div>
-                    </div>
-                    <div className={classes.tr}>
-                        <div className={classes.td}>Rent</div>
-                        <div className={classes.td}>{convertToUSD(rent)}</div>
-                    </div>
-                    <div className={classes.tr}>
-                        <div className={classes.td}>Fair Market Rent</div>
-                        <div className={classes.td}>{convertToUSD(fairMarketRent)}</div>
-                    </div>
+                    <FinanceDetailsRow
+                        label="Purchase Price"
+                        display={(purchasePrice && !editMode) ? convertToUSD(values.purchasePrice)
+                            :
+                            <Input
+                                name="purchasePrice"
+                                type="number"
+                                value={values.purchasePrice}
+                                onChange={handleChange}
+                            />
+                        }
+                    />
+                    <FinanceDetailsRow
+                        label="Rent"
+                        display={(rent && !editMode) ? convertToUSD(values.rent)
+                            :
+                            <Input
+                                name="rent"
+                                type="number"
+                                value={values.rent}
+                                onChange={handleChange}
+                            />
+                        }
+                    />
+                    <FinanceDetailsRow
+                        label="Fair Market Rent"
+                        display={(fairMarketRent && !editMode) ? convertToUSD(values.fairMarketRent)
+                            :
+                            <Input
+                                name="fairMarketRent"
+                                type="number"
+                                value={values.fairMarketRent}
+                                onChange={handleChange}
+                            />
+                        }
+                    />
+                    {
+                        editMode &&
+                        <div className={classes.buttons}>
+                            <Button onClick={update}>Update</Button>
+                            <Button onClick={cancel}>Cancel</Button>
+                        </div>
+                    }
                 </div>
             </div>
 
-            <div className={classes.calcProfit}>
+            {
+                purchasePrice && rent &&
 
-                <CalculateProfitForm
-                    annualPropertyTax={annualPropertyTax}
-                    annualInsurancePremium={annualInsurancePremium}
-                    annualHoa={annualHoa}
-                    rent={rent}
-                    setProfit={setProfit}
-                />
+                <div className={classes.calcProfit}>
 
-                {
-                    profit &&
-                    <div className={classes.result}>
-                        Total Profit: {convertToUSD(profit)}
-                    </div>
-                }
+                    <CalculateProfitForm
+                        annualPropertyTax={annualPropertyTax}
+                        annualInsurancePremium={annualInsurancePremium}
+                        annualHoa={annualHoa}
+                        rent={rent}
+                        setProfit={setProfit}
+                    />
+
+                    {
+                        profit &&
+                        <div className={classes.result}>
+                            Total Profit: {convertToUSD(profit)}
+                        </div>
+                    }
 
 
-            </div>
+                </div>
+            }
         </div>
     );
 };

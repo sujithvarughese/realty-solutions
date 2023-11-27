@@ -10,7 +10,6 @@ import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import {useLoaderData, useLocation} from "react-router-dom";
 
-
 const FinancesUnit = () => {
 
 	const location = useLocation()
@@ -19,11 +18,21 @@ const FinancesUnit = () => {
 	const unitFinance = useLoaderData()
 	const [display, setDisplay] = useState("overview")
 
-	const { purchasePrice, rent, annualPropertyTax, fairMarketRent, insurance, mortgage, hoa } = unitFinance
+	const [financeState, setFinanceState] = useState(unitFinance)
+
+	// { _id, purchasePrice, rent, annualPropertyTax, fairMarketRent, insurance, mortgage, hoa } = unitFinance
 	// { company, agent, phone, email, annualPremium, coverage } = insurance
 	// { bank, principal, interest, term, paymentsMade } = mortgage
 	// { company, agent, phone, email, annualFee } = hoa
 
+	const updateUnitFinance = async (values) => {
+		try {
+			await axiosDB.patch("/finance", { id: unitFinance._id, values })
+			setFinanceState({ ...financeState, ...values })
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
 	return (
 		<div className={classes.container}>
@@ -69,22 +78,26 @@ const FinancesUnit = () => {
 					{
 						display === "overview" &&
 						<FinanceDetails
-							purchasePrice={purchasePrice}
-							rent={rent}
-							fairMarketRent={fairMarketRent}
-							annualPropertyTax={annualPropertyTax}
-							annualInsurancePremium={insurance.annualPremium}
-							annualHoa={hoa.annualFee}
+							updateUnitFinance={updateUnitFinance}
+							purchasePrice={financeState.purchasePrice}
+							rent={financeState.rent}
+							fairMarketRent={financeState.fairMarketRent}
+							annualPropertyTax={financeState.annualPropertyTax}
+							annualInsurancePremium={financeState.insurance.annualPremium}
+							annualHoa={financeState.hoa.annualFee}
 						/>
 					}
 					{
-						display === "mortgage" && <MortgageDetails mortgage={mortgage}/>
+						display === "mortgage" &&
+						<MortgageDetails updateUnitFinance={updateUnitFinance} mortgage={financeState.mortgage}/>
 					}
 					{
-						display === "insurance" && <InsuranceDetails insurance={insurance} />
+						display === "insurance" &&
+						<InsuranceDetails updateUnitFinance={updateUnitFinance} insurance={financeState.insurance} />
 					}
 					{
-						display === "hoa" && <HoaDetails hoa={hoa} />
+						display === "hoa" &&
+						<HoaDetails updateUnitFinance={updateUnitFinance} hoa={financeState.hoa} />
 					}
 					{
 						display === "rents" &&

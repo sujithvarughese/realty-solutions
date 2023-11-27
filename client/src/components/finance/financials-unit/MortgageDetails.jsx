@@ -2,8 +2,28 @@ import classes from "./styles/FinanceUnitDetails.module.css";
 import {CalculateMonthlyPaymentForm, CalculatePayoffForm} from "../../index.js";
 import {useState} from "react";
 import { convertToUSD } from "../../../utils/financeCalcs.js";
+import {ButtonEdit, Input} from "../../../ui/index.js";
+import FinanceDetailsRow from "./FinanceDetailsRow.jsx";
 
-const MortgageDetails = ({ mortgage }) => {
+const MortgageDetails = ({ updateUnitFinance, mortgage }) => {
+
+    const { bank, principal, interest, term, paymentsMade } = mortgage
+
+    const [editMode, setEditMode] = useState(false)
+
+    const [values, setValues] = useState({
+        mortgage: {
+            bank: bank,
+            principal: principal,
+            interest: interest,
+            term: term,
+            paymentsMade: paymentsMade
+        }
+    })
+
+    const handleChange = (e) => {
+        setValues({ ...values, [e.target.name]: e.target.value})
+    }
 
     const [payoffAmount, setPayoffAmount] = useState("")
     const [monthlyPayment, setMonthlyPayment] = useState("")
@@ -14,35 +34,48 @@ const MortgageDetails = ({ mortgage }) => {
                 <div className={classes.head}>
                     Mortgage
                 </div>
+                <ButtonEdit onClick={()=>setEditMode(!editMode)}>[Edit]</ButtonEdit>
                 <div className={classes.body}>
+                    <FinanceDetailsRow
+                        label="Bank"
+                        display={(bank && !editMode) ? values.mortgage.bank
+                            :
+                            <Input
+                                name="bank"
+                                type="text"
+                                value={values.mortgage.bank}
+                                onChange={handleChange}
+                            />
+                        }
+                    />
                     <div className={classes.tr}>
                         <div className={classes.td}>Bank</div>
-                        <div className={classes.td}>{mortgage.bank}</div>
+                        <div className={classes.td}>{bank}</div>
                     </div>
                     <div className={classes.tr}>
                         <div className={classes.td}>Principal</div>
-                        <div className={classes.td}>{convertToUSD(mortgage.principal)}</div>
+                        <div className={classes.td}>{convertToUSD(principal)}</div>
                     </div>
                     <div className={classes.tr}>
                         <div className={classes.td}>Interest</div>
-                        <div className={classes.td}>{mortgage.interest}%</div>
+                        <div className={classes.td}>{interest}%</div>
                     </div>
                     <div className={classes.tr}>
                         <div className={classes.td}>Term</div>
-                        <div className={classes.td}>{mortgage.term} months</div>
+                        <div className={classes.td}>{term} months</div>
                     </div>
                     <div className={classes.tr}>
                         <div className={classes.td}>Payments Made</div>
-                        <div className={classes.td}>{mortgage.paymentsMade}</div>
+                        <div className={classes.td}>{paymentsMade}</div>
                     </div>
                 </div>
             </div>
 
             <div className={classes.calcPayment}>
                 <CalculateMonthlyPaymentForm
-                    principal={mortgage.principal}
-                    apr={mortgage.interest}
-                    termYears={mortgage.term}
+                    principal={principal}
+                    apr={interest}
+                    termYears={term}
                     setMonthlyPayment={setMonthlyPayment}
                 />
                 {
@@ -55,10 +88,10 @@ const MortgageDetails = ({ mortgage }) => {
 
             <div className={classes.calcPayoff}>
                 <CalculatePayoffForm
-                    principal={mortgage.principal}
-                    apr={mortgage.interest}
-                    termYears={mortgage.term}
-                    paymentsMade={mortgage.paymentsMade}
+                    principal={principal}
+                    apr={interest}
+                    termYears={term}
+                    paymentsMade={paymentsMade}
                     setPayoffAmount={setPayoffAmount}
                 />
                 {

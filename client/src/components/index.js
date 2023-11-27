@@ -79,5 +79,5 @@ export {
 	InsuranceDetails,
 	HoaDetails,
 	FinancesMobileTable,
-	RentDetails
+	RentDetails,
 }

@@ -2,8 +2,8 @@ import styled from "styled-components"
 
 const Input = styled.input`
     width: 100%;
-	height: 3rem;
 	padding: 0.5rem;
+    line-height: 1;
     font-size: 14px;
 	border-radius: 5px;
 	border: 1px solid #bcccdc;

@@ -39,12 +39,13 @@ const createUnitFinances = async (req, res) => {
 }
 
 const updateUnitFinances = async (req, res) => {
-	// { ...finance } = req.body
-	const unitFinance = await Finance.findByIdAndUpdate(req.body.id, req.body)
+	// { id, values: {...finance property} } = req.body
+	await Finance.findByIdAndUpdate(req.body.id, req.body.values)
+	console.log(req.body.values)
 	res.status(StatusCodes.OK)
 		.json({
 			msg: "Unit Finance successfully updated",
-			unitFinance: unitFinance
+			financeField: req.body
 		})
 }
 
@@ -67,4 +68,4 @@ const getFinancialSummary = async (req, res) => {
 		});
 }
 
-export { getRentReceipts,  createRentReceipt, createUnitFinances, updateUnitFinances, getUnitFinances, getFinancialSummary }
+export { getRentReceipts, createRentReceipt, createUnitFinances, updateUnitFinances, getUnitFinances, getFinancialSummary }
