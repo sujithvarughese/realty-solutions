@@ -38,10 +38,12 @@ const RentDetails = ({ houseNumber, street, apartmentNumber, city, state, zip, f
 
 	return (
 		<div className={classes.container}>
-
 			<div className={classes.head}>
-				Rent Receipts
+				<div className={classes.title}>
+					Rent Receipts
+				</div>
 			</div>
+
 			<div className={classes.body}>
 				{
 					rent &&
