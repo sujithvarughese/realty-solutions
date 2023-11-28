@@ -1,0 +1,25 @@
+.actions {
+    display: flex;
+    gap: 2rem;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.unread,
+.reply,
+.flag,
+.delete:hover {
+    cursor: pointer;
+}
+
+@media (min-width: 600px) {
+    .actions {
+        gap: 1rem
+    }
+}
+
+@media (min-width: 900px) {
+    .actions {
+        gap: 2rem
+    }
+}

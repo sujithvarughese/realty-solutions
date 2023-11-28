@@ -1,0 +1,25 @@
+.desktop {
+    display: none;
+}
+.mobile {
+    display: block;
+}
+.main {
+    padding: 1rem 1rem 4rem 1rem;
+    margin: 4rem 0;
+}
+@media (min-width: 600px){
+    .infobar {
+        display: none;
+    }
+    .desktop {
+        display: block;
+    }
+    .main {
+        margin: auto;
+        max-width: 1280px;
+    }
+    .mobile {
+        display: none;
+    }
+}
