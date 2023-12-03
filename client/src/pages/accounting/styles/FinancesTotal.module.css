@@ -34,10 +34,13 @@
     align-self: end;
     padding: 1rem;
 }
-.link:hover {
+.link {
     font-weight: 600;
+}
+.link:hover {
     color: var(--COLOR-ALT)
 }
+
 @media (min-width: 600px) {
     .largeScreen {
         display: block;
