@@ -35,6 +35,7 @@
     padding: 1rem;
 }
 .link:hover {
+    font-weight: 600;
     color: var(--COLOR-ALT)
 }
 @media (min-width: 600px) {
