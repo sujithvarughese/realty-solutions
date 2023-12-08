@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { DesktopNavbar, InfoBar, MobileNavbar } from "../components";
 import { RiHome6Fill, RiMailFill, RiMoneyDollarCircleFill } from "react-icons/ri"
 import { FaGlobe } from "react-icons/fa"
+import {Loading} from "../ui/index.js";
 
 const Root = () => {
 	const navigation = useNavigation()
@@ -49,11 +50,9 @@ const Root = () => {
 			</div>
 
 			<div className={classes.main}>
-				{navigation.state === 'loading' ?
-					<h3>Loading...</h3>
-					:
-					<Outlet />
-				}
+				{navigation.state === 'loading' && <Loading />}
+				<Outlet />
+
 			</div>
 
 			{/* main navbar for mobile */}

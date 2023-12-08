@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {createPortal} from "react-dom";
 
 const Backdrop = styled.div`
 	position: fixed;
@@ -27,12 +28,13 @@ const StyledModal = styled.div`
 	}
 `
 const Modal = (props) => {
-	return (
+	return createPortal(
 		<Backdrop>
 			<StyledModal>
 				{props.children}
 			</StyledModal>
 		</Backdrop>
+		, document.getElementById("modal")
 	)
 }
 export default Modal;
