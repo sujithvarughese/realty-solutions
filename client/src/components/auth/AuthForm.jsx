@@ -72,14 +72,7 @@ const AuthForm = ({ authState }) => {
 				></Input>
 			}
 			<div className={classes.buttons}>
-				<Button type="submit">
-					{
-						authState === "register" ?
-							"REGISTER"
-							:
-							"LOG IN"
-					}
-				</Button>
+				<Button type="submit">{authState === "register" ? "REGISTER" : "LOG IN"}</Button>
 				<Button type="click" onClick={previewAsAdmin}>PREVIEW</Button>
 			</div>
 		</Form>

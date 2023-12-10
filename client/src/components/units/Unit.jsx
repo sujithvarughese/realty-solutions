@@ -6,7 +6,7 @@ import {
 	CreateMessageForm,
 } from "../";
 import { useState } from "react";
-import { Card, ButtonEdit, Button, ButtonIcon } from "../../ui/index.js";
+import {Card, ButtonEdit, Button, ButtonIcon, ButtonPlain} from "../../ui/index.js";
 import { NavLink } from "react-router-dom";
 import { convertToUSD } from "../../utils/financeCalcs.js";
 import { BiMessageSquareEdit } from "react-icons/bi"
@@ -56,17 +56,17 @@ const Unit = ({ unit }) => {
 										</div>
 									</NavLink>
 
-
 									<div className={classes.addressLine2}>
 										<div>
 											<span>{city}, </span>
 											<span>{state} </span>
 											<span>{zip}</span>
 										</div>
-										<ButtonEdit
+										<ButtonPlain
 											onClick={()=>setShowEditUnitForm(true)}
+											fontSize="14px"
 										>[Edit]
-										</ButtonEdit>
+										</ButtonPlain>
 									</div>
 								</div>
 
@@ -81,10 +81,11 @@ const Unit = ({ unit }) => {
 										<div>
 											Tenant: {tenant.firstName} {tenant.lastName}
 										</div>
-										<ButtonEdit
+										<ButtonPlain
 											onClick={()=>setShowEditUserForm(true)}
+											fontSize="14px"
 										>[Edit]
-										</ButtonEdit>
+										</ButtonPlain>
 									</div>
 									<div className={classes.tenantEmail}>
 										{tenant.email}

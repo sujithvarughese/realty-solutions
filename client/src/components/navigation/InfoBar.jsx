@@ -7,31 +7,16 @@ const InfoBar = ({ user, logout }) => {
 	const navigate = useNavigate()
 	return (
 		<div className={classes.infoBar}>
-			{
-				user ?
-				<div className={classes.title}>
-					Realty Solutions
-				</div>
-					:
-				<div className={classes.titleRedirect} onClick={()=>navigate("/")}>
+			<div className={classes.title}>
 				Realty Solutions
-				</div>
-			}
-
+			</div>
 
 			{
 				user &&
-
-					<div className={classes.link}>
-						<ButtonPlain
-							onClick={logout}
-						>
-							Logout
-						</ButtonPlain>
-					</div>
+			<div className={classes.link}>
+				<ButtonPlain onClick={logout}>Logout</ButtonPlain>
+			</div>
 			}
-
-
 		</div>
 	);
 };

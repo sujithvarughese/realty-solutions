@@ -3,11 +3,8 @@ import styled from "styled-components";
 const ButtonEdit = styled.button`
 	cursor: pointer;
 	border: none;
-    height: 100%;
-	border-radius: 6px;
 	transition: 0.2s ease-in-out all;
     margin: 0.4rem;
-    background: transparent;
     font-size: ${props => props.fontSize || "16px"};
 
   

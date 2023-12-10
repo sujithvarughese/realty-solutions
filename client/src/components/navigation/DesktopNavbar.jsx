@@ -1,6 +1,7 @@
 import classes from "./styles/DesktopNavbar.module.css"
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import {ButtonPlain} from "../../ui/index.js";
 
 const DesktopNavbar = ({ user, links, logout }) => {
 
@@ -30,8 +31,8 @@ const DesktopNavbar = ({ user, links, logout }) => {
 				<div className={classes.logout}>
 					{
 						user &&
-						<div className={classes.link} onClick={logout}>
-							Logout
+						<div className={classes.link}>
+							<ButtonPlain onClick={logout}>Logout</ButtonPlain>
 						</div>
 					}
 				</div>

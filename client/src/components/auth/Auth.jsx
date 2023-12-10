@@ -1,6 +1,6 @@
 import classes from "./styles/Auth.module.css";
 import { useState } from "react";
-import {Card} from "../../ui";
+import {Card, ButtonPlain} from "../../ui";
 import AuthForm from "./AuthForm.jsx";
 
 const Auth = () => {
@@ -11,17 +11,11 @@ const Auth = () => {
 		<Card>
 			<div className={classes.container}>
 				<div className={classes.links}>
-					<div
-						className={`${classes.link} ${authState === "register" && classes.active}`}
-						onClick={()=>setAuthState("register")}
-					>
-						Register
+					<div className={`${classes.link} ${authState === "register" && classes.active}`}>
+						<ButtonPlain onClick={()=>setAuthState("register")}>REGISTER</ButtonPlain>
 					</div>
-					<div
-						className={`${classes.link} ${authState === "login" && classes.active}`}
-						onClick={()=>setAuthState("login")}
-					>
-						Login
+					<div className={`${classes.link} ${authState === "login" && classes.active}`}>
+						<ButtonPlain onClick={()=>setAuthState("login")}>LOGIN</ButtonPlain>
 					</div>
 				</div>
 
