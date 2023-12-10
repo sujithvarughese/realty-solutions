@@ -22,6 +22,10 @@ const StyledModal = styled.div`
 	width: 90vw;
 	max-width: 600px;
 	color: var(--COLOR-LIGHTER);
+	&:hover {
+		box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+		0 10px 10px -5px rgba(0, 0, 0, 0.04);
+	}
 
 	@media (min-width: 600px) {
 		padding: 2rem;

@@ -51,15 +51,15 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 		<Card>
 		<Form onSubmit={handleSubmit} title="Create Message">
 			<div className={classes.to}>
-				<FormRow label="To:">
-					<Select
-						type="text"
-						name="recipient"
-						list={addressBook}
-						value={values.recipient}
-						onChange={handleChange}
-					></Select>
-				</FormRow>
+				To:
+				<Select
+					type="text"
+					name="recipient"
+					list={addressBook}
+					value={values.recipient}
+					onChange={handleChange}
+				></Select>
+
 			</div>
 			<Input
 				htmlFor="subject"

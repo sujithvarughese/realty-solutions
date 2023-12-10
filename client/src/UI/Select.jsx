@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 const StyledSelect = styled.select`
+  
   line-height: 1;
   padding: 0.5rem;
   font-size: 14px;

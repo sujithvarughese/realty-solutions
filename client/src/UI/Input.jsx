@@ -14,6 +14,10 @@ const Input = styled.input`
 	outline: 4px auto -webkit-focus-ring-color;
 	outline-offset: -1px;
 	}
+  
+    &::placeholder {
+      font-family: inherit;
+    }
   @media (min-width: 600px) {
     font-size: 16px;
   }

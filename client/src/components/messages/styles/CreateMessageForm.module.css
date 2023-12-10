@@ -3,7 +3,10 @@
 }
 
 .to {
-    width: 180px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 200px;
 }
 .form {
     display: flex;

@@ -1,9 +1,7 @@
 import classes from "./styles/Research.module.css";
 import { axiosHUD } from "../utils/axios.js";
 import { useState } from "react";
-import { Form, Select } from "../ui";
-import FormRow from "../ui/FormRow.jsx";
-
+import { Form, Select, FormRow, FormRowSelect } from "../ui";
 const Research = () => {
 
 	const [counties, setCounties] = useState([])
