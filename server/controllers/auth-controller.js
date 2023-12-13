@@ -23,7 +23,6 @@ const login = async (req, res) => {
 	if (!passwordVerified) {
 		throw new UnauthenticatedError("Invalid credentials");
 	}
-	console.log(user)
 	// user variable with just the fields we want to send to attach (will also be saved in front end state)
 	const userInfo = {
 		userID: user._id,

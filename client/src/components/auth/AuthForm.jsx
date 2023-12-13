@@ -37,7 +37,7 @@ const AuthForm = ({ authState }) => {
 				htmlFor="email"
 				type="email"
 				name="email"
-				placeholder="EMAIL"
+				placeholder="Email"
 				value={email}
 				onChange={(e)=>setEmail(e.target.value)}
 			></Input>
@@ -47,14 +47,14 @@ const AuthForm = ({ authState }) => {
 					htmlFor="code"
 					type="text"
 					name="code"
-					placeholder="REGISTRATION CODE"
+					placeholder="Registration Code"
 					value={registrationCode}
 					onChange={(e)=>setRegistrationCode(e.target.value)}
 				></Input>
 			}
 			<Input
 				htmlFor="password"
-				placeholder="PASSWORD"
+				placeholder="Password"
 				type="password"
 				name="password"
 				value={password}
@@ -64,7 +64,7 @@ const AuthForm = ({ authState }) => {
 				authState === "register" &&
 				<Input
 					htmlFor="passwordConfirm"
-					placeholder="CONFIRM PASSWORD"
+					placeholder="Confirm Password"
 					type="password"
 					name="passwordConfirm"
 					value={passwordConfirm}
