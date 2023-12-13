@@ -13,6 +13,7 @@ const Messages = () => {
 	const messages = useLoaderData()
 	const { user } = useGlobalContext()
 
+	const [messagesState, setMessagesState] = useState(messages)
 	const [currentMailbox, setCurrentMailbox] = useState([])
 	const [myIncoming, setMyIncoming] = useState([])
 	const [myOutgoing, setMyOutgoing] = useState([])
@@ -33,7 +34,16 @@ const Messages = () => {
 			console.log(error);
 		}
 	}
-
+	const getMessages = async () => {
+		try {
+			// retrieve all messages where sender or recipient matches using req.user info that is stored at login
+			const response = await axiosDB("/messages")
+			const { messages } = response.data
+			setMessagesState(messages)
+		} catch (error) {
+			throw new Error(error)
+		}
+	}
 	// fetch admin info so user can send messages
 	const getAdminInfo = async () => {
 		try {
@@ -96,14 +106,15 @@ const Messages = () => {
 		} else {
 			getAdminInfo()
 		}
-		const conversations = messages.filter(message => message.headNode && (message.recipient._id === user.userID || message.sender._id === user.userID))
-		const incoming = messages.filter(message => message.recipient._id === user.userID)
-		const outgoing = messages.filter(message => message.sender._id === user.userID)
+		// conversations will be messages in which the most recent message in the conversation is either to or from the user
+		const conversations = messagesState.filter(message => message.headNode && (message.recipient._id === user.userID || message.sender._id === user.userID))
+		const incoming = messagesState.filter(message => message.recipient._id === user.userID)
+		const outgoing = messagesState.filter(message => message.sender._id === user.userID)
 		setCurrentMailbox(conversations)
 		setMyMessages(conversations)
 		setMyIncoming(incoming)
 		setMyOutgoing(outgoing)
-	}, []);
+	}, [messagesState]);
 
 	return (
 		<div className={classes.container}>
@@ -114,6 +125,7 @@ const Messages = () => {
 				<CreateMessageForm
 					cancel={()=>setShowCreateMessageForm(false)}
 					addressBook={addressBook}
+					getMessages={getMessages}
 				/>
 			}
 
@@ -201,6 +213,7 @@ const Messages = () => {
 									markMessageUnread={markMessageUnread}
 									showCreateReply={showCreateReply}
 									setShowCreateReply={setShowCreateReply}
+									getMessages={getMessages}
 								/>
 								:
 								<div className={classes.noMessage}>
@@ -225,6 +238,7 @@ const Messages = () => {
 										markMessageUnread={markMessageUnread}
 										showCreateReply={showCreateReply}
 										setShowCreateReply={setShowCreateReply}
+										getMessages={getMessages}
 									/>
 								}
 							</div>

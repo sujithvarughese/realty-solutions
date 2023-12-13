@@ -13,7 +13,7 @@ const initialState = {
 	body: ""
 }
 
-const CreateMessageForm = ({ addressBook, cancel }) => {
+const CreateMessageForm = ({ addressBook, cancel, getMessages }) => {
 
 	const { user } = useGlobalContext()
 	// recipient is initially set to first name in address book (user has only one name in address book so default to admin)
@@ -36,6 +36,7 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 			} else {
 				setButtonText("Error")
 			}
+			await getMessages()
 			setTimeout(() => {
 				navigate("/messages");
 				cancel()

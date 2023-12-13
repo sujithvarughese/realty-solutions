@@ -3,7 +3,7 @@ import {MessageActions, MessageContents, ReplyMessageForm} from "../";
 import { axiosDB } from "../../utils/axios.js";
 import {useEffect, useState} from "react";
 
-const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnread, showCreateReply, setShowCreateReply }) => {
+const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnread, showCreateReply, setShowCreateReply, getMessages }) => {
 
 	const { date, sender, recipient, subject, body } = message
 
@@ -49,6 +49,7 @@ const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnr
 							<ReplyMessageForm
 								message={message}
 								closeReply={()=>setShowCreateReply(false)}
+								getMessages={getMessages}
 							/>
 						</div>
 					}

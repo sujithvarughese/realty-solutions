@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { axiosDB } from "../../utils/axios.js";
 import { TfiClose } from "react-icons/tfi";
 
-const ReplyMessageForm = ({ message, closeReply }) => {
+const ReplyMessageForm = ({ message, closeReply, getMessages }) => {
 
 	const { date } = message
 	const { user } = useGlobalContext()
@@ -35,6 +35,7 @@ const ReplyMessageForm = ({ message, closeReply }) => {
 			} else {
 				setButtonText("Error")
 			}
+			await getMessages()
 			setTimeout(() => {
 				// navigate back to messages to update messages display
 				navigate("/messages");
