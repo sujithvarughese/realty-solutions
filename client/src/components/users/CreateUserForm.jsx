@@ -3,6 +3,7 @@ import { Input, Form, Button, Card, Modal } from "../../ui";
 import { useState } from "react";
 import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
+import UserRegistrationConfirmation from "./UserRegistrationConfirmation.jsx";
 
 const initialState = {
 	lastName: "",
@@ -14,31 +15,40 @@ const initialState = {
 	balance: "",
 }
 
-const CreateUserForm = ({ cancel, unitID }) => {
+const CreateUserForm = ({ closeForm, unitID }) => {
 
 	const [values, setValues] = useState(initialState)
-
+	const [buttonText, setButtonText] = useState("Create User")
+	const [showConfirmation, setShowConfirmation] = useState(false)
+	const [email, setEmail] = useState("")
+	const [code, setCode] = useState("")
 	const handleChange = (e) => {
 		setValues({ ...values, [e.target.name]: e.target.value });
 	}
 
 	const navigate = useNavigate()
 
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		// pass unit to database so unit will be in mongo user document
-		const response = await createUser({ ...values, unit: unitID })
-		console.log(response)
+		const registration = await createUser({ ...values, unit: unitID })
+		const { email, code } = registration
+		setEmail((prevState) => email)
+		setCode((prevState => code))
+		setShowConfirmation(true)
+
 		// navigate back to units page to render changes
 		navigate("/units");
 		// close form
-		cancel()
 	}
 
 	return (
 		<div className={classes.container}>
-		<Modal>
+		<Modal closeFn={closeForm}>
 		<Card>
+			{showConfirmation ? <UserRegistrationConfirmation email={email} code={code} />
+				:
 			<Form onSubmit={handleSubmit} title="Create User">
 				<div className={classes.form}>
 					<div className={classes.name}>
@@ -97,11 +107,12 @@ const CreateUserForm = ({ cancel, unitID }) => {
 					</div>
 
 					<div className={classes.buttons}>
-						<Button type="submit">Create Account</Button>
-						<Button type="button" onClick={cancel}>Cancel</Button>
+						<Button type="submit">{buttonText}</Button>
+						<Button type="button" onClick={closeForm}>Cancel</Button>
 					</div>
 				</div>
 			</Form>
+			}
 		</Card>
 		</Modal>
 		</div>
@@ -110,7 +121,6 @@ const CreateUserForm = ({ cancel, unitID }) => {
 
 const createUser = async (credentials) => {
 	try {
-
 		const response = await axiosDB.post("/registration/create", credentials)
 		const { registration } = response.data
 		return registration

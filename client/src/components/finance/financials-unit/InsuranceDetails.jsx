@@ -1,7 +1,7 @@
 import classes from "./styles/FinanceUnitDetails.module.css";
 import {convertToUSD} from "../../../utils/financeCalcs.js";
 import {useState} from "react";
-import {Button, Input} from "../../../ui/index.js";
+import {Button, Input, ButtonPlain} from "../../../ui/index.js";
 import FinanceDetailsRow from "./FinanceDetailsRow.jsx";
 const InsuranceDetails = ({ insurance }) => {
 
@@ -47,7 +47,7 @@ const InsuranceDetails = ({ insurance }) => {
                     Insurance
                 </div>
                 <div className={classes.editDesktop}>
-                    {!editMode && <ButtonEdit onClick={()=>setEditMode(!editMode)}>[Edit]</ButtonEdit>}
+                    {!editMode && <ButtonPlain fontSize="14px" onClick={()=>setEditMode(!editMode)}>[Edit]</ButtonPlain>}
                 </div>
             </div>
             <div className={classes.body}>

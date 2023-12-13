@@ -9,7 +9,7 @@ const UnitMobile = ({ unit }) => {
     const { houseNumber, street, city, apartmentNumber, state, zip, image, tenant, user } = unit
 
     // remove all non-digit chars in phone number to dial in phone app
-    const phone = unit.tenant?.phone.replace(/[^0-9]/g, "")
+    const phone = unit.tenant?.phone?.replace(/[^0-9]/g, "")
 
     // state function to hide and show create new message
     const [showMessageForm, setShowMessageForm] = useState(false)

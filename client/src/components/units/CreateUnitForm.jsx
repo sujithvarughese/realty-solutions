@@ -56,7 +56,7 @@ const CreateUnitForm = ({ cancel }) => {
 
 	return (
 		<div className={classes.container}>
-		<Modal>
+		<Modal closeFn={cancel}>
 		<Card>
 		<Form onSubmit={handleSubmit} title="Create Unit">
 			<div className={classes.form}>

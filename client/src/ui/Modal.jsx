@@ -11,16 +11,18 @@ const Backdrop = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	z-index: 20;
+	overflow-y: auto;
+	z-index: 100;
 `
 
 const StyledModal = styled.div`
 	background: rgba(0, 0, 0, 0.5);
 	border-radius: 15px;
-	z-index: 0;
+	margin: auto;
+	z-index: 100;
 	padding: 1rem;
 	width: 90vw;
-	max-width: 600px;
+	max-width: 1000px;
 	color: var(--COLOR-LIGHTER);
 	&:hover {
 		box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -28,14 +30,14 @@ const StyledModal = styled.div`
 	}
 
 	@media (min-width: 600px) {
-		padding: 2rem;
+
 	}
 `
-const Modal = (props) => {
+const Modal = ({ closeFn, children }) => {
 	return createPortal(
-		<Backdrop>
-			<StyledModal>
-				{props.children}
+		<Backdrop onClick={closeFn}>
+			<StyledModal onClick={(e) => e.stopPropagation()}>
+				{children}
 			</StyledModal>
 		</Backdrop>
 		, document.getElementById("modal")

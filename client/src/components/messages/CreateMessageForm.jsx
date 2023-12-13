@@ -47,7 +47,7 @@ const CreateMessageForm = ({ addressBook, cancel }) => {
 
 	return (
 		<div className={classes.container}>
-		<Modal>
+		<Modal closeFn={cancel}>
 		<Card>
 		<Form onSubmit={handleSubmit} title="Create Message">
 			<div className={classes.to}>

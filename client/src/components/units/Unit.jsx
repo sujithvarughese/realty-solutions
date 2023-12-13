@@ -143,7 +143,7 @@ const Unit = ({ unit }) => {
 				<div className={classes.forms}>
 					{/* forms open when state toggled */}
 
-					{ showCreateUserForm && <CreateUserForm cancel={()=>setShowCreateUserForm(false)} unitID={unit._id}/> }
+					{ showCreateUserForm && <CreateUserForm closeForm={()=>setShowCreateUserForm(false)} unitID={unit._id}/> }
 
 					{ showMessageForm &&
 						<CreateMessageForm

@@ -4,6 +4,7 @@ import {useState} from "react";
 import { convertToUSD } from "../../../utils/financeCalcs.js";
 import FinanceDetailsRow from "./FinanceDetailsRow.jsx";
 import {Input, Button} from "../../../ui/index.js";
+import ButtonPlain from "../../../ui/ButtonPlain.jsx";
 
 const FinanceDetails = ({ updateUnitFinance, purchasePrice, rent, fairMarketRent, annualPropertyTax, annualInsurancePremium, annualHoa }) => {
 
@@ -44,7 +45,7 @@ const FinanceDetails = ({ updateUnitFinance, purchasePrice, rent, fairMarketRent
                         Overview
                     </div>
                     <div className={classes.editDesktop}>
-                        {!editMode && <ButtonEdit onClick={()=>setEditMode(!editMode)}>[Edit]</ButtonEdit>}
+                        {!editMode && <ButtonPlain onClick={()=>setEditMode(!editMode)} fontSize="14px">[Edit]</ButtonPlain>}
                     </div>
                 </div>
 

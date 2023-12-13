@@ -37,7 +37,7 @@ const createRegistration = async (req, res) => {
     const newRegistration = await Registration.create(registration)
 
     res.status(StatusCodes.CREATED).json({
-        message: "Registration Code created. Please give code to user to complete registration",
+        message: "success",
         registration: newRegistration
     });
 }
