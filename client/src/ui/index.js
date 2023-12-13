@@ -1,6 +1,5 @@
 
 import Button from "./Button.jsx";
-import ButtonEdit from "./ButtonEdit.jsx";
 import ButtonIcon from "./ButtonIcon.jsx";
 import ButtonPlain from "./ButtonPlain.jsx";
 import Card from "./Card.jsx"
@@ -13,4 +12,4 @@ import Modal from "./Modal.jsx"
 import Select from "./Select.jsx";
 import Textarea from "./Textarea.jsx";
 
-export { ButtonPlain, ButtonEdit, ButtonIcon, Card, Input, Loading, Button, Form, FormRow, FormRowSelect, Modal, Select, Textarea }
+export { ButtonPlain, ButtonIcon, Card, Input, Loading, Button, Form, FormRow, FormRowSelect, Modal, Select, Textarea }

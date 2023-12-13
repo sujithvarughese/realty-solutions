@@ -4,9 +4,11 @@ import { BadRequestError, NotFoundError, UnauthenticatedError } from "../errors/
 import Registration from "../models/Registration.js";
 import User from "../models/User.js";
 import Unit from "../models/Unit.js";
+import { attachCookies, createJWT } from "../utils/index.js";
 
 // account admin function to create user eligible to register
 const createRegistration = async (req, res) => {
+    console.log(req.user)
     // { email, lastName, firstName } = req.body
     // if any fields missing from user front end, throw error
     if (!req.body.lastName || !req.body.firstName || !req.body.email) {
@@ -49,7 +51,7 @@ const verifyRegistration = async (req, res) => {
     }
 
     // code must match created code when registration was created (admin must give code to user)
-    const registrationCodeVerified = await registration.compareRegistrationCode(req.body.registrationCode)
+    const registrationCodeVerified = registration.code === req.body.registrationCode
     if (!registrationCodeVerified) {
         throw new UnauthenticatedError("Invalid registration code");
     }

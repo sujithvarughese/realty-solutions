@@ -38,12 +38,16 @@ const MyUnit = () => {
 			</div>
 
 			<div className={classes.finance}>
+				{rent &&
 				<div className={classes.rent}>
 					Rent: {convertToUSD(rent)}
 				</div>
+				}
+				{balance &&
 				<div className={classes.balance}>
 					Balance: {convertToUSD(balance)}
 				</div>
+				}
 			</div>
 
 			<div className={classes.paymentHistory}>

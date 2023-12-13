@@ -23,7 +23,7 @@ const GlobalProvider = ({ children }) => {
 	const verifyRegistration = async (credentials) => {
 		// { email, registrationCode }
 		try {
-			const response = await axiosDB.patch("/registration/verify", credentials)
+			const response = await axiosDB.post("/registration/verify", credentials)
 			const { user } = response.data
 			dispatch({
 				type: LOGIN_USER,

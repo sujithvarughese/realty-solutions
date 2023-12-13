@@ -2,7 +2,7 @@ import classes from "./styles/FinanceUnitDetails.module.css";
 import {CalculateMonthlyPaymentForm, CalculatePayoffForm} from "../../index.js";
 import {useState} from "react";
 import { convertToUSD } from "../../../utils/financeCalcs.js";
-import {Button, ButtonEdit, Input} from "../../../ui/index.js";
+import {Button, Input} from "../../../ui/index.js";
 import FinanceDetailsRow from "./FinanceDetailsRow.jsx";
 
 const MortgageDetails = ({ updateUnitFinance, mortgage }) => {

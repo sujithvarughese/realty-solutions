@@ -43,11 +43,6 @@ ul {
   list-style: none;
 }
 
-textarea:focus {
-  outline: 4px auto -webkit-focus-ring-color;
-  outline-offset: -1px;
-}
-
 img {
   max-width: 100%;
 }

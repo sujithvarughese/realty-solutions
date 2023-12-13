@@ -1,7 +1,7 @@
 import classes from "./styles/FinanceUnitDetails.module.css";
 import {convertToUSD} from "../../../utils/financeCalcs.js";
 import {useState} from "react";
-import {Button, ButtonEdit, Input} from "../../../ui/index.js";
+import {Button, Input} from "../../../ui/index.js";
 import FinanceDetailsRow from "./FinanceDetailsRow.jsx";
 const InsuranceDetails = ({ insurance }) => {
 

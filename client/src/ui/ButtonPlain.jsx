@@ -3,7 +3,7 @@ import styled from "styled-components";
 const ButtonPlain = styled.button`
     cursor: pointer;
     border: none;
-    transition: 0.3s ease-in-out all;
+    transition: 0.2s ease-in-out all;
     color: inherit;
     background-color: inherit;
     text-decoration: inherit;

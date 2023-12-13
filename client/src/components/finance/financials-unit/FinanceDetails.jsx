@@ -3,7 +3,7 @@ import { CalculateProfitForm} from "../../"
 import {useState} from "react";
 import { convertToUSD } from "../../../utils/financeCalcs.js";
 import FinanceDetailsRow from "./FinanceDetailsRow.jsx";
-import {Input, Button, ButtonEdit} from "../../../ui/index.js";
+import {Input, Button} from "../../../ui/index.js";
 
 const FinanceDetails = ({ updateUnitFinance, purchasePrice, rent, fairMarketRent, annualPropertyTax, annualInsurancePremium, annualHoa }) => {
 

@@ -6,7 +6,7 @@ import {
 	CreateMessageForm,
 } from "../";
 import { useState } from "react";
-import {Card, ButtonEdit, Button, ButtonIcon, ButtonPlain} from "../../ui/index.js";
+import {Card, Button, ButtonIcon, ButtonPlain} from "../../ui/index.js";
 import { NavLink } from "react-router-dom";
 import { convertToUSD } from "../../utils/financeCalcs.js";
 import { BiMessageSquareEdit } from "react-icons/bi"

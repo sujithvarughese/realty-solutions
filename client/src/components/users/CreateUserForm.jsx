@@ -110,6 +110,7 @@ const CreateUserForm = ({ cancel, unitID }) => {
 
 const createUser = async (credentials) => {
 	try {
+
 		const response = await axiosDB.post("/registration/create", credentials)
 		const { registration } = response.data
 		return registration

@@ -55,7 +55,7 @@ app.use("/api/v1/units", authenticateUser, unitRouter)
 app.use("/api/v1/messages", authenticateUser, messageRouter)
 app.use("/api/v1/finance", authenticateUser, financeRouter)
 app.use("/api/v1/accounts", authenticateUser, authorizeSystemAdmin, accountRouter)
-app.use("/api/v1/registration", authenticateUser, registrationRouter)
+app.use("/api/v1/registration", registrationRouter)
 app.use(notFound);
 app.use(errorHandler);
 
