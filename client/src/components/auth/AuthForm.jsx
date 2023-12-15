@@ -11,12 +11,15 @@ const AuthForm = ({ authState }) => {
 
 	const { login, verifyRegistration } = useGlobalContext()
 
+	const [buttonText, setButtonText] = useState("PREVIEW")
+
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [passwordConfirm, setPasswordConfirm] = useState("")
 	const [registrationCode, setRegistrationCode] = useState("")
 
 	const previewAsAdmin = () => {
+		setButtonText("LOGGING IN...")
 		login(credentials)
 	}
 	const handleSubmit = (e) => {
@@ -73,7 +76,7 @@ const AuthForm = ({ authState }) => {
 			}
 			<div className={classes.buttons}>
 				<Button type="submit">{authState === "register" ? "REGISTER" : "LOG IN"}</Button>
-				<Button type="click" onClick={previewAsAdmin}>PREVIEW</Button>
+				<Button type="click" onClick={previewAsAdmin}>{buttonText}</Button>
 			</div>
 		</Form>
 	);
