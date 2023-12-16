@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import {createPortal} from "react-dom";
 
 const Backdrop = styled.div`
@@ -14,7 +14,16 @@ const Backdrop = styled.div`
 	overflow-y: auto;
 	z-index: 100;
 `
-
+const modalAnimations = keyframes`
+	0% {
+		transform: translateY(40px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+`
 const StyledModal = styled.div`
 	background: rgba(0, 0, 0, 0.5);
 	border-radius: 15px;
@@ -28,11 +37,9 @@ const StyledModal = styled.div`
 		box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
 		0 10px 10px -5px rgba(0, 0, 0, 0.04);
 	}
-
-	@media (min-width: 600px) {
-
-	}
+	animation: ${modalAnimations} 200ms ease-in forwards;
 `
+
 const Modal = ({ closeFn, children }) => {
 	return createPortal(
 		<Backdrop onClick={closeFn}>
