@@ -3,7 +3,7 @@ import {MessageActions, MessageContents, ReplyMessageForm} from "../";
 import { axiosDB } from "../../utils/axios.js";
 import {useEffect, useRef, useState} from "react";
 
-const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnread, showCreateReply, setShowCreateReply, getMessages }) => {
+const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnread, showCreateReply, setShowCreateReply, getMessages, setMobileExpanded }) => {
 
 	const { date, sender, recipient, subject, body } = message
 
@@ -28,23 +28,20 @@ const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnr
 		<div className={classes.container}>
 
 			{
-				// component renders create message icon and toggle flag icon only for incoming messages
-				recipient._id === userID &&
 				<div className={classes.actions}>
 					<MessageActions
 						message={message}
 						reply={()=>setShowCreateReply(true)}
 						toggleFlag={toggleFlag}
 						markMessageUnread={markMessageUnread}
+						setMobileExpanded={setMobileExpanded}
 					/>
 				</div>
 
 			}
 
 			<div className={classes.content}>
-				<div className={classes.subjectContainer}>
-					<span className={classes.subjectLabel}>Subject:</span> <span className={classes.subject}>{subject}</span>
-				</div>
+
 				<div className={classes.messages}>
 					{
 						showCreateReply &&

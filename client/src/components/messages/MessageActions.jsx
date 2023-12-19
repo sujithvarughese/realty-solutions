@@ -5,14 +5,23 @@ import { CiUnread } from "react-icons/ci"
 import { IoTrashOutline } from "react-icons/io5"
 import { axiosDB } from "../../utils/axios.js";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
+import {ButtonIcon} from "../../ui/index.js";
+import {TfiControlBackward} from "react-icons/tfi";
 
-const MessageActions = ({ message, reply, toggleFlag, markMessageUnread }) => {
+const MessageActions = ({ message, reply, toggleFlag, markMessageUnread, setMobileExpanded }) => {
 
 	const { user } = useGlobalContext()
 	const { date, sender, recipient, subject, body, read, flag } = message
 
 	return (
 		<div className={classes.actions}>
+			<div className={classes.back}>
+				<ButtonIcon onClick={()=>setMobileExpanded(false)}><TfiControlBackward /></ButtonIcon>
+			</div>
+
+			<div className={classes.subjectContainer}>
+				<span className={classes.subjectLabel}>Subject:</span> <span className={classes.subject}>{message.subject}</span>
+			</div>
 
 			<div className={classes.reply} onClick={reply}>
 				<RiReplyLine />

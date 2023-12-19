@@ -7,6 +7,10 @@
 .nav {
     display: flex;
 }
+.actions {
+    position: relative;
+
+}
 .largeScreen {
     display: none;
 }

@@ -4,8 +4,28 @@
     font-size: 32px;
     align-items: center;
     cursor: pointer;
+    border: green 4px solid;
+    position: sticky;
+    top: 0;
 }
-
+.subjectLabel {
+    display: none;
+}
+.subjectContainer {
+    padding: 0.5rem 1rem;
+    font-size: 18px;
+}
+.subject {
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: clip;
+    text-overflow: ellipsis;
+}
+.back {
+    font-size: 36px;
+    line-height: 1;
+}
 .unread,
 .reply,
 .flag,
@@ -13,3 +33,17 @@
     cursor: pointer;
 }
 
+
+@media (min-width: 800px) {
+    .back {
+        display: none;
+    }
+    .subject {
+        font-size: 18px;
+    }
+}
+@media (min-width: 1000px) {
+    .subjectLabel {
+        display: revert;
+    }
+}

@@ -1,11 +1,7 @@
 .container {
     padding: .8rem .3rem;
 }
-.actions {
-    position: absolute;
-    right: 1rem;
-    top: 5rem;
-}
+
 .messages {
     display: flex;
     flex-direction: column;
@@ -29,22 +25,21 @@
 .message {
     display: grid;
 }
+
 @media (min-width: 600px) {
     .subjectLabel {
         display: none;
     }
 }
 @media (min-width: 800px) {
-    .container {
-        position: relative;
-    }
+
     .subject {
         font-size: 18px;
     }
     .actions {
-        right: 0.3rem;
-        top: auto;
+        display: revert;
     }
+
 }
 @media (min-width: 1000px) {
     .subjectLabel {

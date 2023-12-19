@@ -134,11 +134,8 @@ const Messages = () => {
 				{
 					// Create new message icon is hidden in mobile when message is expanded
 					// Back button is only displayed in mobile when message is expanded
-					mobileExpanded ?
-					<div className={classes.back}>
-						<ButtonIcon onClick={()=>setMobileExpanded(false)}><TfiControlBackward /></ButtonIcon>
-					</div>
-						:
+					!mobileExpanded
+						&&
 						<ButtonIcon
 							onClick={()=>setShowCreateMessageForm(prevState => !prevState)}
 							fontSize="56px"
@@ -215,6 +212,7 @@ const Messages = () => {
 									showCreateReply={showCreateReply}
 									setShowCreateReply={setShowCreateReply}
 									getMessages={getMessages}
+									setMobileExpanded={setMobileExpanded}
 								/>
 								:
 								<div className={classes.noMessage}>
@@ -240,6 +238,7 @@ const Messages = () => {
 										showCreateReply={showCreateReply}
 										setShowCreateReply={setShowCreateReply}
 										getMessages={getMessages}
+										setMobileExpanded={setMobileExpanded}
 									/>
 								}
 							</div>
