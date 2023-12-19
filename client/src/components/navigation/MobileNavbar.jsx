@@ -13,7 +13,11 @@ const MobileNavbar = ({ user, links }) => {
 							to={link.url}
 							className={({ isActive }) => [classes.link, isActive ? classes.active : undefined].join(" ") }
 						>
-							{link.icon}
+							<>
+								<div className={classes.icon}>{link.icon}</div>
+								<div className={classes.name}>{link.name}</div>
+							</>
+
 						</NavLink>
 					)
 				})
