@@ -9,14 +9,15 @@
 .links {
     display: flex;
     justify-content: space-between;
+    padding: 1rem;
 }
 .link {
-    font-size: 17px;
-    color: var(--COLOR-LIGHT);
+    font-size: 18px;
+    color: var(--COLOR-ALT);
 }
 .active {
     color: var(--COLOR-DARK);
-    font-weight: 600;
+    font-weight: 800;
 }
 .link:hover {
     color: var(--COLOR-ALT);
@@ -51,6 +52,6 @@
         text-align: center;
     }
     .link {
-        font-size: 42px;
+        font-size: 28px;
     }
 }
