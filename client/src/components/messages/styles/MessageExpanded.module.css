@@ -25,7 +25,9 @@
     white-space: nowrap;
     overflow: clip;
     text-overflow: ellipsis;
-
+}
+.message {
+    display: grid;
 }
 @media (min-width: 600px) {
     .subjectLabel {

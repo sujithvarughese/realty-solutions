@@ -114,6 +114,7 @@ const Messages = () => {
 		setMyMessages(conversations)
 		setMyIncoming(incoming)
 		setMyOutgoing(outgoing)
+		window.scrollTo(0, 0)
 	}, [messagesState]);
 
 	return (

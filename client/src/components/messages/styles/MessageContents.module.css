@@ -2,11 +2,15 @@
     background-color: var(--COLOR-LIGHT);
     padding: 1rem;
     border-radius: 20px;
+    width: 85%;
+    place-self: flex-end;
 }
 .recipientContainer {
     padding: 1rem;
     background-color: var(--COLOR);
     border-radius: 20px;
+    width: 85%;
+    place-self: flex-start;
 }
 .contents {
     display: flex;

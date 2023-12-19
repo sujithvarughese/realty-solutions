@@ -58,7 +58,7 @@ const ReplyMessageForm = ({ message, closeReply, getMessages }) => {
 							placeholder="Type reply here..."
 							name="body"
 							value={body}
-							rows="15"
+							rows="10"
 							onChange={handleChange}
 						></Textarea>
 

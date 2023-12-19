@@ -1,13 +1,15 @@
 import classes from "./styles/MessageExpanded.module.css";
 import {MessageActions, MessageContents, ReplyMessageForm} from "../";
 import { axiosDB } from "../../utils/axios.js";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnread, showCreateReply, setShowCreateReply, getMessages }) => {
 
 	const { date, sender, recipient, subject, body } = message
 
 	const [previousMessages, setPreviousMessages] = useState([])
+
+	const currentMessageRef = useRef()
 
 	useEffect(() => {
 		const previousMessagesArray = []
@@ -19,6 +21,7 @@ const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnr
 		}
 		setPreviousMessages(previousMessagesArray)
 
+		currentMessageRef.current?.scrollIntoView({ behavior: "smooth", block: "end" })
 	}, [message])
 
 	return (
@@ -53,25 +56,13 @@ const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnr
 							/>
 						</div>
 					}
-
-					<div className={classes.currentMessage}>
-						<MessageContents
-							lastName={sender.lastName}
-							firstName={sender.firstName}
-							senderID={sender._id}
-							date={date}
-							subject={subject}
-							body={body}
-						/>
-					</div>
-
 					{
 						previousMessages.length > 0 &&
 						<div className={classes.previousMessages}>
 							{
 								previousMessages.map(previousMessage => {
 									return (
-										<div className={classes.previousMessage} key={previousMessage._id}>
+										<div className={classes.message} key={previousMessage._id}>
 											<MessageContents
 												lastName={previousMessage.sender.lastName}
 												firstName={previousMessage.sender.firstName}
@@ -82,13 +73,31 @@ const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnr
 											/>
 										</div>
 									)
-								})
+								}).reverse()
 							}
-
 						</div>
-
-
 					}
+					<div ref={currentMessageRef} className={classes.message}>
+						<MessageContents
+							lastName={sender.lastName}
+							firstName={sender.firstName}
+							senderID={sender._id}
+							date={date}
+							subject={subject}
+							body={body}
+						/>
+					</div>
+					<div className={classes.replyForm}>
+						<ReplyMessageForm
+							message={message}
+							closeReply={()=>setShowCreateReply(false)}
+							getMessages={getMessages}
+						/>
+					</div>
+
+
+
+
 				</div>
 			</div>
 		</div>

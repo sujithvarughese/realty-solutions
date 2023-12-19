@@ -3,7 +3,7 @@
     display: flex;
     justify-content: flex-start;
     gap: 1.5rem;
-    padding: 1.4rem 0;
+    padding: 0.5rem 0;
     border-bottom: 1px solid var(--COLOR-DARK);
 }
 .alerts {
@@ -51,14 +51,13 @@
     display: block;
     font-weight: lighter;
     position: absolute;
+    font-size: 14px;
     right: 0.3rem;
 }
 
 @media (min-width: 450px) {
     .container {
-        display: flex;
         gap: 1rem;
-        padding: 1.4rem .03rem;
     }
     .container:hover {
         background-color: var(--COLOR-LIGHTER);
