@@ -21,23 +21,20 @@ const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnr
 		}
 		setPreviousMessages(previousMessagesArray)
 
-		currentMessageRef.current?.scrollIntoView({ behavior: "smooth", block: "end" })
+		currentMessageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
 	}, [message])
 
 	return (
 		<div className={classes.container}>
 
 			{
-				<div className={classes.actions}>
-					<MessageActions
-						message={message}
-						reply={()=>setShowCreateReply(true)}
-						toggleFlag={toggleFlag}
-						markMessageUnread={markMessageUnread}
-						setMobileExpanded={setMobileExpanded}
-					/>
-				</div>
-
+				<MessageActions
+					message={message}
+					reply={()=>setShowCreateReply(true)}
+					toggleFlag={toggleFlag}
+					markMessageUnread={markMessageUnread}
+					setMobileExpanded={setMobileExpanded}
+				/>
 			}
 
 			<div className={classes.content}>
@@ -74,7 +71,7 @@ const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnr
 							}
 						</div>
 					}
-					<div ref={currentMessageRef} className={classes.message}>
+					<div   ref={currentMessageRef} className={classes.message}>
 						<MessageContents
 							lastName={sender.lastName}
 							firstName={sender.firstName}

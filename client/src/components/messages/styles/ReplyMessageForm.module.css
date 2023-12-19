@@ -16,6 +16,6 @@
     cursor: pointer;
 }
 .button {
-    margin: 0 auto;
-    align-self: center;
+
+    align-self: flex-end;
 }

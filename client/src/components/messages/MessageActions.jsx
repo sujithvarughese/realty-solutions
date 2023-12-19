@@ -15,33 +15,37 @@ const MessageActions = ({ message, reply, toggleFlag, markMessageUnread, setMobi
 
 	return (
 		<div className={classes.actions}>
-			<div className={classes.back}>
-				<ButtonIcon onClick={()=>setMobileExpanded(false)}><TfiControlBackward /></ButtonIcon>
-			</div>
-
-			<div className={classes.subjectContainer}>
-				<span className={classes.subjectLabel}>Subject:</span> <span className={classes.subject}>{message.subject}</span>
-			</div>
-
-			<div className={classes.reply} onClick={reply}>
-				<RiReplyLine />
-			</div>
-
-			<div className={classes.flag} onClick={()=>toggleFlag(message)}>
-				{ flag ? <TiFlag /> : <TiFlagOutline />}
-			</div>
-
-			<div className={classes.delete} onClick={()=>console.log("Unauthorized to delete!")}>
-				<IoTrashOutline />
-			</div>
-
-			{
-				message.read &&
-				<div className={classes.unread} onClick={()=>markMessageUnread(message)}>
-					<CiUnread />
+			<div className={classes.backSubject}>
+				<div className={classes.back}>
+					<ButtonIcon onClick={()=>setMobileExpanded(false)}><TfiControlBackward /></ButtonIcon>
 				</div>
-			}
 
+				<div className={classes.subjectContainer}>
+					<span className={classes.subjectLabel}>Subject:</span> <span className={classes.subject}>{message.subject}</span>
+				</div>
+			</div>
+
+			<div className={classes.buttons}>
+				{/*
+				<div className={classes.reply} onClick={reply}>
+					<RiReplyLine />
+				</div>
+				*/}
+				<div className={classes.flag} onClick={()=>toggleFlag(message)}>
+					{ flag ? <TiFlag /> : <TiFlagOutline />}
+				</div>
+
+				<div className={classes.delete} onClick={()=>console.log("Unauthorized to delete!")}>
+					<IoTrashOutline />
+				</div>
+
+				{
+					message.read &&
+					<div className={classes.unread} onClick={()=>markMessageUnread(message)}>
+						<CiUnread />
+					</div>
+				}
+			</div>
 
 		</div>
 	);

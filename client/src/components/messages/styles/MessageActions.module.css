@@ -1,22 +1,29 @@
 .actions {
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
-    font-size: 32px;
     align-items: center;
     cursor: pointer;
-    border: green 4px solid;
     position: sticky;
     top: 0;
+    padding: 0.5rem;
+    backdrop-filter: blur(10px) grayscale(50%);
+    border-bottom: 2px solid var(--COLOR-DARK);
+    z-index: 10;
+}
+.backSubject {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 .subjectLabel {
     display: none;
 }
 .subjectContainer {
-    padding: 0.5rem 1rem;
     font-size: 18px;
 }
 .subject {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: bold;
     white-space: nowrap;
     overflow: clip;
@@ -25,6 +32,12 @@
 .back {
     font-size: 36px;
     line-height: 1;
+}
+.buttons {
+    font-size: 28px;
+    display: flex;
+    gap: 1rem;
+    z-index: 100;
 }
 .unread,
 .reply,

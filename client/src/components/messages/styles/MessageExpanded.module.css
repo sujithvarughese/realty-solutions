@@ -1,7 +1,9 @@
 .container {
-    padding: .8rem .3rem;
-}
 
+}
+.content {
+    padding: 0.5rem;
+}
 .messages {
     display: flex;
     flex-direction: column;
@@ -27,6 +29,9 @@
 }
 
 @media (min-width: 600px) {
+    .container {
+        padding: .8rem .3rem;
+    }
     .subjectLabel {
         display: none;
     }
