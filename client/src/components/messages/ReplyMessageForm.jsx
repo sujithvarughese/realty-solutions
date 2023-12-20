@@ -32,6 +32,7 @@ const ReplyMessageForm = ({ message, closeReply, getMessages }) => {
 			})
 			if (msg === 'success') {
 				setButtonText("Sent!")
+				setBody("")
 			} else {
 				setButtonText("Error")
 			}

@@ -5,6 +5,9 @@ const MobileNavbar = ({ user, links }) => {
 
 	return (
 		<div className={classes.container}>
+			<div className={classes.backdrop}></div>
+
+
 			{
 				links.map((link, index) => {
 					return (
@@ -22,6 +25,7 @@ const MobileNavbar = ({ user, links }) => {
 					)
 				})
 			}
+
 		</div>
 	);
 };

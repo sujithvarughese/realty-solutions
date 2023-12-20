@@ -3,16 +3,24 @@
 .container {
     position: fixed;
     bottom: 0;
-    width: 100%;
+    left: 0;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 46px;
-    background-color: var(--COLOR-DARKER);
     z-index: 20;
     padding: 0.3rem;
 }
-
+.backdrop {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--COLOR-DARKER);
+    opacity: 80%;
+}
 .link {
     color: var(--COLOR-LIGHT);
     transition: 0.2s ease-in-out all;
