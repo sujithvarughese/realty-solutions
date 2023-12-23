@@ -11,6 +11,8 @@ const MessageExpanded = ({ message, messages, toggleFlag, userID, markMessageUnr
 
 	const currentMessageRef = useRef()
 
+
+
 	useEffect(() => {
 		const previousMessagesArray = []
 		let currentMessage = message
