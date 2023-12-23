@@ -23,7 +23,7 @@ const createRentReceipt = async (req, res) => {
 	const rentReceipt = await RentReceipt.create(req.body)
 	res.status(StatusCodes.CREATED)
 		.json({
-			msg: "Rent Receipts Successfully created",
+			msg: "success",
 			rentReceipt: rentReceipt
 		});
 }

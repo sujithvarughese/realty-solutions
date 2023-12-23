@@ -9,8 +9,12 @@ const ButtonPlain = styled.button`
     text-decoration: inherit;
     font: inherit;
     font-size: ${props => props.fontSize || "inherit"};
-	&:hover {
-		color: var(--COLOR-ALT);
-	}
+  
+    @media (min-width: 600px) {
+      &:hover {
+        color: var(--COLOR-ALT);
+      }
+    }
+
 `
 export default ButtonPlain;

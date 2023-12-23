@@ -4,6 +4,7 @@ import { useState } from "react";
 import { axiosDB } from "../../../utils/axios.js";
 import FormRow from "../../../ui/FormRow.jsx";
 
+
 const CreateRentReceiptForm = ({ userID, lastName, firstName, houseNumber, street, apartmentNumber, city, state, zip }) => {
 
 	const [values, setValues] = useState({
@@ -12,13 +13,27 @@ const CreateRentReceiptForm = ({ userID, lastName, firstName, houseNumber, stree
 		amountPaid: 0,
 		balance: 0
 	})
+
+	const [buttonText, setButtonText] = useState("Create Rent Receipt")
 	const handleChange = (e) => {
 		setValues({ ...values, [e.target.name]: e.target.value });
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
-		createRentReceipt({...values, user: userID})
+		setValues({
+			userID: userID,
+			date: "",
+			amountPaid: 0,
+			balance: 0
+		})
+		const response = await createRentReceipt({...values, user: userID})
+		if (response === true) {
+			setButtonText("Created!")
+			setTimeout(() => {
+				setButtonText("Create Rent Receipt")
+			}, 2000)
+		}
 	}
 	return (
 		<Card>
@@ -71,7 +86,7 @@ const CreateRentReceiptForm = ({ userID, lastName, firstName, houseNumber, stree
 						</div>
 
 						<div className={classes.button}>
-							<Button type="submit">Create Rent Receipt</Button>
+							<Button type="submit">{buttonText}</Button>
 						</div>
 
 
@@ -86,9 +101,12 @@ const CreateRentReceiptForm = ({ userID, lastName, firstName, houseNumber, stree
 const createRentReceipt = async (rentReceipt) => {
 	try {
 		const response = await axiosDB.post("/finance/rent", rentReceipt)
-		const { newRentReceipt } = response.data
+		const { msg } = response.data
+		if (msg === "success") {
+			return true
+		}
 	} catch (error) {
-		console.log(error);
+		throw new Error(error)
 	}
 }
 const years = ["2023", "2022", "2021", "2020"]

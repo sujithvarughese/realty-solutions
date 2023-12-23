@@ -1,5 +1,5 @@
 import classes from "./styles/RentReceipt.module.css"
-
+import santaSignature from "../../../assets/images/santa-signature.jpeg"
 const RentReceipt = ({ date, amountPaid, balance, houseNumber, street, apartmentNumber, city, state, zip, lastName, firstName }) => {
 
 	return (
@@ -59,8 +59,12 @@ const RentReceipt = ({ date, amountPaid, balance, houseNumber, street, apartment
 					</div>
 				</div>
 
-				<div className={classes.signature}>
-					Landlord's Signature
+				<div>
+					<img src={santaSignature} alt="santa-signature" className={classes.image}/>
+					<div className={classes.signature}>
+						Landlord's Signature
+					</div>
+
 				</div>
 			</div>
 
