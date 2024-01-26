@@ -34,20 +34,13 @@ const GlobalProvider = ({ children }) => {
 		}
 	}
 
-	const login = async (credentials) => {
-		// { email, password } = credentials
-		try {
-			const response = await axiosDB.post("/auth/login", credentials)
-			const { user } = response.data
-			// const { userID, isAdmin } = user
-			dispatch({
-				type: LOGIN_USER,
-				payload: { user }
-			})
-		} catch (error) {
-			console.log(error);
-		}
+	const login = async (user) => {
+		dispatch({
+			type: LOGIN_USER,
+			payload: { user }
+		})
 	}
+
 	const logout = async () => {
 		await axiosDB("/auth/logout");
 		dispatch({ type: LOGOUT_USER });

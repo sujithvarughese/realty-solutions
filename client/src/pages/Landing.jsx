@@ -16,6 +16,7 @@ const Landing = () => {
 					</div>
 				</div>
 
+
 				{/* Card with login/register options */}
 				<Auth />
 

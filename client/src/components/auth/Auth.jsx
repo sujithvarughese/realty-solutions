@@ -1,15 +1,17 @@
 import classes from "./styles/Auth.module.css";
 import { useState } from "react";
-import {Card, ButtonPlain} from "../../ui";
-import AuthForm from "./AuthForm.jsx";
+import {ButtonPlain} from "../../ui";
+import LoginForm from './LoginForm.jsx'
+import RegisterForm from './RegisterForm.jsx'
+import { Card, CardBody } from '@chakra-ui/react'
 
 const Auth = () => {
 	// default to create account tab, state changes between "login" and "register" on click
 	const [authState, setAuthState] = useState("register")
 
 	return (
-		<Card>
-			<div className={classes.container}>
+		<Card height="620px" width={{ lg: "50%" }} marginX={{ md: "10" }} boxShadow="2xl">
+			<CardBody>
 				<div className={classes.links}>
 					<div className={`${classes.link} ${authState === "register" && classes.active}`}>
 						<ButtonPlain onClick={()=>setAuthState("register")}>REGISTER</ButtonPlain>
@@ -21,8 +23,11 @@ const Auth = () => {
 
 				{/* form with input fields and button */}
 				{/* when user is detected in state, Root component will navigate accordingly to user */}
-				<AuthForm authState={authState} />
-			</div>
+
+				{
+					authState === "register" ? <RegisterForm />: <LoginForm />
+				}
+			</CardBody>
 		</Card>
 	);
 };
