@@ -3,7 +3,7 @@ import {convertToUSD} from "../../../utils/financeCalcs.js";
 import {useState} from "react";
 import {Button, Input, ButtonPlain} from "../../../ui/index.js";
 import FinanceDetailsRow from "./FinanceDetailsRow.jsx";
-const InsuranceDetails = ({ insurance }) => {
+const InsuranceDetails = ({ updateUnitFinance, insurance }) => {
 
     const { company, agent, phone, email, coverage, annualPremium } = insurance
 
@@ -92,7 +92,7 @@ const InsuranceDetails = ({ insurance }) => {
                     display={(email && !editMode) ? values.email
                         :
                         <Input
-                            name="company"
+                            name="email"
                             type="email"
                             value={values.email}
                             onChange={handleChange}

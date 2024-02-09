@@ -90,7 +90,7 @@ const HoaDetails = ({ updateUnitFinance, hoa }) => {
                         display={(email && !editMode) ? values.email
                             :
                             <Input
-                                name="company"
+                                name="email"
                                 type="email"
                                 value={values.email}
                                 onChange={handleChange}

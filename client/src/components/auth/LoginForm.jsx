@@ -43,11 +43,11 @@ const LoginForm = () => {
       {
         props => (
           <Form>
-            <VStack marginTop="56px">
+            <VStack marginTop="72px">
               <CustomInput label="Email" name="email" type="email" placeholder="Enter email"/>
               <CustomInput label="Password" name="password" type="password" placeholder="Enter password"/>
 
-              <ButtonGroup marginTop="48px">
+              <ButtonGroup marginTop="64px">
                 <Button type="submit" variant="outline" backgroundColor="var(--COLOR-DARK)"  color="white" isLoading={loading}>Log In</Button>
                 <Button type="submit" onClick={()=>handleSubmit(credentials, props)} backgroundColor="var(--COLOR-DARK)" color="white" isLoading={loading}>Demo</Button>
               </ButtonGroup>

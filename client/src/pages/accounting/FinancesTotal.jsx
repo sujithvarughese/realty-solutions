@@ -64,7 +64,6 @@ const FinancesTotal = () => {
 						</Select>
 					</FormRow>
 				</div>
-
 				<div className={classes.mobile}>
 					<FinancesMobileTable unitFinances={unitFinances} selectedTerm={selectedTerm} removeUnit={removeUnit}/>
 				</div>
