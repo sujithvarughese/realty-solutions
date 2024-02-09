@@ -29,6 +29,7 @@ const Messages = () => {
 		try {
 			const response = await axiosDB("/auth/getUserList")
 			const { userList } = response.data
+			console.log(userList)
 			setAddressBook(userList)
 		} catch (error) {
 			console.log(error);

@@ -35,6 +35,7 @@ const GlobalProvider = ({ children }) => {
 	}
 
 	const login = async (user) => {
+		console.log(user)
 		dispatch({
 			type: LOGIN_USER,
 			payload: { user }

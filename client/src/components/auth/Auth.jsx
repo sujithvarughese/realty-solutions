@@ -8,7 +8,6 @@ import { Card, CardBody } from '@chakra-ui/react'
 const Auth = () => {
 	// default to create account tab, state changes between "login" and "register" on click
 	const [authState, setAuthState] = useState("register")
-
 	return (
 		<Card height="620px" width={{ lg: "50%" }} marginX={{ md: "10" }} boxShadow="2xl">
 			<CardBody>

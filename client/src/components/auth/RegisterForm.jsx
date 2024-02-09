@@ -4,26 +4,34 @@ import useAxios from '../../hooks/useAxios.js'
 import CustomInput from '../../ui/CustomInput.jsx'
 import { useGlobalContext } from '../../context/GlobalContext.jsx'
 import { Button, VStack } from '@chakra-ui/react'
+import { useEffect } from 'react'
 
 const RegisterForm = () => {
 
   const { login } = useGlobalContext()
 
-  const { response, error, loading, fetchData } = useAxios({
+  const { response, error, loading, submitData } = useAxios({
     method: "post",
     url: "/auth/register",
   })
 
   const handleSubmit = async (values, actions) => {
     try {
-      await fetchData(values)
-      login(response.user)
+      await submitData({
+        method: "post",
+        url: "/auth/register",
+        requestConfig: values
+      })
     } catch (err) {
-      console.log(error)
+      console.log(error.message)
     } finally {
       actions.resetForm()
     }
   }
+
+  useEffect(() => {
+    if (response !== null) login(response.user)
+  }, [response])
 
   return (
     <Formik

@@ -6,6 +6,7 @@ import { DesktopNavbar, InfoBar, MobileNavbar } from "../components";
 import { RiHome6Fill, RiMailFill, RiMoneyDollarCircleFill } from "react-icons/ri"
 import { FaGlobe } from "react-icons/fa"
 import {Loading} from "../ui/index.js";
+import { Progress } from '@chakra-ui/react'
 
 const Root = () => {
 	const navigation = useNavigation()
@@ -50,7 +51,8 @@ const Root = () => {
 			</div>
 
 			<div className={classes.main}>
-				{navigation.state === 'loading' && <Loading />}
+				{/*navigation.state === 'loading' && <Loading />*/}
+				{navigation.state === 'loading' && <Progress size="sm" isIndeterminate />}
 				<Outlet />
 
 			</div>

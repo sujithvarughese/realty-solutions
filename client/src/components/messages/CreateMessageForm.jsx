@@ -1,10 +1,14 @@
 import classes from "./styles/CreateMessageForm.module.css";
-import {Button, Form, Input, Textarea, Modal, Card, Select} from "../../ui";
+import { Modal, Card} from "../../ui";
 import { useState } from "react";
 import { useGlobalContext } from "../../context/GlobalContext.jsx";
 import { axiosDB } from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
-import FormRow from "../../ui/FormRow.jsx";
+import { Form, Formik } from 'formik'
+import * as Yup from 'yup';
+import CustomSelect from '../../ui/CustomSelect.jsx'
+import CustomInput from '../../ui/CustomInput.jsx'
+import { VStack, Textarea, FormControl, ButtonGroup, Button, Select, FormLabel } from '@chakra-ui/react'
 
 const initialState = {
 	sender: "",
@@ -16,18 +20,20 @@ const initialState = {
 const CreateMessageForm = ({ addressBook, cancel, getMessages }) => {
 
 	const { user } = useGlobalContext()
+
 	// recipient is initially set to first name in address book (user has only one name in address book so default to admin)
-	const [values, setValues] = useState({ ...initialState, recipient: addressBook[0].value })
+	//const [values, setValues] = useState({ ...initialState, recipient: addressBook[0].value })
 	const [buttonText, setButtonText] = useState("Send")
+	/*
 	const handleChange = (e) => {
 		setValues({ ...values, [e.target.name]: e.target.value });
 	}
-
+*/
 	const navigate = useNavigate()
 
-	const handleSubmit = async (e) => {
-		e.preventDefault()
+	const handleSubmit = async (values, actions) => {
 		try {
+			console.log(values)
 			// add sender info before passing to server
 			const msg = await createMessage({ ...values, sender: user.userID })
 			// navigate back to messages to update messages display
@@ -43,6 +49,8 @@ const CreateMessageForm = ({ addressBook, cancel, getMessages }) => {
 			}, 1000)
 		} catch (error) {
 			throw new Error(error)
+		} finally {
+			actions.resetForm()
 		}
 	}
 
@@ -50,40 +58,58 @@ const CreateMessageForm = ({ addressBook, cancel, getMessages }) => {
 		<div className={classes.container}>
 		<Modal closeFn={cancel}>
 		<Card>
-		<Form onSubmit={handleSubmit} title="Create Message">
-			<div className={classes.to}>
-				To:
-				<Select
-					type="text"
-					name="recipient"
-					list={addressBook}
-					value={values.recipient}
-					onChange={handleChange}
-				></Select>
+		<Formik
+			initialValues={{
+				sender: "",
+				recipient: "",
+				subject: "",
+				body: ""
+		}}
 
-			</div>
-			<Input
-				htmlFor="subject"
-				placeholder="Subject"
-				type="text"
-				name="subject"
-				value={values.subject}
-				onChange={handleChange}
-			></Input>
-			<Textarea
-				placeholder="Type new message here..."
-				name="body"
-				value={values.body}
-				rows="15"
-				onChange={handleChange}
-			></Textarea>
+			onSubmit={handleSubmit}
+		>
+			{
+				props => (
+					<Form>
+						<VStack>
 
-			<div className={classes.buttons}>
-				<Button type="submit">{buttonText}</Button>
-				<Button type="button" onClick={cancel}>Cancel</Button>
-			</div>
+							<Select
+								type="text"
+								name="recipient">
+								{addressBook.map((option, index) => {
+									if (index === 0) {
+										return <option key={option.value} value={option.value} selected={true}>{option.text}</option>
+									}
+									return <option key={option.value} value={option.value}>{option.text}</option>
+								})}
+							</Select>
+							<CustomInput
+								placeholder="Subject"
+								type="text"
+								name="subject"
+							></CustomInput>
+							<FormControl>
+								<Textarea
+									placeholder="Type new message here..."
+									name="body"
+									rows="15"
+									resize="none"
+								></Textarea>
+							</FormControl>
 
-		</Form>
+							<ButtonGroup>
+								<Button type="submit" colorScheme="facebook" color="white" >{buttonText}</Button>
+								<Button type="button" colorScheme="facebook" onClick={cancel}>Cancel</Button>
+							</ButtonGroup>
+
+						</VStack>
+
+
+					</Form>
+				)
+			}
+
+		</Formik>
 		</Card>
 		</Modal>
 		</div>

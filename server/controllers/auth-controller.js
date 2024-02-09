@@ -5,6 +5,7 @@ import Unit from "../models/Unit.js";
 import { attachCookies, createJWT } from "../utils/index.js";
 
 const login = async (req, res) => {
+	console.log(req.body)
 	// if any fields missing from user front end, throw error
 	if (!req.body.email || !req.body.password) {
 		throw new BadRequestError("please provide email and password");

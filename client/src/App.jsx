@@ -43,8 +43,7 @@ const App = () => {
         { path: "payments", element: <MyPayments /> },
         { path: "messages", element: <Messages />, loader: myMessagesLoader },
         { path: "admin", element: <AdminAccess />, loader: adminAccessLoader},
-        { path: "accounting",
-          element: <Accounting />,
+        { path: "accounting", element: <Accounting />,
           errorElement: <Error />,
           children: [
             { index: true, element: <FinancesTotal />, loader: financialSummaryLoader },

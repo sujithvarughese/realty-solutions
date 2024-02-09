@@ -2,36 +2,33 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { config } from '../utils/constants.js'
 
-const UseAxios = ({ url, method }) => {
+const UseAxios = () => {
 
   const [response, setResponse] = useState(null)
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(null)
-  const [data, setData] = useState(null)
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
-  const submitData = values => setData(values)
-
-  const fetchData = async () => {
+  const submitData = async (configObject) => {
+    setResponse(null)
+    setError("")
+    setLoading(true)
+    const { method, url, requestConfig } = configObject
     try {
-      const res = await axiosDB({ method, url, data })
-      setResponse(res.data)
-      setData(null)
+      const res = await axiosDB[method.toLowerCase()]( url, {
+        ...requestConfig,
+      })
       console.log(res.data)
+      setResponse(res.data)
+      return true
     } catch (err) {
-      setError(err)
+      setError(err.message)
+      console.log(err.message)
     } finally {
       setLoading(false)
     }
   }
 
-  useEffect(() => {
-    if (data) {
-      fetchData()
-    }
-  }, [data])
-
-
-  return { response, error, loading, submitData, fetchData }
+  return { response, error, loading, submitData }
 }
 
 export const axiosDB = axios.create({

@@ -4,6 +4,7 @@ import useAxios from '../../hooks/useAxios.js'
 import CustomInput from '../../ui/CustomInput.jsx'
 import { useGlobalContext } from '../../context/GlobalContext.jsx'
 import { Button, ButtonGroup, VStack } from '@chakra-ui/react'
+import { useEffect } from 'react'
 
 const credentials = {
   email: import.meta.env.VITE_ADMIN_LOGIN,
@@ -13,30 +14,25 @@ const LoginForm = () => {
 
   const { login } = useGlobalContext()
 
-  const { response, error, loading, submitData } = useAxios({
-    method: "post",
-    url: "/auth/login",
-  })
-
-  const demo = async () => {
-    try {
-      await submitData(credentials)
-      login(response.user)
-    } catch (err) {
-      console.log(error)
-    }
-  }
+  const { response, error, loading, submitData } = useAxios()
 
   const handleSubmit = async (values, actions) => {
     try {
-      await submitData(credentials)
-      login(response.user)
+      await submitData({
+        method: "post",
+        url: "/auth/login",
+        requestConfig: values
+      })
     } catch (err) {
-      console.log(error)
+      console.log(error.message)
     } finally {
       actions.resetForm()
     }
   }
+
+  useEffect(() => {
+    if (response) login(response.user)
+  }, [response])
 
   return (
     <Formik
@@ -53,7 +49,7 @@ const LoginForm = () => {
 
               <ButtonGroup marginTop="48px">
                 <Button type="submit" variant="outline" backgroundColor="var(--COLOR-DARK)"  color="white" isLoading={loading}>Log In</Button>
-                <Button type="click" onClick={demo} backgroundColor="var(--COLOR-DARK)" color="white" isLoading={loading}>Demo</Button>
+                <Button type="submit" onClick={()=>handleSubmit(credentials, props)} backgroundColor="var(--COLOR-DARK)" color="white" isLoading={loading}>Demo</Button>
               </ButtonGroup>
 
             </VStack>
