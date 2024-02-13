@@ -25,7 +25,7 @@ const app = express()
 dotenv.config();
 
 app.use(cors({
-	origin: ["http://localhost:5173", "https://realty-solutions.netlify.app"],
+	origin: ["http://localhost:5173", "https://sgs-properties.com", "https://realty-solutions.netlify.app"],
 	credentials: true
 }));
 
