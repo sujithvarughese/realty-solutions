@@ -1,6 +1,6 @@
 const prod = {
 	url: {
-		API_URL: "https://api.sgs-properties.com"
+		API_URL: "https://api.sgs-properties.com/api/v1"
 	}
 }
 
