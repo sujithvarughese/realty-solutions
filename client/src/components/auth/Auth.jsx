@@ -7,9 +7,9 @@ import { Card, CardBody } from '@chakra-ui/react'
 
 const Auth = () => {
 	// default to create account tab, state changes between "login" and "register" on click
-	const [authState, setAuthState] = useState("register")
+	const [authState, setAuthState] = useState("login")
 	return (
-		<Card height="620px" width={{ lg: "50%" }} marginX={{ md: "10" }} boxShadow="2xl">
+		<Card height="420px" width={{ lg: "50%" }} marginX={{ md: "10" }} boxShadow="2xl">
 			<CardBody>
 				<div className={classes.links}>
 					<div className={`${classes.link} ${authState === "register" && classes.active}`}>

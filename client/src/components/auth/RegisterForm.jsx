@@ -43,11 +43,11 @@ const RegisterForm = () => {
         props => (
           <Form>
             <VStack marginTop="8px">
-              <CustomInput label="First Name" name="firstName" type="text" placeholder="Enter first name"/>
-              <CustomInput label="Last Name" name="lastName" type="text" placeholder="Enter last name"/>
-              <CustomInput label="Email" name="email" type="email" placeholder="Enter email"/>
-              <CustomInput label="Password" name="password" type="password" placeholder="Enter password"/>
-              <CustomInput label="Confirm Password" name="confirmPassword" type="password" placeholder="Confirm password"/>
+              <CustomInput name="firstName" type="text" placeholder="First name"/>
+              <CustomInput name="lastName" type="text" placeholder="Last name"/>
+              <CustomInput name="email" type="email" placeholder="Email"/>
+              <CustomInput name="password" type="password" placeholder="Enter password"/>
+              <CustomInput name="confirmPassword" type="password" placeholder="Confirm password"/>
 
               <Button type="submit" color="white" sx={{ backgroundColor: "var(--COLOR-DARK)" }} boxShadow="dark-md" isLoading={loading}>Register</Button>
             </VStack>

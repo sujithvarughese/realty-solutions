@@ -37,12 +37,9 @@
     font-size: 32px;
 }
 .name {
-    position: absolute;
     font-size: 12px;
     display: grid;
     place-items: center;
-    bottom: -3px;
-
 }
 .active {
     color: var(--COLOR-ALT);
