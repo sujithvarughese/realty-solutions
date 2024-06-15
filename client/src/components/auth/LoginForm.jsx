@@ -49,7 +49,6 @@ const LoginForm = () => {
 
               <ButtonGroup marginTop="42px">
                 <Button type="submit" variant="outline" backgroundColor="var(--COLOR-DARK)"  color="white" isLoading={loading}>Log In</Button>
-                <Button type="submit" onClick={()=>handleSubmit(credentials, props)} backgroundColor="var(--COLOR-DARK)" color="white" isLoading={loading}>Demo</Button>
               </ButtonGroup>
 
             </VStack>

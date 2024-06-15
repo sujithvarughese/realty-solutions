@@ -1,14 +1,15 @@
 import { Auth } from '../components/index.js'
 import { useLocation } from 'react-router-dom'
+import { Box, Container, SimpleGrid } from '@chakra-ui/react'
 
 const AuthPage = () => {
 
   const { state } = useLocation()
 
   return (
-    <div>
-      <Auth authState={state}/>
-    </div>
+    <SimpleGrid placeItems="center" padding={12}>
+      <Auth state={state}/>
+    </SimpleGrid>
   )
 }
 
