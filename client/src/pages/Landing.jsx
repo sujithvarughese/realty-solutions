@@ -23,5 +23,17 @@ const Landing = () => {
 		</div>
 	);
 };
+/*
+
+Rental Management software
+
+Why pay a manager 10%?
+Manage all your properties here. All in one place.
+
+
+
+
+
+ */
 
 export default Landing;

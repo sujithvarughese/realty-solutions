@@ -24,6 +24,7 @@ import {
   FinancesUnit,
   unitFinancialsLoader
 } from "./components"
+import AuthPage from './pages/AuthPage.jsx'
 
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
       errorElement: <Error />,
       children: [
         { index: true, element: <Landing /> },
+        { path: "auth", element: <AuthPage /> },
         { path: "verify", element: < AccountVerification /> },
         { path: "research", element: <Research /> },
         { path: "units", element: <Units />, loader: unitsLoader },
