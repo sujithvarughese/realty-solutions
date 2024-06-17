@@ -14,6 +14,7 @@ import realtorComLogo from "../assets/images/landing/logos/realtor_com.png"
 import realtyTimesLogo from "../assets/images/landing/logos/realty_times.png"
 import wsjLogo from "../assets/images/landing/logos/wsj.svg"
 import LandingTabPanel from '../ui/LandingTabPanel.jsx'
+import Footer from '../components/navigation/Footer.jsx'
 
 // home page for public (no user logged in)
 const Landing = () => {
@@ -21,7 +22,7 @@ const Landing = () => {
 		<VStack className={classes.container}>
 
 
-			<HStack height="lg">
+			<HStack height="xl">
 				<Container>
 					<Text fontSize="3xl">Realty Solutions</Text>
 					<Text fontSize="3xl">Real solutions for all your property needs.</Text>
@@ -31,7 +32,7 @@ const Landing = () => {
 				</Container>
 			</HStack>
 
-			<VStack height="lg" justifyContent="space-evenly" paddingY={32}>
+			<VStack height="xl" justifyContent="space-evenly" paddingY={32}>
 				<Text fontSize="6xl" fontWeight={700}>As Seen In:</Text>
 				<HStack justifyContent="space-around">
 					<Image src={businessInsiderLogo} width="16%"></Image>
@@ -42,15 +43,15 @@ const Landing = () => {
 				</HStack>
 			</VStack>
 
-			<HStack height="lg">
+			<HStack height="xl">
+				<Image src={landingKeyIMG} width="50%"></Image>
 				<VStack>
 					<Heading>The All-in-One solution for managing finances and tenants</Heading>
 					<Text>LeaseLink’s intuitive toolset helps half a million landlords and investors streamline their entire rental process for free – whether they have one or 1,000 doors.</Text>
 				</VStack>
-				<Image src={landingKeyIMG} width="50%"></Image>
 			</HStack>
 
-			<VStack height="lg" justifyContent="space-evenly">
+			<VStack height="xl" justifyContent="space-evenly">
 				<Box>
 					<Heading>Two simple plans to fit your needs</Heading>
 					<Text>LeaseLink makes it easy to manage your rentals yourself.</Text>
@@ -103,12 +104,12 @@ const Landing = () => {
 				</HStack>
 			</VStack>
 
-			<HStack height="lg">
+			<HStack height="xl">
 				<Text>Let us take care of preparing your leases and application forms so you have time to focus on the important stuff.</Text>
 				<Image src={laptopIMG} alt="laptop" width="50%" />
 			</HStack>
 
-			<VStack height="lg">
+			<VStack height="xl">
 				<Box>
 					<Heading>Rental Management</Heading>
 					<Heading>All the tools you need to keep your process in one place</Heading>
@@ -117,39 +118,39 @@ const Landing = () => {
 			</VStack>
 
 
-				<Tabs height="lg">
-					<TabList justifyContent="space-evenly">
-						<Tab>Expenses</Tab>
-						<Tab>Maintenance</Tab>
-						<Tab>Messaging</Tab>
-						<Tab>Forms</Tab>
-					</TabList>
-					<TabIndicator />
-					<TabPanels>
-						<LandingTabPanel
-							heading="Keep your finances organized in one place"
-							text="Track and store your expenses with ease. Filter by unit, send rent receipts, export into excel."
-							image={magnifyingIMG}
-						/>
-						<LandingTabPanel
-							heading="Built-in, professional maintenance requests"
-							text="Tenants can easily submit any issues from their portal, and you can keep a paper trail of all maintenance performed."
-							image={magnifyingIMG}
-						/>
-						<LandingTabPanel
-							heading="Your professional messaging app"
-							text="Keep your phone number private from leads and applicants, and keep tenant communication in one place."
-							image={magnifyingIMG}
-						/>
-						<LandingTabPanel
-							heading="All the forms you need to succeed"
-							text="Access 32 essential rental forms, from welcome letters to rent increase notices. Available for download in PDF format."
-							image={magnifyingIMG}
-						/>
-					</TabPanels>
-				</Tabs>
+			<Tabs height="xl">
+				<TabList justifyContent="space-evenly">
+					<Tab>Expenses</Tab>
+					<Tab>Maintenance</Tab>
+					<Tab>Messaging</Tab>
+					<Tab>Forms</Tab>
+				</TabList>
+				<TabIndicator />
+				<TabPanels>
+					<LandingTabPanel
+						heading="Keep your finances organized in one place"
+						text="Track and store your expenses with ease. Filter by unit, send rent receipts, export into excel."
+						image={magnifyingIMG}
+					/>
+					<LandingTabPanel
+						heading="Built-in, professional maintenance requests"
+						text="Tenants can easily submit any issues from their portal, and you can keep a paper trail of all maintenance performed."
+						image={magnifyingIMG}
+					/>
+					<LandingTabPanel
+						heading="Your professional messaging app"
+						text="Keep your phone number private from leads and applicants, and keep tenant communication in one place."
+						image={magnifyingIMG}
+					/>
+					<LandingTabPanel
+						heading="All the forms you need to succeed"
+						text="Access 32 essential rental forms, from welcome letters to rent increase notices. Available for download in PDF format."
+						image={magnifyingIMG}
+					/>
+				</TabPanels>
+			</Tabs>
 
-
+		<Footer/>
 		</VStack>
 	);
 };
