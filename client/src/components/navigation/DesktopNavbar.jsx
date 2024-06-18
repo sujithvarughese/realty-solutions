@@ -39,9 +39,16 @@ const DesktopNavbar = ({ user, links, logout }) => {
 	return (
 		<div className={classes.container}>
 			<div className={classes.content}>
-				<div className={classes.logo}>
-					RS
-				</div>
+				{user ?
+					<div className={classes.logo}>
+						RS
+					</div>
+					:
+					<NavLink to="/" className={classes.logo}>
+						RS
+					</NavLink>
+				}
+
 				<div className={classes.links}>
 					{
 						links.map((link, index) => {
