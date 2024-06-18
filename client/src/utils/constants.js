@@ -1,6 +1,6 @@
 const prod = {
 	url: {
-		API_URL: "https://api.sgs-properties.com/api/v1"
+		API_URL: "https://realty-solutions-api-568d2fe47891.herokuapp.com/api/v1"
 	}
 }
 
