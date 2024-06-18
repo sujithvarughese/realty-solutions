@@ -3,7 +3,7 @@ import { Box, HStack, SimpleGrid, Text } from '@chakra-ui/react'
 const Footer = () => {
   return (
     <HStack
-      bgColor="blue"
+      bgColor="lightblue"
       color="white"
       width="100%"
       padding={12}
