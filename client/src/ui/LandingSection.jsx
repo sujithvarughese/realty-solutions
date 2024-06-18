@@ -1,17 +1,20 @@
 
-import { Box, Container } from '@chakra-ui/react'
+import { Box, Container, SimpleGrid } from '@chakra-ui/react'
 
 const LandingSection = (props) => {
   return (
-    <Box
-      height="xl"
+    <SimpleGrid
+      minH="xl"
       overflow="hidden"
       width="100%"
-      borderRadius={8}
       padding={12}
+      borderRadius={8}
+      alignItems="center"
+      justifyContent="center"
+
       {...props}>
       {props.children}
-    </Box>
+    </SimpleGrid>
   )
 }
 

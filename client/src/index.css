@@ -23,10 +23,11 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "Kanit", sans-serif;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Kanit", sans-serif;
   line-height: 1.6;
   scroll-padding: 120px 0 0;
   transition: color 0.3s, background-color 0.3s;

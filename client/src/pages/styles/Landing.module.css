@@ -5,7 +5,9 @@
     flex-direction: column;
     justify-content: space-between;
 }
-
+.image {
+    width: 50%;
+}
 .caption {
     line-height: normal;
     display: flex;

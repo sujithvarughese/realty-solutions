@@ -1,6 +1,6 @@
 import classes from "./styles/Landing.module.css"
 import { Auth } from "../components"
-import { Box, Button, Card, CardBody, CardHeader, Container, Heading, HStack, Image, List, ListItem, Stack, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs, Text, UnorderedList, VStack } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, CardHeader, Container, Heading, HStack, Image, List, ListItem, SimpleGrid, Stack, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs, Text, UnorderedList, VStack } from '@chakra-ui/react'
 import condosIMG from "../assets/images/landing/condos.png"
 
 import coverIMG from "../assets/images/landing/cover.jpeg"
@@ -26,35 +26,37 @@ const Landing = () => {
 		<VStack className={classes.container}>
 
 			<LandingSection>
-				<Stack flexDirection={{ base: "column", xl: "row" }}>
-					<VStack justifyContent="center" alignItems="center">
-						<Heading>RENTAL PROPERTY MANAGEMENT SOFTWARE</Heading>
-						<Heading>Make self-managing rentals simple</Heading>
+				<Stack flexDirection={{ base: "column", lg: "row" }} gap={24}>
+					<VStack justifyContent="center">
+						<Heading size="sm">RENTAL PROPERTY MANAGEMENT SOFTWARE</Heading>
+						<Heading size="xl">Make self-managing rentals simple</Heading>
 						<Button>Sign Up for Free</Button>
-						<Text>Get leads, screen tenants, create leases, and collect rent — all in one place. Free for landlords.</Text>
-						<Text>Work smarter, not harder. Everything you need in one app..</Text>
+						<VStack gap={6}>
+							<Text fontSize="lg">Get leads, screen tenants, create leases, and collect rent — all in one place. Free for landlords.</Text>
+							<Text fontSize="lg">Work smarter, not harder. Everything you need in one app..</Text>
+						</VStack>
 					</VStack>
-					<Box maxHeight="100%">
-						<Image src={coverIMG} alt="image"/>
-					</Box>
+					<Stack>
+						<Image src={coverIMG} alt="image" />
+					</Stack>
 				</Stack>
 			</LandingSection>
 
 			<LandingSection backgroundColor="lightBlue">
-				<Stack flexDirection={{ base: "column", xl: "row" }}>
-					<Box maxHeight="100%">
-						<Image src={landingKeyIMG}></Image>
-					</Box>
-				<VStack>
-					<Heading>The All-in-One solution for managing finances and tenants</Heading>
-					<Text>LeaseLink’s intuitive toolset helps half a million landlords and investors streamline their entire rental process for free – whether they have one or 1,000 doors.</Text>
+				<Stack flexDirection={{ base: "column", lg: "row" }} gap={24}>
+					<Stack>
+						<Image src={landingKeyIMG} alt="image"></Image>
+					</Stack>
+				<VStack justifyContent="center">
+					<Heading size="xl">The All-in-One solution for managing finances and tenants</Heading>
+					<Text fontSize="lg">LeaseLink’s intuitive toolset helps half a million landlords and investors streamline their entire rental process for free – whether they have one or 1,000 doors.</Text>
 				</VStack>
 				</Stack>
 			</LandingSection>
 
-			<LandingSection >
-				<VStack justifyContent="space-around" paddingY={32}>
-					<Text textAlign="center" fontSize="6xl" fontWeight={700}>As Seen In:</Text>
+			<LandingSection>
+				<VStack justifyContent="space-around">
+					<Text textAlign="center" fontSize="5xl" fontWeight={700}>As Seen In:</Text>
 					<HStack justifyContent="space-around">
 						<Image src={businessInsiderLogo} width="16%"></Image>
 						<Image src={forbesLogo} width="16%"></Image>
@@ -68,10 +70,11 @@ const Landing = () => {
 
 			<LandingSection backgroundColor="lightBlue">
 				<VStack justifyContent="space-evenly">
+					<Heading size="lg">Two simple plans to fit your needs</Heading>
+
 					<Box>
-						<Heading>Two simple plans to fit your needs</Heading>
-						<Text>LeaseLink makes it easy to manage your rentals yourself.</Text>
-						<Text>No hassles. No headaches. Just passive income.</Text>
+						<Text fontSize="md">LeaseLink makes it easy to manage your rentals yourself.</Text>
+						<Text fontSize="md">No hassles. No headaches. Just passive income.</Text>
 					</Box>
 
 					<HStack gap={16}>
@@ -122,8 +125,8 @@ const Landing = () => {
 			</LandingSection>
 
 			<LandingSection>
-				<Tabs height="xl">
-					<TabList justifyContent="space-evenly">
+				<Tabs>
+					<TabList justifyContent="center" alignItems="center">
 						<Tab>Expenses</Tab>
 						<Tab>Maintenance</Tab>
 						<Tab>Messaging</Tab>
