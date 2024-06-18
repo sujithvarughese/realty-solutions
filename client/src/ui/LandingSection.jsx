@@ -1,11 +1,17 @@
-import React from 'react'
-import { Container } from '@chakra-ui/react'
 
-const LandingSection = () => {
+import { Box, Container } from '@chakra-ui/react'
+
+const LandingSection = (props) => {
   return (
-    <Container>
-
-    </Container>
+    <Box
+      height="xl"
+      overflow="hidden"
+      width="100%"
+      borderRadius={8}
+      padding={12}
+      {...props}>
+      {props.children}
+    </Box>
   )
 }
 

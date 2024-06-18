@@ -44,10 +44,11 @@
 }
 @media (min-width: 992px) {
     .container {
-        padding: 2rem;
+        width: 100%;
+        padding: 0;
         flex-direction: row;
         justify-content: space-around;
-        align-items: center;
+        align-items: flex-start;
     }
     .title {
         font-size: 56px;
